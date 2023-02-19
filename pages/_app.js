@@ -1,16 +1,15 @@
-import "../styles/global.css"
-import Layout from "../components/layout.js"
-import Head from "next/head"
-
-export default function AppWrapper({ Component, pageProps }) {
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/globals.css";
+import ThemeProvider from "react-bootstrap/ThemeProvider";
+function MyApp({ Component, pageProps }) {
   return (
-    <>
-      <Head>
-        <title>{pageProps.title ? pageProps.title : "Our Basic Title"}</title>
-      </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
-  )
+    <ThemeProvider
+      breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
+      minBreakpoint="xxs"
+    >
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
+
+export default MyApp;
