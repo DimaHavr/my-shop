@@ -9,7 +9,6 @@ export const ProductCarouselSection = styled.section`
 
 export const ProductCarouselContainer = styled.div`
   width: 100%;
-  height: 600px;
   object-fit: cover;
   object-position: center;
   display: flex;
@@ -20,14 +19,13 @@ export const ProductCarouselContainer = styled.div`
 `;
 
 export const ProductCarouselImg = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  object-fit: contain;
   cursor: pointer;
-  @media (max-width: 768px) {
+  object-fit: cover;
+  /* @media (max-width: 768px) {
     max-width: 400px;
   }
   @media (max-width: 480px) {
     max-width: 280px;
-  }
+  } */
 `;

@@ -8,10 +8,11 @@ export const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background-color: #cb291d5e;
+  z-index: 100;
+  background-color: #333;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  box-shadow: inset -0.5px -10.5px 13.5px -6px rgba(0, 0, 0, 0.43);
+  box-shadow: inset -0.5px 0px 13.5px -6px rgba(0, 0, 0, 0.43);
   @media (max-width: 480px) {
     padding: 15px 20px;
   }
@@ -75,15 +76,14 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   text-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: #ffff00;
+  color: #fff;
   text-decoration: none;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    transform: scale(1.04);
+    transform: scale(1.05);
     color: #ffff00;
   }
 
@@ -149,17 +149,20 @@ export const NavButton = styled.button`
 `;
 
 export const ContactIcon = styled(TiShoppingCart)`
-  display: none;
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  color: #fff;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    color: #ffff00;
+  }
   @media (max-width: 480px) {
-    display: block;
     width: 35px;
     height: 35px;
-    color: #ffff00;
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover,
-    &:focus {
-      transform: scale(1.03);
-    }
   }
 `;

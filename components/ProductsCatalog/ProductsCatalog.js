@@ -1,124 +1,32 @@
-import {
-  CategoryWrapper,
-  StyledMenu,
-  StyledItem,
-  StyledToggle,
-  StyledDropdown,
-} from "./ProductsCatalog.styled";
+import { ProductsCatalogSection } from "./ProductsCatalog.styled";
 
-const ProductCatalogDropdown = (props) => {
+import DropdownBox from "../DropdownBox/DropdownBox";
+
+const options1 = [
+  { id: 1, label: "Option 1" },
+  { id: 2, label: "Option 2" },
+  { id: 3, label: "Option 3" },
+];
+
+const options2 = [
+  { id: 4, label: "Option 4" },
+  { id: 5, label: "Option 5" },
+  { id: 6, label: "Option 6" },
+];
+
+const options3 = [
+  { id: 7, label: "Option 7" },
+  { id: 8, label: "Option 8" },
+  { id: 9, label: "Option 9" },
+];
+function ProductsCatalog() {
   return (
-    <CategoryWrapper>
-      <StyledDropdown>
-        <StyledToggle variant="light" id="product-catalog-dropdown">
-          {props.selectedCategory || "Товари для дівчаток"}
-        </StyledToggle>
-
-        <StyledMenu>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Будиночки, меблі, аксесуари для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Набір супермаркет і магазин
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Ігрові кухні
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Набір доктора
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Дитячі посуд і продукти
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Коляски для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Ляльки і пупси
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Меблі та аксесуари для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Трюмо і Косметика Дитяча
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>Парасольки</StyledItem>
-        </StyledMenu>
-      </StyledDropdown>
-      <StyledDropdown>
-        <StyledToggle variant="light" id="product-catalog-dropdown">
-          {props.selectedCategory || "Товари для дівчаток"}
-        </StyledToggle>
-
-        <StyledMenu>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Будиночки, меблі, аксесуари для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Набір супермаркет і магазин
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Ігрові кухні
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Набір доктора
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Дитячі посуд і продукти
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Коляски для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Ляльки і пупси
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Меблі та аксесуари для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Трюмо і Косметика Дитяча
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>Парасольки</StyledItem>
-        </StyledMenu>
-      </StyledDropdown>
-      <StyledDropdown>
-        <StyledToggle variant="light" id="product-catalog-dropdown">
-          {props.selectedCategory || "Товари для дівчаток"}
-        </StyledToggle>
-
-        <StyledMenu>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Будиночки, меблі, аксесуари для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Набір супермаркет і магазин
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Ігрові кухні
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Набір доктора
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Дитячі посуд і продукти
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Коляски для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Ляльки і пупси
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Меблі та аксесуари для ляльок
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>
-            Трюмо і Косметика Дитяча
-          </StyledItem>
-          <StyledItem onSelect={props.onCategorySelect}>Парасольки</StyledItem>
-        </StyledMenu>
-      </StyledDropdown>
-    </CategoryWrapper>
+    <ProductsCatalogSection>
+      <DropdownBox options={options1} label={"Товари для дівчаток"} />
+      <DropdownBox options={options2} label={"Товари для хлопчиків"} />
+      <DropdownBox options={options3} label={"Товари для немовлят"} />
+    </ProductsCatalogSection>
   );
-};
+}
 
-export default ProductCatalogDropdown;
+export default ProductsCatalog;

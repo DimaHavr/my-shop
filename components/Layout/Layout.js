@@ -2,7 +2,9 @@ import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-
+const ProductsCatalog = dynamic(() =>
+  import("../ProductsCatalog/ProductsCatalog")
+);
 const Footer = dynamic(() => import("../Footer/Footer"));
 
 import {
@@ -51,10 +53,10 @@ const Layout = (props) => {
             </NavItem>
           </NavList>
         </Nav>
-        <NavButton>Корзина</NavButton>
-
         <ContactIcon />
       </HeaderWrapper>
+      <ProductsCatalog />
+
       <div>{props.children}</div>
       <Footer />
     </>
