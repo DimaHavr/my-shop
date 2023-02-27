@@ -1,123 +1,176 @@
 import { useState } from "react";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
-import { Loader } from "../Loader/Loader";
-import {
-  FormContainer,
-  FormInput,
-  FormButton,
-  EmailIcon,
-  InputContainer,
-  ContactIcon,
-  CommentIcon,
-  UserIcon,
-  CloseButton,
-  ContactsLink,
-  ContactsBox,
-  ContactsText,
-} from "./SubmitForm.styled";
+import styled from "styled-components";
+import Image from "next/image";
 
-const SubmitForm = ({ onClose }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [textArea, setTextArea] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+const BasketWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
 
-    const data = {
-      name,
-      email,
-      phoneNumber,
-      textArea,
-    };
+  button {
+    background-color: #f0c14b;
+    border: none;
+    color: #111;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
 
-    try {
-      const response = await fetch("/api/sendForm", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    &:hover {
+      background-color: #ddb347;
+    }
+  }
+`;
 
-      if (response.ok) {
-        onClose();
-        Notify.success("Заявка надіслана! Очікуйте на контакт з менеджером...");
-      } else {
-        Notify.failure("Помилка при відправці заявки");
-      }
-    } catch (error) {
-      Notify.failure("Помилка при відправці заявки");
-      console.error(error);
+const BasketItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem 0;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    width: 10rem;
+    height: 10rem;
+    object-fit: contain;
+    margin-right: 1rem;
+  }
+
+  .basketItemInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-grow: 1;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
 
-    setIsLoading(false);
+    p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    button {
+      background-color: #f0c14b;
+      border: none;
+      color: #111;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #ddb347;
+      }
+    }
+
+    .quantitySelector {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5rem;
+
+      button {
+        background-color: #f0c14b;
+        border: none;
+        color: #111;
+        padding: 0.25rem 0.5rem;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #ddb347;
+        }
+      }
+
+      p {
+        margin: 0 0.5rem;
+      }
+    }
+  }
+
+  .basketItemPrice {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+`;
+
+const Basket = () => {
+  const [basketItems, setBasketItems] = useState([
+    {
+      id: "1",
+      title: "Samsung Galaxy S21",
+      price: 799.99,
+      image: "/images/samsung-galaxy-s21.jpg",
+      quantity: 1,
+    },
+    {
+      id: "2",
+      title: "Apple iPhone 12",
+      price: 1099.99,
+      image: "/images/iphone-12.jpg",
+      quantity: 2,
+    },
+  ]);
+
+  const handleQuantityChange = (itemId, newQuantity) => {
+    const updatedBasketItems = basketItems.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setBasketItems(updatedBasketItems);
+  };
+
+  const handleContinueShoppingClick = () => {
+    // Navigate to the home page
   };
 
   return (
-    <FormContainer>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <InputContainer>
-            <UserIcon />
-            <FormInput
-              type="name"
-              placeholder="Ім'я"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              maxLength="15"
-              required
-            />
-          </InputContainer>
-          <InputContainer>
-            <EmailIcon />
-            <FormInput
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-          </InputContainer>
-          <InputContainer>
-            <ContactIcon />
-            <FormInput
-              type="tel"
-              placeholder="Номер телефону"
-              value={phoneNumber}
-              onChange={(event) => setPhoneNumber(event.target.value)}
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              maxLength="15"
-              required
-            />
-          </InputContainer>
-          <InputContainer>
-            <CommentIcon />
-            <FormInput
-              type="text"
-              placeholder="Комментар"
-              value={textArea}
-              onChange={(event) => setTextArea(event.target.value)}
-            />
-          </InputContainer>
-          <FormButton type="submit">Надіслати</FormButton>
-        </form>
-      )}
-      <CloseButton onClick={onClose} />
-      <ContactsBox>
-        <ContactsText>Зателефонувати:</ContactsText>
-        <ContactsLink onClick={() => onClose()} href="tel:+380961111111">
-          +38 097 77 77 77
-        </ContactsLink>
-      </ContactsBox>
-    </FormContainer>
+    <BasketWrapper>
+      <h1>Your Basket</h1>
+      {basketItems.map(({ id, image, price, quantity, title }) => (
+        <BasketItemWrapper key={id}>
+          <Image src={image} alt={title} width={400} height={400} />
+          <div className="basketItemInfo">
+            <h2>{title}</h2>
+            <p>Price: ${price}</p>
+            <div className="quantitySelector">
+              <button onClick={() => handleQuantityChange(id, quantity - 1)}>
+                -
+              </button>
+              <p>{quantity}</p>
+              <button onClick={() => handleQuantityChange(id, quantity + 1)}>
+                +
+              </button>
+            </div>
+            <button>Remove from Basket</button>
+          </div>
+          <div className="basketItemPrice">${price.toFixed(3) * quantity}</div>
+        </BasketItemWrapper>
+      ))}
+      <button onClick={handleContinueShoppingClick}>Continue Shopping</button>
+    </BasketWrapper>
   );
 };
 
-export default SubmitForm;
+export default Basket;

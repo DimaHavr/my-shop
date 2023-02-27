@@ -4,7 +4,6 @@ export const ProductCarouselSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0px;
 `;
 
 export const ProductCarouselContainer = styled.div`

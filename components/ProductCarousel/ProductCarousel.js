@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, FreeMode } from "swiper";
 import "swiper/swiper-bundle.css";
-import "swiper/css/effect-cube";
+import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 import {
@@ -14,7 +14,7 @@ import {
 const ProductCarouselArr = [
   {
     id: 1,
-    img: "/productCarousel/heroBg.webp",
+    img: "https://merrygoround.com.ua/Media/shop-11199/_assets/%D0%B1%D0%B0%D0%BD%D0%B5%D1%80%D0%B8/Part%202%20(3)-ratio-width-1200-png.webp",
     alt: "ropeaccess work",
   },
   {
@@ -38,11 +38,12 @@ const ProductCarousel = () => {
           centeredSlides={true}
           centeredSlidesBounds={true}
           loop
+          freeMode={true}
           pagination={{
             clickable: true,
           }}
           navigation={true}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation, FreeMode]}
         >
           {ProductCarouselArr.map(({ img, id, alt }) => (
             <SwiperSlide

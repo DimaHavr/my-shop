@@ -148,7 +148,7 @@ export const NavButton = styled.button`
   }
 `;
 
-export const ContactIcon = styled(TiShoppingCart)`
+export const CardIcon = styled(TiShoppingCart)`
   cursor: pointer;
   width: 45px;
   height: 45px;

@@ -6,6 +6,7 @@ export const Section = styled.section`
   justify-content: center;
   align-items: center;
   padding: 50px 15px 50px 15px;
+  background-color: #333;
 `;
 
 export const Title = styled.h2`
@@ -33,7 +34,7 @@ export const ProductWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 `;
 
 export const ProductsList = styled.ul`
@@ -103,6 +104,7 @@ export const Button = styled.button`
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);

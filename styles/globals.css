@@ -3,11 +3,6 @@ body {
   font-size: 14px;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.03em;
-  background: linear-gradient(#9b4b4b7c, rgba(0, 0, 0, 0.2)), url(/bgShop.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
 }
 
 h1,

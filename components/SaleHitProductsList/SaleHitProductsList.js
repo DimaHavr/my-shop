@@ -1,3 +1,8 @@
+import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+
+const Modal = dynamic(() => import("../Modal/Modal"));
+
 import {
   Section,
   Title,
@@ -71,6 +76,22 @@ const productsHitList = [
 import React from "react";
 
 const SaleHitProductsList = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = showModal ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showModal]);
   return (
     <Section>
       <Wrapper>
@@ -88,7 +109,7 @@ const SaleHitProductsList = () => {
                       <ProductsTextTitle>{label}</ProductsTextTitle>
                     </ProductsTextBox>
                   </ProductsListLink>
-                  <Button>Add to Cart</Button>
+                  <Button onClick={handleOpenModal}>Придбати</Button>
                 </ProductsListItem>
               );
             })}
@@ -108,13 +129,14 @@ const SaleHitProductsList = () => {
                       <ProductsTextTitle>{label}</ProductsTextTitle>
                     </ProductsTextBox>
                   </ProductsListLink>
-                  <Button>Add to Cart</Button>
+                  <Button onClick={handleOpenModal}>Придбати</Button>
                 </ProductsListItem>
               );
             })}
           </ProductsList>
         </ProductWrapper>
       </Wrapper>
+      {showModal && <Modal onClose={handleCloseModal} />}
     </Section>
   );
 };

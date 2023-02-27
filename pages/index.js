@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-// import GetProducts from "../components/GetProducts";
 
 const Layout = dynamic(() => import("../components/Layout/Layout"));
 const ProductCarousel = dynamic(() =>
@@ -14,7 +13,6 @@ const Index = () => {
     <Layout pageTitle="My-Shop">
       <ProductCarousel />
       <SaleHitProductsList />
-      {/* <GetProducts /> */}
     </Layout>
   );
 };
