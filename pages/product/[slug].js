@@ -25,7 +25,7 @@ import {
   SubTitle,
   Text,
   TextDesc,
-} from "./ProductDetails.styled";
+} from "../../components/Product/ProductDetails.styled";
 import SwiperCore, { Pagination } from "swiper";
 import "swiper/swiper.min.css";
 import "swiper/css/pagination";

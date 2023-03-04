@@ -7,7 +7,6 @@ import {
   ProductBox,
 } from "./Product.styled";
 import { useStateContext } from "../../context/StateContext";
-import Box from "../Box/Box";
 
 const Product = ({ product }) => {
   const { image, name, slug, price } = product;
