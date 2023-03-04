@@ -111,41 +111,9 @@ export const NavLogoIcon = styled(MdOutlineToys)`
 `;
 
 export const NavButton = styled.button`
-  display: block;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 1.88;
-  letter-spacing: 0.06em;
-  color: #000;
-  cursor: pointer;
-  background-color: #ffff00;
-  border: 0px;
-  border-radius: 4px;
-  padding: 10px 30px;
-  box-shadow: 0 18px 28px 2px rgba(0, 0, 0, 0.43);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.04);
-    color: #ffff00;
-    background: #333;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: #fff;
-    color: #000;
-    transform: scale(1.03);
-    box-shadow: 0 18px 28px 2px rgba(0, 0, 0, 0.53);
-  }
-  @media (max-width: 480px) {
-    display: none;
-  }
+  position: relative;
+  background: none;
+  border: none;
 `;
 
 export const CardIcon = styled(TiShoppingCart)`
@@ -165,4 +133,16 @@ export const CardIcon = styled(TiShoppingCart)`
     width: 35px;
     height: 35px;
   }
+`;
+export const CardItemQty = styled.span`
+  position: absolute;
+  right: -8px;
+  font-size: 12px;
+  color: #eee;
+  background-color: #f02d34;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 600;
 `;

@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useStateContext } from "../../context/StateContext";
+const Cart = dynamic(() => import("../Cart/Cart"));
+const Footer = dynamic(() => import("../Footer/Footer"));
 const ProductsCatalog = dynamic(() =>
   import("../ProductsCatalog/ProductsCatalog")
 );
-const Modal = dynamic(() => import("../Modal/Modal"));
-
-const Footer = dynamic(() => import("../Footer/Footer"));
 import {
   HeaderWrapper,
   Nav,
@@ -19,26 +18,26 @@ import {
   NavButton,
   CardIcon,
   NavLogoIcon,
+  CardItemQty,
 } from "./Layout.styled";
 
 const Layout = (props) => {
-  const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
+  const { showCart, setShowCart, totalQuantities } = useStateContext();
 
   const handleOpenModal = () => {
-    setShowModal(true);
+    setShowCart(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setShowCart(false);
   };
 
   useEffect(() => {
-    document.body.style.overflow = showModal ? "hidden" : "auto";
+    document.body.style.overflow = showCart ? "hidden" : "auto";
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [showModal]);
+  }, [showCart]);
 
   return (
     <>
@@ -67,13 +66,18 @@ const Layout = (props) => {
             </NavItem>
           </NavList>
         </Nav>
-        <CardIcon onClick={handleOpenModal} />
+        <NavButton onClick={handleOpenModal}>
+          <CardIcon />
+          {totalQuantities !== 0 && (
+            <CardItemQty>{totalQuantities}</CardItemQty>
+          )}
+        </NavButton>
       </HeaderWrapper>
       <ProductsCatalog />
 
       <div>{props.children}</div>
       <Footer />
-      {showModal && <Modal onClose={handleCloseModal} />}
+      {showCart && <Cart onClose={handleCloseModal} />}
     </>
   );
 };
