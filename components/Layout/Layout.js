@@ -52,7 +52,7 @@ const Layout = (props) => {
         <Nav>
           <NavLogo>
             <NavLogoIcon />
-            <NavLinkLogo href="#">Kids</NavLinkLogo>
+            <NavLinkLogo href="/">Kids</NavLinkLogo>
           </NavLogo>
           <NavList>
             <NavItem>

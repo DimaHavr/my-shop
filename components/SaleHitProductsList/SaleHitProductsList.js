@@ -8,24 +8,19 @@ import {
   ProductWrapper,
   ProductsList,
   ProductsListItem,
-  ProductsListLink,
-  ProductsTextBox,
-  ProductsTextTitle,
-  ProductsText,
-  ProductsImg,
-  Button,
   Span,
 } from "./SaleHitProductsList.styled";
 
-const SaleHitProductsList = ({ products }) => {
+const SaleHitProductsList = ({ hitProducts }) => {
   return (
     <Section>
       <Wrapper>
         <ProductWrapper>
           <Title>Хіти Продажу</Title>
           <ProductsList>
-            {products?.map((product) => (
+            {hitProducts?.map((product) => (
               <ProductsListItem key={product._id}>
+                <Span>Хіт продажу</Span>
                 <Product key={product._id} product={product} />
               </ProductsListItem>
             ))}

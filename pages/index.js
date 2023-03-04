@@ -7,11 +7,11 @@ const SaleHitProductsList = dynamic(() =>
   import("../components/SaleHitProductsList/SaleHitProductsList")
 );
 
-const Index = ({ products, bannerData }) => {
+const Index = ({ products, bannerData, hitProductsData }) => {
   return (
     <Layout pageTitle="My-Shop">
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
-      <SaleHitProductsList products={products} />
+      <SaleHitProductsList hitProducts={hitProductsData} />
     </Layout>
   );
 };
@@ -23,8 +23,11 @@ export const getServerSideProps = async () => {
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
+  const hitProductsQuery = '*[_type == "hitProducts"]';
+  const hitProductsData = await client.fetch(hitProductsQuery);
+
   return {
-    props: { products, bannerData },
+    props: { products, bannerData, hitProductsData },
   };
 };
 

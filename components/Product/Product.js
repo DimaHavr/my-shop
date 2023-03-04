@@ -1,13 +1,30 @@
 import Link from "next/link";
-import { ProductImg, ProductText, ProductTextItem } from "./Product.styled";
+import {
+  ProductImg,
+  ProductText,
+  CardIcon,
+  ProductTextItem,
+  ProductBox,
+} from "./Product.styled";
+import { useStateContext } from "../../context/StateContext";
+import Box from "../Box/Box";
 
-const Product = ({ product: { image, name, slug, price } }) => {
+const Product = ({ product }) => {
+  const { image, name, slug, price } = product;
+  const { setQty, onAdd, qty } = useStateContext();
   return (
-    <Link href={`/product/${slug.current}`}>
-      <ProductImg src={image && image[0]} width={280} height={280} />
-      <ProductText>{name}</ProductText>
-      <ProductTextItem>${price}</ProductTextItem>
-    </Link>
+    <ProductBox>
+      <Link onClick={() => setQty(1)} href={`/product/${slug.current}`}>
+        <ProductImg src={image && image[0]} width={280} height={280} />
+        <ProductTextItem>{price}грн</ProductTextItem>
+        <ProductText>{name}</ProductText>
+      </Link>
+      <CardIcon
+        onClick={() => {
+          onAdd(product, qty);
+        }}
+      />
+    </ProductBox>
   );
 };
 

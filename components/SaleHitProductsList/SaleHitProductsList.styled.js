@@ -70,6 +70,17 @@ export const ProductsListItem = styled.li`
 
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
+`;
+
+export const Span = styled.span`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(255, 169, 0);
+  color: rgb(255, 255, 255);
+  border-radius: 50px;
+  padding: 10px;
+  font-weight: 700;
 `;

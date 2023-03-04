@@ -1,19 +1,17 @@
 import dynamic from "next/dynamic";
-import Box from "../../components/Box/Box";
 import { useState, useEffect } from "react";
+import { useStateContext } from "../../context/StateContext";
+import { client } from "../../lib/client";
+import Box from "../../components/Box/Box";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 const Product = dynamic(() => import("../../components/Product/Product"));
 const Layout = dynamic(() => import("../../components/Layout/Layout"));
-import { useStateContext } from "../../context/StateContext";
-import { client } from "../../lib/client";
 import {
   DetailContainer,
   SmallImagesContainer,
   SmallImage,
   DetailImg,
-  StarIcon,
-  OutlineStarIcon,
   MinusIcon,
   PlusIcon,
   DetailDescContainer,
@@ -24,15 +22,26 @@ import {
   ListItem,
   QuantityText,
   Title,
+  SubTitle,
+  Text,
+  TextDesc,
 } from "./ProductDetails.styled";
+import SwiperCore, { Pagination } from "swiper";
+import "swiper/swiper.min.css";
+import "swiper/css/pagination";
+import "swiper/css";
+import "swiper/css/navigation";
 
-const ProductDetails = ({ product, products }) => {
-  const { image, name, details, price } = product;
+SwiperCore.use([Pagination]);
+import { Swiper, SwiperSlide } from "swiper/react";
+
+const ProductDetails = ({ hitProduct, hitProducts }) => {
+  const { image, name, details, price, vendor, country_of_origin } = hitProduct;
   const [index, setIndex] = useState(0);
-  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
+  const { decQty, incQty, qty, onAdd, setShowCart, setQty } = useStateContext();
 
   const handleBuyNow = () => {
-    onAdd(product, qty);
+    onAdd(hitProduct, qty);
     setShowCart(true);
   };
 
@@ -49,33 +58,54 @@ const ProductDetails = ({ product, products }) => {
               <DetailImg src={image && image[index]} />
             </a>
             <SmallImagesContainer>
-              {image?.map((item, i) => (
-                <SmallImage
-                  key={i}
-                  src={item}
-                  selected={i === index}
-                  onMouseEnter={() => setIndex(i)}
-                />
-              ))}
+              <Swiper
+                spaceBetween={10}
+                slidesPerView={image.length === 2 ? 2 : 3}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                modules={[Pagination]}
+              >
+                {image?.map((item, i) =>
+                  image.length === 1 ? (
+                    <SmallImage
+                      key={i}
+                      src={item}
+                      selected={i === index}
+                      onMouseEnter={() => setIndex(i)}
+                    />
+                  ) : (
+                    <SwiperSlide key={i}>
+                      <SmallImage
+                        src={item}
+                        selected={i === index}
+                        onMouseEnter={() => setIndex(i)}
+                      />
+                    </SwiperSlide>
+                  )
+                )}
+              </Swiper>
             </SmallImagesContainer>
           </Box>
           <DetailDescContainer className="product-detail-desc">
             <Title>{name}</Title>
-            <div className="reviews">
-              <div>
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <OutlineStarIcon />
-              </div>
-              <p>(20)</p>
-            </div>
-            <h4>Details: </h4>
-            <p>{details}</p>
-            <p className="price">${price}</p>
+            <SubTitle>Опис: </SubTitle>
+            <TextDesc>{details}</TextDesc>
+            {vendor && (
+              <Box display="flex" gridGap="10px" alignItems="flex-end">
+                <SubTitle>Виробник: </SubTitle>
+                <Text>{vendor}</Text>
+              </Box>
+            )}
+            {country_of_origin && (
+              <Box display="flex" gridGap="10px" alignItems="flex-end">
+                <SubTitle>Країна виробник: </SubTitle>
+                <Text>{country_of_origin}</Text>
+              </Box>
+            )}
+            <Box display="flex" gridGap="10px" alignItems="flex-end">
+              <SubTitle>Ціна: </SubTitle>
+              <Text>{price}₴</Text>
+            </Box>
             <QuantityContainer>
-              <h3>Quantity:</h3>
               <Box display="flex" alignItems="center" gridGap="10px">
                 <MinusIcon onClick={decQty} />
                 <QuantityText>{qty}</QuantityText>
@@ -83,11 +113,17 @@ const ProductDetails = ({ product, products }) => {
               </Box>
             </QuantityContainer>
             <Box display="flex" gridGap="30px">
-              <AddToCartBtn type="button" onClick={() => onAdd(product, qty)}>
-                Add to Cart
+              <AddToCartBtn
+                type="button"
+                onClick={() => {
+                  onAdd(hitProduct, qty);
+                  setQty(1);
+                }}
+              >
+                Додати до корзини
               </AddToCartBtn>
               <BuyNowBtn type="button" onClick={handleBuyNow}>
-                Buy Now
+                Купити
               </BuyNowBtn>
             </Box>
           </DetailDescContainer>
@@ -101,9 +137,9 @@ const ProductDetails = ({ product, products }) => {
           flexDirection="column"
           paddingBottom="50px"
         >
-          <h2>You may also like</h2>
-          <List display="flex" gridGap="20px">
-            {products.map((item) => (
+          <Title>Вам також може сподобатися</Title>
+          <List>
+            {hitProducts.map((item) => (
               <ListItem key={item._id}>
                 <Product key={item._id} product={item} />
               </ListItem>
@@ -116,18 +152,18 @@ const ProductDetails = ({ product, products }) => {
 };
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "product"] {
+  const query = `*[_type == "hitProducts"] {
     slug {
       current
     }
   }
   `;
 
-  const products = await client.fetch(query);
+  const hitProducts = await client.fetch(query);
 
-  const paths = products.map((product) => ({
+  const paths = hitProducts.map((hitProduct) => ({
     params: {
-      slug: product.slug.current,
+      slug: hitProduct.slug.current,
     },
   }));
 
@@ -138,16 +174,14 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-  const productsQuery = '*[_type == "product"]';
+  const query = `*[_type == "hitProducts" && slug.current == '${slug}'][0]`;
+  const hitProductsQuery = '*[_type == "hitProducts"]';
 
-  const product = await client.fetch(query);
-  const products = await client.fetch(productsQuery);
-
-  console.log(product);
+  const hitProduct = await client.fetch(query);
+  const hitProducts = await client.fetch(hitProductsQuery);
 
   return {
-    props: { products, product },
+    props: { hitProducts, hitProduct },
   };
 };
 

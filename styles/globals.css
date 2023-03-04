@@ -29,3 +29,16 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* Swiper */
+
+.swiper-slide,
+swiper-slide {
+  padding: 5px 0px 20px 0px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  bottom: 0px;
+}
+/* Swiper */

@@ -81,14 +81,16 @@ const Cart = ({ onClose }) => {
         {cartItems.length < 1 && (
           <div className="empty-cart">
             <AiOutlineShopping size={150} />
-            <h3>Your shopping bag is empty</h3>
+            <h3>
+              Кошик порожній... <br /> Але це ніколи не пізно виправити :)
+            </h3>
             <Link href="/">
               <button
                 type="button"
                 onClick={() => setShowCart(false)}
                 className="btn"
               >
-                Continue Shopping
+                Повернутися до магазину
               </button>
             </Link>
           </div>
@@ -102,7 +104,7 @@ const Cart = ({ onClose }) => {
                 <div className="item-desc">
                   <div className="flex top">
                     <h5>{item.name}</h5>
-                    <h4>${item.price}</h4>
+                    <h4>{item.price}₴</h4>
                   </div>
                   <div className="flex bottom">
                     <div>
@@ -141,12 +143,12 @@ const Cart = ({ onClose }) => {
         {cartItems.length >= 1 && (
           <div className="cart-bottom">
             <div className="total">
-              <h3>Subtotal:</h3>
-              <h3>${totalPrice}</h3>
+              <h3>Сума:</h3>
+              <h3>{totalPrice}₴</h3>
             </div>
             <div className="btn-container">
               <button type="button" className="btn" onClick={handleCheckout}>
-                Pay with Stripe
+                Оформити замовлення
               </button>
             </div>
           </div>

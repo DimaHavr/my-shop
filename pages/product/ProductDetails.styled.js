@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import {
   AiFillStar,
@@ -42,11 +43,36 @@ export const DetailContainer = styled.div`
 export const Title = styled.h2`
   text-align: center;
   font-weight: 900;
-  font-size: 44px;
+  font-size: 34px;
   line-height: 1.36;
   text-align: start;
   letter-spacing: 0.06em;
   color: #000;
+`;
+export const SubTitle = styled.h3`
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.36;
+  text-align: start;
+  letter-spacing: 0.06em;
+`;
+
+export const Text = styled.p`
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.36;
+  text-align: start;
+  letter-spacing: 0.06em;
+`;
+export const TextDesc = styled.p`
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.36;
+  text-align: start;
+  letter-spacing: 0.06em;
 `;
 
 export const DetailImg = styled.img`
@@ -83,8 +109,7 @@ export const SmallImagesContainer = styled.div`
   gap: 10px;
   margin-top: 20px;
   width: 350px;
-  overflow: hidden;
-  padding: 10px;
+  padding: 20px;
 `;
 
 export const DetailDescContainer = styled.div`
@@ -110,8 +135,9 @@ export const List = styled.ul`
   flex-wrap: wrap;
   flex: 1 1 1;
   justify-content: center;
-  gap: 25px;
+  gap: 35px;
   list-style-type: none;
+  padding: 0px 30px;
   @media screen and (max-width: 767px) {
     flex-direction: column;
     align-items: center;
