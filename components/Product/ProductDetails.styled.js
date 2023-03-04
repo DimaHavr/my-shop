@@ -1,13 +1,6 @@
 import styled from "styled-components";
-import {
-  AiFillStar,
-  AiOutlineStar,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
-export const StarIcon = styled(AiFillStar)``;
-export const OutlineStarIcon = styled(AiOutlineStar)``;
 export const MinusIcon = styled(AiOutlineMinus)`
   width: 25px;
   height: 25px;
@@ -170,9 +163,8 @@ export const ListItem = styled.ul`
 
 export const AddToCartBtn = styled.button`
   width: 200px;
-  padding: 10px 20px;
   border: 2px solid #000;
-  margin-top: 40px;
+  padding: 5px 10px;
   font-size: 18px;
   font-weight: 500;
   background-color: #fff;
@@ -189,11 +181,10 @@ export const AddToCartBtn = styled.button`
 
 export const BuyNowBtn = styled.button`
   width: 200px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   background-color: #000;
   color: #fff;
   border: none;
-  margin-top: 40px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;

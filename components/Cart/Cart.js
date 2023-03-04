@@ -1,12 +1,6 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
-import {
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiOutlineLeft,
-  AiOutlineShopping,
-} from "react-icons/ai";
-import { TiDeleteOutline } from "react-icons/ti";
+import { AiOutlineShopping } from "react-icons/ai";
 import { useStateContext } from "../../context/StateContext";
 import getStripe from "../../lib/getStripe";
 import {
@@ -14,7 +8,22 @@ import {
   CartWrapper,
   CloseButton,
   ImgContainer,
+  BackButton,
+  BackButtonIcon,
+  Span,
+  QuantityContainer,
+  QuantityText,
+  MinusIcon,
+  PlusIcon,
+  SubTitle,
+  DetailContainer,
+  Text,
+  RemoveButtonIcon,
+  IssueBtn,
+  TotalContainer,
+  BackBtn,
 } from "./Cart.styled";
+import Box from "../Box/Box";
 
 const Cart = ({ onClose }) => {
   const cartRef = useRef();
@@ -23,7 +32,7 @@ const Cart = ({ onClose }) => {
     totalQuantities,
     cartItems,
     setShowCart,
-    toggleCartItemQuanitity,
+    toggleCartItemQuantity,
     onRemove,
   } = useStateContext();
 
@@ -68,90 +77,68 @@ const Cart = ({ onClose }) => {
   return (
     <CartWrapper ref={cartRef} onClick={onBackdropCloseModal}>
       <CartContainer>
-        <button
-          type="button"
-          className="cart-heading"
-          onClick={() => setShowCart(false)}
-        >
-          <AiOutlineLeft />
-          <span className="heading">Your Cart</span>
-          <span className="cart-num-items">{totalQuantities} items</span>
-        </button>
+        <BackButton type="button" onClick={() => setShowCart(false)}>
+          <BackButtonIcon />
+          {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
+        </BackButton>
 
         {cartItems.length < 1 && (
-          <div className="empty-cart">
+          <Box
+            display="flex"
+            flexDirection="column"
+            gridGap="20px"
+            justifyContent="center"
+            alignItems="center"
+          >
             <AiOutlineShopping size={150} />
-            <h3>
+            <Text>
               Кошик порожній... <br /> Але це ніколи не пізно виправити :)
-            </h3>
-            <Link href="/">
-              <button
-                type="button"
-                onClick={() => setShowCart(false)}
-                className="btn"
-              >
-                Повернутися до магазину
-              </button>
-            </Link>
-          </div>
+            </Text>
+            <BackBtn type="button" onClick={() => setShowCart(false)} c>
+              Повернутися до магазину
+            </BackBtn>
+          </Box>
         )}
 
-        <div className="product-container">
+        <Box>
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
-              <div className="product" key={item._id}>
-                <ImgContainer src={item?.image[0]} />
-                <div className="item-desc">
-                  <div className="flex top">
-                    <h5>{item.name}</h5>
-                    <h4>{item.price}₴</h4>
-                  </div>
-                  <div className="flex bottom">
-                    <div>
-                      <p className="quantity-desc">
-                        <span
-                          className="minus"
-                          onClick={() =>
-                            toggleCartItemQuanitity(item._id, "dec")
-                          }
-                        >
-                          <AiOutlineMinus />
-                        </span>
-                        <span className="num">{item.quantity}</span>
-                        <span
-                          className="plus"
-                          onClick={() =>
-                            toggleCartItemQuanitity(item._id, "inc")
-                          }
-                        >
-                          <AiOutlinePlus />
-                        </span>
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      className="remove-item"
-                      onClick={() => onRemove(item)}
-                    >
-                      <TiDeleteOutline />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <DetailContainer className="product" key={item._id}>
+                <Link href={`/product/${item.slug.current}`}>
+                  <ImgContainer src={item?.image[0]} />
+                </Link>
+                <Box
+                  display="flex"
+                  flexDirection="column"
+                  gridGap="10px"
+                  justifyContent="space-around"
+                >
+                  <SubTitle>{item.name}</SubTitle>
+                  <Text>{item.price}₴</Text>
+
+                  <Box display="flex" justifyContent="space-between">
+                    <QuantityContainer>
+                      <MinusIcon
+                        onClick={() => toggleCartItemQuantity(item._id, "dec")}
+                      />
+                      <QuantityText>{item.quantity}</QuantityText>
+                      <PlusIcon
+                        onClick={() => toggleCartItemQuantity(item._id, "inc")}
+                      />
+                    </QuantityContainer>
+                    <RemoveButtonIcon onClick={() => onRemove(item)} />
+                  </Box>
+                </Box>
+              </DetailContainer>
             ))}
-        </div>
+        </Box>
         {cartItems.length >= 1 && (
-          <div className="cart-bottom">
-            <div className="total">
-              <h3>Сума:</h3>
-              <h3>{totalPrice}₴</h3>
-            </div>
-            <div className="btn-container">
-              <button type="button" className="btn" onClick={handleCheckout}>
-                Оформити замовлення
-              </button>
-            </div>
-          </div>
+          <TotalContainer className="cart-bottom">
+            <SubTitle>{totalPrice}₴</SubTitle>
+            <IssueBtn type="button" onClick={handleCheckout}>
+              Оформити замовлення
+            </IssueBtn>
+          </TotalContainer>
         )}
       </CartContainer>
       <CloseButton onClick={onClose} />

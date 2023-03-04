@@ -14,7 +14,7 @@ import {
 const HeroBanner = ({ heroBanner }) => {
   return (
     <HeroBannerSection>
-      <HeroBannerContainer href={`/product/id`}>
+      <HeroBannerContainer href="/">
         <h3>{heroBanner.midText}</h3>
         <p>{heroBanner.discount}</p>
         <p>{heroBanner.saleTime}</p>
