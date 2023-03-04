@@ -105,28 +105,6 @@ export const QuantityText = styled.p`
   font-weight: 700;
 `;
 
-// .quantity-desc{
-//   border: 1px solid gray;
-
-// }
-// .quantity-desc span{
-//   font-size: 16px;
-//   padding: 6px 12px;
-//   cursor: pointer;
-// }
-// .quantity-desc .minus{
-//   border-right: 1px solid gray;
-//   color: #f02d34;
-// }
-// .quantity-desc .num{
-//   border-right: 1px solid gray;
-//   font-size: 20px;
-// }
-// .quantity-desc .plus{
-//   color: rgb(49, 168, 49);
-
-// }
-
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
