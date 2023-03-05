@@ -3,31 +3,28 @@ import { client } from "../lib/client";
 
 const Layout = dynamic(() => import("../components/Layout/Layout"));
 const HeroBanner = dynamic(() => import("../components/HeroBanner/HeroBanner"));
-const SaleHitProductsList = dynamic(() =>
-  import("../components/SaleHitProductsList/SaleHitProductsList")
+const ProductsList = dynamic(() =>
+  import("../components/ProductsList/ProductsList")
 );
 
-const Index = ({ products, bannerData, hitProductsData }) => {
+const Index = ({ bannerData, hitProductsData, pageQuery }) => {
   return (
     <Layout pageTitle="My-Shop">
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
-      <SaleHitProductsList hitProducts={hitProductsData} />
+      <ProductsList products={hitProductsData} pageQuery={pageQuery} />
     </Layout>
   );
 };
 
 export const getServerSideProps = async () => {
-  const query = '*[_type == "product"]';
-  const products = await client.fetch(query);
-
   const bannerQuery = '*[_type == "banner"]';
   const bannerData = await client.fetch(bannerQuery);
 
   const hitProductsQuery = '*[_type == "hitProducts"]';
   const hitProductsData = await client.fetch(hitProductsQuery);
-
+  const pageQuery = "hit-products";
   return {
-    props: { products, bannerData, hitProductsData },
+    props: { bannerData, hitProductsData, pageQuery },
   };
 };
 

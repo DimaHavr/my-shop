@@ -26,7 +26,7 @@ import {
 } from "./Cart.styled";
 import Box from "../Box/Box";
 
-const Cart = ({ onClose }) => {
+const Cart = () => {
   const cartRef = useRef();
   const {
     totalPrice,
@@ -58,7 +58,7 @@ const Cart = ({ onClose }) => {
   useEffect(() => {
     const onCloseModal = (event) => {
       if (event.code === "Escape") {
-        onClose();
+        setShowCart(false);
       }
     };
 
@@ -67,11 +67,11 @@ const Cart = ({ onClose }) => {
     return () => {
       window.removeEventListener("keydown", onCloseModal);
     };
-  }, [onClose]);
+  }, [setShowCart]);
 
   const onBackdropCloseModal = (event) => {
     if (event.target === event.currentTarget) {
-      onClose();
+      setShowCart(false);
     }
   };
 
@@ -95,7 +95,7 @@ const Cart = ({ onClose }) => {
             <Text>
               Кошик порожній... <br /> Але це ніколи не пізно виправити :)
             </Text>
-            <BackBtn type="button" onClick={() => setShowCart(false)} c>
+            <BackBtn type="button" onClick={() => setShowCart(false)}>
               Повернутися до магазину
             </BackBtn>
           </Box>
@@ -153,7 +153,7 @@ const Cart = ({ onClose }) => {
           </TotalContainer>
         )}
       </CartContainer>
-      <CloseButton onClick={onClose} />
+      <CloseButton onClick={() => setShowCart(false)} />
     </CartWrapper>
   );
 };

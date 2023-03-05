@@ -36,7 +36,7 @@ export const ProductWrapper = styled.div`
   gap: 30px;
 `;
 
-export const ProductsList = styled.ul`
+export const ProductsListStyled = styled.ul`
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 1;

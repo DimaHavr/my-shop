@@ -6,6 +6,7 @@ import { client } from "../../lib/client";
 import Box from "../../components/Box/Box";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
+const Product = dynamic(() => import("../../components/Product/Product"));
 const Layout = dynamic(() => import("../../components/Layout/Layout"));
 import {
   DetailContainer,
@@ -18,6 +19,8 @@ import {
   QuantityContainer,
   BuyNowBtn,
   AddToCartBtn,
+  List,
+  ListItem,
   QuantityText,
   Title,
   SubTitle,
@@ -34,8 +37,8 @@ SwiperCore.use([Pagination]);
 import { Swiper, SwiperSlide } from "swiper/react";
 import BackLink from "../../components/BackLink";
 
-const ProductDetails = ({ product }) => {
-  const { image, name, details, price, vendor, country_of_origin } = product;
+const ProductDetails = ({ hitProduct, hitProducts, pageQuery }) => {
+  const { image, name, details, price, vendor, country_of_origin } = hitProduct;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart, setQty } = useStateContext();
   const router = useRouter();
@@ -44,7 +47,7 @@ const ProductDetails = ({ product }) => {
     router.back();
   }
   const handleBuyNow = () => {
-    onAdd(product, qty);
+    onAdd(hitProduct, qty);
     setShowCart(true);
   };
 
@@ -120,7 +123,7 @@ const ProductDetails = ({ product }) => {
               <AddToCartBtn
                 type="button"
                 onClick={() => {
-                  onAdd(product, qty);
+                  onAdd(hitProduct, qty);
                   setQty(1);
                 }}
               >
@@ -132,24 +135,42 @@ const ProductDetails = ({ product }) => {
             </Box>
           </DetailDescContainer>
         </DetailContainer>
+
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          gridGap="30px"
+          flexDirection="column"
+          paddingBottom="50px"
+        >
+          <Title>Вам також може сподобатися</Title>
+          <List>
+            {hitProducts.map((item) => (
+              <ListItem key={item._id}>
+                <Product key={item._id} product={item} pageQuery={pageQuery} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Box>
     </Layout>
   );
 };
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "product"] {
+  const query = `*[_type == "hitProducts"] {
     slug {
       current
     }
   }
   `;
 
-  const product = await client.fetch(query);
+  const hitProducts = await client.fetch(query);
 
-  const paths = product.map((product) => ({
+  const paths = hitProducts.map((hitProduct) => ({
     params: {
-      slug: product.slug.current,
+      slug: hitProduct.slug.current,
     },
   }));
 
@@ -160,11 +181,14 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-  const product = await client.fetch(query);
+  const query = `*[_type == "hitProducts" && slug.current == '${slug}'][0]`;
+  const hitProductsQuery = '*[_type == "hitProducts"]';
 
+  const hitProduct = await client.fetch(query);
+  const hitProducts = await client.fetch(hitProductsQuery);
+  const pageQuery = "hit-products";
   return {
-    props: { product },
+    props: { hitProducts, hitProduct, pageQuery },
   };
 };
 

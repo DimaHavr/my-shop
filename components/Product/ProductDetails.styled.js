@@ -29,7 +29,7 @@ export const PlusIcon = styled(AiOutlinePlus)`
 export const DetailContainer = styled.div`
   display: flex;
   gap: 50px;
-  padding: 50px 50px;
+  padding: 20px 50px 50px 50px;
 `;
 
 export const Title = styled.h2`
@@ -102,6 +102,7 @@ export const SmallImagesContainer = styled.div`
   margin-top: 20px;
   width: 350px;
   padding: 20px;
+  cursor: grab;
 `;
 
 export const DetailDescContainer = styled.div`
