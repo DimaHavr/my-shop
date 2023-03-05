@@ -207,6 +207,7 @@ export const SubTitle = styled.h3`
   font-size: 16px;
   line-height: 1.36;
   letter-spacing: 0.06em;
+  color: #000;
 `;
 
 export const Text = styled.p`

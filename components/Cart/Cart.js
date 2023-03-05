@@ -1,5 +1,6 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 import { AiOutlineShopping } from "react-icons/ai";
 import { useStateContext } from "../../context/StateContext";
 import getStripe from "../../lib/getStripe";
@@ -103,7 +104,7 @@ const Cart = ({ onClose }) => {
         <Box>
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
-              <DetailContainer className="product" key={item._id}>
+              <DetailContainer key={item._id}>
                 <Link href={`/product/${item.slug.current}`}>
                   <ImgContainer src={item?.image[0]} />
                 </Link>
@@ -126,14 +127,25 @@ const Cart = ({ onClose }) => {
                         onClick={() => toggleCartItemQuantity(item._id, "inc")}
                       />
                     </QuantityContainer>
-                    <RemoveButtonIcon onClick={() => onRemove(item)} />
+                    <RemoveButtonIcon
+                      onClick={() => {
+                        onRemove(item);
+                        toast.success(`${item.name} був видалений...`, {
+                          style: {
+                            borderRadius: "10px",
+                            background: "grey",
+                            color: "#fff",
+                          },
+                        });
+                      }}
+                    />
                   </Box>
                 </Box>
               </DetailContainer>
             ))}
         </Box>
         {cartItems.length >= 1 && (
-          <TotalContainer className="cart-bottom">
+          <TotalContainer>
             <SubTitle>{totalPrice}₴</SubTitle>
             <IssueBtn type="button" onClick={handleCheckout}>
               Оформити замовлення

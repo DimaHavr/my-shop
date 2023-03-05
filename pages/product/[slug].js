@@ -77,7 +77,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
                       <SmallImage
                         src={item}
                         selected={i === index}
-                        onMouseEnter={() => setIndex(i)}
+                        onClick={() => setIndex(i)}
                       />
                     </SwiperSlide>
                   )

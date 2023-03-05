@@ -24,14 +24,6 @@ import {
 const Layout = (props) => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
-  const handleOpenModal = () => {
-    setShowCart(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowCart(false);
-  };
-
   useEffect(() => {
     document.body.style.overflow = showCart ? "hidden" : "auto";
     return () => {
@@ -66,7 +58,7 @@ const Layout = (props) => {
             </NavItem>
           </NavList>
         </Nav>
-        <NavButton onClick={handleOpenModal}>
+        <NavButton onClick={() => setShowCart(true)}>
           <CardIcon />
           {totalQuantities !== 0 && (
             <CardItemQty>{totalQuantities}</CardItemQty>
@@ -77,7 +69,7 @@ const Layout = (props) => {
 
       <div>{props.children}</div>
       <Footer />
-      {showCart && <Cart onClose={handleCloseModal} />}
+      {showCart && <Cart />}
     </>
   );
 };
