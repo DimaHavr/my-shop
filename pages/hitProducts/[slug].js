@@ -148,7 +148,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
           <List>
             {hitProducts.map((item) => (
               <ListItem key={item._id}>
-                <Product key={item._id} product={item} />
+                <Product product={item} />
               </ListItem>
             ))}
           </List>
@@ -168,9 +168,9 @@ export const getStaticPaths = async () => {
 
   const hitProducts = await client.fetch(query);
 
-  const paths = hitProducts.map((hitProduct) => ({
+  const paths = hitProducts.map((product) => ({
     params: {
-      slug: hitProduct.slug.current,
+      slug: product.slug.current,
     },
   }));
 
@@ -186,6 +186,9 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
   const hitProduct = await client.fetch(query);
   const hitProducts = await client.fetch(hitProductsQuery);
+
+  console.log(hitProduct);
+
   return {
     props: { hitProducts, hitProduct },
   };

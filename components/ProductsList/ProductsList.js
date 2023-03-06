@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 const Product = dynamic(() => import("../Product/Product"));
-import Router from "next/router";
 
 import {
   Section,
@@ -18,7 +17,7 @@ const ProductsList = ({ products }) => {
           <ProductsListStyled>
             {products?.map((product) => (
               <ProductsListItem key={product._id}>
-                <Product key={product._id} product={product} />
+                <Product product={product} />
               </ProductsListItem>
             ))}
           </ProductsListStyled>

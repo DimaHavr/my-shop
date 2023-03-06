@@ -36,7 +36,6 @@ const Cart = () => {
     toggleCartItemQuantity,
     onRemove,
   } = useStateContext();
-  console.log(cartItems);
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -105,8 +104,8 @@ const Cart = () => {
         <Box>
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
-              <DetailContainer key={item._id}>
-                <Link href={`/${item._type}/${item.slug.current}`}>
+              <DetailContainer key={item?._id}>
+                <Link href={`/${item?._type}/${item?.slug.current}`}>
                   <ImgContainer src={item?.image[0]} />
                 </Link>
                 <Box
@@ -115,24 +114,24 @@ const Cart = () => {
                   gridGap="10px"
                   justifyContent="space-around"
                 >
-                  <Link href={`${item._type}/${item.slug.current}`}>
-                    <SubTitle>{item.name}</SubTitle>
+                  <Link href={`${item?._type}/${item?.slug.current}`}>
+                    <SubTitle>{item?.name}</SubTitle>
                   </Link>
-                  <Text>{item.price}₴</Text>
+                  <Text>{item?.price}₴</Text>
                   <Box display="flex" justifyContent="space-between">
                     <QuantityContainer>
                       <MinusIcon
-                        onClick={() => toggleCartItemQuantity(item._id, "dec")}
+                        onClick={() => toggleCartItemQuantity(item?._id, "dec")}
                       />
-                      <QuantityText>{item.quantity}</QuantityText>
+                      <QuantityText>{item?.quantity}</QuantityText>
                       <PlusIcon
-                        onClick={() => toggleCartItemQuantity(item._id, "inc")}
+                        onClick={() => toggleCartItemQuantity(item?._id, "inc")}
                       />
                     </QuantityContainer>
                     <RemoveButtonIcon
                       onClick={() => {
                         onRemove(item);
-                        toast.success(`${item.name} був видалений...`, {
+                        toast.success(`${item?.name} був видалений...`, {
                           style: {
                             borderRadius: "10px",
                             background: "grey",

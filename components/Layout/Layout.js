@@ -68,8 +68,8 @@ const Layout = ({ pageTitle, children }) => {
       <ProductsCatalog />
 
       <div>{children}</div>
-      <Footer />
       {showCart && <Cart />}
+      <Footer />
     </>
   );
 };
