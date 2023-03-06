@@ -202,6 +202,7 @@ export const DetailContainer = styled.div`
 `;
 
 export const SubTitle = styled.h3`
+  cursor: pointer;
   text-align: start;
   font-weight: 700;
   font-size: 16px;

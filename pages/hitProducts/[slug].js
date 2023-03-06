@@ -37,7 +37,7 @@ SwiperCore.use([Pagination]);
 import { Swiper, SwiperSlide } from "swiper/react";
 import BackLink from "../../components/BackLink";
 
-const ProductDetails = ({ hitProduct, hitProducts, pageQuery }) => {
+const ProductDetails = ({ hitProduct, hitProducts }) => {
   const { image, name, details, price, vendor, country_of_origin } = hitProduct;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart, setQty } = useStateContext();
@@ -148,7 +148,7 @@ const ProductDetails = ({ hitProduct, hitProducts, pageQuery }) => {
           <List>
             {hitProducts.map((item) => (
               <ListItem key={item._id}>
-                <Product key={item._id} product={item} pageQuery={pageQuery} />
+                <Product key={item._id} product={item} />
               </ListItem>
             ))}
           </List>
@@ -186,9 +186,8 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
   const hitProduct = await client.fetch(query);
   const hitProducts = await client.fetch(hitProductsQuery);
-  const pageQuery = "hit-products";
   return {
-    props: { hitProducts, hitProduct, pageQuery },
+    props: { hitProducts, hitProduct },
   };
 };
 

@@ -36,6 +36,7 @@ const Cart = () => {
     toggleCartItemQuantity,
     onRemove,
   } = useStateContext();
+  console.log(cartItems);
 
   const handleCheckout = async () => {
     const stripe = await getStripe();
@@ -105,7 +106,7 @@ const Cart = () => {
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
               <DetailContainer key={item._id}>
-                <Link href={`/product/${item.slug.current}`}>
+                <Link href={`/${item._type}/${item.slug.current}`}>
                   <ImgContainer src={item?.image[0]} />
                 </Link>
                 <Box
@@ -114,9 +115,10 @@ const Cart = () => {
                   gridGap="10px"
                   justifyContent="space-around"
                 >
-                  <SubTitle>{item.name}</SubTitle>
+                  <Link href={`${item._type}/${item.slug.current}`}>
+                    <SubTitle>{item.name}</SubTitle>
+                  </Link>
                   <Text>{item.price}₴</Text>
-
                   <Box display="flex" justifyContent="space-between">
                     <QuantityContainer>
                       <MinusIcon
@@ -146,7 +148,7 @@ const Cart = () => {
         </Box>
         {cartItems.length >= 1 && (
           <TotalContainer>
-            <SubTitle>{totalPrice}₴</SubTitle>
+            <Text>{totalPrice}₴</Text>
             <IssueBtn type="button" onClick={handleCheckout}>
               Оформити замовлення
             </IssueBtn>

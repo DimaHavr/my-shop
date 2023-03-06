@@ -6,10 +6,10 @@ const ProductsList = dynamic(() =>
 
 const Layout = dynamic(() => import("../components/Layout/Layout"));
 
-const Shop = ({ products, pageQuery }) => {
+const Shop = ({ products }) => {
   return (
     <Layout pageTitle="My-Shop">
-      <ProductsList products={products} pageQuery={pageQuery} />
+      <ProductsList products={products} />
     </Layout>
   );
 };
@@ -17,10 +17,9 @@ const Shop = ({ products, pageQuery }) => {
 export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
-  const pageQuery = "product";
 
   return {
-    props: { products, pageQuery },
+    props: { products },
   };
 };
 

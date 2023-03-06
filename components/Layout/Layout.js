@@ -21,7 +21,7 @@ import {
   CardItemQty,
 } from "./Layout.styled";
 
-const Layout = (props) => {
+const Layout = ({ pageTitle, children }) => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Layout = (props) => {
   return (
     <>
       <Head>
-        <title>{props.pageTitle}</title>
+        <title>{pageTitle}</title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Shop..." />
@@ -67,7 +67,7 @@ const Layout = (props) => {
       </HeaderWrapper>
       <ProductsCatalog />
 
-      <div>{props.children}</div>
+      <div>{children}</div>
       <Footer />
       {showCart && <Cart />}
     </>

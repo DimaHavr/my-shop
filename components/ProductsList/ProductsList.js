@@ -10,7 +10,7 @@ import {
   ProductsListItem,
 } from "./ProductsList.styled";
 
-const ProductsList = ({ products, pageQuery }) => {
+const ProductsList = ({ products }) => {
   return (
     <Section>
       <Wrapper>
@@ -18,11 +18,7 @@ const ProductsList = ({ products, pageQuery }) => {
           <ProductsListStyled>
             {products?.map((product) => (
               <ProductsListItem key={product._id}>
-                <Product
-                  key={product._id}
-                  product={product}
-                  pageQuery={pageQuery}
-                />
+                <Product key={product._id} product={product} />
               </ProductsListItem>
             ))}
           </ProductsListStyled>
