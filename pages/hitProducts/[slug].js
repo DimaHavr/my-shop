@@ -6,7 +6,9 @@ import { client } from "../../lib/client";
 import Box from "../../components/Box/Box";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
-const Product = dynamic(() => import("../../components/Product/Product"));
+const ProductList = dynamic(() =>
+  import("../../components/ProductsList/ProductsList")
+);
 const Layout = dynamic(() => import("../../components/Layout/Layout"));
 import {
   DetailContainer,
@@ -19,8 +21,6 @@ import {
   QuantityContainer,
   BuyNowBtn,
   AddToCartBtn,
-  List,
-  ListItem,
   QuantityText,
   Title,
   SubTitle,
@@ -92,7 +92,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
               </Swiper>
             </SmallImagesContainer>
           </Box>
-          <DetailDescContainer className="product-detail-desc">
+          <DetailDescContainer>
             <Title>{name}</Title>
             <SubTitle>Опис: </SubTitle>
             <TextDesc>{details}</TextDesc>
@@ -145,13 +145,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
           paddingBottom="50px"
         >
           <Title>Вам також може сподобатися</Title>
-          <List>
-            {hitProducts.map((item) => (
-              <ListItem key={item._id}>
-                <Product product={item} />
-              </ListItem>
-            ))}
-          </List>
+          <ProductList products={hitProducts} />
         </Box>
       </Box>
     </Layout>

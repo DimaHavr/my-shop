@@ -16,7 +16,7 @@ export const CardIcon = styled(TiShoppingCart)`
   &:hover,
   &:focus {
     transform: scale(1.05);
-    color: #000;
+    color: orangered;
   }
   @media (max-width: 480px) {
     width: 35px;
@@ -24,7 +24,7 @@ export const CardIcon = styled(TiShoppingCart)`
   }
 `;
 
-export const ProductBox = styled.h2`
+export const ProductBox = styled.div`
   position: relative;
 `;
 
@@ -33,6 +33,14 @@ export const ProductText = styled.h2`
   font-weight: bold;
   color: #000;
   padding: 10px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+    color: orangered;
+  }
 `;
 
 export const ProductTextItem = styled.p`
@@ -43,10 +51,9 @@ export const ProductTextItem = styled.p`
 `;
 
 export const ProductImg = styled.img`
-  border-radius: 5px 5px 0px 0px;
   object-fit: cover;
-  width: 280px;
-  height: 280px;
+  object-position: center;
+  height: 230px;
+  border-radius: 20px 20px 0 0;
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
 `;

@@ -14,18 +14,22 @@ const Product = ({ product }) => {
   const { setQty, onAdd, qty } = useStateContext();
 
   return (
-    <ProductBox>
+    <>
       <Link onClick={() => setQty(1)} href={`/${_type}/${slug.current}`}>
         <ProductImg src={image && image[0]} width={280} height={280} />
-        <ProductTextItem>{price}грн</ProductTextItem>
-        <ProductText>{name}</ProductText>
       </Link>
-      <CardIcon
-        onClick={() => {
-          onAdd(product, qty);
-        }}
-      />
-    </ProductBox>
+      <ProductBox>
+        <ProductTextItem>{price}грн</ProductTextItem>
+        <Link onClick={() => setQty(1)} href={`/${_type}/${slug.current}`}>
+          <ProductText>{name}</ProductText>
+        </Link>
+        <CardIcon
+          onClick={() => {
+            onAdd(product, qty);
+          }}
+        />
+      </ProductBox>
+    </>
   );
 };
 

@@ -60,11 +60,13 @@ export const ProductsListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  width: 280px;
+  position: relative;
+  width: 255px;
+  border-radius: 20px;
+  background: #ffffff;
+
   padding-bottom: 10px;
-  box-shadow: 13.5px 13.5px 13.5px -13.5px rgba(0, 0, 0, 0.43);
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 

@@ -71,7 +71,14 @@ export const DetailImg = styled.img`
   min-width: 350px;
   height: 350px;
   object-fit: cover;
-  box-shadow: 13.5px 13.5px 13.5px -13.5px rgba(0, 0, 0, 0.43);
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px;
+  &:hover,
+  &:focus {
+    transform: scale(1.02);
+  }
 `;
 
 export const SmallImage = styled.img`
@@ -123,60 +130,24 @@ export const QuantityText = styled.p`
   font-weight: 700;
 `;
 
-export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 1;
-  justify-content: center;
-  gap: 35px;
-  list-style-type: none;
-  padding: 0px 30px;
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    align-items: center;
-  }
-  @media screen and (min-width: 768px) {
-    flex-wrap: wrap;
-    flex: 1 1 1;
-  }
-`;
-
-export const ListItem = styled.ul`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  width: 280px;
-  padding-bottom: 10px;
-  box-shadow: 13.5px 13.5px 13.5px -13.5px rgba(0, 0, 0, 0.43);
-  cursor: pointer;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.02);
-  }
-`;
-
 export const AddToCartBtn = styled.button`
   width: 200px;
-  border: 2px solid #000;
+  outline: 1px solid #000;
   padding: 5px 10px;
   font-size: 18px;
   font-weight: 500;
   background-color: #fff;
   color: #000;
   cursor: pointer;
-  transition: transform 0.5s ease;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    outline 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    color: #fff;
+    background-color: #000;
+    outline: none;
   }
 `;
 
@@ -185,16 +156,17 @@ export const BuyNowBtn = styled.button`
   padding: 5px 10px;
   background-color: #000;
   color: #fff;
-  border: none;
+  outline: 1px solid #000;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.5s ease;
-
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    outline 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    color: #000;
+    background-color: #fff;
   }
 `;
