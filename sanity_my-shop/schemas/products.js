@@ -1,8 +1,13 @@
 export default {
-  name: 'hitProducts',
-  title: 'hitProducts',
+  name: 'products',
+  title: 'Products',
   type: 'document',
   fields: [
+    {
+      name: 'subcategories',
+      title: 'Subcategories',
+      type: 'string',
+    },
     {
       name: 'image',
       title: 'Image',

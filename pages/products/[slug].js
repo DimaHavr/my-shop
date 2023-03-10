@@ -37,8 +37,8 @@ SwiperCore.use([Pagination]);
 import { Swiper, SwiperSlide } from "swiper/react";
 import BackLink from "../../components/BackLink";
 
-const ProductDetails = ({ hitProduct, hitProducts }) => {
-  const { image, name, details, price, vendor, country_of_origin } = hitProduct;
+const ProductDetails = ({ product, products }) => {
+  const { image, name, details, price, vendor, country_of_origin } = product;
   const [index, setIndex] = useState(0);
   const { decQty, incQty, qty, onAdd, setShowCart, setQty } = useStateContext();
   const router = useRouter();
@@ -47,7 +47,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
     router.back();
   }
   const handleBuyNow = () => {
-    onAdd(hitProduct, qty);
+    onAdd(product, qty);
     setShowCart(true);
   };
 
@@ -123,7 +123,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
               <AddToCartBtn
                 type="button"
                 onClick={() => {
-                  onAdd(hitProduct, qty);
+                  onAdd(product, qty);
                   setQty(1);
                 }}
               >
@@ -145,7 +145,7 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
           paddingBottom="50px"
         >
           <Title>Вам також може сподобатися</Title>
-          <ProductList products={hitProducts} />
+          <ProductList products={products} />
         </Box>
       </Box>
     </Layout>
@@ -153,16 +153,16 @@ const ProductDetails = ({ hitProduct, hitProducts }) => {
 };
 
 export const getStaticPaths = async () => {
-  const query = `*[_type == "hitProducts"] {
+  const query = `*[_type == "products"] {
     slug {
       current
     }
   }
   `;
 
-  const hitProducts = await client.fetch(query);
+  const products = await client.fetch(query);
 
-  const paths = hitProducts.map((product) => ({
+  const paths = products.map((product) => ({
     params: {
       slug: product.slug.current,
     },
@@ -175,16 +175,16 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const query = `*[_type == "hitProducts" && slug.current == '${slug}'][0]`;
-  const hitProductsQuery = '*[_type == "hitProducts"]';
+  const query = `*[_type == "products" && slug.current == '${slug}'][0]`;
+  const productsQuery = '*[_type == "products"]';
 
-  const hitProduct = await client.fetch(query);
-  const hitProducts = await client.fetch(hitProductsQuery);
+  const product = await client.fetch(query);
+  const products = await client.fetch(productsQuery);
 
-  console.log(hitProduct);
+  console.log(product);
 
   return {
-    props: { hitProducts, hitProduct },
+    props: { products, product },
   };
 };
 

@@ -1,5 +1,6 @@
-import product from './product'
+import products from './products'
 import banner from './banner'
-import hitProducts from './hitProducts'
+import subcategories from './subcategories'
+import categories from './categories'
 
-export const schemaTypes = [product, banner, hitProducts]
+export const schemaTypes = [products, banner, subcategories, categories]
