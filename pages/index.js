@@ -1,30 +1,24 @@
 import dynamic from "next/dynamic";
-import { client } from "../lib/client";
-
+import Box from "../components/Box/Box";
 const Layout = dynamic(() => import("../components/Layout/Layout"));
 const HeroBanner = dynamic(() => import("../components/HeroBanner/HeroBanner"));
-const ProductsList = dynamic(() =>
-  import("../components/ProductsList/ProductsList")
+const PopularCategories = dynamic(() =>
+  import("../components/PopularCategories/PopularCategories")
+);
+const NewArrivals = dynamic(() =>
+  import("../components/NewArrivals/NewArrivals")
 );
 
-const Index = ({ bannerData, productsData }) => {
+const Index = () => {
   return (
-    <Layout pageTitle="My-Shop">
-      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
-      <ProductsList products={productsData} />
-    </Layout>
+    <Box display="flex" flexDirection="column" height="100vh">
+      <Layout pageTitle="My-Shop">
+        <HeroBanner />
+        <PopularCategories />
+        <NewArrivals />
+      </Layout>
+    </Box>
   );
-};
-
-export const getServerSideProps = async () => {
-  const bannerQuery = '*[_type == "banner"]';
-  const bannerData = await client.fetch(bannerQuery);
-
-  const productsQuery = '*[_type == "products"]';
-  const productsData = await client.fetch(productsQuery);
-  return {
-    props: { bannerData, productsData },
-  };
 };
 
 export default Index;

@@ -1,35 +1,47 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
 import { useStateContext } from "../../context/StateContext";
 const Cart = dynamic(() => import("../Cart/Cart"));
 const Footer = dynamic(() => import("../Footer/Footer"));
-const ProductsCatalog = dynamic(() =>
-  import("../ProductsCatalog/ProductsCatalog")
-);
+import SearchBox from "../SearchBox/SearchBox";
 import {
   HeaderWrapper,
   Nav,
   NavList,
   NavItem,
   NavLink,
-  NavLinkLogo,
+  NavLogoText,
   NavLogo,
   NavButton,
   CardIcon,
   NavLogoIcon,
-  CardItemQty,
+  ItemQty,
+  ContainerStyled,
+  FavoriteIcon,
+  ToolBar,
+  NavLogoLink,
+  NavLogoBox,
 } from "./Layout.styled";
+import Box from "../Box/Box";
+import { color } from "styled-system";
 
 const Layout = ({ pageTitle, children }) => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
-  useEffect(() => {
-    document.body.style.overflow = showCart ? "hidden" : "auto";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showCart]);
+  const handleScroll = () => {
+    if (window.scrollY > 10) {
+      setSticky(true);
+    } else {
+      setSticky(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -40,34 +52,41 @@ const Layout = ({ pageTitle, children }) => {
         <meta name="description" content="Shop..." />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
       </Head>
-      <HeaderWrapper>
-        <Nav>
-          <NavLogo>
-            <NavLogoIcon />
-            <NavLinkLogo href="/">Kids</NavLinkLogo>
-          </NavLogo>
-          <NavList>
-            <NavItem>
-              <NavLink href="/">Головна</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/shop">Магазин</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/contact">Контакт</NavLink>
-            </NavItem>
-          </NavList>
-        </Nav>
-        <NavButton onClick={() => setShowCart(true)}>
-          <CardIcon />
-          {totalQuantities !== 0 && (
-            <CardItemQty>{totalQuantities}</CardItemQty>
-          )}
-        </NavButton>
-      </HeaderWrapper>
-      <ProductsCatalog />
+      <Box>
+        <HeaderWrapper>
+          <Nav>
+            <NavLogoBox display="flex" gridGap="5px" alignItems="center">
+              <NavLogoLink href="#">Create</NavLogoLink> <NavLogoIcon />
+            </NavLogoBox>
+            <NavList>
+              <NavLink href="#">Mens</NavLink>
+              <NavLink href="#">Women</NavLink>
+              <NavLink href="#">Boys</NavLink>
+              <NavLink href="#">Girls</NavLink>
+              <NavLink style={{ color: "red" }} href="#">
+                Sale
+              </NavLink>
+            </NavList>
+            <SearchBox />
+            <ToolBar>
+              <NavButton>
+                <FavoriteIcon />
+                <ItemQty
+                  style={{ background: "none", color: "#333", padding: 0 }}
+                >
+                  {totalQuantities}
+                </ItemQty>
+              </NavButton>
+              <NavButton onClick={() => setShowCart(true)}>
+                <CardIcon />
+                <ItemQty>{totalQuantities}</ItemQty>
+              </NavButton>
+            </ToolBar>
+          </Nav>
+        </HeaderWrapper>
+      </Box>
 
-      <div>{children}</div>
+      <Box>{children}</Box>
       {showCart && <Cart />}
       <Footer />
     </>

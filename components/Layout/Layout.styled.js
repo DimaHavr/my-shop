@@ -1,33 +1,28 @@
 import styled from "styled-components";
-import { TiShoppingCart } from "react-icons/ti";
-import { MdOutlineToys } from "react-icons/md";
+import { FaOpencart } from "react-icons/fa";
+import { GrFavorite } from "react-icons/gr";
+import { FaXbox } from "react-icons/fa";
 import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  z-index: 100;
-  background-color: #333;
+  width: 100%;
+  padding: 25px 130px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   box-shadow: inset -0.5px 0px 13.5px -6px rgba(0, 0, 0, 0.43);
-  @media (max-width: 480px) {
-    padding: 15px 20px;
-  }
 `;
 
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  background-color: #fff;
 `;
 
 export const NavList = styled.ul`
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 40px;
 `;
 
 export const NavItem = styled.li`
@@ -42,41 +37,14 @@ export const NavItem = styled.li`
   }
 `;
 
-export const NavLinkLogo = styled.a`
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.36;
-  max-width: 585px;
-  text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #fff;
-  text-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.05);
-    color: #ffff00;
-    text-decoration-color: #333;
-  }
-
-  @media (max-width: 580px) {
-    display: none;
-  }
-`;
-
 export const NavLink = styled(Link)`
   font-weight: 700;
   font-size: 16px;
   line-height: 1.88;
   letter-spacing: 0.06em;
   text-decoration: none;
-  text-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: #fff;
+  color: #333;
   text-decoration: none;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -84,7 +52,7 @@ export const NavLink = styled(Link)`
   &:hover,
   &:focus {
     transform: scale(1.05);
-    color: #ffff00;
+    color: #333;
   }
 
   @media (max-width: 480px) {
@@ -94,55 +62,89 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const NavLogo = styled.p`
+export const NavLogoBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
-  margin-right: 50px;
-  @media (max-width: 580px) {
-    margin-right: 5px;
+  gap: 5px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
   }
 `;
 
-export const NavLogoIcon = styled(MdOutlineToys)`
-  width: 35px;
-  height: 35px;
-  margin-right: 5px;
-  color: #ffff00;
+export const NavLogoLink = styled(Link)`
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.36;
+  max-width: 585px;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #333;
+  text-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: #333;
+  }
+`;
+
+export const NavLogoIcon = styled(FaXbox)`
+  width: 25px;
+  height: 25px;
+  color: #17696a;
+`;
+
+export const ToolBar = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 export const NavButton = styled.button`
   position: relative;
   background: none;
   border: none;
+  display: flex;
+  gap: 5px;
 `;
 
-export const CardIcon = styled(TiShoppingCart)`
+export const CardIcon = styled(FaOpencart)`
   cursor: pointer;
-  width: 45px;
-  height: 45px;
-  color: #fff;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 25px;
+  height: 18px;
+  color: #424551;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
     transform: scale(1.05);
-    color: #ffff00;
-  }
-  @media (max-width: 480px) {
-    width: 35px;
-    height: 35px;
   }
 `;
-export const CardItemQty = styled.span`
-  position: absolute;
-  right: -8px;
-  font-size: 12px;
-  color: #eee;
-  background-color: #f02d34;
-  width: 18px;
+
+export const FavoriteIcon = styled(GrFavorite)`
+  cursor: pointer;
+  width: 25px;
   height: 18px;
-  border-radius: 50%;
-  text-align: center;
-  font-weight: 600;
+  color: #424551;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;
+
+export const ItemQty = styled.span`
+  font-family: "LatoBold";
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 18px;
+  background: #03cea4;
+  border-radius: 4px;
+  padding: 1px 8px;
+  color: #ffffff;
 `;

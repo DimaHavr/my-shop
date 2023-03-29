@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import {
-  AiOutlineCloseCircle,
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiFillDelete,
-} from "react-icons/ai";
+import { AiOutlineMinus, AiOutlinePlus, AiFillDelete } from "react-icons/ai";
 import { RxDoubleArrowLeft } from "react-icons/rx";
 
 export const RemoveButtonIcon = styled(AiFillDelete)`
@@ -61,37 +56,6 @@ export const PlusIcon = styled(AiOutlinePlus)`
   }
 `;
 
-export const CloseButton = styled(AiOutlineCloseCircle)`
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  width: 30px;
-  height: 30px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  fill: #000;
-  &:hover,
-  &:focus {
-    transform: scale(1.03);
-    fill: red;
-  }
-
-  @keyframes btn-animation {
-    0% {
-      transform: scale(1.05);
-    }
-    20% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1.13);
-    }
-  }
-  :active {
-    animation: btn-animation 1s ease-out;
-  }
-`;
-
 export const BackButtonIcon = styled(RxDoubleArrowLeft)`
   width: 30px;
   height: 30px;
@@ -125,11 +89,26 @@ export const CartWrapper = styled.div`
   right: 0;
   top: 0;
   z-index: 100;
-  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  background-color: #0000008a;
+`;
+
+export const CartContainer = styled.div`
+  height: 100vh;
+  width: 600px;
+  background-color: #fff;
+  float: right;
+  padding: 40px 10px;
+  border-left: 3px solid #000;
+  overflow: overlay;
+  position: relative;
+  animation: ${({ showCart }) =>
+    showCart
+      ? "fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
+      : "fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
   @keyframes fade-in-right {
     0% {
-      -webkit-transform: translateX(350px);
-      transform: translateX(350px);
+      -webkit-transform: translateX(50px);
+      transform: translateX(50px);
       opacity: 0;
     }
     100% {
@@ -138,17 +117,18 @@ export const CartWrapper = styled.div`
       opacity: 1;
     }
   }
-`;
-
-export const CartContainer = styled.div`
-  height: 100vh;
-  width: 600px;
-  background-color: #dbdbdb;
-  float: right;
-  padding: 40px 10px;
-  border-left: 3px solid #000;
-  overflow: overlay;
-  position: relative;
+  @keyframes fade-out-right {
+    0% {
+      -webkit-transform: translateX(0);
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: translateX(50px);
+      transform: translateX(50px);
+      opacity: 0;
+    }
+  }
 `;
 
 export const ImgContainer = styled.img`

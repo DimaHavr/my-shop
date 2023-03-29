@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import { BsFacebook, BsTelegram } from 'react-icons/bs';
-import { AiFillInstagram } from 'react-icons/ai';
-import { BiMap } from 'react-icons/bi';
-import { MdOutlineMailOutline } from 'react-icons/md';
-import { BsFillTelephoneFill } from 'react-icons/bs';
-import { CgCopyright } from 'react-icons/cg';
+import styled from "styled-components";
+import { BsFacebook, BsTelegram } from "react-icons/bs";
+import { AiFillInstagram } from "react-icons/ai";
+import { BiMap } from "react-icons/bi";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { BsFillTelephoneFill } from "react-icons/bs";
+import { CgCopyright } from "react-icons/cg";
 
 export const CopyIcon = styled(CgCopyright)`
   width: 25px;
@@ -69,11 +69,13 @@ export const SectionFooter = styled.footer`
   align-items: center;
   padding: 20px 15px 20px 15px;
   background-color: #2b2b2b;
+  margin-top: auto;
 `;
 
 export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: auto;
   align-items: center;
 `;
 

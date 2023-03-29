@@ -1,34 +1,79 @@
-import Link from "next/link";
-import "swiper/css/pagination";
-import { urlFor } from "../../lib/client";
-
 import {
   HeroBannerSection,
   HeroBannerContainer,
-  HeroBannerImg,
   HeroBannerText,
-  HeroBannerDesc,
-  HeroBannerImgSecond,
+  HeroBannerTitle,
+  HeroBannerButton,
+  HeroBannerButtonSecond,
+  PaginationStyled,
 } from "./HeroBanner.styled";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Navigation, HashNavigation } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import Box from "../Box/Box";
 
-const HeroBanner = ({ heroBanner }) => {
+const backgroundImage = "/images/hero/imageBg1.webp";
+
+const HeroBanner = () => {
   return (
-    <HeroBannerSection>
-      <HeroBannerContainer href="/">
-        <h3>{heroBanner.midText}</h3>
-        <p>{heroBanner.discount}</p>
-        <p>{heroBanner.saleTime}</p>
-        <h1>{heroBanner.product}</h1>
-        <HeroBannerImg
-          src={urlFor(heroBanner.image)}
-          alt={heroBanner.product}
-        />
-        <HeroBannerImgSecond
-          src={urlFor(heroBanner.image2)}
-          alt={heroBanner.product}
-        />
-      </HeroBannerContainer>
-    </HeroBannerSection>
+    <Box>
+      <Swiper
+        spaceBetween={0}
+        hashNavigation={{
+          watchState: true,
+        }}
+        pagination={{ clickable: true, dynamicBullets: true }}
+        loop
+        navigation={true}
+        modules={[Pagination, Navigation, HashNavigation]}
+        className="mySwiper"
+      >
+        <SwiperSlide data-hash="slide1">
+          <HeroBannerSection backgroundImage={backgroundImage}>
+            <HeroBannerContainer>
+              <HeroBannerText>New colection</HeroBannerText>
+              <HeroBannerTitle>Menswear 2023</HeroBannerTitle>
+              <Box display="flex" gridGap="25px" marginTop="60px">
+                <HeroBannerButton>Shop sale</HeroBannerButton>
+                <HeroBannerButtonSecond>
+                  Shop the menswear
+                </HeroBannerButtonSecond>
+              </Box>
+            </HeroBannerContainer>
+          </HeroBannerSection>
+        </SwiperSlide>
+        <SwiperSlide data-hash="slide2">
+          <HeroBannerSection backgroundImage={backgroundImage}>
+            <HeroBannerContainer>
+              <HeroBannerText>New colection</HeroBannerText>
+              <HeroBannerTitle>Women 2023</HeroBannerTitle>
+              <Box display="flex" gridGap="25px" marginTop="60px">
+                <HeroBannerButton>Shop sale</HeroBannerButton>
+                <HeroBannerButtonSecond>
+                  Shop the menswear
+                </HeroBannerButtonSecond>
+              </Box>
+            </HeroBannerContainer>
+          </HeroBannerSection>
+        </SwiperSlide>
+        <SwiperSlide data-hash="slide3">
+          <HeroBannerSection backgroundImage={backgroundImage}>
+            <HeroBannerContainer>
+              <HeroBannerText>New colection</HeroBannerText>
+              <HeroBannerTitle>Kids 2023</HeroBannerTitle>
+              <Box display="flex" gridGap="25px" marginTop="60px">
+                <HeroBannerButton>Shop sale</HeroBannerButton>
+                <HeroBannerButtonSecond>
+                  Shop the menswear
+                </HeroBannerButtonSecond>
+              </Box>
+            </HeroBannerContainer>
+          </HeroBannerSection>
+        </SwiperSlide>
+      </Swiper>
+    </Box>
   );
 };
 

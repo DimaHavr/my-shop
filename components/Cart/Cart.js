@@ -3,11 +3,9 @@ import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { AiOutlineShopping } from "react-icons/ai";
 import { useStateContext } from "../../context/StateContext";
-import getStripe from "../../lib/getStripe";
 import {
   CartContainer,
   CartWrapper,
-  CloseButton,
   ImgContainer,
   BackButton,
   BackButtonIcon,
@@ -32,28 +30,11 @@ const Cart = () => {
     totalPrice,
     totalQuantities,
     cartItems,
+    showCart,
     setShowCart,
     toggleCartItemQuantity,
     onRemove,
   } = useStateContext();
-
-  const handleCheckout = async () => {
-    const stripe = await getStripe();
-
-    const response = await fetch("/api/stripe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cartItems),
-    });
-
-    if (response.statusCode === 500) return;
-
-    const data = await response.json();
-
-    stripe.redirectToCheckout({ sessionId: data.id });
-  };
 
   useEffect(() => {
     const onCloseModal = (event) => {
@@ -76,8 +57,12 @@ const Cart = () => {
   };
 
   return (
-    <CartWrapper ref={cartRef} onClick={onBackdropCloseModal}>
-      <CartContainer>
+    <CartWrapper
+      ref={cartRef}
+      onClick={onBackdropCloseModal}
+      showCart={showCart}
+    >
+      <CartContainer showCart={showCart}>
         <BackButton type="button" onClick={() => setShowCart(false)}>
           <BackButtonIcon />
           {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
@@ -148,13 +133,10 @@ const Cart = () => {
         {cartItems.length >= 1 && (
           <TotalContainer>
             <Text>{totalPrice}₴</Text>
-            <IssueBtn type="button" onClick={handleCheckout}>
-              Оформити замовлення
-            </IssueBtn>
+            <IssueBtn type="button">Оформити замовлення</IssueBtn>
           </TotalContainer>
         )}
       </CartContainer>
-      <CloseButton onClick={() => setShowCart(false)} />
     </CartWrapper>
   );
 };
