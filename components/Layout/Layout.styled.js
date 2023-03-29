@@ -2,27 +2,48 @@ import styled from "styled-components";
 import { FaOpencart } from "react-icons/fa";
 import { GrFavorite } from "react-icons/gr";
 import { FaXbox } from "react-icons/fa";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { TfiClose } from "react-icons/tfi";
+
 import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 25px 130px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   width: 100%;
   box-shadow: inset -0.5px 0px 13.5px -6px rgba(0, 0, 0, 0.43);
+  @media screen and (max-width: 1080px) {
+    padding: 25px 80px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 15px 30px;
+    gap: 20px;
+  }
 `;
 
 export const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
 `;
 
 export const NavList = styled.ul`
   display: flex;
   align-items: center;
   gap: 40px;
+
+  @media screen and (max-width: 1280px) {
+    gap: 20px;
+  }
+  @media screen and (max-width: 1080px) {
+    gap: 15px;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavItem = styled.li`
@@ -91,6 +112,10 @@ export const NavLogoLink = styled(Link)`
   &:focus {
     color: #333;
   }
+
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 export const NavLogoIcon = styled(FaXbox)`
@@ -102,6 +127,9 @@ export const NavLogoIcon = styled(FaXbox)`
 export const ToolBar = styled.div`
   display: flex;
   gap: 10px;
+  align-items: flex-end;
+  @media (max-width: 768px) {
+  }
 `;
 
 export const NavButton = styled.button`
@@ -143,8 +171,47 @@ export const ItemQty = styled.span`
   font-weight: 900;
   font-size: 12px;
   line-height: 18px;
-  background: #03cea4;
+  background: #17696a;
   border-radius: 4px;
   padding: 1px 8px;
   color: #ffffff;
+`;
+
+export const NavbarBurgerBox = styled.button`
+  z-index: 4;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  background: none;
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+export const BurgerIcon = styled(GiHamburgerMenu)`
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  fill: #000;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: ${({ isOpenMenu }) => (isOpenMenu ? "none" : "flex")};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;
+export const CloseBurgerIcon = styled(TfiClose)`
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  fill: #fff;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: ${({ isOpenMenu }) => (isOpenMenu ? "flex" : "none")};
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 `;

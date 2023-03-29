@@ -44,15 +44,13 @@ export const StateContext = ({ children }) => {
   }, [cartItems, totalPrice, totalQuantities, qty]);
 
   const onAdd = (product, quantity) => {
-    const isAlreadyInCart = isProductInCart(product._id, cartItems);
+    const isAlreadyInCart = isProductInCart(product.id, cartItems);
     if (isAlreadyInCart) {
       toast.success("Продукт вже в корзині");
       setShowCart(true);
       return;
     }
-    const checkProductInCart = cartItems.find(
-      (item) => item._id === product._id
-    );
+    const checkProductInCart = cartItems.find((item) => item.id === product.id);
 
     setTotalPrice(
       (prevTotalPrice) => prevTotalPrice + product.price * quantity
@@ -62,7 +60,7 @@ export const StateContext = ({ children }) => {
     if (checkProductInCart) {
       console.log(checkProductInCart);
       const updatedCartItems = cartItems.map((cartProduct) => {
-        if (cartProduct._id === product._id)
+        if (cartProduct.id === product.id)
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity,
@@ -76,12 +74,12 @@ export const StateContext = ({ children }) => {
       setCartItems([...cartItems, { ...product }]);
     }
 
-    toast.success(`${qty} ${product.name} додано до корзини.`);
+    toast.success(`${product.subtitle} додано до корзини.`);
   };
 
   const onRemove = (product) => {
-    foundProduct = cartItems.find((item) => item._id === product._id);
-    const newCartItems = cartItems.filter((item) => item._id !== product._id);
+    foundProduct = cartItems.find((item) => item.id === product.id);
+    const newCartItems = cartItems.filter((item) => item.id !== product.id);
 
     setTotalPrice(
       (prevTotalPrice) =>
@@ -92,8 +90,9 @@ export const StateContext = ({ children }) => {
     );
     setCartItems(newCartItems);
   };
+
   const toggleCartItemQuantity = (id, value) => {
-    const index = cartItems.findIndex((product) => product._id === id);
+    const index = cartItems.findIndex((product) => product.id === id);
     const updatedCartItems = [...cartItems];
     const itemToUpdate = updatedCartItems[index];
 
@@ -131,7 +130,7 @@ export const StateContext = ({ children }) => {
   };
 
   const isProductInCart = (productId, cartItems) => {
-    return cartItems.some((item) => item._id === productId);
+    return cartItems.some((item) => item.id === productId);
   };
 
   return (

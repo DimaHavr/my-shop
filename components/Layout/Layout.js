@@ -1,33 +1,40 @@
+import { useState } from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useStateContext } from "../../context/StateContext";
 const Cart = dynamic(() => import("../Cart/Cart"));
 const Footer = dynamic(() => import("../Footer/Footer"));
+
 import SearchBox from "../SearchBox/SearchBox";
 import {
   HeaderWrapper,
-  Nav,
   NavList,
-  NavItem,
   NavLink,
-  NavLogoText,
-  NavLogo,
   NavButton,
   CardIcon,
   NavLogoIcon,
   ItemQty,
-  ContainerStyled,
   FavoriteIcon,
   ToolBar,
   NavLogoLink,
   NavLogoBox,
+  NavbarBurgerBox,
+  BurgerIcon,
+  CloseBurgerIcon,
 } from "./Layout.styled";
 import Box from "../Box/Box";
-import { color } from "styled-system";
+import Menu from "../Menu/Menu";
 
 const Layout = ({ pageTitle, children }) => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
+  function onToggleMenu() {
+    setIsOpenMenu(!isOpenMenu);
+  }
+  function closeMenu() {
+    setIsOpenMenu(false);
+  }
   const handleScroll = () => {
     if (window.scrollY > 10) {
       setSticky(true);
@@ -54,21 +61,22 @@ const Layout = ({ pageTitle, children }) => {
       </Head>
       <Box>
         <HeaderWrapper>
-          <Nav>
-            <NavLogoBox display="flex" gridGap="5px" alignItems="center">
-              <NavLogoLink href="#">Create</NavLogoLink> <NavLogoIcon />
-            </NavLogoBox>
-            <NavList>
-              <NavLink href="#">Mens</NavLink>
-              <NavLink href="#">Women</NavLink>
-              <NavLink href="#">Boys</NavLink>
-              <NavLink href="#">Girls</NavLink>
-              <NavLink style={{ color: "red" }} href="#">
-                Sale
-              </NavLink>
-            </NavList>
+          <NavLogoBox display="flex" gridGap="5px" alignItems="center">
+            <NavLogoLink href="#">Create</NavLogoLink> <NavLogoIcon />
+          </NavLogoBox>
+          <NavList>
+            <NavLink href="#">Mens</NavLink>
+            <NavLink href="#">Women</NavLink>
+            <NavLink href="#">Boys</NavLink>
+            <NavLink href="#">Girls</NavLink>
+            <NavLink style={{ color: "red" }} href="#">
+              Sale
+            </NavLink>
+          </NavList>
+
+          <ToolBar>
             <SearchBox />
-            <ToolBar>
+            <Box display="flex" gridGap="15px">
               <NavButton>
                 <FavoriteIcon />
                 <ItemQty
@@ -81,11 +89,15 @@ const Layout = ({ pageTitle, children }) => {
                 <CardIcon />
                 <ItemQty>{totalQuantities}</ItemQty>
               </NavButton>
-            </ToolBar>
-          </Nav>
+            </Box>
+          </ToolBar>
+          <NavbarBurgerBox onClick={onToggleMenu}>
+            <BurgerIcon isOpenMenu={isOpenMenu} />
+            <CloseBurgerIcon isOpenMenu={isOpenMenu} />
+          </NavbarBurgerBox>
         </HeaderWrapper>
       </Box>
-
+      <Menu isOpenMenu={isOpenMenu} closeMenu={closeMenu} />
       <Box>{children}</Box>
       {showCart && <Cart />}
       <Footer />

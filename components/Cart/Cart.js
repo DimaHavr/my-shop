@@ -21,6 +21,7 @@ import {
   IssueBtn,
   TotalContainer,
   BackBtn,
+  CheckoutIcon,
 } from "./Cart.styled";
 import Box from "../Box/Box";
 
@@ -65,7 +66,9 @@ const Cart = () => {
       <CartContainer showCart={showCart}>
         <BackButton type="button" onClick={() => setShowCart(false)}>
           <BackButtonIcon />
-          {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
+          <Text>
+            Your cart {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
+          </Text>
         </BackButton>
 
         {cartItems.length < 1 && (
@@ -75,6 +78,7 @@ const Cart = () => {
             gridGap="20px"
             justifyContent="center"
             alignItems="center"
+            paddingTop="150px"
           >
             <AiOutlineShopping size={150} />
             <Text>
@@ -86,54 +90,60 @@ const Cart = () => {
           </Box>
         )}
 
-        <Box>
+        <Box paddingTop="70px">
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
-              <DetailContainer key={item?._id}>
-                <Link href={`/${item?._type}/${item?.slug.current}`}>
-                  <ImgContainer src={item?.image[0]} />
-                </Link>
+              <DetailContainer key={item.id}>
+                <ImgContainer src={item?.img} />
                 <Box
                   display="flex"
                   flexDirection="column"
                   gridGap="10px"
                   justifyContent="space-around"
                 >
-                  <Link href={`${item?._type}/${item?.slug.current}`}>
-                    <SubTitle>{item?.name}</SubTitle>
-                  </Link>
-                  <Text>{item?.price}₴</Text>
-                  <Box display="flex" justifyContent="space-between">
+                  <SubTitle>{item?.subtitle}</SubTitle>
+
+                  <Box
+                    display="flex"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
                     <QuantityContainer>
                       <MinusIcon
-                        onClick={() => toggleCartItemQuantity(item?._id, "dec")}
+                        onClick={() => toggleCartItemQuantity(item?.id, "dec")}
                       />
                       <QuantityText>{item?.quantity}</QuantityText>
                       <PlusIcon
-                        onClick={() => toggleCartItemQuantity(item?._id, "inc")}
+                        onClick={() => toggleCartItemQuantity(item?.id, "inc")}
                       />
-                    </QuantityContainer>
-                    <RemoveButtonIcon
-                      onClick={() => {
-                        onRemove(item);
-                        toast.success(`${item?.name} був видалений...`, {
-                          style: {
-                            borderRadius: "10px",
-                            background: "grey",
-                            color: "#fff",
-                          },
-                        });
-                      }}
-                    />
+                    </QuantityContainer>{" "}
+                    <Text>{item?.price}₴</Text>
                   </Box>
                 </Box>
+                <RemoveButtonIcon
+                  onClick={() => {
+                    onRemove(item);
+                    toast.success(`${item?.subtitle} був видалений...`, {
+                      style: {
+                        borderRadius: "10px",
+                        background: "grey",
+                        color: "#fff",
+                      },
+                    });
+                  }}
+                />
               </DetailContainer>
             ))}
         </Box>
         {cartItems.length >= 1 && (
           <TotalContainer>
-            <Text>{totalPrice}₴</Text>
-            <IssueBtn type="button">Оформити замовлення</IssueBtn>
+            <Box display="flex" justifyContent="space-between">
+              <Text>Subtotal: </Text>
+              <Text>{totalPrice}₴</Text>
+            </Box>
+            <IssueBtn type="button">
+              <CheckoutIcon /> Checkout
+            </IssueBtn>
           </TotalContainer>
         )}
       </CartContainer>

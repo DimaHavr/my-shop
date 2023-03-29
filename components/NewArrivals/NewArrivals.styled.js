@@ -4,9 +4,9 @@ import Link from "next/link";
 import { GrFavorite } from "react-icons/gr";
 
 export const FavoriteIcon = styled(GrFavorite)`
-  width: 36px;
-  height: 36px;
-  color: #787a80;
+  width: 50px;
+  height: 50px;
+  color: #17696a;
   padding: 8px;
 `;
 
@@ -15,7 +15,7 @@ export const FavoriteIconBox = styled.div`
   top: 270px;
   right: 15px;
   cursor: pointer;
-
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   background-color: #fff;
   border-radius: 100px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -34,6 +34,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100;
 `;
 export const Title = styled.h2`
   font-family: "LatoBold";
@@ -45,46 +47,35 @@ export const Title = styled.h2`
 `;
 
 export const List = styled(Swiper)`
-  padding: 50px;
+  padding: 50px 50px;
   display: flex;
-  flex-wrap: wrap;
-  flex: 1 1 1;
-  justify-content: center;
-  gap: 30px;
-  list-style-type: none;
-  @media screen and (max-width: 767px) {
-    flex-direction: column;
-    align-items: center;
-  }
-  @media screen and (min-width: 768px) {
-    flex-wrap: wrap;
-    flex: 1 1 1;
+
+  @media screen and (max-width: 435) {
+    padding: 50px 10px;
+    margin-right: 30px;
   }
 `;
 
 export const Item = styled.li`
-  position: relative;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  width: 285px;
+  position: relative;
+  width: 300px;
+  padding: 40px 40px 60px 40px;
   border-radius: 8px;
+  background-color: #fff;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    transform: scale(1.02);
+    transform: scale(1.01);
   }
 `;
 
-export const Img = styled.img`
-  height: auto;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 4px;
-`;
+export const Img = styled.img``;
 
 export const Text = styled.p`
   font-family: "LatoRegular";
@@ -93,15 +84,32 @@ export const Text = styled.p`
 `;
 
 export const Subtitle = styled.h3`
-  font-family: "LatoRegular";
-  color: #424551;
-  margin-bottom: 16px;
+  font-family: "LatoLight";
+  width: 220px;
+  color: #000;
+  padding-top: 20px;
+  font-size: 18px;
+  line-height: 24px;
+  flex-grow: 1;
+  text-align: center;
 `;
 
 export const TextPrice = styled.p`
   font-family: "LatoBold";
   font-size: 20px;
-  color: #1e212c;
+  color: #fff;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 17px;
+  left: 29px;
+  width: 50px;
+  height: 50px;
+  background-color: #17696a;
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
 `;
 
 export const TextLink = styled(Link)`
@@ -109,4 +117,27 @@ export const TextLink = styled(Link)`
   text-align: center;
   text-decoration-line: underline;
   color: #17696a;
+`;
+
+export const Button = styled.button`
+  display: inline-block;
+  font-family: "LatoRegular";
+  text-align: center;
+  color: #fff;
+  text-align: center;
+  padding: 25px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -40px;
+  right: 30px;
+  background-color: #17696a;
+  border: none;
+  box-shadow: 0 30px 25px -20px rgba(0, 0, 0, 0.35);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 `;

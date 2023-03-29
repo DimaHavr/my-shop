@@ -51,8 +51,24 @@ const PopularCategories = () => {
       <Wrapper>
         <Title>Popular categories</Title>
         <List
-          spaceBetween={50}
-          slidesPerView={4}
+          breakpoints={{
+            460: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1224: {
+              slidesPerView: 4,
+              spaceBetween: 35,
+            },
+          }}
           pagination={{ clickable: true, dynamicBullets: true }}
           navigation={true}
           modules={[Pagination, Navigation]}

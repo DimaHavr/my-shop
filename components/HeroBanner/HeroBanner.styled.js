@@ -10,6 +10,7 @@ export const HeroBannerSection = styled.section`
   color: #fff;
   background-color: grey;
 `;
+
 export const HeroBannerContainer = styled.div`
   padding: 170px 130px;
   display: flex;
