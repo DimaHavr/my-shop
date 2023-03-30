@@ -22,6 +22,7 @@ export const Input = styled.input`
   font-size: 16px;
   border: 1px solid #d7dadd;
   border-radius: 4px;
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     outline 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -42,15 +43,16 @@ export const Input = styled.input`
   @media screen and (max-width: 980px) {
     visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
     position: absolute;
-    top: 35px;
-    left: -2px;
+    top: 44px;
+    left: -13px;
     text-indent: 5px;
     z-index: 2;
-    width: 180px;
-    height: 44;
+    width: 200px;
+    height: 42px;
     font-size: 16px;
     border: 1px solid #d7dadd;
     border-radius: 4px;
+    box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
       color 250ms cubic-bezier(0.4, 0, 0.2, 1),
       outline 250ms cubic-bezier(0.4, 0, 0.2, 1),

@@ -76,7 +76,7 @@ const Layout = ({ pageTitle, children }) => {
 
           <ToolBar>
             <SearchBox />
-            <Box display="flex" gridGap="15px">
+            <Box display="flex" gridGap="5px">
               <NavButton>
                 <FavoriteIcon />
                 <ItemQty

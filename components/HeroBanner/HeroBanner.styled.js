@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const HeroBannerSection = styled.section`
+  cursor: grab;
   display: flex;
   background: linear-gradient(rgba(47, 48, 58, 0.2), rgba(47, 48, 58, 0.2)),
     url(${({ backgroundImage }) => backgroundImage}) no-repeat center center;
@@ -29,11 +30,11 @@ export const HeroBannerContainer = styled.div`
     padding-left: 50px;
   }
   @media screen and (max-width: 620px) {
-    padding-top: 80px;
+    padding-top: 40px;
     padding-left: 50px;
   }
   @media screen and (max-width: 380px) {
-    padding-top: 80px;
+    padding-top: 40px;
     padding-left: 20px;
   }
 `;
@@ -66,7 +67,7 @@ export const HeroBannerTitle = styled.h1`
     line-height: 64px;
   }
   @media screen and (max-width: 620px) {
-    width: 210px;
+    width: 195px;
   }
 `;
 
