@@ -9,24 +9,46 @@ export const HeroBannerSection = styled.section`
   background-size: cover;
   color: #fff;
   background-color: grey;
+  @media screen and (max-width: 1200px) {
+    height: 600px;
+  }
+  @media screen and (max-width: 900px) {
+    height: 400px;
+  }
+  @media screen and (max-width: 620px) {
+    background-position-x: 60%;
+  }
 `;
 
 export const HeroBannerContainer = styled.div`
-  padding: 170px 130px;
+  padding-top: 270px;
+  padding-left: 130px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  @media screen and (max-width: 900px) {
+    padding-top: 100px;
+    padding-left: 100px;
+  }
+  @media screen and (max-width: 620px) {
+    padding-top: 80px;
+    padding-left: 20px;
+  }
 `;
 
 export const HeroBannerText = styled.p`
   font-family: "LatoBold";
-  font-size: 18px;
+  font-size: 14px;
   line-height: 27px;
   align-items: center;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #1e212c;
+  @media screen and (max-width: 620px) {
+    font-size: 14px;
+    line-height: 22px;
+  }
 `;
 
 export const HeroBannerTitle = styled.h1`
@@ -38,6 +60,10 @@ export const HeroBannerTitle = styled.h1`
   align-items: center;
   letter-spacing: 1px;
   color: #1e212c;
+  @media screen and (max-width: 620px) {
+    font-size: 42px;
+    line-height: 64px;
+  }
 `;
 
 export const HeroBannerButton = styled.button`
@@ -88,5 +114,14 @@ export const HeroBannerButtonSecond = styled.button`
     transform: scale(1.01);
     color: #17696a;
     background: none;
+  }
+`;
+
+export const HeroBannerButtonBox = styled.div`
+  margin-top: 60px;
+  display: flex;
+  gap: 25px;
+  @media screen and (max-width: 620px) {
+    flex-direction: column;
   }
 `;

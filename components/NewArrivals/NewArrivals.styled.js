@@ -47,7 +47,7 @@ export const Title = styled.h2`
 `;
 
 export const List = styled(Swiper)`
-  padding: 50px 50px;
+  padding: 60px 50px;
   display: flex;
 
   @media screen and (max-width: 435) {

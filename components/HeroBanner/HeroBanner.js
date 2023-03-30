@@ -5,7 +5,7 @@ import {
   HeroBannerTitle,
   HeroBannerButton,
   HeroBannerButtonSecond,
-  PaginationStyled,
+  HeroBannerButtonBox,
 } from "./HeroBanner.styled";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, HashNavigation } from "swiper";
@@ -35,12 +35,16 @@ const HeroBanner = () => {
             <HeroBannerContainer>
               <HeroBannerText>New colection</HeroBannerText>
               <HeroBannerTitle>Menswear 2023</HeroBannerTitle>
-              <Box display="flex" gridGap="25px" marginTop="60px">
+              <HeroBannerButtonBox
+                display="flex"
+                gridGap="25px"
+                marginTop="60px"
+              >
                 <HeroBannerButton>Shop sale</HeroBannerButton>
                 <HeroBannerButtonSecond>
                   Shop the menswear
                 </HeroBannerButtonSecond>
-              </Box>
+              </HeroBannerButtonBox>
             </HeroBannerContainer>
           </HeroBannerSection>
         </SwiperSlide>
@@ -49,12 +53,16 @@ const HeroBanner = () => {
             <HeroBannerContainer>
               <HeroBannerText>New colection</HeroBannerText>
               <HeroBannerTitle>Women 2023</HeroBannerTitle>
-              <Box display="flex" gridGap="25px" marginTop="60px">
+              <HeroBannerButtonBox
+                display="flex"
+                gridGap="25px"
+                marginTop="60px"
+              >
                 <HeroBannerButton>Shop sale</HeroBannerButton>
                 <HeroBannerButtonSecond>
                   Shop the menswear
                 </HeroBannerButtonSecond>
-              </Box>
+              </HeroBannerButtonBox>
             </HeroBannerContainer>
           </HeroBannerSection>
         </SwiperSlide>
@@ -63,12 +71,16 @@ const HeroBanner = () => {
             <HeroBannerContainer>
               <HeroBannerText>New colection</HeroBannerText>
               <HeroBannerTitle>Kids 2023</HeroBannerTitle>
-              <Box display="flex" gridGap="25px" marginTop="60px">
+              <HeroBannerButtonBox
+                display="flex"
+                gridGap="25px"
+                marginTop="60px"
+              >
                 <HeroBannerButton>Shop sale</HeroBannerButton>
                 <HeroBannerButtonSecond>
                   Shop the menswear
                 </HeroBannerButtonSecond>
-              </Box>
+              </HeroBannerButtonBox>
             </HeroBannerContainer>
           </HeroBannerSection>
         </SwiperSlide>
