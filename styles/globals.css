@@ -1,3 +1,25 @@
+/* Для веб-кіт браузерів */
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #17696a;
+  border-radius: 50px;
+}
+
+/* Для Firefox */
+::-moz-scrollbar {
+  width: 5px;
+  background-color: #f1f1f1;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: #17696a;
+  border-radius: 50px;
+}
+
 body {
   height: 100%;
   font-family: "LatoRegular", sans-serif;

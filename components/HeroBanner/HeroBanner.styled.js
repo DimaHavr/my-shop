@@ -11,7 +11,7 @@ export const HeroBannerSection = styled.section`
   color: #fff;
   background-color: grey;
   @media screen and (max-width: 900px) {
-    height: 400px;
+    height: 450px;
   }
   @media screen and (max-width: 620px) {
     background-position-x: 60%;

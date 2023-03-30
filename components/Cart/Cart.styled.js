@@ -217,7 +217,10 @@ export const QuantityText = styled.p`
 
 export const List = styled.ul`
   overflow-y: scroll;
-  max-height: 400px;
+  max-height: 71vh;
+  @media screen and (max-width: 480px) {
+    max-height: 60vh;
+  }
 `;
 
 export const Item = styled.li`
@@ -283,8 +286,9 @@ export const TotalContainer = styled.div`
   flex-direction: column;
   align-items: stretch;
   border-top: 1px solid #e5e8ed;
-  padding: 16px;
   gap: 20px;
+  padding: 16px 16px 26px;
+  padding-bottom: 20vh;
 `;
 
 export const BackBtn = styled.button`
