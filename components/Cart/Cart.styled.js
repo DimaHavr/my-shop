@@ -136,6 +136,9 @@ export const CartWrapper = styled.div`
 `;
 
 export const CartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100vh;
   width: 352px;
   background: #ffffff;
@@ -212,13 +215,19 @@ export const QuantityText = styled.p`
   font-weight: 700;
 `;
 
-export const DetailContainer = styled.div`
+export const List = styled.ul`
+  overflow-y: scroll;
+  max-height: 400px;
+`;
+
+export const Item = styled.li`
   position: relative;
   display: flex;
   gap: 10px;
   border-top: 1px solid #e5e8ed;
   padding: 16px;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const SubTitle = styled.h3`

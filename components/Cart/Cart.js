@@ -15,7 +15,8 @@ import {
   MinusIcon,
   PlusIcon,
   SubTitle,
-  DetailContainer,
+  List,
+  Item,
   Text,
   RemoveButtonIcon,
   IssueBtn,
@@ -64,83 +65,89 @@ const Cart = () => {
       showCart={showCart}
     >
       <CartContainer showCart={showCart}>
-        <Box
-          display="flex"
-          padding="16px"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Text>
-            Your cart {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
-          </Text>
-          <BackButton type="button" onClick={() => setShowCart(false)}>
-            <CloseIcon />
-          </BackButton>
-        </Box>
-        {cartItems.length < 1 && (
+        <Box>
           <Box
             display="flex"
-            flexDirection="column"
-            gridGap="20px"
-            justifyContent="center"
+            padding="16px"
             alignItems="center"
-            paddingTop="150px"
+            justifyContent="space-between"
           >
-            <AiOutlineShopping size={150} />
             <Text>
-              Кошик порожній... <br /> Але це ніколи не пізно виправити :)
+              Your cart {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
             </Text>
-            <BackBtn type="button" onClick={() => setShowCart(false)}>
-              Повернутися до магазину
-            </BackBtn>
+            <BackButton type="button" onClick={() => setShowCart(false)}>
+              <CloseIcon />
+            </BackButton>
           </Box>
-        )}
+          {cartItems.length < 1 && (
+            <Box
+              display="flex"
+              flexDirection="column"
+              gridGap="20px"
+              justifyContent="center"
+              alignItems="center"
+              paddingTop="150px"
+            >
+              <AiOutlineShopping size={150} />
+              <Text>
+                Кошик порожній... <br /> Але це ніколи не пізно виправити :)
+              </Text>
+              <BackBtn type="button" onClick={() => setShowCart(false)}>
+                Повернутися до магазину
+              </BackBtn>
+            </Box>
+          )}
 
-        <Box>
-          {cartItems.length >= 1 &&
-            cartItems.map((item) => (
-              <DetailContainer key={item.id}>
-                <ImgContainer src={item?.img} />
-                <Box
-                  display="flex"
-                  flexDirection="column"
-                  gridGap="10px"
-                  justifyContent="space-around"
-                  paddingRight="20px"
-                >
-                  <SubTitle>{item?.subtitle}</SubTitle>
-
+          <List>
+            {cartItems.length >= 1 &&
+              cartItems.map((item) => (
+                <Item key={item.id}>
+                  <ImgContainer src={item?.img} />
                   <Box
                     display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
+                    flexDirection="column"
+                    gridGap="10px"
+                    justifyContent="space-around"
+                    paddingRight="20px"
                   >
-                    <QuantityContainer>
-                      <MinusIcon
-                        onClick={() => toggleCartItemQuantity(item?.id, "dec")}
-                      />
-                      <QuantityText>{item?.quantity}</QuantityText>
-                      <PlusIcon
-                        onClick={() => toggleCartItemQuantity(item?.id, "inc")}
-                      />
-                    </QuantityContainer>{" "}
-                    <Text>{item?.price}₴</Text>
+                    <SubTitle>{item?.subtitle}</SubTitle>
+
+                    <Box
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <QuantityContainer>
+                        <MinusIcon
+                          onClick={() =>
+                            toggleCartItemQuantity(item?.id, "dec")
+                          }
+                        />
+                        <QuantityText>{item?.quantity}</QuantityText>
+                        <PlusIcon
+                          onClick={() =>
+                            toggleCartItemQuantity(item?.id, "inc")
+                          }
+                        />
+                      </QuantityContainer>{" "}
+                      <Text>{item?.price}₴</Text>
+                    </Box>
                   </Box>
-                </Box>
-                <RemoveButtonIcon
-                  onClick={() => {
-                    onRemove(item);
-                    toast.success(`${item?.subtitle} був видалений...`, {
-                      style: {
-                        borderRadius: "10px",
-                        background: "grey",
-                        color: "#fff",
-                      },
-                    });
-                  }}
-                />
-              </DetailContainer>
-            ))}
+                  <RemoveButtonIcon
+                    onClick={() => {
+                      onRemove(item);
+                      toast.success(`${item?.subtitle} був видалений...`, {
+                        style: {
+                          borderRadius: "10px",
+                          background: "grey",
+                          color: "#fff",
+                        },
+                      });
+                    }}
+                  />
+                </Item>
+              ))}
+          </List>
         </Box>
         {cartItems.length >= 1 && (
           <TotalContainer>
