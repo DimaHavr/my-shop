@@ -69,7 +69,22 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: #17696a;
+    transform: scaleX(0);
+    transform-origin: 0% 50%;
+    transition: 0.4s;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
   &:hover,
   &:focus {
     transform: scale(1.05);

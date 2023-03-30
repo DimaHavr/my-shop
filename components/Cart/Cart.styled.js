@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { RxDoubleArrowLeft } from "react-icons/rx";
+import { VscChromeClose } from "react-icons/vsc";
 import { RiDeleteBin4Line } from "react-icons/ri";
 import { FaCreditCard } from "react-icons/fa";
 
@@ -52,7 +52,7 @@ export const CheckoutIcon = styled(FaCreditCard)`
 export const MinusIcon = styled(AiOutlineMinus)`
   width: 25px;
   height: 25px;
-  border: 2px solid gray;
+  border: 2px solid 17696a;
   cursor: pointer;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -64,7 +64,8 @@ export const MinusIcon = styled(AiOutlineMinus)`
 export const PlusIcon = styled(AiOutlinePlus)`
   width: 25px;
   height: 25px;
-  border: 2px solid gray;
+  border: 2px solid 17696a;
+  border-radius: 10px;
   cursor: pointer;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -74,15 +75,15 @@ export const PlusIcon = styled(AiOutlinePlus)`
   }
 `;
 
-export const BackButtonIcon = styled(RxDoubleArrowLeft)`
+export const CloseIcon = styled(VscChromeClose)`
   width: 30px;
   height: 30px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  fill: #000;
+  fill: #17696a;
   &:hover,
   &:focus {
     transform: scale(1.03);
-    fill: red;
+    fill: #000;
   }
 
   @keyframes btn-animation {
@@ -108,6 +109,30 @@ export const CartWrapper = styled.div`
   top: 0;
   z-index: 100;
   background: #1e212cd1;
+  animation: ${({ showCart }) =>
+    showCart
+      ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
+      : "fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
+
+  @media screen and (max-width: 480px) {
+    width: 100vw;
+  }
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export const CartContainer = styled.div`
@@ -131,25 +156,17 @@ export const CartContainer = styled.div`
   }
   @keyframes fade-in-right {
     0% {
-      -webkit-transform: translateX(50px);
-      transform: translateX(50px);
       opacity: 0;
     }
     100% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
       opacity: 1;
     }
   }
   @keyframes fade-out-right {
     0% {
-      -webkit-transform: translateX(0);
-      transform: translateX(0);
       opacity: 1;
     }
     100% {
-      -webkit-transform: translateX(50px);
-      transform: translateX(50px);
       opacity: 0;
     }
   }
@@ -164,13 +181,7 @@ export const ImgContainer = styled.img`
 
 export const BackButton = styled.button`
   cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: flex;
-  align-items: center;
-  font-weight: 700;
-  gap: 10px;
+
   background: none;
   border: none;
 `;
@@ -194,6 +205,7 @@ export const QuantityContainer = styled.div`
   padding: 10px;
   border: 1px solid #d7dadd;
   border-radius: 4px;
+  padding-right: 20px;
 `;
 export const QuantityText = styled.p`
   font-size: 20px;

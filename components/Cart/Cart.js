@@ -8,7 +8,7 @@ import {
   CartWrapper,
   ImgContainer,
   BackButton,
-  BackButtonIcon,
+  CloseIcon,
   Span,
   QuantityContainer,
   QuantityText,
@@ -64,13 +64,19 @@ const Cart = () => {
       showCart={showCart}
     >
       <CartContainer showCart={showCart}>
-        <BackButton type="button" onClick={() => setShowCart(false)}>
-          <BackButtonIcon />
+        <Box
+          display="flex"
+          padding="16px"
+          alignItems="center"
+          justifyContent="space-between"
+        >
           <Text>
             Your cart {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
           </Text>
-        </BackButton>
-
+          <BackButton type="button" onClick={() => setShowCart(false)}>
+            <CloseIcon />
+          </BackButton>
+        </Box>
         {cartItems.length < 1 && (
           <Box
             display="flex"
@@ -90,7 +96,7 @@ const Cart = () => {
           </Box>
         )}
 
-        <Box paddingTop="70px">
+        <Box>
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
               <DetailContainer key={item.id}>
@@ -100,6 +106,7 @@ const Cart = () => {
                   flexDirection="column"
                   gridGap="10px"
                   justifyContent="space-around"
+                  paddingRight="20px"
                 >
                   <SubTitle>{item?.subtitle}</SubTitle>
 
