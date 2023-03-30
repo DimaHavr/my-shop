@@ -288,7 +288,9 @@ export const TotalContainer = styled.div`
   border-top: 1px solid #e5e8ed;
   gap: 20px;
   padding: 16px 16px 26px;
-  padding-bottom: 20vh;
+  @media screen and (max-width: 480px) {
+    padding-bottom: 20vh;
+  }
 `;
 
 export const BackBtn = styled.button`

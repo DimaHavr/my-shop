@@ -82,9 +82,11 @@ export const NavLink = styled(Link)`
     transform-origin: 0% 50%;
     transition: 0.4s;
   }
+
   &:hover::after {
     transform: scaleX(1);
   }
+
   &:hover,
   &:focus {
     transform: scale(1.05);
@@ -143,6 +145,7 @@ export const ToolBar = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  position: relative;
 `;
 
 export const NavButton = styled.button`

@@ -9,6 +9,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import {
   HeaderWrapper,
   NavList,
+  NavItem,
   NavLink,
   NavButton,
   CardIcon,
@@ -65,13 +66,23 @@ const Layout = ({ pageTitle, children }) => {
             <NavLogoLink href="#">Create</NavLogoLink> <NavLogoIcon />
           </NavLogoBox>
           <NavList>
-            <NavLink href="#">Mens</NavLink>
-            <NavLink href="#">Women</NavLink>
-            <NavLink href="#">Boys</NavLink>
-            <NavLink href="#">Girls</NavLink>
-            <NavLink style={{ color: "red" }} href="#">
-              Sale
-            </NavLink>
+            <NavItem>
+              <NavLink href="#">Mens</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Women</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Boys</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="#">Girls</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink style={{ color: "red" }} href="#">
+                Sale
+              </NavLink>
+            </NavItem>
           </NavList>
 
           <ToolBar>
