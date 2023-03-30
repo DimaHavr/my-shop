@@ -3,15 +3,12 @@ import Link from "next/link";
 
 export const HeroBannerSection = styled.section`
   display: flex;
-  background: url(${({ backgroundImage }) => backgroundImage}) no-repeat center
-    center;
-  height: 800px;
+  background: linear-gradient(rgba(47, 48, 58, 0.2), rgba(47, 48, 58, 0.2)),
+    url(${({ backgroundImage }) => backgroundImage}) no-repeat center center;
+  height: 600px;
   background-size: cover;
   color: #fff;
   background-color: grey;
-  @media screen and (max-width: 1200px) {
-    height: 600px;
-  }
   @media screen and (max-width: 900px) {
     height: 400px;
   }
@@ -21,7 +18,7 @@ export const HeroBannerSection = styled.section`
 `;
 
 export const HeroBannerContainer = styled.div`
-  padding-top: 270px;
+  padding-top: 170px;
   padding-left: 130px;
   display: flex;
   flex-direction: column;
@@ -29,9 +26,13 @@ export const HeroBannerContainer = styled.div`
   align-items: flex-start;
   @media screen and (max-width: 900px) {
     padding-top: 100px;
-    padding-left: 100px;
+    padding-left: 50px;
   }
   @media screen and (max-width: 620px) {
+    padding-top: 80px;
+    padding-left: 50px;
+  }
+  @media screen and (max-width: 380px) {
     padding-top: 80px;
     padding-left: 20px;
   }
@@ -59,10 +60,13 @@ export const HeroBannerTitle = styled.h1`
   display: flex;
   align-items: center;
   letter-spacing: 1px;
-  color: #1e212c;
+  color: #fff;
   @media screen and (max-width: 620px) {
     font-size: 42px;
     line-height: 64px;
+  }
+  @media screen and (max-width: 620px) {
+    width: 210px;
   }
 `;
 

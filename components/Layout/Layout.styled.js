@@ -142,9 +142,7 @@ export const NavLogoIcon = styled(FaXbox)`
 export const ToolBar = styled.div`
   display: flex;
   gap: 10px;
-  align-items: flex-end;
-  @media (max-width: 768px) {
-  }
+  align-items: center;
 `;
 
 export const NavButton = styled.button`

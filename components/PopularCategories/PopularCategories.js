@@ -31,7 +31,7 @@ const popularCategories = [
   },
 ];
 import { SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper";
+import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -57,21 +57,20 @@ const PopularCategories = () => {
               spaceBetween: 30,
             },
             640: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 30,
             },
             768: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 20,
             },
             1224: {
-              slidesPerView: 4,
+              slidesPerView: 5,
               spaceBetween: 35,
             },
           }}
-          pagination={{ clickable: true, dynamicBullets: true }}
           navigation={true}
-          modules={[Pagination, Navigation]}
+          modules={[Navigation]}
           className="mySwiper"
         >
           {popularCategories.map(({ id, img, subtitle }) => (

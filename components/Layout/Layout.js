@@ -90,11 +90,11 @@ const Layout = ({ pageTitle, children }) => {
                 <ItemQty>{totalQuantities}</ItemQty>
               </NavButton>
             </Box>
+            <NavbarBurgerBox onClick={onToggleMenu}>
+              <BurgerIcon isOpenMenu={isOpenMenu} />
+              <CloseBurgerIcon isOpenMenu={isOpenMenu} />
+            </NavbarBurgerBox>
           </ToolBar>
-          <NavbarBurgerBox onClick={onToggleMenu}>
-            <BurgerIcon isOpenMenu={isOpenMenu} />
-            <CloseBurgerIcon isOpenMenu={isOpenMenu} />
-          </NavbarBurgerBox>
         </HeaderWrapper>
       </Box>
       <Menu isOpenMenu={isOpenMenu} closeMenu={closeMenu} />

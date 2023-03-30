@@ -27,7 +27,7 @@ export const FavoriteIconBox = styled.div`
 `;
 
 export const Section = styled.section`
-  padding: 50px 0;
+  padding-top: 50px;
 `;
 export const Wrapper = styled.div`
   display: flex;
@@ -81,6 +81,7 @@ export const Text = styled.p`
   font-family: "LatoRegular";
   color: #787a80;
   margin-bottom: 8px;
+  text-align: center;
 `;
 
 export const Subtitle = styled.h3`
@@ -95,6 +96,7 @@ export const Subtitle = styled.h3`
 `;
 
 export const TextPrice = styled.p`
+  text-align: center;
   font-family: "LatoBold";
   font-size: 20px;
   color: #fff;
@@ -117,6 +119,14 @@ export const TextLink = styled(Link)`
   text-align: center;
   text-decoration-line: underline;
   color: #17696a;
+  text-align: center;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+    color: #17696a;
+  }
 `;
 
 export const Button = styled.button`

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Swiper } from "swiper/react";
 
 export const Section = styled.section`
-  padding: 50px 0;
+  padding-top: 50px;
 `;
 
 export const Title = styled.h2`
@@ -11,6 +11,7 @@ export const Title = styled.h2`
   font-size: 46px;
   line-height: 60px;
   color: #1e212c;
+  text-align: center;
 `;
 
 export const Wrapper = styled.div`
@@ -18,7 +19,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 60px;
 `;
 
 export const List = styled(Swiper)`
@@ -49,7 +49,7 @@ export const Img = styled.img`
   height: 180px;
   object-fit: cover;
   object-position: center;
-  /* box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15); */
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   border-radius: 100px;
 `;
 
