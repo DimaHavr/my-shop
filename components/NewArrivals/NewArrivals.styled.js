@@ -110,13 +110,12 @@ export const TextPrice = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 17px;
-  left: 29px;
-  width: 50px;
-  height: 50px;
+  top: 0px;
+  left: 0px;
+  padding: 6px;
   background-color: #17696a;
   color: #fff;
-  border-radius: 50%;
+  border-radius: 8px 0 8px 0;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
 `;
 
