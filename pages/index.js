@@ -16,6 +16,14 @@ const TrendingNow = dynamic(() =>
 const ServicesList = dynamic(() =>
   import("../components/ServicesList/ServicesList")
 );
+
+const InstagramBox = dynamic(() =>
+  import("../components/InstagramBox/InstagramBox")
+);
+const SubscribeBox = dynamic(() =>
+  import("../components/SubscribeBox/SubscribeBox")
+);
+
 const Index = () => {
   const { showCart } = useStateContext();
 
@@ -33,6 +41,8 @@ const Index = () => {
         <TrendingNow />
         <NewArrivals />
         <ServicesList />
+        <InstagramBox />
+        <SubscribeBox />
       </Layout>
     </Box>
   );

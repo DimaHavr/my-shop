@@ -20,12 +20,10 @@ const HeroBanner = () => {
   return (
     <Box>
       <Swiper
-        effect={"fade"}
-        autoplay={{
-          delay: 3500,
-          disableOnInteraction: false,
-          waitForTransition: true,
-        }}
+        // autoplay={{
+        //   delay: 3500,
+        //   disableOnInteraction: true,
+        // }}
         spaceBetween={0}
         hashNavigation={{
           watchState: true,
@@ -39,7 +37,7 @@ const HeroBanner = () => {
         <SwiperSlide data-hash="slide1">
           <HeroBannerSection backgroundImage={backgroundImage}>
             <HeroBannerContainer>
-              <HeroBannerText>New colection</HeroBannerText>
+              <HeroBannerText>New collection</HeroBannerText>
               <HeroBannerTitle>Menswear 2023</HeroBannerTitle>
               <HeroBannerButtonBox
                 display="flex"
@@ -57,7 +55,7 @@ const HeroBanner = () => {
         <SwiperSlide data-hash="slide2">
           <HeroBannerSection backgroundImage={backgroundImage}>
             <HeroBannerContainer>
-              <HeroBannerText>New colection</HeroBannerText>
+              <HeroBannerText>New collection</HeroBannerText>
               <HeroBannerTitle>Women 2023</HeroBannerTitle>
               <HeroBannerButtonBox
                 display="flex"
@@ -75,7 +73,7 @@ const HeroBanner = () => {
         <SwiperSlide data-hash="slide3">
           <HeroBannerSection backgroundImage={backgroundImage}>
             <HeroBannerContainer>
-              <HeroBannerText>New colection</HeroBannerText>
+              <HeroBannerText>New collection</HeroBannerText>
               <HeroBannerTitle>Kids 2023</HeroBannerTitle>
               <HeroBannerButtonBox
                 display="flex"
