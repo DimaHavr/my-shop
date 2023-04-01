@@ -43,6 +43,7 @@ import {
   Item,
   Img,
   Subtitle,
+  Text,
 } from "./PopularCategories.styled";
 
 const PopularCategories = () => {
@@ -50,6 +51,10 @@ const PopularCategories = () => {
     <Section>
       <Wrapper>
         <Title>Popular categories</Title>
+        <Text>
+          "Wear what's trending: popular clothing categories to refresh your
+          wardrobe."
+        </Text>
         <List
           breakpoints={{
             460: {

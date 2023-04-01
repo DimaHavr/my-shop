@@ -17,6 +17,20 @@ import Box from "../Box/Box";
 const backgroundImage = "/images/hero/imageBg1.webp";
 
 const HeroBanner = () => {
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return (
+        '<span class="' +
+        swiper -
+        pagination -
+        bullet +
+        '">' +
+        (index + 1) +
+        "</span>"
+      );
+    },
+  };
   return (
     <Box>
       <Swiper

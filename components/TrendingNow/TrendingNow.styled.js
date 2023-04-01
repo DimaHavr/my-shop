@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Swiper } from "swiper/react";
-import Link from "next/link";
 import { GrFavorite } from "react-icons/gr";
 
 export const FavoriteIcon = styled(GrFavorite)`
@@ -27,7 +26,7 @@ export const FavoriteIconBox = styled.div`
 `;
 
 export const Section = styled.section`
-  background-color: #ffffff;
+  background-color: #e5e8ed;
   padding: 50px 0;
   cursor: grab;
 `;
@@ -56,7 +55,7 @@ export const List = styled(Swiper)`
 `;
 
 export const SlideBox = styled.div`
-  background-color: #ffffff;
+  background-color: #e5e8ed;
   display: flex;
   justify-content: center;
 `;
@@ -83,13 +82,6 @@ export const Item = styled.div`
 
 export const Img = styled.img``;
 
-export const Text = styled.p`
-  font-family: "LatoRegular";
-  color: #787a80;
-  margin-bottom: 8px;
-  text-align: center;
-`;
-
 export const Subtitle = styled.h3`
   font-family: "LatoLight";
   width: 220px;
@@ -98,6 +90,13 @@ export const Subtitle = styled.h3`
   font-size: 18px;
   line-height: 24px;
   flex-grow: 1;
+  text-align: center;
+`;
+
+export const Text = styled.p`
+  font-family: "LatoRegular";
+  color: #787a80;
+  margin-bottom: 8px;
   text-align: center;
 `;
 
@@ -127,13 +126,13 @@ export const Button = styled.button`
   align-items: center;
   text-align: center;
   letter-spacing: 0.5px;
-  color: #fff;
+  color: #17696a;
   padding: 0px 40px;
   gap: 10px;
   height: 52px;
   border: 1px solid #17696a;
   border-radius: 4px;
-  background: #17696a;
+  background: none;
   margin-top: 50px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -142,7 +141,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     transform: scale(1.01);
-    color: #17696a;
-    background: none;
+    color: #fff;
+    background-color: #17696a;
   }
 `;

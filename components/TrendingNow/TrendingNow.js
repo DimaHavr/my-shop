@@ -1,4 +1,4 @@
-const newArrivals = [
+const trendingNow = [
   {
     id: "1",
     img: "/images/newArrivals/babyShoes.webp",
@@ -47,23 +47,23 @@ import {
   Wrapper,
   Section,
   Title,
+  Text,
   List,
-  SlideBox,
   Item,
   Img,
   Subtitle,
   TextPrice,
-  Text,
   Button,
-} from "./NewArrivals.styled";
+  SlideBox,
+} from "./TrendingNow.styled";
 import Box from "../Box/Box";
 
-const NewArrivals = () => {
+const TrendingNow = () => {
   return (
     <Section>
       <Wrapper>
-        <Title>New arrivals</Title>
-        <Text>"Check out our latest arrivals for the upcoming season"</Text>
+        <Title>Trending now</Title>
+        <Text>"Wardrobe must-haves: the top clothing items trending now."</Text>
         <List
           breakpoints={{
             620: {
@@ -92,16 +92,13 @@ const NewArrivals = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {newArrivals.map((product) => (
+          {trendingNow.map((product) => (
             <SwiperSlide key={product.id}>
               <SlideBox>
                 <Item key={product.id}>
-                  <Box>
-                    {" "}
-                    <Img src={product.img} />
-                    <Subtitle>{product.subtitle}</Subtitle>
-                    <TextPrice>{product.price}₴</TextPrice>
-                  </Box>
+                  <Img src={product.img} />
+                  <Subtitle>{product.subtitle}</Subtitle>
+                  <TextPrice>{product.price}₴</TextPrice>
                   <FavoriteIconBox>
                     <FavoriteIcon />
                   </FavoriteIconBox>
@@ -110,10 +107,10 @@ const NewArrivals = () => {
             </SwiperSlide>
           ))}
         </List>
-        <Button>See the collection here</Button>
+        <Button>Explore top sales</Button>
       </Wrapper>
     </Section>
   );
 };
 
-export default NewArrivals;
+export default TrendingNow;

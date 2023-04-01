@@ -25,9 +25,11 @@ export const FooterContainer = styled.div`
 export const ContactsWrapper = styled.div`
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 138px;
   @media screen and (max-width: 748px) {
-    gap: 70px;
+    gap: 30px;
+    flex-wrap: wrap;
   }
   @media screen and (max-width: 480px) {
     gap: 30px;
@@ -42,11 +44,6 @@ export const SubTitle = styled.h3`
   text-transform: uppercase;
   color: #ffffff;
   margin-bottom: 12px;
-  @media (max-width: 480px) {
-    font-size: 12px;
-    line-height: 20px;
-    letter-spacing: 1px;
-  }
 `;
 export const List = styled.ul`
   display: flex;
@@ -91,18 +88,14 @@ export const LinkItem = styled(Link)`
     transform: scale(1.05);
     color: #ffffff;
   }
-
-  @media (max-width: 480px) {
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 1.88;
-  }
 `;
 
 export const IconList = styled.ul`
   display: flex;
   gap: 20px;
+  justify-content: space-evenly;
   margin-top: 10px;
+  align-items: center;
 
   @media (max-width: 480px) {
     gap: 15;

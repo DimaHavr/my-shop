@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { Swiper } from "swiper/react";
 
 export const Section = styled.section`
-  padding-top: 50px;
+  padding: 50px 0;
+  cursor: grab;
 `;
 
 export const Title = styled.h2`
@@ -12,6 +13,7 @@ export const Title = styled.h2`
   line-height: 60px;
   color: #1e212c;
   text-align: center;
+  margin-bottom: 24px;
 `;
 
 export const Wrapper = styled.div`
@@ -26,10 +28,9 @@ export const List = styled(Swiper)`
   display: flex;
   justify-content: center;
   gap: 30px;
-  list-style-type: none;
 `;
 
-export const Item = styled.li`
+export const Item = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -59,4 +60,11 @@ export const Subtitle = styled.h3`
   line-height: 30px;
   text-align: center;
   color: #1e212c;
+`;
+
+export const Text = styled.p`
+  font-family: "LatoRegular";
+  color: #787a80;
+  margin-bottom: 8px;
+  text-align: center;
 `;

@@ -10,7 +10,12 @@ const PopularCategories = dynamic(() =>
 const NewArrivals = dynamic(() =>
   import("../components/NewArrivals/NewArrivals")
 );
-
+const TrendingNow = dynamic(() =>
+  import("../components/TrendingNow/TrendingNow")
+);
+const ServicesList = dynamic(() =>
+  import("../components/ServicesList/ServicesList")
+);
 const Index = () => {
   const { showCart } = useStateContext();
 
@@ -25,7 +30,9 @@ const Index = () => {
       <Layout pageTitle="My-Shop">
         <HeroBanner />
         <PopularCategories />
+        <TrendingNow />
         <NewArrivals />
+        <ServicesList />
       </Layout>
     </Box>
   );

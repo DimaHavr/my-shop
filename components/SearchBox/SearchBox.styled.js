@@ -59,8 +59,8 @@ export const Input = styled.input`
       visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
     animation: ${({ isOpen }) =>
       isOpen
-        ? "animation: fadeIn 250ms cubic-bezier(0.4, 0, 0.2, 1);"
-        : "fadeOut 250ms cubic-bezier(0.4, 0, 0.2, 1);"};
+        ? "swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;"
+        : "swing-out-top-bck 0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;"};
 
     &:hover,
     &:focus {
@@ -72,19 +72,35 @@ export const Input = styled.input`
 
       color: #9a9ca5;
     }
-    @keyframes fadeIn {
-      from {
+    @keyframes swing-in-top-fwd {
+      0% {
+        -webkit-transform: rotateX(-50deg);
+        transform: rotateX(-50deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
         opacity: 0;
       }
-      to {
+      100% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
         opacity: 1;
       }
     }
-    @keyframes fadeOut {
-      from {
+    @keyframes swing-out-top-bck {
+      0% {
+        -webkit-transform: rotateX(0deg);
+        transform: rotateX(0deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
         opacity: 1;
       }
-      to {
+      100% {
+        -webkit-transform: rotateX(-50deg);
+        transform: rotateX(-50deg);
+        -webkit-transform-origin: top;
+        transform-origin: top;
         opacity: 0;
       }
     }
