@@ -1,41 +1,6 @@
-const trendingNow = [
-  {
-    id: "1",
-    img: "/images/newArrivals/babyShoes.webp",
-    subtitle: "Baby shoes with",
-    price: 100,
-  },
-  {
-    id: "2",
-    img: "/images/newArrivals/redDangleEarrings.webp",
-    subtitle: "Red dangle earrings",
-    price: 100,
-  },
-  {
-    id: "3",
-    img: "/images/newArrivals/jeans.webp",
-    subtitle: "Mid-rise slim cropped fit jeans",
-    price: 100,
-  },
-  {
-    id: "4",
-    img: "/images/newArrivals/babyRomper.webp",
-    subtitle: "Green baby romper",
-    price: 100,
-  },
-  {
-    id: "5",
-    img: "/images/newArrivals/metalBridge.webp",
-    subtitle: "Metal bridge sunglasses",
-    price: 100,
-  },
-  {
-    id: "6",
-    img: "/images/newArrivals/sportCap.webp",
-    subtitle: "Black and white sport cap",
-    price: 100,
-  },
-];
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -55,10 +20,22 @@ import {
   TextPrice,
   Button,
   SlideBox,
+  ImgBox,
 } from "./TrendingNow.styled";
-import Box from "../Box/Box";
 
 const TrendingNow = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
   return (
     <Section>
       <Wrapper>
@@ -88,16 +65,19 @@ const TrendingNow = () => {
               spaceBetween: 30,
             },
           }}
+          autoHeight={true}
           navigation={true}
           modules={[Navigation]}
           className="mySwiper"
         >
-          {trendingNow.map((product) => (
+          {products.map((product) => (
             <SwiperSlide key={product.id}>
               <SlideBox>
                 <Item key={product.id}>
-                  <Img src={product.img} />
-                  <Subtitle>{product.subtitle}</Subtitle>
+                  <ImgBox>
+                    <Img src={product.image} />
+                  </ImgBox>
+                  <Subtitle>{product.title}</Subtitle>
                   <TextPrice>{product.price}₴</TextPrice>
                   <FavoriteIconBox>
                     <FavoriteIcon />

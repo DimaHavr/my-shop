@@ -12,7 +12,7 @@ export const FavoriteIcon = styled(GrFavorite)`
 
 export const FavoriteIconBox = styled.div`
   position: absolute;
-  top: 270px;
+  top: 224px;
   right: 15px;
   cursor: pointer;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
@@ -62,26 +62,41 @@ export const SlideBox = styled.div`
 `;
 
 export const Item = styled.div`
+  position: relative;
   cursor: pointer;
   display: flex;
+  justify-content: space-around;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  position: relative;
   width: 300px;
-  padding: 40px;
+  padding: 40px 40px 30px 40px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 25px;
   margin: 23px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover,
   &:focus {
     transform: scale(1.01);
   }
 `;
 
-export const Img = styled.img``;
+export const ImgBox = styled.div`
+  width: 180px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Img = styled.img`
+  width: 180px;
+  max-height: 200px;
+  object-fit: content;
+  object-position: center;
+`;
 
 export const Text = styled.p`
   font-family: "LatoRegular";
@@ -93,11 +108,15 @@ export const Text = styled.p`
 export const Subtitle = styled.h3`
   font-family: "LatoLight";
   width: 220px;
+  height: 100px;
   color: #000;
-  padding-top: 20px;
+  overflow: hidden;
+  padding-top: 10px;
   font-size: 18px;
   line-height: 24px;
-  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   text-align: center;
 `;
 

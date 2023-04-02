@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import { useStateContext } from "../../context/StateContext";
@@ -29,6 +30,7 @@ import Menu from "../Menu/Menu";
 const Layout = ({ pageTitle, children }) => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const router = useRouter();
 
   function onToggleMenu() {
     setIsOpenMenu(!isOpenMenu);
@@ -63,23 +65,32 @@ const Layout = ({ pageTitle, children }) => {
       <Box>
         <HeaderWrapper>
           <NavLogoBox display="flex" gridGap="5px" alignItems="center">
-            <NavLogoLink href="#">Create</NavLogoLink> <NavLogoIcon />
+            <NavLogoLink href="/">Create</NavLogoLink>
+            <NavLogoIcon />
           </NavLogoBox>
           <NavList>
             <NavItem>
-              <NavLink href="#">Mens</NavLink>
+              <NavLink href="mens" active={router.pathname === "/mens"}>
+                Mens
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Women</NavLink>
+              <NavLink href="women" active={router.pathname === "/women"}>
+                Women
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Boys</NavLink>
+              <NavLink href="boys" active={router.pathname === "/boys"}>
+                Boys
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Girls</NavLink>
+              <NavLink href="girls" active={router.pathname === "/girls"}>
+                Girls
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink style={{ color: "red" }} href="#">
+              <NavLink href="sale" active={router.pathname === "/sale"}>
                 Sale
               </NavLink>
             </NavItem>

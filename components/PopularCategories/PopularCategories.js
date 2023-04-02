@@ -34,7 +34,6 @@ import { SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import {
   Section,
   Wrapper,

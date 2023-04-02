@@ -4,11 +4,12 @@ const Menu = ({ isOpenMenu }) => {
   return (
     <NavbarMenu isOpenMenu={isOpenMenu}>
       <Nav>
-        <NavLink href="#">Mens</NavLink>
-        <NavLink href="#">Women</NavLink>
-        <NavLink href="#">Boys</NavLink>
-        <NavLink href="#">Girls</NavLink>
-        <NavLink style={{ color: "red" }} href="#">
+        <NavLink href="/">Home</NavLink>
+        <NavLink href="mens">Mens</NavLink>
+        <NavLink href="women">Women</NavLink>
+        <NavLink href="boys">Boys</NavLink>
+        <NavLink href="girls">Girls</NavLink>
+        <NavLink style={{ color: "red" }} href="sale">
           Sale
         </NavLink>
       </Nav>
