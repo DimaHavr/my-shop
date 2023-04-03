@@ -9,31 +9,28 @@ import Button from "@mui/material/Button";
 import Box from "../Box/Box";
 
 const StyledButton = styled(Button)`
-  font-family: "LatoBold";
-  font-size: 16px;
-  line-height: 26px;
-  color: #424551;
+  font-family: "LatoBold" !important;
+  font-size: 16px !important;
+  line-height: 26px !important;
+  color: #424551 !important;
+  text-transform: none;
 `;
 
-const StyledFormControl = styled(FormControl)`
-  margin: 0;
-  width: 170px;
-  height: 44px;
-  border-color: #17696a;
-`;
+const StyledFormControl = styled(FormControl)``;
 
 const StyledSelect = styled(Select)`
   margin: 0;
   width: 170px;
   height: 44px;
 `;
+const StyledInput = styled(InputLabel)``;
 
 export default function ControlledOpenSelect() {
-  const [sort, setSort] = useState("");
+  const [sorting, setSorting] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
-    setSort(event.target.value);
+    setSorting(event.target.value);
   };
 
   const handleClose = () => {
@@ -48,15 +45,15 @@ export default function ControlledOpenSelect() {
     <Box display="flex">
       <StyledButton onClick={handleOpen}>Sort by</StyledButton>
       <StyledFormControl>
-        <InputLabel id="demo-controlled-open-select-label">Sort</InputLabel>
+        <StyledInput id="demo-controlled-open-select-label">Sort</StyledInput>
         <StyledSelect
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={sort}
-          label="sort"
+          value={sorting}
+          label="sorting"
           onChange={handleChange}
         >
           <MenuItem value="">

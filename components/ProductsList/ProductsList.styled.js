@@ -15,10 +15,11 @@ export const Title = styled.h2`
 `;
 
 export const Wrapper = styled.div`
-  /* display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
+  gap: 30px;
 `;
 
 export const List = styled.ul`

@@ -27,8 +27,9 @@ const Index = () => {
       <GlobalStyle showCart={showCart} />
       <Layout pageTitle="My-Shop">
         <Categories />
-        <ToolBar />
-        <ProductsList />
+        <ProductsList>
+          <ToolBar />
+        </ProductsList>
         <SubscribeBox />
       </Layout>
     </Box>

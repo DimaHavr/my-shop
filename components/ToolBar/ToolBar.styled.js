@@ -1,15 +1,15 @@
 import { ImEqualizer2 } from "react-icons/im";
 import styled from "styled-components";
 
-export const Section = styled.section`
-  padding: 30px 0 50px 0;
-`;
-
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding-top: 20px;
+  gap: 50px;
+  flex-wrap: wrap;
+  @media screen and (max-width: 886px) {
+    gap: 20px;
+  }
 `;
 
 export const FilterButtonIcon = styled(ImEqualizer2)`

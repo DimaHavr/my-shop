@@ -13,6 +13,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Box from "../Box/Box";
+import Link from "next/link";
 
 const backgroundImage = "/images/hero/imageBg1.webp";
 
@@ -44,10 +45,14 @@ const HeroBanner = () => {
                 gridGap="25px"
                 marginTop="60px"
               >
-                <HeroBannerButton>Shop sale</HeroBannerButton>
-                <HeroBannerButtonSecond>
-                  Shop the menswear
-                </HeroBannerButtonSecond>
+                <Link href="sale">
+                  <HeroBannerButton>Shop sale</HeroBannerButton>
+                </Link>
+                <Link href="mens">
+                  <HeroBannerButtonSecond>
+                    Shop the menswear
+                  </HeroBannerButtonSecond>
+                </Link>
               </HeroBannerButtonBox>
             </HeroBannerContainer>
           </HeroBannerSection>
@@ -62,28 +67,14 @@ const HeroBanner = () => {
                 gridGap="25px"
                 marginTop="60px"
               >
-                <HeroBannerButton>Shop sale</HeroBannerButton>
-                <HeroBannerButtonSecond>
-                  Shop the menswear
-                </HeroBannerButtonSecond>
-              </HeroBannerButtonBox>
-            </HeroBannerContainer>
-          </HeroBannerSection>
-        </SwiperSlide>
-        <SwiperSlide data-hash="slide3">
-          <HeroBannerSection backgroundImage={backgroundImage}>
-            <HeroBannerContainer>
-              <HeroBannerText>New collection</HeroBannerText>
-              <HeroBannerTitle>Kids 2023</HeroBannerTitle>
-              <HeroBannerButtonBox
-                display="flex"
-                gridGap="25px"
-                marginTop="60px"
-              >
-                <HeroBannerButton>Shop sale</HeroBannerButton>
-                <HeroBannerButtonSecond>
-                  Shop the menswear
-                </HeroBannerButtonSecond>
+                <Link href="sale">
+                  <HeroBannerButton>Shop sale</HeroBannerButton>
+                </Link>
+                <Link href="women">
+                  <HeroBannerButtonSecond>
+                    Shop the women
+                  </HeroBannerButtonSecond>
+                </Link>
               </HeroBannerButtonBox>
             </HeroBannerContainer>
           </HeroBannerSection>

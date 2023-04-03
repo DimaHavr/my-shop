@@ -1,13 +1,13 @@
-import { ThreeDots } from "react-loader-spinner";
+import { ThreeCircles } from "react-loader-spinner";
 import { LoaderIcon } from "./Loader.styled";
 export const Loader = () => {
   return (
     <LoaderIcon>
-      <ThreeDots
+      <ThreeCircles
         height="80"
         width="80"
         radius="9"
-        color="#c4d600"
+        color="#17696a"
         ariaLabel="three-dots-loading"
         wrapperStyle={{}}
         visible={true}
