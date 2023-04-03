@@ -117,7 +117,6 @@ export const InputBox = styled.div`
   align-items: flex-start;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 24px;
   @media screen and (max-width: 480px) {
     align-items: center;
   }
@@ -153,7 +152,9 @@ export const Input = styled.input`
   @media screen and (max-width: 768px) {
     width: 260px;
   }
-  border-radius: 4px;
+  @media screen and (max-width: 480px) {
+    border-radius: 4px;
+  }
 `;
 export const Label = styled.label`
   font-family: "LatoRegular";

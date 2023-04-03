@@ -56,6 +56,11 @@ export const NavLink = styled.a`
   &:hover::after {
     transform: scaleX(1);
   }
+  ${(props) =>
+    props.active &&
+    `
+      color: #17696a;
+    `}
 `;
 
 // body.open .menu a {

@@ -12,6 +12,7 @@ const ProductsList = dynamic(() =>
 const Categories = dynamic(() =>
   import("../../components/Categories/Categories")
 );
+const ToolBar = dynamic(() => import("../../components/ToolBar/ToolBar"));
 
 const Index = () => {
   const { showCart } = useStateContext();
@@ -25,6 +26,7 @@ const Index = () => {
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} />
       <Layout pageTitle="My-Shop">
+        <ToolBar />
         <Categories />
         <ProductsList />
         <SubscribeBox />
