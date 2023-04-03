@@ -22,7 +22,6 @@ export const Wrapper = styled.div`
 `;
 
 export const List = styled.ul`
-  padding-top: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

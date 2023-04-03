@@ -62,28 +62,28 @@ const Categories = () => {
       breakpoints={{
         320: {
           slidesPerView: 2,
-          spaceBetween: 30,
+          spaceBetween: 0,
         },
         420: {
           slidesPerView: 3,
-          spaceBetween: 30,
+          spaceBetween: 0,
         },
 
         640: {
           slidesPerView: 4,
-          spaceBetween: 30,
+          spaceBetween: 0,
         },
         740: {
           slidesPerView: 5,
-          spaceBetween: 30,
+          spaceBetween: 0,
         },
         960: {
           slidesPerView: 6,
-          spaceBetween: 20,
+          spaceBetween: 0,
         },
         1280: {
           slidesPerView: 8,
-          spaceBetween: 35,
+          spaceBetween: 0,
         },
       }}
       navigation={true}

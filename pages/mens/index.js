@@ -26,8 +26,8 @@ const Index = () => {
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} />
       <Layout pageTitle="My-Shop">
-        <ToolBar />
         <Categories />
+        <ToolBar />
         <ProductsList />
         <SubscribeBox />
       </Layout>

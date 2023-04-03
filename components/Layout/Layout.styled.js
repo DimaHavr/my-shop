@@ -121,7 +121,7 @@ export const NavLogoBox = styled.div`
   }
 `;
 
-export const NavLogoLink = styled(Link)`
+export const NavLogoText = styled.p`
   font-weight: 900;
   font-size: 24px;
   line-height: 1.36;

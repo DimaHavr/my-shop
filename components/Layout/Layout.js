@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useStateContext } from "../../context/StateContext";
 const Cart = dynamic(() => import("../Cart/Cart"));
@@ -18,7 +19,7 @@ import {
   ItemQty,
   FavoriteIcon,
   ToolBar,
-  NavLogoLink,
+  NavLogoText,
   NavLogoBox,
   NavbarBurgerBox,
   BurgerIcon,
@@ -64,33 +65,60 @@ const Layout = ({ pageTitle, children }) => {
       </Head>
       <Box>
         <HeaderWrapper>
-          <NavLogoBox display="flex" gridGap="5px" alignItems="center">
-            <NavLogoLink href="/">Create</NavLogoLink>
-            <NavLogoIcon />
-          </NavLogoBox>
+          <Link href="/">
+            <NavLogoBox display="flex" gridGap="5px" alignItems="center">
+              <NavLogoText>Create</NavLogoText>
+              <NavLogoIcon />
+            </NavLogoBox>
+          </Link>
           <NavList>
             <NavItem>
-              <NavLink href="mens" active={router.pathname === "/mens"}>
+              <NavLink
+                href="mens"
+                active={
+                  router.pathname.toString() === "/mens" ? true : undefined
+                }
+              >
                 Mens
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="women" active={router.pathname === "/women"}>
+              <NavLink
+                href="women"
+                active={
+                  router.pathname.toString() === "/women" ? true : undefined
+                }
+              >
                 Women
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="boys" active={router.pathname === "/boys"}>
+              <NavLink
+                href="boys"
+                active={
+                  router.pathname.toString() === "/boys" ? true : undefined
+                }
+              >
                 Boys
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="girls" active={router.pathname === "/girls"}>
+              <NavLink
+                href="girls"
+                active={
+                  router.pathname.toString() === "/girls" ? true : undefined
+                }
+              >
                 Girls
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="sale" active={router.pathname === "/sale"}>
+              <NavLink
+                href="sale"
+                active={
+                  router.pathname.toString() === "/sale" ? true : undefined
+                }
+              >
                 Sale
               </NavLink>
             </NavItem>

@@ -1,17 +1,8 @@
+import { ImEqualizer2 } from "react-icons/im";
 import styled from "styled-components";
 
 export const Section = styled.section`
   padding: 30px 0 50px 0;
-`;
-
-export const Title = styled.h2`
-  font-family: "LatoBold";
-  font-weight: 900;
-  font-size: 46px;
-  line-height: 60px;
-  color: #1e212c;
-  text-align: center;
-  margin-bottom: 24px;
 `;
 
 export const Wrapper = styled.div`
@@ -19,4 +10,40 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: space-evenly;
   padding-top: 20px;
+`;
+
+export const FilterButtonIcon = styled(ImEqualizer2)`
+  width: 23px;
+  height: 23px;
+  color: #fff;
+  margin-right: 5px;
+`;
+
+export const FilterButton = styled.button`
+  font-family: "LatoBold";
+  font-size: 16px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #fff;
+  padding: 0px 40px;
+  gap: 10px;
+  height: 52px;
+  border: 1px solid #17696a;
+  border-radius: 4px;
+  background: #17696a;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.01);
+    color: #17696a;
+    background: none;
+    ${FilterButtonIcon} {
+      color: #17696a;
+    }
+  }
 `;
