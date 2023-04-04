@@ -1,12 +1,4 @@
 import styled from "styled-components";
-import { Swiper } from "swiper/react";
-
-export const List = styled(Swiper)`
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-`;
 
 export const Item = styled.div`
   cursor: pointer;
@@ -16,7 +8,6 @@ export const Item = styled.div`
   align-items: center;
   gap: 10px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
   &:hover,
   &:focus {
     transform: scale(1.05);
@@ -30,6 +21,7 @@ export const Img = styled.img`
   object-position: center;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   border-radius: 100px;
+  margin: 23px;
   user-select: none;
 `;
 
