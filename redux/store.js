@@ -8,15 +8,13 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import { contactsSlice } from "./contacts/contactsSlice";
 import { persistedCartSlice } from "../redux/cart/cartSlice";
-import { filterSlice } from "./filter/filterSlice";
+import { persistedFilterSlice } from "./filter/filterSlice";
 
 export const store = configureStore({
   reducer: {
     cart: persistedCartSlice,
-    contacts: contactsSlice.reducer,
-    filter: filterSlice.reducer,
+    filter: persistedFilterSlice,
   },
 
   middleware(getDefaultMiddleware) {

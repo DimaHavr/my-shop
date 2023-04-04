@@ -82,9 +82,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="mens"
-                active={
-                  router.pathname.toString() === "/mens" ? true : undefined
-                }
+                active={router.pathname === "/mens" ? true : undefined}
               >
                 Mens
               </NavLink>
@@ -92,9 +90,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="women"
-                active={
-                  router.pathname.toString() === "/women" ? true : undefined
-                }
+                active={router.pathname === "/women" ? true : undefined}
               >
                 Women
               </NavLink>
@@ -102,9 +98,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="boys"
-                active={
-                  router.pathname.toString() === "/boys" ? true : undefined
-                }
+                active={router.pathname === "/boys" ? true : undefined}
               >
                 Boys
               </NavLink>
@@ -112,9 +106,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="girls"
-                active={
-                  router.pathname.toString() === "/girls" ? true : undefined
-                }
+                active={router.pathname === "/girls" ? true : undefined}
               >
                 Girls
               </NavLink>
@@ -122,9 +114,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="sale"
-                active={
-                  router.pathname.toString() === "/sale" ? true : undefined
-                }
+                active={router.pathname === "/sale" ? true : undefined}
               >
                 Sale
               </NavLink>

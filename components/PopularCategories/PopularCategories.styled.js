@@ -22,13 +22,6 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const List = styled(Swiper)`
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-`;
-
 export const Item = styled.div`
   cursor: pointer;
   display: flex;
@@ -51,6 +44,7 @@ export const Img = styled.img`
   object-position: center;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   border-radius: 100px;
+  margin-top: 23px;
 `;
 
 export const Subtitle = styled.h3`

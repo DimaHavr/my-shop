@@ -30,7 +30,7 @@ const popularCategories = [
     subtitle: "Coats",
   },
 ];
-import { SwiperSlide } from "swiper/react";
+import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -38,7 +38,6 @@ import {
   Section,
   Wrapper,
   Title,
-  List,
   Item,
   Img,
   Subtitle,
@@ -54,7 +53,7 @@ const PopularCategories = () => {
           "Wear what's trending: popular clothing categories to refresh your
           wardrobe."
         </Text>
-        <List
+        <Swiper
           breakpoints={{
             460: {
               slidesPerView: 1,
@@ -85,7 +84,7 @@ const PopularCategories = () => {
               </Item>
             </SwiperSlide>
           ))}
-        </List>
+        </Swiper>
       </Wrapper>
     </Section>
   );
