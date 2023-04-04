@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import { useStateContext } from "../context/StateContext";
+import { useSelector } from "react-redux";
+import { selectShowCart } from "../redux/cart/selectors";
 import dynamic from "next/dynamic";
 import Box from "../components/Box/Box";
 const Layout = dynamic(() => import("../components/Layout/Layout"));
@@ -25,7 +26,7 @@ const SubscribeBox = dynamic(() =>
 );
 
 const Index = () => {
-  const { showCart } = useStateContext();
+  const showCart = useSelector(selectShowCart);
 
   const GlobalStyle = createGlobalStyle`
   body {

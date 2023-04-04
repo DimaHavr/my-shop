@@ -82,9 +82,6 @@ export const NavLink = styled(Link)`
     transform-origin: 0% 50%;
     transition: 0.4s;
   }
-  &:nth-child(3) {
-    color: red !important;
-  }
 
   &:hover::after {
     transform: scaleX(1);
@@ -95,11 +92,12 @@ export const NavLink = styled(Link)`
     transform: scale(1.05);
     color: #333;
   }
+
   ${(props) =>
     props.active &&
     `
-      color: #17696a;
-    `}
+    color: #17696a;
+  `}
 
   @media (max-width: 480px) {
     font-weight: 600;

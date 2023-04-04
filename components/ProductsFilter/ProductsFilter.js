@@ -1,5 +1,7 @@
 import { useRef, useEffect } from "react";
-import { useStateContext } from "../../context/StateContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setShowFilter } from "../../redux/filter/filterSlice";
+import { selectShowFilter } from "../../redux/filter/selectors";
 import { toast } from "react-hot-toast";
 import { AiOutlineShopping } from "react-icons/ai";
 import {
@@ -28,14 +30,15 @@ import {
 import Box from "../Box/Box";
 
 const ProductsFilter = () => {
-  const { setShowFilter, showFilter } = useStateContext();
+  const dispatch = useDispatch();
+  const showFilter = useSelector(selectShowFilter);
 
   const productsFilterRef = useRef();
 
   useEffect(() => {
     const onCloseModal = (event) => {
       if (event.code === "Escape") {
-        setShowFilter(false);
+        dispatch(setShowFilter(false));
       }
     };
 
@@ -48,7 +51,7 @@ const ProductsFilter = () => {
 
   const onBackdropCloseModal = (event) => {
     if (event.target === event.currentTarget) {
-      setShowFilter(false);
+      dispatch(setShowFilter(false));
     }
   };
 
@@ -67,7 +70,10 @@ const ProductsFilter = () => {
             justifyContent="space-between"
           >
             <Text>Filter</Text>
-            <BackButton type="button" onClick={() => setShowFilter(false)}>
+            <BackButton
+              type="button"
+              onClick={() => dispatch(setShowFilter(false))}
+            >
               <CloseIcon />
             </BackButton>
           </Box>

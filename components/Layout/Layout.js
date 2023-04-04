@@ -1,9 +1,14 @@
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Head from "next/head";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import { useStateContext } from "../../context/StateContext";
+import { useSelector, useDispatch } from "react-redux";
+import { setShowCart } from "../../redux/cart/cartSlice";
+import {
+  selectShowCart,
+  selectTotalQuantities,
+} from "../../redux/cart/selectors";
 const Cart = dynamic(() => import("../Cart/Cart"));
 const Footer = dynamic(() => import("../Footer/Footer"));
 
@@ -29,7 +34,9 @@ import Box from "../Box/Box";
 import Menu from "../Menu/Menu";
 
 const Layout = ({ pageTitle, children }) => {
-  const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const showCart = useSelector(selectShowCart);
+  const totalQuantities = useSelector(selectTotalQuantities);
+  const dispatch = useDispatch();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const router = useRouter();
 
@@ -135,7 +142,7 @@ const Layout = ({ pageTitle, children }) => {
                   {totalQuantities}
                 </ItemQty>
               </NavButton>
-              <NavButton onClick={() => setShowCart(true)}>
+              <NavButton onClick={() => dispatch(setShowCart(true))}>
                 <CardIcon />
                 <ItemQty>{totalQuantities}</ItemQty>
               </NavButton>

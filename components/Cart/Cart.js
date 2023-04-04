@@ -1,12 +1,24 @@
-import { useRef, useEffect } from "react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { useRef, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineShopping } from "react-icons/ai";
-import { useStateContext } from "../../context/StateContext";
+import {
+  selectTotalQuantities,
+  selectTotalPrice,
+  selectCartItems,
+  selectShowCart,
+} from "../../redux/cart/selectors";
+import {
+  setShowCart,
+  toggleCartItemQuantity,
+  onRemove,
+} from "../../redux/cart/cartSlice";
 import {
   CartContainer,
   CartWrapper,
   ImgContainer,
+  Img,
   BackButton,
   CloseIcon,
   Span,
@@ -23,25 +35,21 @@ import {
   TotalContainer,
   BackBtn,
   CheckoutIcon,
+  EmptyCartBox,
 } from "./Cart.styled";
 import Box from "../Box/Box";
 
 const Cart = () => {
   const cartRef = useRef();
-  const {
-    totalPrice,
-    totalQuantities,
-    cartItems,
-    showCart,
-    setShowCart,
-    toggleCartItemQuantity,
-    onRemove,
-  } = useStateContext();
-
+  const dispatch = useDispatch();
+  const totalPrice = useSelector(selectTotalPrice);
+  const totalQuantities = useSelector(selectTotalQuantities);
+  const cartItems = useSelector(selectCartItems);
+  const showCart = useSelector(selectShowCart);
   useEffect(() => {
     const onCloseModal = (event) => {
       if (event.code === "Escape") {
-        setShowCart(false);
+        dispatch(setShowCart(false));
       }
     };
 
@@ -54,7 +62,7 @@ const Cart = () => {
 
   const onBackdropCloseModal = (event) => {
     if (event.target === event.currentTarget) {
-      setShowCart(false);
+      dispatch(setShowCart(false));
     }
   };
 
@@ -75,34 +83,36 @@ const Cart = () => {
             <Text>
               Your cart {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
             </Text>
-            <BackButton type="button" onClick={() => setShowCart(false)}>
+            <BackButton
+              type="button"
+              onClick={() => dispatch(setShowCart(false))}
+            >
               <CloseIcon />
             </BackButton>
           </Box>
           {cartItems.length < 1 && (
-            <Box
-              display="flex"
-              flexDirection="column"
-              gridGap="20px"
-              justifyContent="center"
-              alignItems="center"
-              paddingTop="150px"
-            >
+            <EmptyCartBox cartItems={cartItems}>
               <AiOutlineShopping size={150} />
               <Text>
-                Кошик порожній... <br /> Але це ніколи не пізно виправити :)
+                Cart is empty... <br /> But it's never too late to fix it :)
               </Text>
-              <BackBtn type="button" onClick={() => setShowCart(false)}>
-                Повернутися до магазину
+              <BackBtn
+                type="button"
+                onClick={() => dispatch(setShowCart(false))}
+              >
+                Return to the store
               </BackBtn>
-            </Box>
+            </EmptyCartBox>
           )}
 
           <List>
             {cartItems.length >= 1 &&
               cartItems.map((item) => (
                 <Item key={item.id}>
-                  <ImgContainer src={item?.img} />
+                  <ImgContainer>
+                    <Img src={item?.image} />
+                  </ImgContainer>
+
                   <Box
                     display="flex"
                     flexDirection="column"
@@ -110,39 +120,50 @@ const Cart = () => {
                     justifyContent="space-around"
                     paddingRight="20px"
                   >
-                    <SubTitle>{item?.subtitle}</SubTitle>
+                    <SubTitle>{item?.title}</SubTitle>
 
                     <Box
                       display="flex"
                       justifyContent="space-between"
                       alignItems="center"
+                      gridGap="5px"
                     >
                       <QuantityContainer>
                         <MinusIcon
                           onClick={() =>
-                            toggleCartItemQuantity(item?.id, "dec")
+                            dispatch(
+                              toggleCartItemQuantity({
+                                id: item.id,
+                                value: "dec",
+                              })
+                            )
                           }
                         />
                         <QuantityText>{item?.quantity}</QuantityText>
                         <PlusIcon
                           onClick={() =>
-                            toggleCartItemQuantity(item?.id, "inc")
+                            dispatch(
+                              toggleCartItemQuantity({
+                                id: item.id,
+                                value: "inc",
+                              })
+                            )
                           }
                         />
-                      </QuantityContainer>{" "}
-                      <Text>{item?.price}₴</Text>
+                      </QuantityContainer>
+                      <Text>{item?.price}$</Text>
                     </Box>
                   </Box>
                   <RemoveButtonIcon
                     onClick={() => {
-                      onRemove(item);
-                      toast.success(`${item?.subtitle} був видалений...`, {
+                      toast.success(`${item?.title} was deleted...`, {
                         style: {
                           borderRadius: "10px",
                           background: "grey",
                           color: "#fff",
                         },
                       });
+                      dispatch(onRemove({ product: item }));
                     }}
                   />
                 </Item>
@@ -153,7 +174,7 @@ const Cart = () => {
           <TotalContainer>
             <Box display="flex" justifyContent="space-between">
               <Text>Subtotal: </Text>
-              <Text>{totalPrice}₴</Text>
+              <Text>{parseFloat(totalPrice.toFixed(2))}$</Text>
             </Box>
             <IssueBtn type="button">
               <CheckoutIcon /> Checkout

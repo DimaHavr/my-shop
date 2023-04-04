@@ -4,8 +4,8 @@ export const Loader = () => {
   return (
     <LoaderIcon>
       <ThreeCircles
-        height="80"
-        width="80"
+        height="180"
+        width="180"
         radius="9"
         color="#17696a"
         ariaLabel="three-dots-loading"

@@ -108,7 +108,6 @@ export const CartWrapper = styled.div`
   right: 0;
   top: 0;
   z-index: 100;
-  background: #1e212cd1;
   animation: ${({ showCart }) =>
     showCart
       ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
@@ -175,11 +174,48 @@ export const CartContainer = styled.div`
   }
 `;
 
-export const ImgContainer = styled.img`
+export const EmptyCartBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+
+  @media screen and (max-width: 480px) {
+    width: 100vw;
+  }
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+`;
+
+export const ImgContainer = styled.div`
   width: 80px;
   height: 80px;
-  object-fit: cover;
-  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+export const Img = styled.img`
+  width: 80px;
+  height: 80px;
+  object-fit: content;
+  object-position: center;
 `;
 
 export const BackButton = styled.button`
@@ -226,11 +262,11 @@ export const List = styled.ul`
 export const Item = styled.li`
   position: relative;
   display: flex;
-  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
   border-top: 1px solid #e5e8ed;
   padding: 16px;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 export const SubTitle = styled.h3`

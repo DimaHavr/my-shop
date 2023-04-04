@@ -1,15 +1,21 @@
-import { useStateContext } from "../../context/StateContext";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setShowFilter } from "../../redux/filter/filterSlice";
+import { selectShowFilter } from "../../redux/filter/selectors";
 import ProductsPagination from "../ProductsPagination/ProductsPagination";
 import ControlledOpenSelect from "../Sorting/Sorting";
 import { Wrapper, FilterButton, FilterButtonIcon } from "./ToolBar.styled";
 import ProductsFilter from "../ProductsFilter/ProductsFilter";
 const ToolBar = () => {
-  const { onToggleFilter, showFilter } = useStateContext();
+  const dispatch = useDispatch();
+  const showFilter = useSelector(selectShowFilter);
+  function onToggleFilter() {
+    dispatch(setShowFilter(true));
+  }
   return (
     <Wrapper>
       <FilterButton onClick={onToggleFilter}>
-        <FilterButtonIcon /> Show filters
+        <FilterButtonIcon />
+        {showFilter ? " Hide filters" : " Show filters"}
       </FilterButton>
       <ControlledOpenSelect />
       <ProductsPagination />

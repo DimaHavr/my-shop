@@ -36,12 +36,11 @@ export const Item = styled.li`
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  padding: 40px;
+  padding: 20px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  gap: 25px;
+  gap: 10px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
@@ -98,4 +97,26 @@ export const TextPrice = styled.p`
   color: #fff;
   border-radius: 8px 0 8px 0;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+`;
+
+export const AddBtn = styled.button`
+  font-family: "LatoBold";
+  font-size: 16px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #fff;
+  padding: 0px 40px;
+  gap: 10px;
+  height: 52px;
+  border: 1px solid #17696a;
+  border-radius: 4px;
+  background-color: #17696a;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.01);
+  }
 `;

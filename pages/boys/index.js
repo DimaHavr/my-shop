@@ -1,5 +1,8 @@
 import { createGlobalStyle } from "styled-components";
-import { useStateContext } from "../../context/StateContext";
+import { useSelector } from "react-redux";
+import { selectShowFilter } from "../../redux/filter/selectors";
+import { selectShowCart } from "../../redux/cart/selectors";
+
 import dynamic from "next/dynamic";
 import Box from "../../components/Box/Box";
 const Layout = dynamic(() => import("../../components/Layout/Layout"));
@@ -14,16 +17,17 @@ const Categories = dynamic(() =>
 );
 const ToolBar = dynamic(() => import("../../components/ToolBar/ToolBar"));
 const Index = () => {
-  const { showCart } = useStateContext();
-
+  const showCart = useSelector(selectShowCart);
+  const showFilter = useSelector(selectShowFilter);
   const GlobalStyle = createGlobalStyle`
   body {
-    overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
+    overflow: ${({ showCart, showFilter }) =>
+      showCart || showFilter ? "hidden" : "auto"};
   }
 `;
   return (
     <Box display="flex" flexDirection="column" height="100vh">
-      <GlobalStyle showCart={showCart} />
+      <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
         <Categories />
         <ProductsList>

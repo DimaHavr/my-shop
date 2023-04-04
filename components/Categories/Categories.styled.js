@@ -6,7 +6,6 @@ export const List = styled(Swiper)`
   display: flex;
   justify-content: center;
   gap: 30px;
-  cursor: grab;
 `;
 
 export const Item = styled.div`

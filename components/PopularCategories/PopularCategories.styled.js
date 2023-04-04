@@ -3,7 +3,6 @@ import { Swiper } from "swiper/react";
 
 export const Section = styled.section`
   padding: 50px 0;
-  cursor: grab;
 `;
 
 export const Title = styled.h2`
