@@ -33,7 +33,7 @@ export const Item = styled.li`
   position: relative;
   cursor: pointer;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   align-items: center;
   padding: 20px;

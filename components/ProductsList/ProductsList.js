@@ -17,7 +17,6 @@ import {
   ImgBox,
   AddBtn,
 } from "./ProductsList.styled";
-import Box from "../Box/Box";
 
 const ProductsList = ({ children }) => {
   const [products, setProducts] = useState([]);
@@ -51,10 +50,8 @@ const ProductsList = ({ children }) => {
                 <ImgBox>
                   <Img src={product.image} alt={product.title} />
                 </ImgBox>
-                <Box>
-                  <Subtitle>{product.title}</Subtitle>
-                  <TextPrice>{product.price}₴</TextPrice>
-                </Box>
+                <Subtitle>{product.title}</Subtitle>
+                <TextPrice>{product.price}₴</TextPrice>
                 <AddBtn
                   onClick={() => {
                     toast.success(`${product?.title} added to cart...`, {

@@ -21,7 +21,7 @@ export const Img = styled.img`
   object-position: center;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   border-radius: 100px;
-  margin: 23px;
+  margin-top: 23px;
   user-select: none;
 `;
 
