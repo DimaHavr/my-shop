@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { FaOpencart } from "react-icons/fa";
-import { GrFavorite } from "react-icons/gr";
 import { FaXbox } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TfiClose } from "react-icons/tfi";
+import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 
 import Link from "next/link";
 
@@ -166,7 +166,7 @@ export const CardIcon = styled(FaOpencart)`
   cursor: pointer;
   width: 25px;
   height: 18px;
-  color: #424551;
+  color: #17696a;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
@@ -175,11 +175,24 @@ export const CardIcon = styled(FaOpencart)`
   }
 `;
 
-export const FavoriteIcon = styled(GrFavorite)`
+export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   cursor: pointer;
-  width: 25px;
-  height: 18px;
-  color: #424551;
+  width: 22px;
+  height: 22px;
+  color: #17696a;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;
+
+export const FavoriteIconRemove = styled(MdFavorite)`
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  color: #17696a;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,

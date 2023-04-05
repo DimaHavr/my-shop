@@ -60,32 +60,33 @@ const cartSlice = createSlice({
       const isAlreadyInCart = state.cartItems.some(
         (item) => item.id === product.id
       );
+
       if (isAlreadyInCart) {
         state.showCart = true;
-        return;
+        return state;
       }
+
       const checkProductInCart = state.cartItems.find(
         (item) => item.id === product.id
       );
+      const newProduct = { ...product, quantity };
 
       state.totalPrice += product.price * quantity;
       state.totalQuantities += quantity;
 
       if (checkProductInCart) {
-        const updatedCartItems = state.cartItems.map((cartProduct) => {
-          if (cartProduct.id === product.id)
-            return {
-              ...cartProduct,
-              quantity: cartProduct.quantity + quantity,
-            };
-        });
+        const updatedCartItems = state.cartItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
 
         state.cartItems = updatedCartItems;
       } else {
-        product.quantity = quantity;
-        state.cartItems.push({ ...product });
+        state.cartItems.push(newProduct);
       }
     },
+
     onRemove: (state, action) => {
       const { product } = action.payload;
       const foundProduct = state.cartItems.find(

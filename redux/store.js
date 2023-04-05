@@ -9,12 +9,14 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import { persistedCartSlice } from "../redux/cart/cartSlice";
-import { persistedFilterSlice } from "./filter/filterSlice";
+import { persistedFilterSlice } from "../redux/filter/filterSlice";
+import { persistedFavoritesSlice } from "../redux/favorites/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
     cart: persistedCartSlice,
     filter: persistedFilterSlice,
+    favorites: persistedFavoritesSlice,
   },
 
   middleware(getDefaultMiddleware) {

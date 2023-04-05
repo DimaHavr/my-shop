@@ -1,11 +1,12 @@
-import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavoritesProducts } from "../../redux/favorites/selectors";
 import { selectQty } from "../../redux/cart/selectors";
 import { onAdd } from "../../redux/cart/cartSlice";
-import Loader from "../Loader/Loader";
+import {
+  addToFavoritesList,
+  removeFavoritesList,
+} from "../../redux/favorites/favoritesSlice";
 import {
   Section,
   Wrapper,
@@ -15,37 +16,35 @@ import {
   Subtitle,
   TextPrice,
   ImgBox,
+  FavoriteIconBox,
+  FavoriteIconRemove,
+  FavoriteIcon,
   AddBtn,
 } from "./ProductsList.styled";
 
-const ProductsList = ({ children }) => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const ProductsList = ({ children, products }) => {
   const dispatch = useDispatch();
   const quantity = useSelector(selectQty);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://fakestoreapi.com/products");
-        setProducts(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const favoritesProducts = useSelector(selectFavoritesProducts);
+
+  const handleAddToFavorites = (product) => {
+    dispatch(addToFavoritesList(product));
+  };
+
+  const handleRemoveFromFavorites = (productId) => {
+    dispatch(removeFavoritesList({ id: productId }));
+  };
 
   return (
     <Section>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Wrapper>
-          {children}
-
-          <List>
-            {products.map((product) => (
+      <Wrapper>
+        {children && children}
+        <List>
+          {products.map((product) => {
+            const isFavorite = favoritesProducts.some(
+              (item) => item.id === product.id
+            );
+            return (
               <Item key={product.id}>
                 <ImgBox>
                   <Img src={product.image} alt={product.title} />
@@ -66,13 +65,26 @@ const ProductsList = ({ children }) => {
                 >
                   Add to cart
                 </AddBtn>
+                {!isFavorite ? (
+                  <FavoriteIconBox
+                    onClick={() => handleAddToFavorites(product)}
+                  >
+                    <FavoriteIcon />
+                  </FavoriteIconBox>
+                ) : (
+                  <FavoriteIconBox
+                    onClick={() => handleRemoveFromFavorites(product.id)}
+                  >
+                    <FavoriteIconRemove />
+                  </FavoriteIconBox>
+                )}
               </Item>
-            ))}
-          </List>
+            );
+          })}
+        </List>
 
-          {children}
-        </Wrapper>
-      )}
+        {children}
+      </Wrapper>
     </Section>
   );
 };

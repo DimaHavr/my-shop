@@ -4,4 +4,5 @@ export const LoaderIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 50px;
 `;

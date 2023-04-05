@@ -1,4 +1,35 @@
 import styled from "styled-components";
+import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
+
+export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
+  width: 40px;
+  height: 40px;
+  color: #17696a;
+  padding: 7px;
+`;
+
+export const FavoriteIconRemove = styled(MdFavorite)`
+  width: 40px;
+  height: 40px;
+  color: #17696a;
+  padding: 7px;
+`;
+
+export const FavoriteIconBox = styled.div`
+  position: absolute;
+  top: 200px;
+  right: 15px;
+  cursor: pointer;
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  border-radius: 100px;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;
 
 export const Section = styled.section`
   padding: 30px 0 50px 0;
@@ -62,6 +93,7 @@ export const Img = styled.img`
   max-height: 200px;
   object-fit: content;
   object-position: center;
+  user-select: none;
 `;
 export const Subtitle = styled.h3`
   font-family: "LatoLight";
@@ -72,6 +104,7 @@ export const Subtitle = styled.h3`
   line-height: 24px;
   flex-grow: 1;
   text-align: center;
+  user-select: none;
 `;
 
 export const Text = styled.p`

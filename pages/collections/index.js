@@ -1,10 +1,9 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectShowFilter } from "../../redux/filter/selectors";
 import { selectShowCart } from "../../redux/cart/selectors";
-
+import { selectFavoritesProducts } from "../../redux/favorites/selectors";
 import dynamic from "next/dynamic";
 import Box from "../../components/Box/Box";
 import Loader from "../../components/Loader/Loader";
@@ -15,27 +14,14 @@ const SubscribeBox = dynamic(() =>
 const ProductsList = dynamic(() =>
   import("../../components/ProductsList/ProductsList")
 );
-const Categories = dynamic(() =>
-  import("../../components/Categories/Categories")
+
+const InstagramBox = dynamic(() =>
+  import("../../components/InstagramBox/InstagramBox")
 );
-const ToolBar = dynamic(() => import("../../components/ToolBar/ToolBar"));
 
 const Index = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://fakestoreapi.com/products");
-        setProducts(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
-  console.log(products);
+  // const [isLoading, setIsLoading] = useState(true);
+  const products = useSelector(selectFavoritesProducts);
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
   const GlobalStyle = createGlobalStyle`
@@ -44,18 +30,13 @@ const Index = () => {
       showCart || showFilter ? "hidden" : "auto"};
   }
 `;
+  console.log(products);
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
-        <Categories />
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <ProductsList products={products}>
-            <ToolBar />
-          </ProductsList>
-        )}
+        <ProductsList products={products} />
+        <InstagramBox />
         <SubscribeBox />
       </Layout>
     </Box>

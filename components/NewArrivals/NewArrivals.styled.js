@@ -1,9 +1,14 @@
 import styled from "styled-components";
-import { Swiper } from "swiper/react";
-import Link from "next/link";
-import { GrFavorite } from "react-icons/gr";
+import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 
-export const FavoriteIcon = styled(GrFavorite)`
+export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
+  width: 50px;
+  height: 50px;
+  color: #17696a;
+  padding: 13px;
+`;
+
+export const FavoriteIconRemove = styled(MdFavorite)`
   width: 50px;
   height: 50px;
   color: #17696a;
@@ -47,12 +52,6 @@ export const Title = styled.h2`
   line-height: 60px;
   color: #1e212c;
   margin-bottom: 24px;
-`;
-
-export const List = styled(Swiper)`
-  display: flex;
-  justify-content: center;
-  gap: 30px;
 `;
 
 export const SlideBox = styled.div`

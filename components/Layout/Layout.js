@@ -9,6 +9,8 @@ import {
   selectShowCart,
   selectTotalQuantities,
 } from "../../redux/cart/selectors";
+import { selectFavoritesTotal } from "../../redux/favorites/selectors";
+
 const Cart = dynamic(() => import("../Cart/Cart"));
 const Footer = dynamic(() => import("../Footer/Footer"));
 
@@ -23,6 +25,7 @@ import {
   NavLogoIcon,
   ItemQty,
   FavoriteIcon,
+  FavoriteIconRemove,
   ToolBar,
   NavLogoText,
   NavLogoBox,
@@ -36,6 +39,8 @@ import Menu from "../Menu/Menu";
 const Layout = ({ pageTitle, children }) => {
   const showCart = useSelector(selectShowCart);
   const totalQuantities = useSelector(selectTotalQuantities);
+  const totalFavoriteQty = useSelector(selectFavoritesTotal);
+
   const dispatch = useDispatch();
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const router = useRouter();
@@ -124,14 +129,20 @@ const Layout = ({ pageTitle, children }) => {
           <ToolBar>
             <SearchBox />
             <Box display="flex" gridGap="5px">
-              <NavButton>
-                <FavoriteIcon />
-                <ItemQty
-                  style={{ background: "none", color: "#333", padding: 0 }}
-                >
-                  {totalQuantities}
-                </ItemQty>
-              </NavButton>
+              <Link href="collections">
+                <NavButton>
+                  {totalFavoriteQty > 0 ? (
+                    <FavoriteIconRemove />
+                  ) : (
+                    <FavoriteIcon />
+                  )}
+                  <ItemQty
+                    style={{ background: "none", color: "#333", padding: 0 }}
+                  >
+                    {totalFavoriteQty}
+                  </ItemQty>
+                </NavButton>
+              </Link>
               <NavButton onClick={() => dispatch(setShowCart(true))}>
                 <CardIcon />
                 <ItemQty>{totalQuantities}</ItemQty>
