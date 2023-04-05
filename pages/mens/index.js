@@ -1,16 +1,15 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { selectShowFilter } from "../../redux/filter/selectors";
 import { selectShowCart } from "../../redux/cart/selectors";
+import { fetchAllProducts } from "../../redux/products/operations";
 import {
   selectAllProducts,
   selectLoadingProducts,
-  selectProductsError,
 } from "../../redux/products/selectors";
 
-import dynamic from "next/dynamic";
 import Box from "../../components/Box/Box";
 import Loader from "../../components/Loader/Loader";
 const Layout = dynamic(() => import("../../components/Layout/Layout"));
@@ -29,11 +28,10 @@ const Index = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
   const isLoading = useSelector(selectLoadingProducts);
-  const error = useSelector(selectProductsError);
 
-  // useEffect(() => {
-  //   dispatch(fetchAllProducts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
 
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
@@ -60,5 +58,5 @@ const Index = () => {
     </Box>
   );
 };
-
+1;
 export default Index;

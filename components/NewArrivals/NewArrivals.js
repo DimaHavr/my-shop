@@ -1,6 +1,10 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { fetchAllProducts } from "../../redux/products/operations";
+import {
+  selectAllProducts,
+  selectLoadingProducts,
+} from "../../redux/products/selectors";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
 import {
   addToFavoritesList,
@@ -30,11 +34,14 @@ import {
 } from "./NewArrivals.styled";
 
 const NewArrivals = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
+  const products = useSelector(selectAllProducts);
+  const isLoading = useSelector(selectLoadingProducts);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
 
   const handleAddToFavorites = (product) => {
     dispatch(addToFavoritesList(product));
@@ -43,19 +50,6 @@ const NewArrivals = () => {
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://fakestoreapi.com/products");
-        setProducts(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   return (
     <Section>

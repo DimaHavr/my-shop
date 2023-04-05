@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import { fetchAllProducts } from "./operations";
 
 const initialState = {
@@ -14,17 +16,25 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllProducts.pending, (state) => {
-        state.status = "loading";
+        state.isLoading = true;
       })
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
-        state.status = "succeeded";
         state.products = action.payload;
+        state.isLoading = false;
       })
       .addCase(fetchAllProducts.rejected, (state, action) => {
-        state.status = "failed";
         state.error = action.error.message;
+        state.isLoading = false;
       });
   },
 });
 
-export default productsSlice.reducer;
+const persistConfig = {
+  key: "products",
+  storage,
+};
+
+export const persistedProductsSlice = persistReducer(
+  persistConfig,
+  productsSlice.reducer
+);
