@@ -1,6 +1,16 @@
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
+import { fetchSingleProduct } from "../../redux/product/operations";
+import {
+  selectAllProducts,
+  selectLoadingProducts,
+  selectProductsError,
+} from "../../redux/product/selectors";
 import { selectQty } from "../../redux/cart/selectors";
 import { onAdd } from "../../redux/cart/cartSlice";
 import {
@@ -26,11 +36,11 @@ const ProductsList = ({ children, products }) => {
   const dispatch = useDispatch();
   const quantity = useSelector(selectQty);
   const favoritesProducts = useSelector(selectFavoritesProducts);
-
   const handleAddToFavorites = (product) => {
     dispatch(addToFavoritesList(product));
   };
-
+  const router = useRouter();
+  const categoryPath = router.asPath;
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
@@ -47,11 +57,13 @@ const ProductsList = ({ children, products }) => {
               );
               return (
                 <Item key={product.id}>
-                  <ImgBox>
-                    <Img src={product.image} alt={product.title} />
-                  </ImgBox>
-                  <Subtitle>{product.title}</Subtitle>
-                  <TextPrice>{product.price}₴</TextPrice>
+                  <Link href={`${categoryPath}/product/${product.id}`} passHref>
+                    <ImgBox>
+                      <Img src={product.image} alt={product.title} />
+                    </ImgBox>
+                    <Subtitle>{product.title}</Subtitle>
+                    <TextPrice>{product.price}₴</TextPrice>
+                  </Link>
                   <AddBtn
                     onClick={() => {
                       toast.success(`${product?.title} added to cart...`, {

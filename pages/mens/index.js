@@ -28,7 +28,6 @@ const Index = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
   const isLoading = useSelector(selectLoadingProducts);
-
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);

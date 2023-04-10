@@ -86,7 +86,7 @@ const Layout = ({ pageTitle, children }) => {
           <NavList>
             <NavItem>
               <NavLink
-                href="mens"
+                href="/mens"
                 active={router.pathname === "/mens" ? true : undefined}
               >
                 Mens
@@ -94,7 +94,7 @@ const Layout = ({ pageTitle, children }) => {
             </NavItem>
             <NavItem>
               <NavLink
-                href="women"
+                href="/women"
                 active={router.pathname === "/women" ? true : undefined}
               >
                 Women
@@ -102,7 +102,7 @@ const Layout = ({ pageTitle, children }) => {
             </NavItem>
             <NavItem>
               <NavLink
-                href="boys"
+                href="/boys"
                 active={router.pathname === "/boys" ? true : undefined}
               >
                 Boys
@@ -110,7 +110,7 @@ const Layout = ({ pageTitle, children }) => {
             </NavItem>
             <NavItem>
               <NavLink
-                href="girls"
+                href="/girls"
                 active={router.pathname === "/girls" ? true : undefined}
               >
                 Girls
@@ -118,7 +118,7 @@ const Layout = ({ pageTitle, children }) => {
             </NavItem>
             <NavItem>
               <NavLink
-                href="sale"
+                href="/sale"
                 active={router.pathname === "/sale" ? true : undefined}
               >
                 Sale
@@ -129,7 +129,7 @@ const Layout = ({ pageTitle, children }) => {
           <ToolBar>
             <SearchBox />
             <Box display="flex" gridGap="5px">
-              <Link href="collections">
+              <Link href="/collections/favorites">
                 <NavButton>
                   {totalFavoriteQty > 0 ? (
                     <FavoriteIconRemove />

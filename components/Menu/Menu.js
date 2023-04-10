@@ -8,32 +8,32 @@ const Menu = ({ isOpenMenu }) => {
       <Nav>
         <NavLink href="/">Home</NavLink>
         <NavLink
-          href="mens"
-          active={router.pathname === "mens" ? true : undefined}
+          href="/mens"
+          active={router.pathname === "/mens" ? true : undefined}
         >
           Mens
         </NavLink>
         <NavLink
-          href="women"
-          active={router.pathname === "women" ? true : undefined}
+          href="/women"
+          active={router.pathname === "/women" ? true : undefined}
         >
           Women
         </NavLink>
         <NavLink
-          href="boys"
-          active={router.pathname === "boys" ? true : undefined}
+          href="/boys"
+          active={router.pathname === "/boys" ? true : undefined}
         >
           Boys
         </NavLink>
         <NavLink
-          href="girls"
-          active={router.pathname === "girls" ? true : undefined}
+          href="/girls"
+          active={router.pathname === "/girls" ? true : undefined}
         >
           Girls
         </NavLink>
         <NavLink
-          href="sale"
-          active={router.pathname === "sale" ? true : undefined}
+          href="/sale"
+          active={router.pathname === "/sale" ? true : undefined}
         >
           Sale
         </NavLink>

@@ -8,7 +8,6 @@ import { fetchAllProducts } from "../../redux/products/operations";
 import {
   selectAllProducts,
   selectLoadingProducts,
-  selectProductsError,
 } from "../../redux/products/selectors";
 
 import Box from "../../components/Box/Box";
@@ -29,7 +28,6 @@ const Index = () => {
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
   const isLoading = useSelector(selectLoadingProducts);
-  const error = useSelector(selectProductsError);
 
   useEffect(() => {
     dispatch(fetchAllProducts());

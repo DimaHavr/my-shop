@@ -33,14 +33,18 @@ export const FavoriteIconBox = styled.div`
 `;
 
 export const Section = styled.section`
-  padding: 30px 0 50px 0;
+  padding: 50px 130px;
+  @media screen and (max-width: 680px) {
+    padding: 50px 50px;
+  }
 `;
 
 export const Title = styled.h2`
   font-family: "LatoBold";
   font-weight: 900;
-  font-size: 46px;
-  line-height: 60px;
+  font-size: 26px;
+  line-height: 40px;
+
   color: #1e212c;
   text-align: center;
   margin-bottom: 24px;
@@ -50,15 +54,15 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+
   gap: 30px;
 `;
 
-export const List = styled.ul`
+export const Sidebar = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const Item = styled.li`
@@ -82,30 +86,37 @@ export const Item = styled.li`
 `;
 
 export const ImgBox = styled.div`
-  width: 180px;
-  height: 200px;
+  width: 600px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Img = styled.img`
-  width: 180px;
-  max-height: 200px;
+  width: 300px;
+  height: auto;
   object-fit: content;
   object-position: center;
   user-select: none;
 `;
-export const Subtitle = styled.h3`
+
+export const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const DescText = styled.p`
   font-family: "LatoLight";
   width: 220px;
   color: #000;
   padding-top: 20px;
   font-size: 18px;
   line-height: 24px;
+  max-width: 600px;
   flex-grow: 1;
-  text-align: center;
-  user-select: none;
+  text-align: start;
 `;
 
 export const Text = styled.p`
@@ -116,21 +127,8 @@ export const Text = styled.p`
 `;
 
 export const TextPrice = styled.p`
-  text-align: center;
   font-family: "LatoBold";
   font-size: 20px;
-  color: #fff;
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 0px;
-  left: 0px;
-  padding: 6px;
-  background-color: #17696a;
-  color: #fff;
-  border-radius: 8px 0 8px 0;
-  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
 `;
 
 export const AddBtn = styled.button`

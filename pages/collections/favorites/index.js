@@ -1,22 +1,22 @@
 import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
-import { selectShowFilter } from "../../redux/filter/selectors";
-import { selectShowCart } from "../../redux/cart/selectors";
-import { selectFavoritesProducts } from "../../redux/favorites/selectors";
+import { selectShowFilter } from "../../../redux/filter/selectors";
+import { selectShowCart } from "../../../redux/cart/selectors";
+import { selectFavoritesProducts } from "../../../redux/favorites/selectors";
 import dynamic from "next/dynamic";
-import Box from "../../components/Box/Box";
-import Loader from "../../components/Loader/Loader";
-const Layout = dynamic(() => import("../../components/Layout/Layout"));
+import Box from "../../../components/Box/Box";
+import Loader from "../../../components/Loader/Loader";
+const Layout = dynamic(() => import("../../../components/Layout/Layout"));
 const SubscribeBox = dynamic(() =>
-  import("../../components/SubscribeBox/SubscribeBox")
+  import("../../../components/SubscribeBox/SubscribeBox")
 );
 const ProductsList = dynamic(() =>
-  import("../../components/ProductsList/ProductsList")
+  import("../../../components/ProductsList/ProductsList")
 );
 
 const InstagramBox = dynamic(() =>
-  import("../../components/InstagramBox/InstagramBox")
+  import("../../../components/InstagramBox/InstagramBox")
 );
 
 const Index = () => {

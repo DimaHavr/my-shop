@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+// import { persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
 import { fetchAllProducts } from "./operations";
 
 const initialState = {
@@ -9,7 +9,7 @@ const initialState = {
   error: null,
 };
 
-const productsSlice = createSlice({
+export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {},
@@ -29,12 +29,12 @@ const productsSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: "products",
-  storage,
-};
+// const persistConfig = {
+//   key: "products",
+//   storage,
+// };
 
-export const persistedProductsSlice = persistReducer(
-  persistConfig,
-  productsSlice.reducer
-);
+// export const persistedProductsSlice = persistReducer(
+//   persistConfig,
+//   productsSlice.reducer
+// );
