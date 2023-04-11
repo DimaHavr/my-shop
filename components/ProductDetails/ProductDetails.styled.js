@@ -152,3 +152,5 @@ export const AddBtn = styled.button`
     transform: scale(1.01);
   }
 `;
+
+export const ContentWrapper = styled.div``;

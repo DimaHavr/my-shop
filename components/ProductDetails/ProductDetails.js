@@ -18,19 +18,19 @@ import {
 } from "./ProductDetails.styled";
 
 const ProductDetails = ({ product }) => {
-  console.log(product);
+  const { id, title, image, price, description } = product;
   return (
     <Section>
       <Wrapper>
-        <Title>{product.title}</Title>
+        <Title>{title}</Title>
         <ContentWrapper>
           <ImgBox>
-            <Img src={product.image} />
+            <Img src={image} />
           </ImgBox>
           <Sidebar>
-            <TextPrice>{product.price}</TextPrice>
+            <TextPrice>{price}</TextPrice>
 
-            <DescText>{product.description}</DescText>
+            <DescText>{description}</DescText>
           </Sidebar>
         </ContentWrapper>
       </Wrapper>
