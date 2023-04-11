@@ -1,18 +1,11 @@
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
-import { fetchSingleProduct } from "../../redux/product/operations";
-import {
-  selectAllProducts,
-  selectLoadingProducts,
-  selectProductsError,
-} from "../../redux/product/selectors";
+import { selectCartItems } from "../../redux/cart/selectors";
 import { selectQty } from "../../redux/cart/selectors";
-import { onAdd } from "../../redux/cart/cartSlice";
+import { onAdd, onRemove } from "../../redux/cart/cartSlice";
 import {
   addToFavoritesList,
   removeFavoritesList,
@@ -30,12 +23,14 @@ import {
   FavoriteIconRemove,
   FavoriteIcon,
   AddBtn,
+  RemoveBtn,
 } from "./ProductsList.styled";
 
 const ProductsList = ({ children, products }) => {
   const dispatch = useDispatch();
   const quantity = useSelector(selectQty);
   const favoritesProducts = useSelector(selectFavoritesProducts);
+  const productsInCart = useSelector(selectCartItems);
   const handleAddToFavorites = (product) => {
     dispatch(addToFavoritesList(product));
   };
@@ -55,6 +50,9 @@ const ProductsList = ({ children, products }) => {
               const isFavorite = favoritesProducts.some(
                 (item) => item.id === product.id
               );
+              const inCart = productsInCart.some(
+                (item) => item.id === product.id
+              );
               return (
                 <Item key={product.id}>
                   <Link href={`${categoryPath}/product/${product.id}`} passHref>
@@ -62,22 +60,42 @@ const ProductsList = ({ children, products }) => {
                       <Img src={product.image} alt={product.title} />
                     </ImgBox>
                     <Subtitle>{product.title}</Subtitle>
-                    <TextPrice>{product.price}₴</TextPrice>
+                    <TextPrice>{product.price}$</TextPrice>
                   </Link>
-                  <AddBtn
-                    onClick={() => {
-                      toast.success(`${product?.title} added to cart...`, {
-                        style: {
-                          borderRadius: "10px",
-                          background: "#fff",
-                          color: "#333",
-                        },
-                      });
-                      dispatch(onAdd({ product, quantity }));
-                    }}
-                  >
-                    Add to cart
-                  </AddBtn>
+                  {!inCart ? (
+                    <AddBtn
+                      onClick={() => {
+                        toast.success(`${product?.title} added to cart...`, {
+                          style: {
+                            borderRadius: "10px",
+                            background: "#fff",
+                            color: "#333",
+                          },
+                        });
+                        dispatch(onAdd({ product, quantity }));
+                      }}
+                    >
+                      Add to cart
+                    </AddBtn>
+                  ) : (
+                    <RemoveBtn
+                      onClick={() => {
+                        toast.success(
+                          `${product?.title} removed from cart...`,
+                          {
+                            style: {
+                              borderRadius: "10px",
+                              background: "grey",
+                              color: "#fff",
+                            },
+                          }
+                        );
+                        dispatch(onRemove({ product }));
+                      }}
+                    >
+                      Remove from cart
+                    </RemoveBtn>
+                  )}
                   {!isFavorite ? (
                     <FavoriteIconBox
                       onClick={() => handleAddToFavorites(product)}

@@ -28,12 +28,12 @@ import {
   QuantityText,
   PlusIcon,
   MinusIcon,
-  RemovedBtn,
+  RemoveBtn,
 } from "./ProductDetails.styled";
 import { useState } from "react";
 
 const ProductDetails = ({ product }) => {
-  const { id, title, image, price, description } = product;
+  const { title, image, price, description } = product;
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
@@ -79,43 +79,45 @@ const ProductDetails = ({ product }) => {
             <TextPrice>Size</TextPrice>
             <TextPrice>Color</TextPrice>
             <DescText>{description}</DescText>
-            <QuantityContainer>
-              <MinusIcon onClick={decQty} />
-              <QuantityText>{quantity}</QuantityText>
-              <PlusIcon onClick={incQty} />
-            </QuantityContainer>
-            {!inCart ? (
-              <AddBtn
-                onClick={() => {
-                  toast.success(`${product?.title} added to cart...`, {
-                    style: {
-                      borderRadius: "10px",
-                      background: "#fff",
-                      color: "#333",
-                    },
-                  });
-                  dispatch(onAdd({ product, quantity }));
-                  setQuantity(1);
-                }}
-              >
-                Add to cart
-              </AddBtn>
-            ) : (
-              <RemovedBtn
-                onClick={() => {
-                  toast.success(`${product?.title} removed from cart...`, {
-                    style: {
-                      borderRadius: "10px",
-                      background: "grey",
-                      color: "#fff",
-                    },
-                  });
-                  dispatch(onRemove({ product }));
-                }}
-              >
-                Remove from cart
-              </RemovedBtn>
-            )}
+            <Box display="flex" gridGap="10px">
+              <QuantityContainer>
+                <MinusIcon onClick={decQty} />
+                <QuantityText>{quantity}</QuantityText>
+                <PlusIcon onClick={incQty} />
+              </QuantityContainer>
+              {!inCart ? (
+                <AddBtn
+                  onClick={() => {
+                    toast.success(`${product?.title} added to cart...`, {
+                      style: {
+                        borderRadius: "10px",
+                        background: "#fff",
+                        color: "#333",
+                      },
+                    });
+                    dispatch(onAdd({ product, quantity }));
+                    setQuantity(1);
+                  }}
+                >
+                  Add to cart
+                </AddBtn>
+              ) : (
+                <RemoveBtn
+                  onClick={() => {
+                    toast.success(`${product?.title} removed from cart...`, {
+                      style: {
+                        borderRadius: "10px",
+                        background: "grey",
+                        color: "#fff",
+                      },
+                    });
+                    dispatch(onRemove({ product }));
+                  }}
+                >
+                  Remove from cart
+                </RemoveBtn>
+              )}
+            </Box>
           </Sidebar>
         </ContentWrapper>
       </Wrapper>

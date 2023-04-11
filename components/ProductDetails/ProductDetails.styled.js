@@ -45,8 +45,8 @@ export const FavoriteIconRemove = styled(MdFavorite)`
 export const FavoriteIconBox = styled.div`
   position: absolute;
   z-index: 100;
-  top: 200px;
-  right: 15px;
+  top: 0;
+  left: 0;
   cursor: pointer;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   background-color: #fff;
@@ -89,8 +89,8 @@ export const Wrapper = styled.div`
 export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: space-between;
+  gap: 10px;
 `;
 
 export const Item = styled.li`
@@ -114,7 +114,7 @@ export const Item = styled.li`
 `;
 
 export const ImgBox = styled.div`
-  width: 600px;
+  width: 300px;
   height: auto;
   display: flex;
   justify-content: center;
@@ -159,6 +159,7 @@ export const TextPrice = styled.p`
 `;
 
 export const AddBtn = styled.button`
+  width: 100%;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -173,14 +174,15 @@ export const AddBtn = styled.button`
   border-radius: 4px;
   background-color: #17696a;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  user-select: none;
   &:hover,
   &:focus {
     transform: scale(1.01);
   }
 `;
 
-export const RemovedBtn = styled.button`
+export const RemoveBtn = styled.button`
+  width: 100%;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -195,7 +197,7 @@ export const RemovedBtn = styled.button`
   border-radius: 4px;
   background-color: #c01313;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  user-select: none;
   &:hover,
   &:focus {
     transform: scale(1.01);
@@ -205,6 +207,7 @@ export const RemovedBtn = styled.button`
 export const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-around;
+  width: 100%;
 `;
 
 export const QuantityContainer = styled.div`
@@ -220,4 +223,5 @@ export const QuantityContainer = styled.div`
 export const QuantityText = styled.p`
   font-size: 20px;
   font-weight: 700;
+  user-select: none;
 `;

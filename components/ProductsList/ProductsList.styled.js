@@ -154,3 +154,25 @@ export const AddBtn = styled.button`
     transform: scale(1.01);
   }
 `;
+
+export const RemoveBtn = styled.button`
+  font-family: "LatoBold";
+  font-size: 16px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #fff;
+  padding: 0px 40px;
+  gap: 10px;
+  height: 52px;
+  border: 1px solid #c01313;
+  border-radius: 4px;
+  background-color: #c01313;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  &:hover,
+  &:focus {
+    transform: scale(1.01);
+  }
+`;
