@@ -1,5 +1,32 @@
 import styled from "styled-components";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+
+export const MinusIcon = styled(AiOutlineMinus)`
+  width: 25px;
+  height: 25px;
+  border: 2px solid 17696a;
+  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;
+export const PlusIcon = styled(AiOutlinePlus)`
+  width: 25px;
+  height: 25px;
+  border: 2px solid 17696a;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;
 
 export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 40px;
@@ -61,6 +88,7 @@ export const Wrapper = styled.div`
 
 export const Sidebar = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   justify-content: space-between;
 `;
@@ -91,6 +119,7 @@ export const ImgBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 export const Img = styled.img`
@@ -109,14 +138,11 @@ export const TextWrapper = styled.div`
 
 export const DescText = styled.p`
   font-family: "LatoLight";
-  width: 220px;
   color: #000;
   padding-top: 20px;
   font-size: 18px;
   line-height: 24px;
-  max-width: 600px;
-  flex-grow: 1;
-  text-align: start;
+  max-width: 500px;
 `;
 
 export const Text = styled.p`
@@ -129,6 +155,7 @@ export const Text = styled.p`
 export const TextPrice = styled.p`
   font-family: "LatoBold";
   font-size: 20px;
+  color: #17696a;
 `;
 
 export const AddBtn = styled.button`
@@ -153,4 +180,44 @@ export const AddBtn = styled.button`
   }
 `;
 
-export const ContentWrapper = styled.div``;
+export const RemovedBtn = styled.button`
+  font-family: "LatoBold";
+  font-size: 16px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #fff;
+  padding: 0px 40px;
+  gap: 10px;
+  height: 52px;
+  border: 1px solid #c01313;
+  border-radius: 4px;
+  background-color: #c01313;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.01);
+  }
+`;
+
+export const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
+
+export const QuantityContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  padding: 10px;
+  border: 1px solid #d7dadd;
+  border-radius: 4px;
+  padding-right: 20px;
+`;
+export const QuantityText = styled.p`
+  font-size: 20px;
+  font-weight: 700;
+`;
