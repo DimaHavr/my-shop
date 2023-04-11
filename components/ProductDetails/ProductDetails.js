@@ -26,6 +26,7 @@ import {
   Sidebar,
   QuantityContainer,
   QuantityText,
+  ButtonBox,
   PlusIcon,
   MinusIcon,
   RemoveBtn,
@@ -78,8 +79,7 @@ const ProductDetails = ({ product }) => {
             <TextPrice>${price}</TextPrice>
             <TextPrice>Size</TextPrice>
             <TextPrice>Color</TextPrice>
-            <DescText>{description}</DescText>
-            <Box display="flex" gridGap="10px">
+            <ButtonBox>
               <QuantityContainer>
                 <MinusIcon onClick={decQty} />
                 <QuantityText>{quantity}</QuantityText>
@@ -117,9 +117,14 @@ const ProductDetails = ({ product }) => {
                   Remove from cart
                 </RemoveBtn>
               )}
-            </Box>
+            </ButtonBox>
           </Sidebar>
         </ContentWrapper>
+
+        <DescText>
+          <TextPrice>Description:</TextPrice>
+          {description}
+        </DescText>
       </Wrapper>
     </Section>
   );

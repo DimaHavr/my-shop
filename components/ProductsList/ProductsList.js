@@ -55,10 +55,15 @@ const ProductsList = ({ children, products }) => {
               );
               return (
                 <Item key={product.id}>
-                  <Link href={`${categoryPath}/product/${product.id}`} passHref>
-                    <ImgBox>
+                  <ImgBox>
+                    <Link
+                      href={`${categoryPath}/product/${product.id}`}
+                      passHref
+                    >
                       <Img src={product.image} alt={product.title} />
-                    </ImgBox>
+                    </Link>
+                  </ImgBox>
+                  <Link href={`${categoryPath}/product/${product.id}`} passHref>
                     <Subtitle>{product.title}</Subtitle>
                     <TextPrice>{product.price}$</TextPrice>
                   </Link>

@@ -62,7 +62,7 @@ export const FavoriteIconBox = styled.div`
 export const Section = styled.section`
   padding: 50px 130px;
   @media screen and (max-width: 680px) {
-    padding: 50px 50px;
+    padding: 50px 20px;
   }
 `;
 
@@ -71,10 +71,8 @@ export const Title = styled.h2`
   font-weight: 900;
   font-size: 26px;
   line-height: 40px;
-
   color: #1e212c;
   text-align: center;
-  margin-bottom: 24px;
 `;
 
 export const Wrapper = styled.div`
@@ -114,8 +112,6 @@ export const Item = styled.li`
 `;
 
 export const ImgBox = styled.div`
-  width: 300px;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,8 +154,18 @@ export const TextPrice = styled.p`
   color: #17696a;
 `;
 
+export const ButtonBox = styled.div`
+  display: flex;
+  gap: 15px;
+  @media screen and (max-width: 488px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+`;
+
 export const AddBtn = styled.button`
-  width: 100%;
+  width: 200px;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -177,12 +183,15 @@ export const AddBtn = styled.button`
   user-select: none;
   &:hover,
   &:focus {
-    transform: scale(1.01);
+    transform: scale(1.02);
+  }
+  @media screen and (max-width: 488px) {
+    width: 100%;
   }
 `;
 
 export const RemoveBtn = styled.button`
-  width: 100%;
+  width: 200px;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -200,18 +209,27 @@ export const RemoveBtn = styled.button`
   user-select: none;
   &:hover,
   &:focus {
-    transform: scale(1.01);
+    transform: scale(1.02);
+  }
+  @media screen and (max-width: 488px) {
+    width: 100%;
   }
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-around;
   width: 100%;
+  gap: 15px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const QuantityContainer = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   background: #ffffff;
@@ -219,7 +237,11 @@ export const QuantityContainer = styled.div`
   border: 1px solid #d7dadd;
   border-radius: 4px;
   padding-right: 20px;
+  @media screen and (max-width: 488px) {
+    max-width: 100px;
+  }
 `;
+
 export const QuantityText = styled.p`
   font-size: 20px;
   font-weight: 700;
