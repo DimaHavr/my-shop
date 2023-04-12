@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -17,10 +17,13 @@ import {
 } from "../SizeSelector/SizeSelector.styled";
 import Box from "../Box/Box";
 
-const SizeSelector = ({ handleSizeSelect, sizes, selectedSize }) => {
+const SizeSelector = ({ sizes }) => {
+  const [selectedSize, setSelectedSize] = useState(sizes[0]);
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  useEffect(() => {}, []);
   return (
     <SizeSelectorStyled>
       <Box display="flex" alignItems="baseline" gridGap="10px">

@@ -25,6 +25,7 @@ export const ColorSelectorStyled = styled.div`
 
 export const ColorButton = styled.button`
   margin: 10px;
+  padding: 10px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -69,6 +70,9 @@ export const NextBtn = styled.button`
   transform: translate(-50%, -50%);
   z-index: 1;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    right: -50px;
+  }
 `;
 
 export const Text = styled.p`

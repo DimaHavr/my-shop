@@ -94,7 +94,7 @@ export const ImgBox = styled.div`
 export const Img = styled.img`
   width: 180px;
   max-height: 200px;
-  object-fit: content;
+  object-fit: contain;
   object-position: center;
 `;
 

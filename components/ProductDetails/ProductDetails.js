@@ -34,22 +34,30 @@ import {
   QuantityBtn,
 } from "./ProductDetails.styled";
 import Box from "../Box/Box";
+import ProductReview from "../ProductReview/ProductReview";
 
 const colors = ["red", "green", "blue", "yellow", "orange", "purple"];
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+const productReviews = [
+  {
+    id: 1,
+    rating: 4,
+    comment: "This product is amazing!",
+  },
+  {
+    id: 2,
+    rating: 5,
+    comment: "I couldn't be happier with my purchase!",
+  },
+  {
+    id: 3,
+    rating: 3,
+    comment: "It's a decent product for the price.",
+  },
+];
 
 const ProductDetails = ({ product }) => {
-  const [selectedSize, setSelectedSize] = useState(sizes[0]);
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
   const { title, image, price, description } = product;
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
-  };
-
-  const handleSizeSelect = (size) => {
-    setSelectedSize(size);
-  };
 
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
@@ -92,17 +100,12 @@ const ProductDetails = ({ product }) => {
             )}
           </ImgBox>
           <Sidebar>
-            <TextPrice>${price}</TextPrice>
-            <SizeSelector
-              selectedSize={selectedSize}
-              sizes={sizes}
-              handleSizeSelect={handleSizeSelect}
-            />
-            <ColorSelector
-              colors={colors}
-              selectedColor={selectedColor}
-              handleColorSelect={handleColorSelect}
-            />
+            <Box display="flex" justifyContent="space-between">
+              <TextPrice>${price}</TextPrice>
+              <ProductReview productReviews={productReviews} />
+            </Box>
+            <SizeSelector sizes={sizes} />
+            <ColorSelector colors={colors} />
             <Box
               display="flex"
               flexDirection="column"

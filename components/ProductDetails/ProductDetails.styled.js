@@ -82,7 +82,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
 `;
 
@@ -114,7 +114,7 @@ export const ImgBox = styled.div`
 
 export const Img = styled.img`
   width: 300px;
-  height: auto;
+  max-height: 400px;
   object-fit: content;
   object-position: center;
   user-select: none;
@@ -164,7 +164,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const AddBtn = styled.button`
-  width: 200px;
+  width: 250px;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -190,7 +190,7 @@ export const AddBtn = styled.button`
 `;
 
 export const RemoveBtn = styled.button`
-  width: 200px;
+  width: 250px;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;

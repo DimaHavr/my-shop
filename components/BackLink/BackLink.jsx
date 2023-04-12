@@ -24,7 +24,7 @@ export const BackLink = ({ goBack }) => {
   return (
     <StyledButton onClick={goBack}>
       <HiArrowLeft size="24" />
-      Назад
+      Back
     </StyledButton>
   );
 };

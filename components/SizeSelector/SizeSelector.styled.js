@@ -28,6 +28,7 @@ export const SizeButton = styled.button`
   color: ${({ active }) => (active ? "#fff" : "#17696a")};
   box-shadow: ${({ active }) => active && "0 0 2px 2px #17696a;"};
   margin: 5px;
+  padding: 0 10px;
   border-radius: 10px;
   cursor: pointer;
   border: none;
@@ -69,6 +70,9 @@ export const NextBtn = styled.button`
   transform: translate(-50%, -50%);
   z-index: 1;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    right: -50px;
+  }
 `;
 
 export const Text = styled.p`

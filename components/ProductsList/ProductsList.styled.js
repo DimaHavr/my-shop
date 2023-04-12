@@ -92,7 +92,7 @@ export const ImgBox = styled.div`
 export const Img = styled.img`
   width: 180px;
   max-height: 200px;
-  object-fit: content;
+  object-fit: contain;
   object-position: center;
   user-select: none;
 `;
@@ -131,50 +131,4 @@ export const TextPrice = styled.p`
   color: #fff;
   border-radius: 8px 0 8px 0;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-`;
-
-export const AddBtn = styled.button`
-  width: 100%;
-  font-family: "LatoBold";
-  font-size: 16px;
-  line-height: 52px;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.5px;
-  color: #fff;
-  padding: 0px 40px;
-  gap: 10px;
-  height: 52px;
-  border: 1px solid #17696a;
-  border-radius: 4px;
-  background-color: #17696a;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.01);
-  }
-`;
-
-export const RemoveBtn = styled.button`
-  width: 100%;
-  font-family: "LatoBold";
-  font-size: 16px;
-  line-height: 52px;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.5px;
-  color: #fff;
-  padding: 0px 40px;
-  gap: 10px;
-  height: 52px;
-  border: 1px solid #c01313;
-  border-radius: 4px;
-  background-color: #c01313;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  user-select: none;
-  &:hover,
-  &:focus {
-    transform: scale(1.01);
-  }
 `;
