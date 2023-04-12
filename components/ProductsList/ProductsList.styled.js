@@ -134,6 +134,7 @@ export const TextPrice = styled.p`
 `;
 
 export const AddBtn = styled.button`
+  width: 100%;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -156,6 +157,7 @@ export const AddBtn = styled.button`
 `;
 
 export const RemoveBtn = styled.button`
+  width: 100%;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;

@@ -45,8 +45,8 @@ export const FavoriteIconRemove = styled(MdFavorite)`
 export const FavoriteIconBox = styled.div`
   position: absolute;
   z-index: 100;
-  top: 0;
-  left: 0;
+  bottom: 0;
+  right: 0;
   cursor: pointer;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   background-color: #fff;
@@ -61,8 +61,11 @@ export const FavoriteIconBox = styled.div`
 
 export const Section = styled.section`
   padding: 50px 130px;
-  @media screen and (max-width: 680px) {
-    padding: 50px 20px;
+  @media screen and (max-width: 1024px) {
+    padding: 50px 70px;
+  }
+  @media screen and (max-width: 768px) {
+    padding: 50px 30px;
   }
 `;
 
@@ -80,8 +83,19 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  gap: 20px;
+`;
 
-  gap: 30px;
+export const ContentWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  gap: 40px;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 export const Sidebar = styled.div`
@@ -89,26 +103,6 @@ export const Sidebar = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
-`;
-
-export const Item = styled.li`
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  gap: 10px;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.01);
-  }
 `;
 
 export const ImgBox = styled.div`
@@ -132,10 +126,15 @@ export const TextWrapper = styled.div`
   justify-content: center;
 `;
 
+export const Subtitle = styled.h4`
+  font-family: "LatoLight";
+  color: #424551;
+  text-align: center;
+`;
+
 export const DescText = styled.p`
   font-family: "LatoLight";
   color: #000;
-  padding-top: 20px;
   font-size: 18px;
   line-height: 24px;
   max-width: 500px;
@@ -216,17 +215,6 @@ export const RemoveBtn = styled.button`
   }
 `;
 
-export const ContentWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-  gap: 15px;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
 export const QuantityContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -238,12 +226,16 @@ export const QuantityContainer = styled.div`
   border-radius: 4px;
   padding-right: 20px;
   @media screen and (max-width: 488px) {
-    max-width: 100px;
   }
 `;
 
 export const QuantityText = styled.p`
   font-size: 20px;
   font-weight: 700;
+  user-select: none;
+`;
+export const QuantityBtn = styled.button`
+  border: none;
+  background: none;
   user-select: none;
 `;

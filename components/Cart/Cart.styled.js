@@ -206,14 +206,14 @@ export const EmptyCartBox = styled.div`
 
 export const ImgContainer = styled.div`
   width: 80px;
-  height: 80px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 export const Img = styled.img`
   width: 80px;
-  height: 80px;
+  height: auto;
   object-fit: content;
   object-position: center;
 `;

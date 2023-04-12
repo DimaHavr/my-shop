@@ -1,6 +1,6 @@
-import { toast } from "react-hot-toast";
-import Box from "../Box/Box";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 import { onAdd, onRemove } from "../../redux/cart/cartSlice";
 import {
   addToFavoritesList,
@@ -8,11 +8,11 @@ import {
 } from "../../redux/favorites/favoritesSlice";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
 import { selectCartItems } from "../../redux/cart/selectors";
+import SizeSelector from "../SizeSelector/SizeSelector";
+import ColorSelector from "../ColorSelector/ColorSelector";
 import {
   Section,
   Wrapper,
-  List,
-  Item,
   Img,
   Title,
   TextPrice,
@@ -30,11 +30,27 @@ import {
   PlusIcon,
   MinusIcon,
   RemoveBtn,
+  Subtitle,
+  QuantityBtn,
 } from "./ProductDetails.styled";
-import { useState } from "react";
+import Box from "../Box/Box";
+
+const colors = ["red", "green", "blue", "yellow", "orange", "purple"];
+const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 const ProductDetails = ({ product }) => {
+  const [selectedSize, setSelectedSize] = useState(sizes[0]);
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
   const { title, image, price, description } = product;
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+  };
+
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
@@ -77,13 +93,34 @@ const ProductDetails = ({ product }) => {
           </ImgBox>
           <Sidebar>
             <TextPrice>${price}</TextPrice>
-            <TextPrice>Size</TextPrice>
-            <TextPrice>Color</TextPrice>
+            <SizeSelector
+              selectedSize={selectedSize}
+              sizes={sizes}
+              handleSizeSelect={handleSizeSelect}
+            />
+            <ColorSelector
+              colors={colors}
+              selectedColor={selectedColor}
+              handleColorSelect={handleColorSelect}
+            />
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="baseline"
+              gridGap="10px"
+            >
+              <Subtitle>Description:</Subtitle>
+              <DescText> {description}</DescText>
+            </Box>
             <ButtonBox>
               <QuantityContainer>
-                <MinusIcon onClick={decQty} />
+                <QuantityBtn disabled={inCart}>
+                  <MinusIcon onClick={decQty} />
+                </QuantityBtn>
                 <QuantityText>{quantity}</QuantityText>
-                <PlusIcon onClick={incQty} />
+                <QuantityBtn disabled={inCart}>
+                  <PlusIcon onClick={() => !inCart && incQty()} />
+                </QuantityBtn>
               </QuantityContainer>
               {!inCart ? (
                 <AddBtn
@@ -120,11 +157,6 @@ const ProductDetails = ({ product }) => {
             </ButtonBox>
           </Sidebar>
         </ContentWrapper>
-
-        <DescText>
-          <TextPrice>Description:</TextPrice>
-          {description}
-        </DescText>
       </Wrapper>
     </Section>
   );
