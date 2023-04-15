@@ -295,6 +295,12 @@ export const TextDesc = styled.p`
   letter-spacing: 0.06em;
 `;
 
+export const TextItem = styled.p`
+  font-family: "LatoLight";
+  color: #424551;
+  text-align: center;
+`;
+
 export const IssueBtn = styled.button`
   font-family: "LatoBold";
   font-size: 16px;

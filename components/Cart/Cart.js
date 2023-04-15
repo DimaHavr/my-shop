@@ -30,6 +30,7 @@ import {
   List,
   Item,
   Text,
+  TextItem,
   RemoveButtonIcon,
   IssueBtn,
   TotalContainer,
@@ -46,6 +47,7 @@ const Cart = () => {
   const totalQuantities = useSelector(selectTotalQuantities);
   const cartItems = useSelector(selectCartItems);
   const showCart = useSelector(selectShowCart);
+
   useEffect(() => {
     const onCloseModal = (event) => {
       if (event.code === "Escape") {
@@ -107,74 +109,97 @@ const Cart = () => {
 
           <List>
             {cartItems.length >= 1 &&
-              cartItems.map((item) => (
-                <Item key={item.id}>
-                  <ImgContainer>
-                    <Img src={item?.image} />
-                  </ImgContainer>
-
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    gridGap="10px"
-                    justifyContent="space-around"
-                    paddingRight="20px"
-                  >
-                    <SubTitle>{item?.title}</SubTitle>
-
+              cartItems
+                .map((item) => ({
+                  ...item,
+                  amount: item.quantity * item.price,
+                }))
+                .map((item) => (
+                  <Item key={item.id}>
                     <Box
                       display="flex"
-                      justifyContent="space-between"
+                      flexDirection="column"
+                      gridGap="10px"
                       alignItems="center"
-                      gridGap="5px"
                     >
-                      <QuantityContainer>
-                        <MinusIcon
-                          onClick={() =>
-                            dispatch(
-                              toggleCartItemQuantity({
-                                id: item.id,
-                                value: "dec",
-                              })
-                            )
-                          }
-                        />
-                        <QuantityText>{item?.quantity}</QuantityText>
-                        <PlusIcon
-                          onClick={() =>
-                            dispatch(
-                              toggleCartItemQuantity({
-                                id: item.id,
-                                value: "inc",
-                              })
-                            )
-                          }
-                        />
-                      </QuantityContainer>
-                      <Text>{item?.price}$</Text>
+                      <Link href={`/women/product/${item.id}`} passHref>
+                        <ImgContainer>
+                          <Img src={item?.image} />
+                        </ImgContainer>
+                      </Link>
+                      <Text>${parseFloat(item?.price.toFixed(2))}</Text>
                     </Box>
-                  </Box>
-                  <RemoveButtonIcon
-                    onClick={() => {
-                      toast.success(`${item?.title} was deleted...`, {
-                        style: {
-                          borderRadius: "10px",
-                          background: "grey",
-                          color: "#fff",
-                        },
-                      });
-                      dispatch(onRemove({ product: item }));
-                    }}
-                  />
-                </Item>
-              ))}
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      gridGap="5px"
+                      justifyContent="space-around"
+                      paddingRight="20px"
+                    >
+                      <Link href={`/women/product/${item.id}`} passHref>
+                        <SubTitle>{item?.title}</SubTitle>
+                      </Link>
+                      <Box display="flex" alignItems="baseline" gridGap="10px">
+                        <TextItem>Size:</TextItem>
+                        <Text>XL</Text>
+                      </Box>
+                      <Box display="flex" alignItems="baseline" gridGap="10px">
+                        <TextItem> Color:</TextItem>
+                        <Text>Red</Text>
+                      </Box>
+                      <Box
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        gridGap="5px"
+                      >
+                        <QuantityContainer>
+                          <MinusIcon
+                            onClick={() =>
+                              dispatch(
+                                toggleCartItemQuantity({
+                                  id: item.id,
+                                  value: "dec",
+                                })
+                              )
+                            }
+                          />
+                          <QuantityText>{item?.quantity}</QuantityText>
+                          <PlusIcon
+                            onClick={() =>
+                              dispatch(
+                                toggleCartItemQuantity({
+                                  id: item.id,
+                                  value: "inc",
+                                })
+                              )
+                            }
+                          />
+                        </QuantityContainer>
+                        <Text>${parseFloat(item.amount.toFixed(2))}</Text>
+                      </Box>
+                    </Box>
+                    <RemoveButtonIcon
+                      onClick={() => {
+                        toast.success(`${item?.title} was deleted...`, {
+                          style: {
+                            borderRadius: "10px",
+                            background: "grey",
+                            color: "#fff",
+                          },
+                        });
+                        dispatch(onRemove({ product: item }));
+                      }}
+                    />
+                  </Item>
+                ))}
           </List>
         </Box>
         {cartItems.length >= 1 && (
           <TotalContainer>
             <Box display="flex" justifyContent="space-between">
               <Text>Subtotal: </Text>
-              <Text>{parseFloat(totalPrice.toFixed(2))}$</Text>
+              <Text>${parseFloat(totalPrice.toFixed(2))}</Text>
             </Box>
             <IssueBtn type="button">
               <CheckoutIcon /> Checkout
