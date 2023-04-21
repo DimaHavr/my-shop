@@ -47,6 +47,7 @@ const Cart = () => {
   const totalQuantities = useSelector(selectTotalQuantities);
   const cartItems = useSelector(selectCartItems);
   const showCart = useSelector(selectShowCart);
+  console.log(cartItems);
 
   useEffect(() => {
     const onCloseModal = (event) => {
@@ -109,25 +110,27 @@ const Cart = () => {
 
           <List>
             {cartItems.length >= 1 &&
-              cartItems
-                .map((item) => ({
-                  ...item,
-                  amount: item.quantity * item.price,
-                }))
-                .map((item) => (
-                  <Item key={item.id}>
+              cartItems.map((item) => {
+                const title = item.attributes.title;
+                const image =
+                  item.attributes.img.data[0].attributes.formats.small.url;
+                const price = item.attributes.price;
+                const id = item.id;
+                const itemTotalPrice = price * item.quantity;
+                return (
+                  <Item key={id}>
                     <Box
                       display="flex"
                       flexDirection="column"
                       gridGap="10px"
                       alignItems="center"
                     >
-                      <Link href={`/women/product/${item.id}`} passHref>
+                      <Link href={`/women/product/${id}`} passHref>
                         <ImgContainer>
-                          <Img src={item?.image} />
+                          <Img src={image} />
                         </ImgContainer>
                       </Link>
-                      <Text>${parseFloat(item?.price.toFixed(2))}</Text>
+                      <Text>${parseFloat(price.toFixed(2))}</Text>
                     </Box>
                     <Box
                       display="flex"
@@ -136,8 +139,8 @@ const Cart = () => {
                       justifyContent="space-around"
                       paddingRight="20px"
                     >
-                      <Link href={`/women/product/${item.id}`} passHref>
-                        <SubTitle>{item?.title}</SubTitle>
+                      <Link href={`/women/product/${id}`} passHref>
+                        <SubTitle>{title}</SubTitle>
                       </Link>
                       <Box display="flex" alignItems="baseline" gridGap="10px">
                         <TextItem>Size:</TextItem>
@@ -158,30 +161,30 @@ const Cart = () => {
                             onClick={() =>
                               dispatch(
                                 toggleCartItemQuantity({
-                                  id: item.id,
+                                  id: id,
                                   value: "dec",
                                 })
                               )
                             }
                           />
-                          <QuantityText>{item?.quantity}</QuantityText>
+                          <QuantityText>{item.quantity}</QuantityText>
                           <PlusIcon
                             onClick={() =>
                               dispatch(
                                 toggleCartItemQuantity({
-                                  id: item.id,
+                                  id: id,
                                   value: "inc",
                                 })
                               )
                             }
                           />
                         </QuantityContainer>
-                        <Text>${parseFloat(item.amount.toFixed(2))}</Text>
+                        <Text>${parseFloat(itemTotalPrice.toFixed(2))}</Text>
                       </Box>
                     </Box>
                     <RemoveButtonIcon
                       onClick={() => {
-                        toast.success(`${item?.title} was deleted...`, {
+                        toast.success(`${title} was deleted...`, {
                           style: {
                             borderRadius: "10px",
                             background: "grey",
@@ -192,14 +195,15 @@ const Cart = () => {
                       }}
                     />
                   </Item>
-                ))}
+                );
+              })}
           </List>
         </Box>
         {cartItems.length >= 1 && (
           <TotalContainer>
             <Box display="flex" justifyContent="space-between">
               <Text>Subtotal: </Text>
-              <Text>${parseFloat(totalPrice.toFixed(2))}</Text>
+              <Text>${totalPrice}</Text>
             </Box>
             <IssueBtn type="button">
               <CheckoutIcon /> Checkout

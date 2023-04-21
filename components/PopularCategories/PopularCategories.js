@@ -1,35 +1,3 @@
-const popularCategories = [
-  {
-    id: "1",
-    img: "/images/popularCategories/tops.webp",
-    subtitle: "Tops",
-  },
-  {
-    id: "2",
-    img: "/images/popularCategories/tShirts.webp",
-    subtitle: "T-shirts",
-  },
-  {
-    id: "3",
-    img: "/images/popularCategories/caps.webp",
-    subtitle: "Caps",
-  },
-  {
-    id: "4",
-    img: "/images/popularCategories/sandals.webp",
-    subtitle: "Sandals",
-  },
-  {
-    id: "5",
-    img: "/images/popularCategories/jackets.webp",
-    subtitle: "Jackets",
-  },
-  {
-    id: "6",
-    img: "/images/popularCategories/coats.webp",
-    subtitle: "Coats",
-  },
-];
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -44,14 +12,14 @@ import {
   Text,
 } from "./PopularCategories.styled";
 
-const PopularCategories = () => {
+const PopularCategories = ({ popularCategories }) => {
   return (
     <Section>
       <Wrapper>
-        <Title>Popular categories</Title>
+        <Title>Популярні категорії</Title>
         <Text>
-          "Wear what's trending: popular clothing categories to refresh your
-          wardrobe."
+          "Носіть те, що в тренді: популярні категорії одягу для оновлення
+          гардеробу".
         </Text>
         <Swiper
           breakpoints={{
@@ -76,14 +44,18 @@ const PopularCategories = () => {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {popularCategories.map(({ id, img, subtitle }) => (
-            <SwiperSlide key={id}>
-              <Item>
-                <Img src={img} />
-                <Subtitle>{subtitle}</Subtitle>
-              </Item>
-            </SwiperSlide>
-          ))}
+          {popularCategories.data.map((item) => {
+            const title = item.attributes.title;
+            const image = item.attributes.img.data.attributes.formats.small.url;
+            return (
+              <SwiperSlide key={item.id}>
+                <Item>
+                  <Img src={image} />
+                  <Subtitle>{title}</Subtitle>
+                </Item>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </Wrapper>
     </Section>

@@ -1,55 +1,3 @@
-const popularCategories = [
-  {
-    id: "1",
-    img: "/images/popularCategories/tops.webp",
-    subtitle: "Tops",
-  },
-  {
-    id: "2",
-    img: "/images/popularCategories/tShirts.webp",
-    subtitle: "T-shirts",
-  },
-  {
-    id: "3",
-    img: "/images/popularCategories/caps.webp",
-    subtitle: "Caps",
-  },
-  {
-    id: "4",
-    img: "/images/popularCategories/sandals.webp",
-    subtitle: "Sandals",
-  },
-  {
-    id: "5",
-    img: "/images/popularCategories/jackets.webp",
-    subtitle: "Jackets",
-  },
-  {
-    id: "6",
-    img: "/images/popularCategories/coats.webp",
-    subtitle: "Coats",
-  },
-  {
-    id: "7",
-    img: "/images/popularCategories/tops.webp",
-    subtitle: "Tops",
-  },
-  {
-    id: "8",
-    img: "/images/popularCategories/tShirts.webp",
-    subtitle: "T-shirts",
-  },
-  {
-    id: "9",
-    img: "/images/popularCategories/tops.webp",
-    subtitle: "Tops",
-  },
-  {
-    id: "10",
-    img: "/images/popularCategories/tShirts.webp",
-    subtitle: "T-shirts",
-  },
-];
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -57,7 +5,7 @@ import "swiper/css/navigation";
 import { List, Item, Img, Subtitle } from "./Categories.styled";
 import Box from "../Box/Box";
 
-const Categories = () => {
+const Categories = ({ categories }) => {
   return (
     <Box paddingTop="0px">
       <Swiper
@@ -92,14 +40,18 @@ const Categories = () => {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {popularCategories.map(({ id, img, subtitle }) => (
-          <SwiperSlide key={id}>
-            <Item>
-              <Img src={img} />
-              <Subtitle>{subtitle}</Subtitle>
-            </Item>
-          </SwiperSlide>
-        ))}
+        {categories.map((item) => {
+          const title = item.attributes.title;
+          const image = item.attributes.img.data.attributes.formats.small.url;
+          return (
+            <SwiperSlide key={item.id}>
+              <Item>
+                <Img src={image} />
+                <Subtitle>{title}</Subtitle>
+              </Item>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </Box>
   );

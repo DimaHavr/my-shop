@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Swiper } from "swiper/react";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 
 export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
@@ -18,11 +17,11 @@ export const FavoriteIconRemove = styled(MdFavorite)`
 
 export const FavoriteIconBox = styled.div`
   position: absolute;
-  top: 224px;
-  right: 15px;
+  bottom: 60px;
+  right: 5px;
   cursor: pointer;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
+  background-color: #ffffffb8;
   border-radius: 100px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -52,6 +51,7 @@ export const Title = styled.h2`
   font-size: 46px;
   line-height: 60px;
   color: #1e212c;
+  text-align: center;
   margin-bottom: 24px;
 `;
 
@@ -69,7 +69,6 @@ export const Item = styled.div`
   flex-direction: column;
   align-items: center;
   width: 300px;
-  padding: 40px 40px 30px 40px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
@@ -84,25 +83,27 @@ export const Item = styled.div`
 `;
 
 export const ImgBox = styled.div`
-  width: 180px;
-  height: 200px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Img = styled.img`
-  width: 180px;
-  max-height: 200px;
+  border-radius: 8px;
   object-fit: contain;
   object-position: center;
 `;
 
 export const Subtitle = styled.h3`
+  position: absolute;
+  border-radius: 0px 0px 8px 8px;
+  padding: 10px;
+  bottom: 0;
+  left: 0;
   font-family: "LatoLight";
-  width: 220px;
-  height: 100px;
-  color: #000;
+  width: 100%;
+  color: #ffffff;
   overflow: hidden;
   padding-top: 10px;
   font-size: 18px;
@@ -111,6 +112,7 @@ export const Subtitle = styled.h3`
   align-items: flex-end;
   justify-content: center;
   text-align: center;
+  background-color: #17696ac2;
 `;
 
 export const Text = styled.p`
@@ -145,13 +147,13 @@ export const Button = styled.button`
   align-items: center;
   text-align: center;
   letter-spacing: 0.5px;
-  color: #17696a;
+  color: #fff;
   padding: 0px 40px;
   gap: 10px;
   height: 52px;
   border: 1px solid #17696a;
   border-radius: 4px;
-  background: none;
+  background: #17696a;
   margin-top: 50px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -160,7 +162,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     transform: scale(1.01);
-    color: #fff;
-    background-color: #17696a;
+    color: #17696a;
+    background: none;
   }
 `;

@@ -2,27 +2,26 @@ import styled from "styled-components";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 
 export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   color: #17696a;
-  padding: 7px;
+  padding: 13px;
 `;
 
 export const FavoriteIconRemove = styled(MdFavorite)`
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   color: #17696a;
-  padding: 7px;
+  padding: 13px;
 `;
 
 export const FavoriteIconBox = styled.div`
   position: absolute;
-  z-index: 100;
-  top: 200px;
-  right: 15px;
+  bottom: 60px;
+  right: 5px;
   cursor: pointer;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
+  background-color: #ffffffb8;
   border-radius: 100px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -65,14 +64,15 @@ export const Item = styled.li`
   position: relative;
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  width: 250px;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  gap: 10px;
+  gap: 25px;
+  margin: 23px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
@@ -82,30 +82,36 @@ export const Item = styled.li`
 `;
 
 export const ImgBox = styled.div`
-  width: 180px;
-  height: 200px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Img = styled.img`
-  width: 180px;
-  max-height: 200px;
+  border-radius: 8px;
   object-fit: contain;
   object-position: center;
-  user-select: none;
 `;
+
 export const Subtitle = styled.h3`
+  position: absolute;
+  border-radius: 0px 0px 8px 8px;
+  padding: 10px;
+  bottom: 0;
+  left: 0;
   font-family: "LatoLight";
-  width: 220px;
-  color: #000;
-  padding-top: 20px;
+  width: 100%;
+  color: #ffffff;
+  overflow: hidden;
+  padding-top: 10px;
   font-size: 18px;
   line-height: 24px;
-  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   text-align: center;
-  user-select: none;
+  background-color: #17696ac2;
 `;
 
 export const Text = styled.p`

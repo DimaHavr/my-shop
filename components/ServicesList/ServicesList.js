@@ -1,8 +1,10 @@
+import Box from "../Box/Box";
 import {
   Section,
   Wrapper,
   List,
   Item,
+  TextBox,
   Subtitle,
   Text,
   DeliveryIcon,
@@ -18,23 +20,31 @@ const ServicesList = () => {
         <List>
           <Item>
             <DeliveryIcon />
-            <Subtitle>Fast Worldwide Shipping</Subtitle>
-            <Text>Get free shipping over $250</Text>
+            <TextBox>
+              <Subtitle>Швидка доставка по всій Україні</Subtitle>
+              <Text>Отримайте безкоштовну доставку на суму понад 1500грн</Text>
+            </TextBox>
           </Item>
           <Item>
             <SupportIcon />
-            <Subtitle>24/7 Customer Support</Subtitle>
-            <Text>Friendly 24/7 customer support</Text>
+            <TextBox>
+              <Subtitle>Підтримка клієнтів 24/7</Subtitle>
+              <Text>Дружня підтримка клієнтів 24/7</Text>
+            </TextBox>
           </Item>
           <Item>
             <MoneyIcon />
-            <Subtitle>Money Back Guarantee</Subtitle>
-            <Text>We return money within 30 days</Text>
+            <TextBox>
+              <Subtitle>Гарантія повернення грошей</Subtitle>
+              <Text>Ми повертаємо гроші протягом 30 днів</Text>
+            </TextBox>
           </Item>
           <Item>
             <SecureIcon />
-            <Subtitle>Secure Online Payment</Subtitle>
-            <Text>Accept all major credit cards</Text>
+            <TextBox>
+              <Subtitle>Безпечна оплата онлайн</Subtitle>
+              <Text>Приймаємо всі основні кредитні картки</Text>
+            </TextBox>
           </Item>
         </List>
       </Wrapper>

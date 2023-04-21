@@ -19,7 +19,7 @@ const favoritesSlice = createSlice({
 
     removeFavoritesList: (state, action) => {
       const updatedFavoritesList = state.favoriteProducts?.filter(
-        (item) => item?.id !== action.payload?.id
+        (item) => item.id !== action.payload?.id
       );
       state.favoriteProducts = updatedFavoritesList;
       state.totalProducts -= 1;

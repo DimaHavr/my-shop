@@ -33,7 +33,7 @@ export const Item = styled.div`
 
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
 

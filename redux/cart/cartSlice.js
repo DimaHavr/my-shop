@@ -36,13 +36,14 @@ const cartSlice = createSlice({
       const { id, value } = action.payload;
       const index = state.cartItems.findIndex((product) => product.id === id);
       const itemToUpdate = state.cartItems[index];
+      console.log(itemToUpdate.attributes.price);
 
       if (value === "inc") {
         state.cartItems[index] = {
           ...itemToUpdate,
           quantity: itemToUpdate.quantity + 1,
         };
-        state.totalPrice += itemToUpdate.price;
+        state.totalPrice += itemToUpdate.attributes.price;
         state.totalQuantities += 1;
       } else if (value === "dec") {
         if (itemToUpdate.quantity > 1) {
@@ -50,7 +51,7 @@ const cartSlice = createSlice({
             ...itemToUpdate,
             quantity: itemToUpdate.quantity - 1,
           };
-          state.totalPrice -= itemToUpdate.price;
+          state.totalPrice -= itemToUpdate.attributes.price;
           state.totalQuantities -= 1;
         }
       }
@@ -71,7 +72,7 @@ const cartSlice = createSlice({
       );
       const newProduct = { ...product, quantity };
 
-      state.totalPrice += product.price * quantity;
+      state.totalPrice += product.attributes.price * quantity;
       state.totalQuantities += quantity;
 
       if (checkProductInCart) {
@@ -96,7 +97,7 @@ const cartSlice = createSlice({
         (item) => item.id !== product.id
       );
 
-      state.totalPrice -= foundProduct.price * foundProduct.quantity;
+      state.totalPrice -= foundProduct.attributes.price * foundProduct.quantity;
       state.totalQuantities -= foundProduct.quantity;
       state.cartItems = newCartItems;
     },

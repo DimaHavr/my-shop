@@ -23,11 +23,11 @@ import {
 const ProductsList = ({ children, products }) => {
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
+  console.log(favoritesProducts);
   const handleAddToFavorites = (product) => {
     dispatch(addToFavoritesList(product));
   };
-  const router = useRouter();
-  const categoryPath = router.asPath;
+
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
@@ -42,19 +42,18 @@ const ProductsList = ({ children, products }) => {
               const isFavorite = favoritesProducts.some(
                 (item) => item.id === product.id
               );
+              const title = product.attributes.title;
+              const image =
+                product.attributes.img.data[0].attributes.formats.small.url;
+              const price = product.attributes.price;
               return (
                 <Item key={product.id}>
-                  <ImgBox>
-                    <Link
-                      href={`${categoryPath}/product/${product.id}`}
-                      passHref
-                    >
-                      <Img src={product.image} alt={product.title} />
-                    </Link>
-                  </ImgBox>
-                  <Link href={`${categoryPath}/product/${product.id}`} passHref>
-                    <Subtitle>{product.title}</Subtitle>
-                    <TextPrice>{product.price}$</TextPrice>
+                  <Link href={`/women/product/${product.id}`} passHref>
+                    <ImgBox>
+                      <Img src={image} />
+                    </ImgBox>
+                    <Subtitle>{title}</Subtitle>
+                    <TextPrice>{price}₴</TextPrice>
                   </Link>
                   {!isFavorite ? (
                     <FavoriteIconBox

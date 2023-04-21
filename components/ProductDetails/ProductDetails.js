@@ -57,14 +57,19 @@ const productReviews = [
 ];
 
 const ProductDetails = ({ product }) => {
-  const { title, image, price, description } = product;
+  const title = product.attributes.title;
+  const image = product.attributes.img.data[0].attributes.formats.small.url;
+  const price = product.attributes.price;
+  const desc = product.attributes.desc;
+  const id = product.id;
 
+  console.log(title);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const productsInCart = useSelector(selectCartItems);
-  const isFavorite = favoritesProducts.some((item) => item.id === product.id);
-  const inCart = productsInCart.some((item) => item.id === product.id);
+  const isFavorite = favoritesProducts.some((item) => item.id === id);
+  const inCart = productsInCart.some((item) => item.id === id);
   const incQty = () => {
     setQuantity(quantity + 1);
   };
@@ -92,9 +97,7 @@ const ProductDetails = ({ product }) => {
                 <FavoriteIcon />
               </FavoriteIconBox>
             ) : (
-              <FavoriteIconBox
-                onClick={() => handleRemoveFromFavorites(product.id)}
-              >
+              <FavoriteIconBox onClick={() => handleRemoveFromFavorites(id)}>
                 <FavoriteIconRemove />
               </FavoriteIconBox>
             )}
@@ -113,7 +116,7 @@ const ProductDetails = ({ product }) => {
               gridGap="10px"
             >
               <Subtitle>Description:</Subtitle>
-              <DescText> {description}</DescText>
+              <DescText> {desc}</DescText>
             </Box>
             <ButtonBox>
               <QuantityContainer>
@@ -128,7 +131,7 @@ const ProductDetails = ({ product }) => {
               {!inCart ? (
                 <AddBtn
                   onClick={() => {
-                    toast.success(`${product?.title} added to cart...`, {
+                    toast.success(`${title} added to cart...`, {
                       style: {
                         borderRadius: "10px",
                         background: "#fff",
@@ -144,7 +147,7 @@ const ProductDetails = ({ product }) => {
               ) : (
                 <RemoveBtn
                   onClick={() => {
-                    toast.success(`${product?.title} removed from cart...`, {
+                    toast.success(`${title} removed from cart...`, {
                       style: {
                         borderRadius: "10px",
                         background: "grey",
