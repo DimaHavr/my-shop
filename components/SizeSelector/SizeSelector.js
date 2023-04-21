@@ -1,4 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSize } from "../../redux/cart/selectors";
+import { setSize } from "../../redux/cart/cartSlice";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -18,10 +21,12 @@ import {
 import Box from "../Box/Box";
 
 const SizeSelector = ({ sizes }) => {
-  const [selectedSize, setSelectedSize] = useState(sizes[0]);
-  const handleSizeSelect = (size) => {
-    setSelectedSize(size);
+  const dispatch = useDispatch();
+  const selectedSize = useSelector(selectSize);
+  const handleSizeChange = (size) => {
+    dispatch(setSize(size));
   };
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   return (
@@ -44,7 +49,7 @@ const SizeSelector = ({ sizes }) => {
               <SizeButton
                 key={size}
                 active={selectedSize === size}
-                onClick={() => handleSizeSelect(size)}
+                onClick={() => handleSizeChange(size)}
               >
                 {size}
               </SizeButton>

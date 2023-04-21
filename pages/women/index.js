@@ -15,7 +15,7 @@ const ProductsList = dynamic(() =>
 const Categories = dynamic(() =>
   import("../../components/Categories/Categories")
 );
-const ToolBar = dynamic(() => import("../../components/ToolBar/ToolBar"));
+import ToolBar from "../../components/ToolBar/ToolBar";
 
 const Index = ({ womenProducts, subCategories }) => {
   const showCart = useSelector(selectShowCart);

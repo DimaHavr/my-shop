@@ -48,6 +48,7 @@ export const SlideBox = styled.div`
   background-color: #ffffff;
   display: flex;
   justify-content: center;
+  box-shadow: inset 0.5px -0.5px 32px -0.5px #ffffff;
 `;
 
 export const PrevBtn = styled.button`

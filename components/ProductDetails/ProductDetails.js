@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
-import { onAdd, onRemove } from "../../redux/cart/cartSlice";
+import { onAdd, onRemove, setSize, setColor } from "../../redux/cart/cartSlice";
 import {
   addToFavoritesList,
   removeFavoritesList,
@@ -58,7 +58,7 @@ const productReviews = [
 
 const ProductDetails = ({ product }) => {
   const title = product.attributes.title;
-  const image = product.attributes.img.data[0].attributes.formats.small.url;
+  const image = product.attributes.img.data[0].attributes.formats.large.url;
   const price = product.attributes.price;
   const desc = product.attributes.desc;
   const id = product.id;
@@ -84,6 +84,13 @@ const ProductDetails = ({ product }) => {
   };
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
+  };
+  const handleSizeChange = (size) => {
+    dispatch(setSize(size));
+  };
+
+  const handleColorChange = (color) => {
+    dispatch(setColor(color));
   };
   return (
     <Section>

@@ -1,4 +1,7 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectColor } from "../../redux/cart/selectors";
+import { setColor } from "../../redux/cart/cartSlice";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -17,10 +20,10 @@ import {
 } from "./ColorSelector.styled";
 import Box from "../Box/Box";
 const ColorSelector = ({ colors }) => {
-  const [selectedColor, setSelectedColor] = useState(colors[0]);
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
+  const selectedColor = useSelector(selectColor);
+  const dispatch = useDispatch();
+  const handleColorChange = (color) => {
+    dispatch(setColor(color));
   };
 
   const prevRef = useRef(null);
@@ -46,7 +49,7 @@ const ColorSelector = ({ colors }) => {
                 key={color}
                 active={selectedColor === color}
                 color={color}
-                onClick={() => handleColorSelect(color)}
+                onClick={() => handleColorChange(color)}
               ></ColorButton>
             </SlideBox>
           </SwiperSlide>

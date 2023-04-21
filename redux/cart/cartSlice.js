@@ -9,6 +9,8 @@ const cartSlice = createSlice({
     totalPrice: 0,
     totalQuantities: 0,
     qty: 1,
+    color: "",
+    size: "",
   },
   reducers: {
     setShowCart: (state, action) => {
@@ -32,6 +34,13 @@ const cartSlice = createSlice({
     decQty: (state) => {
       state.qty -= 1;
     },
+    setColor: (state, action) => {
+      state.color = action.payload;
+    },
+    setSize: (state, action) => {
+      state.size = action.payload;
+    },
+
     toggleCartItemQuantity: (state, action) => {
       const { id, value } = action.payload;
       const index = state.cartItems.findIndex((product) => product.id === id);
@@ -105,6 +114,8 @@ const cartSlice = createSlice({
 });
 
 export const {
+  setSize,
+  setColor,
   setShowCart,
   setQty,
   incQty,

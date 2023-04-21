@@ -8,6 +8,8 @@ import {
   selectTotalPrice,
   selectCartItems,
   selectShowCart,
+  selectColor,
+  selectSize,
 } from "../../redux/cart/selectors";
 import {
   setShowCart,
@@ -47,7 +49,8 @@ const Cart = () => {
   const totalQuantities = useSelector(selectTotalQuantities);
   const cartItems = useSelector(selectCartItems);
   const showCart = useSelector(selectShowCart);
-  console.log(cartItems);
+  const color = useSelector(selectColor);
+  const size = useSelector(selectSize);
 
   useEffect(() => {
     const onCloseModal = (event) => {
@@ -144,11 +147,11 @@ const Cart = () => {
                       </Link>
                       <Box display="flex" alignItems="baseline" gridGap="10px">
                         <TextItem>Size:</TextItem>
-                        <Text>XL</Text>
+                        <Text>{size}</Text>
                       </Box>
                       <Box display="flex" alignItems="baseline" gridGap="10px">
                         <TextItem> Color:</TextItem>
-                        <Text>Red</Text>
+                        <Text>{color}</Text>
                       </Box>
                       <Box
                         display="flex"
