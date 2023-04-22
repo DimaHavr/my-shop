@@ -65,7 +65,6 @@ export const FavoriteIconBox = styled.div`
   gap: 10px;
   border: 1px solid #17696a;
   border-radius: 4px;
-  /* background-color: #17696a; */
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   &:hover,

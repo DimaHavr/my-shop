@@ -66,6 +66,13 @@ const productReviews = [
 const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const title = product.attributes.title;
+  const image = product.attributes.img.data[0].attributes.formats.large.url;
+  const price = product.attributes.price;
+  const desc = product.attributes.desc;
+  const id = product.id;
+  const imagesArr = product.attributes.images.data;
+
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const productsInCart = useSelector(selectCartItems);
   const color = useSelector(selectColor);
@@ -124,13 +131,6 @@ const ProductDetails = ({ product }) => {
     dispatch(setSize(""));
     dispatch(setColor(""));
   };
-
-  const title = product.attributes.title;
-  const image = product.attributes.img.data[0].attributes.formats.large.url;
-  const price = product.attributes.price;
-  const desc = product.attributes.desc;
-  const id = product.id;
-  const imagesArr = product.attributes.images.data;
 
   return (
     <Section>

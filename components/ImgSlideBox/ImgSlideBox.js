@@ -22,7 +22,6 @@ const ImgSlideBox = ({ imagesArr, image }) => {
   const nextRef = useRef(null);
   return (
     <>
-      {" "}
       <ImgSlideBoxStyled>
         <Swiper
           direction={"horizontal"}
@@ -40,9 +39,7 @@ const ImgSlideBox = ({ imagesArr, image }) => {
           className="mySwiper"
         >
           {imagesArr.map((item) => {
-            console.log(item);
             const imageLarge = item.attributes.formats.small.url;
-            //  change to large
             const imageSmall = item.attributes.formats.small.url;
             return (
               <SwiperSlide key={item.id}>

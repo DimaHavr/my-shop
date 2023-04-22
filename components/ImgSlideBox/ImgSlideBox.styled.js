@@ -18,8 +18,8 @@ export const ImgSlideBoxStyled = styled.div`
   margin: 10px;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
-  align-items: flex-start;
   gap: 5px;
   height: 500px;
 
@@ -40,8 +40,13 @@ export const SlideBox = styled.div`
   background-color: #ffffff;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 120px;
+  height: 100%;
   cursor: pointer;
+  @media screen and (max-width: 930px) {
+    width: 100%;
+  }
 `;
 
 export const PrevBtn = styled.button`
@@ -56,6 +61,12 @@ export const PrevBtn = styled.button`
   background-color: #ffffff9e;
   border-radius: 100%;
   padding: 10px;
+  @media screen and (max-width: 930px) {
+    left: 10px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
   @media screen and (max-width: 768px) {
     left: 10px;
     top: 50%;
@@ -82,6 +93,12 @@ export const NextBtn = styled.button`
   background-color: #ffffff9e;
   border-radius: 100%;
   padding: 10px;
+  @media screen and (max-width: 930px) {
+    left: 290px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
   @media screen and (max-width: 768px) {
     left: 450px;
     top: 50%;
@@ -99,6 +116,7 @@ export const ImgSmall = styled.img`
   object-fit: content;
   object-position: center;
   user-select: none;
+  width: 120px;
   border-radius: 8px;
 `;
 export const ImgBox = styled.div`
