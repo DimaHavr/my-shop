@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -10,7 +10,6 @@ import {
   NextBtn,
   NextIcon,
   PrevIcon,
-  ImgBox,
   Img,
   ImgSmall,
 } from "../ImgSlideBox/ImgSlideBox.styled";
@@ -20,17 +19,20 @@ const ImgSlideBox = ({ imagesArr, image }) => {
   const [showImage, setShowImage] = useState(false);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
   return (
     <>
       <ImgSlideBoxStyled>
         <Swiper
           direction={"horizontal"}
-          slidesPerView={2}
+          slidesPerView={3}
           navigation={{
             nextEl: nextRef.current,
             prevEl: prevRef.current,
           }}
           breakpoints={{
+            480: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
             930: {
               direction: "vertical",
             },

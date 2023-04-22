@@ -97,7 +97,7 @@ const ProductDetails = ({ product }) => {
 
   const handleAddToCart = () => {
     if (!color) {
-      toast.error("Виберіть колір...", {
+      toast.error("Оберіть колір...", {
         style: {
           borderRadius: "10px",
           background: "#fff",
@@ -108,7 +108,7 @@ const ProductDetails = ({ product }) => {
     }
 
     if (!size) {
-      toast.error("Виберіть розмір...", {
+      toast.error("Оберіть розмір...", {
         style: {
           borderRadius: "10px",
           background: "#fff",

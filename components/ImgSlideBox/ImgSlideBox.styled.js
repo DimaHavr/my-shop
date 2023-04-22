@@ -32,7 +32,7 @@ export const ImgSlideBoxStyled = styled.div`
     width: 460px;
   }
   @media screen and (max-width: 480px) {
-    width: 300px;
+    width: 320px;
   }
 `;
 
@@ -43,7 +43,7 @@ export const SlideBox = styled.div`
   align-items: center;
   width: 120px;
   height: 100%;
-  cursor: pointer;
+  cursor: grab;
   @media screen and (max-width: 930px) {
     width: 100%;
   }
@@ -118,18 +118,7 @@ export const ImgSmall = styled.img`
   user-select: none;
   width: 120px;
   border-radius: 8px;
-`;
-export const ImgBox = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  gap: 25px;
-  align-items: stretch;
-  position: relative;
-  @media screen and (max-width: 930px) {
-    flex-direction: column-reverse;
-    align-items: center;
-  }
+  cursor: pointer;
 `;
 
 export const Img = styled.img`
