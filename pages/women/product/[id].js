@@ -7,6 +7,7 @@ import Layout from "../../../components/Layout/Layout";
 import ProductDetails from "../../../components/ProductDetails/ProductDetails";
 
 const ProductScreen = ({ product }) => {
+  console.log(product);
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <Layout pageTitle="My-Shop">

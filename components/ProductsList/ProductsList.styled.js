@@ -5,14 +5,14 @@ export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 50px;
   height: 50px;
   color: #17696a;
-  padding: 13px;
+  padding: 10px;
 `;
 
 export const FavoriteIconRemove = styled(MdFavorite)`
   width: 50px;
   height: 50px;
   color: #17696a;
-  padding: 13px;
+  padding: 10px;
 `;
 
 export const FavoriteIconBox = styled.div`

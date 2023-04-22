@@ -8,8 +8,6 @@ import {
   selectTotalPrice,
   selectCartItems,
   selectShowCart,
-  selectColor,
-  selectSize,
 } from "../../redux/cart/selectors";
 import {
   setShowCart,
@@ -49,8 +47,6 @@ const Cart = () => {
   const totalQuantities = useSelector(selectTotalQuantities);
   const cartItems = useSelector(selectCartItems);
   const showCart = useSelector(selectShowCart);
-  const color = useSelector(selectColor);
-  const size = useSelector(selectSize);
 
   useEffect(() => {
     const onCloseModal = (event) => {
@@ -80,33 +76,36 @@ const Cart = () => {
     >
       <CartContainer showCart={showCart}>
         <Box>
-          <Box
-            display="flex"
-            padding="16px"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Text>
-              Your cart {totalQuantities > 0 && <Span>{totalQuantities}</Span>}
-            </Text>
-            <BackButton
-              type="button"
-              onClick={() => dispatch(setShowCart(false))}
+          {totalQuantities > 0 && (
+            <Box
+              display="flex"
+              padding="16px"
+              alignItems="center"
+              justifyContent="space-between"
             >
-              <CloseIcon />
-            </BackButton>
-          </Box>
+              <Text>
+                У вашому кошику
+                <Span>{totalQuantities}</Span>
+              </Text>
+              <BackButton
+                type="button"
+                onClick={() => dispatch(setShowCart(false))}
+              >
+                <CloseIcon />
+              </BackButton>
+            </Box>
+          )}
           {cartItems.length < 1 && (
             <EmptyCartBox cartItems={cartItems}>
               <AiOutlineShopping size={150} />
               <Text>
-                Cart is empty... <br /> But it's never too late to fix it :)
+                Кошик порожній... <br /> Проте це ніколи не пізно виправити :)
               </Text>
               <BackBtn
                 type="button"
                 onClick={() => dispatch(setShowCart(false))}
               >
-                Return to the store
+                Повернутися до магазину
               </BackBtn>
             </EmptyCartBox>
           )}
@@ -119,6 +118,8 @@ const Cart = () => {
                   item.attributes.img.data[0].attributes.formats.small.url;
                 const price = item.attributes.price;
                 const id = item.id;
+                const color = item.color;
+                const size = item.size;
                 const itemTotalPrice = price * item.quantity;
                 return (
                   <Item key={id}>
@@ -133,7 +134,7 @@ const Cart = () => {
                           <Img src={image} />
                         </ImgContainer>
                       </Link>
-                      <Text>${parseFloat(price.toFixed(2))}</Text>
+                      <Text>{parseFloat(price.toFixed(2))}₴</Text>
                     </Box>
                     <Box
                       display="flex"
@@ -146,11 +147,11 @@ const Cart = () => {
                         <SubTitle>{title}</SubTitle>
                       </Link>
                       <Box display="flex" alignItems="baseline" gridGap="10px">
-                        <TextItem>Size:</TextItem>
+                        <TextItem>Розмір:</TextItem>
                         <Text>{size}</Text>
                       </Box>
                       <Box display="flex" alignItems="baseline" gridGap="10px">
-                        <TextItem> Color:</TextItem>
+                        <TextItem>Колір:</TextItem>
                         <Text>{color}</Text>
                       </Box>
                       <Box
@@ -182,12 +183,12 @@ const Cart = () => {
                             }
                           />
                         </QuantityContainer>
-                        <Text>${parseFloat(itemTotalPrice.toFixed(2))}</Text>
+                        <Text>{parseFloat(itemTotalPrice.toFixed(2))}₴</Text>
                       </Box>
                     </Box>
                     <RemoveButtonIcon
                       onClick={() => {
-                        toast.success(`${title} was deleted...`, {
+                        toast.success(`${title} видалено з корзини!`, {
                           style: {
                             borderRadius: "10px",
                             background: "grey",
@@ -205,11 +206,11 @@ const Cart = () => {
         {cartItems.length >= 1 && (
           <TotalContainer>
             <Box display="flex" justifyContent="space-between">
-              <Text>Subtotal: </Text>
-              <Text>${totalPrice}</Text>
+              <Text>Підсумок: </Text>
+              <Text>{totalPrice}₴</Text>
             </Box>
             <IssueBtn type="button">
-              <CheckoutIcon /> Checkout
+              <CheckoutIcon /> Оформити замовлення
             </IssueBtn>
           </TotalContainer>
         )}

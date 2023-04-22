@@ -32,7 +32,7 @@ const SizeSelector = ({ sizes }) => {
   return (
     <SizeSelectorStyled>
       <Box display="flex" alignItems="baseline" gridGap="10px">
-        <Subtitle>Size:</Subtitle> <Text> {selectedSize}</Text>
+        <Subtitle>Оберіть розмір:</Subtitle> <Text> {selectedSize}</Text>
       </Box>
       <Swiper
         slidesPerView={3}

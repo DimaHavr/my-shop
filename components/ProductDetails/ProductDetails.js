@@ -7,9 +7,14 @@ import {
   removeFavoritesList,
 } from "../../redux/favorites/favoritesSlice";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
-import { selectCartItems } from "../../redux/cart/selectors";
+import {
+  selectCartItems,
+  selectColor,
+  selectSize,
+} from "../../redux/cart/selectors";
 import SizeSelector from "../SizeSelector/SizeSelector";
 import ColorSelector from "../ColorSelector/ColorSelector";
+import BackLink from "../BackLink/BackLink";
 import {
   Section,
   Wrapper,
@@ -35,6 +40,8 @@ import {
 } from "./ProductDetails.styled";
 import Box from "../Box/Box";
 import ProductReview from "../ProductReview/ProductReview";
+import ToggleMenu from "../ToggleMenu/ToggleMenu";
+import ImgSlideBox from "../ImgSlideBox/ImgSlideBox";
 
 const colors = ["red", "green", "blue", "yellow", "orange", "purple"];
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -57,17 +64,12 @@ const productReviews = [
 ];
 
 const ProductDetails = ({ product }) => {
-  const title = product.attributes.title;
-  const image = product.attributes.img.data[0].attributes.formats.large.url;
-  const price = product.attributes.price;
-  const desc = product.attributes.desc;
-  const id = product.id;
-
-  console.log(title);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const productsInCart = useSelector(selectCartItems);
+  const color = useSelector(selectColor);
+  const size = useSelector(selectSize);
   const isFavorite = favoritesProducts.some((item) => item.id === id);
   const inCart = productsInCart.some((item) => item.id === id);
   const incQty = () => {
@@ -85,89 +87,124 @@ const ProductDetails = ({ product }) => {
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
-  const handleSizeChange = (size) => {
-    dispatch(setSize(size));
+
+  const handleAddToCart = () => {
+    if (!color) {
+      toast.error("Виберіть колір...", {
+        style: {
+          borderRadius: "10px",
+          background: "#fff",
+          color: "#333",
+        },
+      });
+      return;
+    }
+
+    if (!size) {
+      toast.error("Виберіть розмір...", {
+        style: {
+          borderRadius: "10px",
+          background: "#fff",
+          color: "#333",
+        },
+      });
+      return;
+    }
+
+    toast.success(`${title} додано до кошика!`, {
+      style: {
+        borderRadius: "10px",
+        background: "#fff",
+        color: "#333",
+      },
+    });
+
+    dispatch(onAdd({ product, quantity, color, size }));
+    setQuantity(1);
+    dispatch(setSize(""));
+    dispatch(setColor(""));
   };
 
-  const handleColorChange = (color) => {
-    dispatch(setColor(color));
-  };
+  const title = product.attributes.title;
+  const image = product.attributes.img.data[0].attributes.formats.large.url;
+  const price = product.attributes.price;
+  const desc = product.attributes.desc;
+  const id = product.id;
+  const imagesArr = product.attributes.images.data;
+
   return (
     <Section>
       <Wrapper>
-        <Title>{title}</Title>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
+          <BackLink />
+          <Title>{title}</Title>
+        </Box>
         <ContentWrapper>
           <ImgBox>
-            <Img src={image} />
-            {!isFavorite ? (
-              <FavoriteIconBox onClick={() => handleAddToFavorites(product)}>
-                <FavoriteIcon />
-              </FavoriteIconBox>
-            ) : (
-              <FavoriteIconBox onClick={() => handleRemoveFromFavorites(id)}>
-                <FavoriteIconRemove />
-              </FavoriteIconBox>
-            )}
+            <ImgSlideBox imagesArr={imagesArr} image={image} />
           </ImgBox>
           <Sidebar>
             <Box display="flex" justifyContent="space-between">
-              <TextPrice>${price}</TextPrice>
+              <Box display="flex" gridGap="5px" alignItems="flex-end">
+                <Subtitle>Ціна:</Subtitle>
+                <TextPrice>{price}₴</TextPrice>
+              </Box>
               <ProductReview productReviews={productReviews} />
             </Box>
-            <SizeSelector sizes={sizes} />
-            <ColorSelector colors={colors} />
             <Box
               display="flex"
               flexDirection="column"
               alignItems="baseline"
               gridGap="10px"
             >
-              <Subtitle>Description:</Subtitle>
-              <DescText> {desc}</DescText>
+              <SizeSelector sizes={sizes} />
+              <ColorSelector colors={colors} />
+              <ButtonBox>
+                <QuantityContainer>
+                  <QuantityBtn disabled={inCart}>
+                    <MinusIcon onClick={decQty} />
+                  </QuantityBtn>
+                  <QuantityText>{quantity}</QuantityText>
+                  <QuantityBtn disabled={inCart}>
+                    <PlusIcon onClick={() => !inCart && incQty()} />
+                  </QuantityBtn>
+                </QuantityContainer>
+                {!inCart ? (
+                  <AddBtn onClick={handleAddToCart}>Додати до кошика</AddBtn>
+                ) : (
+                  <RemoveBtn
+                    onClick={() => {
+                      toast.success(`${title} removed from cart...`, {
+                        style: {
+                          borderRadius: "10px",
+                          background: "grey",
+                          color: "#fff",
+                        },
+                      });
+                      dispatch(onRemove({ product }));
+                    }}
+                  >
+                    Видалити з кошика
+                  </RemoveBtn>
+                )}
+              </ButtonBox>
             </Box>
-            <ButtonBox>
-              <QuantityContainer>
-                <QuantityBtn disabled={inCart}>
-                  <MinusIcon onClick={decQty} />
-                </QuantityBtn>
-                <QuantityText>{quantity}</QuantityText>
-                <QuantityBtn disabled={inCart}>
-                  <PlusIcon onClick={() => !inCart && incQty()} />
-                </QuantityBtn>
-              </QuantityContainer>
-              {!inCart ? (
-                <AddBtn
-                  onClick={() => {
-                    toast.success(`${title} added to cart...`, {
-                      style: {
-                        borderRadius: "10px",
-                        background: "#fff",
-                        color: "#333",
-                      },
-                    });
-                    dispatch(onAdd({ product, quantity }));
-                    setQuantity(1);
-                  }}
-                >
-                  Add to cart
-                </AddBtn>
-              ) : (
-                <RemoveBtn
-                  onClick={() => {
-                    toast.success(`${title} removed from cart...`, {
-                      style: {
-                        borderRadius: "10px",
-                        background: "grey",
-                        color: "#fff",
-                      },
-                    });
-                    dispatch(onRemove({ product }));
-                  }}
-                >
-                  Remove from cart
-                </RemoveBtn>
-              )}
-            </ButtonBox>
+            {!isFavorite ? (
+              <FavoriteIconBox onClick={() => handleAddToFavorites(product)}>
+                <FavoriteIcon />
+                Додати до улюблених
+              </FavoriteIconBox>
+            ) : (
+              <FavoriteIconBox onClick={() => handleRemoveFromFavorites(id)}>
+                <FavoriteIconRemove />
+                Видалити з улюблених
+              </FavoriteIconBox>
+            )}
+            <ToggleMenu desc={desc} productReviews={productReviews} />
           </Sidebar>
         </ContentWrapper>
       </Wrapper>

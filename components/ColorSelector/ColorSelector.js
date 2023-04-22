@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectColor } from "../../redux/cart/selectors";
 import { setColor } from "../../redux/cart/cartSlice";
@@ -28,10 +28,13 @@ const ColorSelector = ({ colors }) => {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  useEffect(() => {
+    handleColorChange();
+  }, []);
   return (
     <ColorSelectorStyled>
       <Box display="flex" alignItems="baseline" gridGap="10px">
-        <Subtitle>Color:</Subtitle> <Text> {selectedColor}</Text>
+        <Subtitle>Оберіть колір:</Subtitle> <Text> {selectedColor}</Text>
       </Box>
       <Swiper
         slidesPerView={3}

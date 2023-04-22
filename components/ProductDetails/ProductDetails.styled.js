@@ -32,40 +32,58 @@ export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 40px;
   height: 40px;
   color: #17696a;
-  padding: 7px;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translate(-50%, -50%);
 `;
 
 export const FavoriteIconRemove = styled(MdFavorite)`
   width: 40px;
   height: 40px;
   color: #17696a;
-  padding: 7px;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 40px;
+  transform: translate(-50%, -50%);
 `;
 
 export const FavoriteIconBox = styled.div`
-  position: absolute;
-  z-index: 100;
-  bottom: 0;
-  right: 0;
   cursor: pointer;
-  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
-  border-radius: 100px;
+  position: relative;
+  width: 300px;
+  font-family: "LatoBold";
+  font-size: 16px;
+  line-height: 52px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5px;
+  color: #17696a;
+  padding: 0px 40px;
+  gap: 10px;
+  border: 1px solid #17696a;
+  border-radius: 4px;
+  /* background-color: #17696a; */
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  user-select: none;
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    transform: scale(1.02);
+  }
+  @media screen and (max-width: 488px) {
+    width: 100%;
   }
 `;
 
 export const Section = styled.section`
-  padding: 50px 130px;
-  @media screen and (max-width: 1024px) {
-    padding: 50px 70px;
+  padding: 20px 130px 50px 130px;
+  @media screen and (max-width: 1150px) {
+    padding: 20px 50px 50px 50px;
   }
   @media screen and (max-width: 768px) {
-    padding: 50px 30px;
+    padding: 20px 30px;
   }
 `;
 
@@ -74,7 +92,7 @@ export const Title = styled.h2`
   font-weight: 900;
   font-size: 26px;
   line-height: 40px;
-  color: #1e212c;
+  color: #424551;
   text-align: center;
 `;
 
@@ -82,18 +100,22 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
+  @media screen and (max-width: 768px) {
+    align-items: center;
+  }
 `;
 
 export const ContentWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-around;
+  align-items: flex-start;
   width: 100%;
-  gap: 40px;
+  gap: 20px;
   @media screen and (max-width: 768px) {
     flex-direction: column;
+    align-items: center;
     gap: 20px;
   }
 `;
@@ -102,22 +124,19 @@ export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
 `;
 
 export const ImgBox = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  gap: 25px;
   align-items: center;
   position: relative;
-`;
-
-export const Img = styled.img`
-  width: 300px;
-  max-height: 400px;
-  object-fit: content;
-  object-position: center;
-  user-select: none;
+  @media screen and (max-width: 930px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const TextWrapper = styled.div`
@@ -143,7 +162,6 @@ export const DescText = styled.p`
 export const Text = styled.p`
   font-family: "LatoRegular";
   color: #787a80;
-  margin-bottom: 8px;
   text-align: center;
 `;
 
@@ -164,7 +182,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const AddBtn = styled.button`
-  width: 250px;
+  width: 220px;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;
@@ -190,7 +208,7 @@ export const AddBtn = styled.button`
 `;
 
 export const RemoveBtn = styled.button`
-  width: 250px;
+  width: 220px;
   font-family: "LatoBold";
   font-size: 16px;
   line-height: 52px;

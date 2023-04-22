@@ -66,9 +66,10 @@ const cartSlice = createSlice({
       }
     },
     onAdd: (state, action) => {
-      const { product, quantity } = action.payload;
+      const { product, quantity, color, size } = action.payload;
       const isAlreadyInCart = state.cartItems.some(
-        (item) => item.id === product.id
+        (item) =>
+          item.id === product.id && item.color === color && item.size === size
       );
 
       if (isAlreadyInCart) {
@@ -76,25 +77,16 @@ const cartSlice = createSlice({
         return state;
       }
 
-      const checkProductInCart = state.cartItems.find(
-        (item) => item.id === product.id
-      );
-      const newProduct = { ...product, quantity };
+      const newCartItem = {
+        ...product,
+        quantity,
+        color,
+        size,
+      };
 
       state.totalPrice += product.attributes.price * quantity;
       state.totalQuantities += quantity;
-
-      if (checkProductInCart) {
-        const updatedCartItems = state.cartItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-
-        state.cartItems = updatedCartItems;
-      } else {
-        state.cartItems.push(newProduct);
-      }
+      state.cartItems.push(newCartItem);
     },
 
     onRemove: (state, action) => {

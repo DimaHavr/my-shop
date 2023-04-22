@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #000;
+  color: #424551;
   font-weight: 700;
   text-transform: uppercase;
   background: none;
@@ -16,7 +16,7 @@ const StyledButton = styled.button`
 
   :hover {
     transform: scale(1.05);
-    color: orangered;
+    color: 17696a;
   }
 `;
 
@@ -24,7 +24,6 @@ export const BackLink = ({ goBack }) => {
   return (
     <StyledButton onClick={goBack}>
       <HiArrowLeft size="24" />
-      Back
     </StyledButton>
   );
 };
