@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { onAdd, onRemove, setSize, setColor } from "../../redux/cart/cartSlice";
 import {
@@ -66,12 +67,33 @@ const productReviews = [
 const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-  const title = product.attributes.title;
-  const image = product.attributes.img.data[0].attributes.formats.large.url;
-  const price = product.attributes.price;
-  const desc = product.attributes.desc;
-  const id = product.id;
-  const imagesArr = product.attributes.images.data;
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.back();
+  };
+  const {
+    attributes: {
+      title,
+      img: {
+        data: [
+          {
+            attributes: {
+              formats: {
+                large: { url: image },
+              },
+            },
+          },
+        ],
+      },
+    },
+    attributes: {
+      price,
+      desc,
+      images: { data: imagesArr },
+    },
+    id,
+  } = product;
 
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const productsInCart = useSelector(selectCartItems);
@@ -79,6 +101,7 @@ const ProductDetails = ({ product }) => {
   const size = useSelector(selectSize);
   const isFavorite = favoritesProducts.some((item) => item.id === id);
   const inCart = productsInCart.some((item) => item.id === id);
+
   const incQty = () => {
     setQuantity(quantity + 1);
   };
@@ -140,7 +163,7 @@ const ProductDetails = ({ product }) => {
           justifyContent="space-between"
           alignItems="flex-start"
         >
-          <BackLink />
+          <BackLink getBack={handleClick} />
           <Title>{title}</Title>
         </Box>
         <ContentWrapper>

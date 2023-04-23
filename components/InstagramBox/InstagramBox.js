@@ -18,13 +18,13 @@ const InstagramBox = () => {
     <Section>
       <Wrapper>
         <TextBox>
-          <Text>Follow us on Instagram</Text>
+          <Text>Слідкуйте за нами в Instagram</Text>
           <Link href="#">
-            <TextItem>@createx_store</TextItem>
+            <TextItem>@instagram</TextItem>
           </Link>
           <Button>
             <InstagramIcon />
-            Follow instagram
+            Підписуйтесь на інстаграм
           </Button>
         </TextBox>
         <List>

@@ -1,41 +1,32 @@
-import { NavbarMenu, Nav, NavLink } from "./Menu.styled";
 import { useRouter } from "next/router";
+import { NavbarMenu, Nav, NavLink, GlobalStyle } from "./Menu.styled";
 
 const Menu = ({ isOpenMenu }) => {
   const router = useRouter();
   return (
     <NavbarMenu isOpenMenu={isOpenMenu}>
+      <GlobalStyle isOpenMenu={isOpenMenu} />
       <Nav>
-        <NavLink href="/">Home</NavLink>
-        <NavLink
-          href="/mens"
-          active={router.pathname === "/mens" ? true : undefined}
-        >
-          Mens
-        </NavLink>
+        <NavLink href="/">Головна</NavLink>
+
         <NavLink
           href="/women"
           active={router.pathname === "/women" ? true : undefined}
         >
-          Women
+          Жіночий одяг
         </NavLink>
-        <NavLink
-          href="/boys"
-          active={router.pathname === "/boys" ? true : undefined}
-        >
-          Boys
-        </NavLink>
+
         <NavLink
           href="/girls"
-          active={router.pathname === "/girls" ? true : undefined}
+          active={router.pathname === "/kids" ? true : undefined}
         >
-          Girls
+          Дитячий одяг
         </NavLink>
         <NavLink
           href="/sale"
           active={router.pathname === "/sale" ? true : undefined}
         >
-          Sale
+          Sale до -50%
         </NavLink>
       </Nav>
     </NavbarMenu>

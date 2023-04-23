@@ -75,7 +75,7 @@ const SubscribeBox = () => {
         {checked && <CheckIcon />}
       </CheckboxLabelConfirm>
       <CheckboxConfirmText>
-        I agree to receive communications from Createx Store.
+        Я згоден отримувати повідомлення від Createx Store.
       </CheckboxConfirmText>
     </CheckboxContainerConfirm>
   );
@@ -84,39 +84,39 @@ const SubscribeBox = () => {
       <Wrapper>
         <div>
           <TextBox>
-            <TextItem>Subscribe for updates</TextItem>
+            <TextItem>Підпишіться на оновлення</TextItem>
             <Text>
-              Subscribe for exclusive early sale access and new arrivals.
+              Підпишіться на ексклюзивний доступ до раннього розпродажу та нових
+              надходжень.
             </Text>
           </TextBox>
           <Form>
             <CheckboxBox>
-              <Checkbox
+              {/* <Checkbox
                 value="Men"
                 checked={selectedItems.includes("Men")}
                 onChange={handleCheckboxChange}
-              />
+              /> */}
               <Checkbox
-                value="Women"
-                checked={selectedItems.includes("Women")}
+                value="Жінки"
+                checked={selectedItems.includes("Жінки")}
                 onChange={handleCheckboxChange}
               />
               <Checkbox
-                value="Girls"
-                checked={selectedItems.includes("Girls")}
+                value="Дівчатка"
+                checked={selectedItems.includes("Дівчатка")}
                 onChange={handleCheckboxChange}
               />
               <Checkbox
-                value="Boys"
-                checked={selectedItems.includes("Boys")}
+                value="Хлопчики"
+                checked={selectedItems.includes("Хлопчики")}
                 onChange={handleCheckboxChange}
               />
             </CheckboxBox>
             <InputBox>
-              <Label>Email</Label>
               <InputButtonBox>
-                <Input type="email" required placeholder="Your working email" />
-                <Button>Subscribe</Button>
+                <Input type="email" required placeholder="Електронна пошта" />
+                <Button>Підписатися</Button>
               </InputButtonBox>
             </InputBox>
             <ConfirmCheckbox

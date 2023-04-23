@@ -123,7 +123,7 @@ export const ImgSmall = styled.img`
 
 export const Img = styled.img`
   max-width: 400px;
-  max-height: 600px;
+  max-height: 500px;
   object-fit: content;
   object-position: center;
   user-select: none;

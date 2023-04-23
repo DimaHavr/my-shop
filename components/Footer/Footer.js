@@ -23,36 +23,36 @@ const Footer = () => {
       <FooterContainer>
         <ContactsWrapper>
           <Box>
-            <SubTitle>HELP</SubTitle>
+            <SubTitle>Допомога</SubTitle>
             <List>
               <Item>
-                <LinkItem href="#">Delivery & returns</LinkItem>
+                <LinkItem href="#">Доставка та повернення</LinkItem>
               </Item>
               <Item>
                 <LinkItem href="#">FAQ</LinkItem>
               </Item>
               <Item>
-                <LinkItem href="#">Track order</LinkItem>
+                <LinkItem href="#">Відстежити замовлення</LinkItem>
               </Item>
               <Item>
-                <LinkItem href="#">Contacts</LinkItem>
+                <LinkItem href="#">Контакти</LinkItem>
               </Item>
               <Item>
-                <LinkItem href="#">Blog</LinkItem>
+                <LinkItem href="#">Блог</LinkItem>
               </Item>
             </List>
           </Box>
           <Box>
-            <SubTitle>Shop</SubTitle>
+            <SubTitle>Магазин</SubTitle>
             <List>
               <Item>
-                <LinkItem href="#">New arrivals</LinkItem>
+                <LinkItem href="#">Нові надходження</LinkItem>
               </Item>
               <Item>
-                <LinkItem href="#">Trending now</LinkItem>
+                <LinkItem href="#">Зараз в тренді</LinkItem>
               </Item>
               <Item>
-                <LinkItem href="#">Sales</LinkItem>
+                <LinkItem href="#">Sale до -50%</LinkItem>
               </Item>
               <Item>
                 <LinkItem href="#">Brands</LinkItem>
@@ -69,7 +69,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer nofollow"
                 >
-                  London, UK
+                  Київ, Україна
                 </LinkItem>
               </Item>
               <Item>

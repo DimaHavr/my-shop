@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
@@ -25,17 +25,15 @@ const ImgSlideBox = ({ imagesArr, image }) => {
       <ImgSlideBoxStyled>
         <Swiper
           direction={"horizontal"}
-          slidesPerView={3}
+          slidesPerView={2}
           navigation={{
             nextEl: nextRef.current,
             prevEl: prevRef.current,
           }}
           breakpoints={{
-            480: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            930: {
-              direction: "vertical",
-            },
+            480: { slidesPerView: 3 },
+            768: { slidesPerView: 2 },
+            930: { slidesPerView: 3, direction: "vertical" },
           }}
           modules={[Navigation]}
           className="mySwiper"
@@ -49,7 +47,7 @@ const ImgSlideBox = ({ imagesArr, image }) => {
                   <ImgSmall
                     src={imageSmall}
                     onClick={() => {
-                      setSelectedImage(imageSmall);
+                      setSelectedImage(imageLarge);
                       setShowImage(true);
                     }}
                   />

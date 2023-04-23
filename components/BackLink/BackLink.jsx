@@ -16,13 +16,13 @@ const StyledButton = styled.button`
 
   :hover {
     transform: scale(1.05);
-    color: 17696a;
+    color: #17696a;
   }
 `;
 
-export const BackLink = ({ goBack }) => {
+export const BackLink = ({ getBack }) => {
   return (
-    <StyledButton onClick={goBack}>
+    <StyledButton onClick={getBack}>
       <HiArrowLeft size="24" />
     </StyledButton>
   );
