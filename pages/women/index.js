@@ -19,7 +19,7 @@ const Categories = dynamic(() =>
 import ToolBar from "../../components/ToolBar/ToolBar";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
-const Index = ({ womenProducts, subCategories }) => {
+const Index = ({ products, subCategories }) => {
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
   const GlobalStyle = createGlobalStyle`
@@ -45,7 +45,7 @@ const Index = ({ womenProducts, subCategories }) => {
           breadcrumbValue={breadcrumbValue}
         />
         <Categories categories={subCategories.data} />
-        <ProductsList products={womenProducts.data}>
+        <ProductsList products={products.data}>
           <ToolBar />
         </ProductsList>
         <SubscribeBox />
@@ -67,19 +67,19 @@ function getHeaders() {
 export async function getStaticProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
-  const womenProductsUrl =
+  const productsUrl =
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
   const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
   const subCategories = await responseSubCat.data;
 
-  const responseProducts = await axios.get(womenProductsUrl, getHeaders());
-  const womenProducts = await responseProducts.data;
+  const responseProducts = await axios.get(productsUrl, getHeaders());
+  const products = await responseProducts.data;
 
   return {
     props: {
       subCategories,
-      womenProducts,
+      products,
     },
   };
 }

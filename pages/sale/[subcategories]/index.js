@@ -65,7 +65,7 @@ function getHeaders() {
 export async function getStaticProps({ params }) {
   const slug = params.subcategories;
   const subCategoriesUrl =
-    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Sale";
   const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
     slug
   )}`;
