@@ -19,12 +19,10 @@ import BackLink from "../BackLink/BackLink";
 import {
   Section,
   Wrapper,
-  Img,
   Title,
   TextPrice,
   ImgBox,
   ContentWrapper,
-  DescText,
   FavoriteIconBox,
   FavoriteIconRemove,
   FavoriteIcon,

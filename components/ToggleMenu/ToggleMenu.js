@@ -29,9 +29,10 @@ const ToggleMenu = ({ productReviews, desc }) => {
           active={activeTab === "reviews"}
           onClick={() => setActiveTab("reviews")}
         >
-          Відгуки({productReviews.length})
+          Відгуки ({productReviews.length})
         </ToggleMenuButton>
       </ToggleMenuBtnBox>
+
       {activeTab === "description" && (
         <ContentBox active={activeTab}>
           <Text>{desc}</Text>
@@ -44,14 +45,15 @@ const ToggleMenu = ({ productReviews, desc }) => {
       )}
       {activeTab === "reviews" && (
         <ContentBox active={activeTab}>
-          <ul>
+          {/* <ul>
             {productReviews.map((review) => (
               <li key={review.id}>
                 <Text>{review.comment}</Text>
                 <Text>Rating: {review.rating}/5</Text>
               </li>
             ))}
-          </ul>
+          </ul> */}
+          Review
         </ContentBox>
       )}
     </ToggleMenuWrapper>

@@ -87,7 +87,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="/women"
-                active={router.pathname === "/women" ? true : undefined}
+                // active={router.pathname === "/women" ? true : undefined}
               >
                 Жіночий одяг
               </NavLink>
@@ -95,7 +95,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="/children"
-                active={router.pathname === "/boys" ? true : undefined}
+                // active={router.pathname === "/boys" ? true : undefined}
               >
                 Дитячий одяг
               </NavLink>
@@ -103,7 +103,7 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="/sale"
-                active={router.pathname === "/sale" ? true : undefined}
+                // active={router.pathname === "/sale" ? true : undefined}
               >
                 Sale до -50%
               </NavLink>

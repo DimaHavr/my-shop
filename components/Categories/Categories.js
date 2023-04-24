@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { List, Item, Img, Subtitle } from "./Categories.styled";
 import Box from "../Box/Box";
+import Link from "next/link";
 
 const Categories = ({ categories }) => {
   return (
@@ -43,12 +44,16 @@ const Categories = ({ categories }) => {
         {categories.map((item) => {
           const title = item.attributes.title;
           const image = item.attributes.img.data.attributes.formats.small.url;
+          const categoryPath =
+            item.attributes.categories.data[0].attributes.slug;
           return (
             <SwiperSlide key={item.id}>
-              <Item>
-                <Img src={image} />
-                <Subtitle>{title}</Subtitle>
-              </Item>
+              <Link href={`/${categoryPath}/${item.attributes.slug}`} passHref>
+                <Item>
+                  <Img src={image} />
+                  <Subtitle>{title}</Subtitle>
+                </Item>
+              </Link>
             </SwiperSlide>
           );
         })}

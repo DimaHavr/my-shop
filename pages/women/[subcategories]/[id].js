@@ -25,11 +25,9 @@ function getHeaders() {
   };
 }
 
-export async function getServerSideProps(context) {
-  const { params } = context;
-  const { id } = params;
+export async function getStaticProps({ params }) {
+  const id = params.id;
   const productUrl = `https://my-shop-strapi.onrender.com/api/products/${id}?populate=*`;
-
   try {
     const res = await axios.get(productUrl, getHeaders());
     const product = res.data;
@@ -44,4 +42,27 @@ export async function getServerSideProps(context) {
       props: {},
     };
   }
+}
+
+export async function getStaticPaths() {
+  const womenProductsUrl =
+    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+
+  const resProducts = await axios.get(womenProductsUrl, getHeaders());
+  const womenProducts = await resProducts.data;
+
+  const allPaths = womenProducts.data.map((item) => {
+    return {
+      params: {
+        subcategories:
+          item.attributes.sub_categories.data[0].attributes.slug.toString(),
+        id: item.id.toString(),
+      },
+    };
+  });
+
+  return {
+    paths: allPaths,
+    fallback: false,
+  };
 }

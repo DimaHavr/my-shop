@@ -23,7 +23,6 @@ import {
 const ProductsList = ({ children, products }) => {
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
-  console.log(favoritesProducts);
   const handleAddToFavorites = (product) => {
     dispatch(addToFavoritesList(product));
   };
@@ -46,9 +45,16 @@ const ProductsList = ({ children, products }) => {
               const image =
                 product.attributes.img.data[0].attributes.formats.small.url;
               const price = product.attributes.price;
+              const categoryPath =
+                product.attributes.categories.data[0].attributes.slug;
+              const subCategoryPath =
+                product.attributes.sub_categories.data[0].attributes.slug;
               return (
                 <Item key={product.id}>
-                  <Link href={`/women/product/${product.id}`} passHref>
+                  <Link
+                    href={`/${categoryPath}/${subCategoryPath}/${product.id}`}
+                    passHref
+                  >
                     <ImgBox>
                       <Img src={image} />
                     </ImgBox>

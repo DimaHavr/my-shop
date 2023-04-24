@@ -2,21 +2,21 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
-import { selectShowFilter } from "../../redux/filter/selectors";
-import { selectShowCart } from "../../redux/cart/selectors";
-import Box from "../../components/Box/Box";
-const Layout = dynamic(() => import("../../components/Layout/Layout"));
+import { selectShowFilter } from "../../../redux/filter/selectors";
+import { selectShowCart } from "../../../redux/cart/selectors";
+import Box from "../../../components/Box/Box";
+const Layout = dynamic(() => import("../../../components/Layout/Layout"));
 const SubscribeBox = dynamic(() =>
-  import("../../components/SubscribeBox/SubscribeBox")
+  import("../../../components/SubscribeBox/SubscribeBox")
 );
 const ProductsList = dynamic(() =>
-  import("../../components/ProductsList/ProductsList")
+  import("../../../components/ProductsList/ProductsList")
 );
 const Categories = dynamic(() =>
-  import("../../components/Categories/Categories")
+  import("../../../components/Categories/Categories")
 );
-import ToolBar from "../../components/ToolBar/ToolBar";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import ToolBar from "../../../components/ToolBar/ToolBar";
+import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 
 const Index = ({ womenProducts, subCategories }) => {
   const showCart = useSelector(selectShowCart);
@@ -27,19 +27,12 @@ const Index = ({ womenProducts, subCategories }) => {
       showCart || showFilter ? "hidden" : "auto"};
   }
 `;
-  const breadcrumbs = () => {
-    return subCategories.data.map((item) => {
-      const title = item.attributes.categories.data[0].attributes.title;
-      const path = item.attributes.categories.data[0].attributes.slug;
-      return [{ title, path }];
-    });
-  };
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
-        <Breadcrumb breadcrumbs={breadcrumbs} />
+        {/* <Breadcrumb breadcrumbs={breadcrumbs} /> */}
         <Categories categories={subCategories.data} />
         <ProductsList products={womenProducts.data}>
           <ToolBar />
@@ -60,11 +53,13 @@ function getHeaders() {
   };
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ params }) {
+  const slug = params.subcategories;
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
-  const womenProductsUrl =
-    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+  const womenProductsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
+    slug
+  )}`;
 
   const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
   const subCategories = await responseSubCat.data;
@@ -77,5 +72,26 @@ export async function getStaticProps() {
       subCategories,
       womenProducts,
     },
+  };
+}
+
+export async function getStaticPaths() {
+  const subCategoriesUrl =
+    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+
+  const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+  const subCategories = await responseSubCat.data;
+
+  const allPaths = subCategories.data.map((item) => {
+    return {
+      params: {
+        subcategories: item.attributes.slug.toString(),
+      },
+    };
+  });
+
+  return {
+    paths: allPaths,
+    fallback: false,
   };
 }

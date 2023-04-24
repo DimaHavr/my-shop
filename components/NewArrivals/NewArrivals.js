@@ -25,6 +25,7 @@ import {
   Button,
   ImgBox,
 } from "./NewArrivals.styled";
+import Link from "next/link";
 
 const NewArrivals = ({ newProducts }) => {
   const dispatch = useDispatch();
@@ -82,14 +83,23 @@ const NewArrivals = ({ newProducts }) => {
             const image =
               product.attributes.img.data[0].attributes.formats.small.url;
             const price = product.attributes.price;
+            const categoryPath =
+              product.attributes.categories.data[0].attributes.slug;
+            const subCategoryPath =
+              product.attributes.sub_categories.data[0].attributes.slug;
             return (
               <SwiperSlide key={product.id}>
                 <SlideBox>
                   <Item key={product.id}>
-                    <ImgBox>
-                      <Img src={image} />
-                    </ImgBox>
-                    <Subtitle>{title}</Subtitle>
+                    <Link
+                      href={`/${categoryPath}/${subCategoryPath}/${product.id}`}
+                      passHref
+                    >
+                      <ImgBox>
+                        <Img src={image} />
+                      </ImgBox>
+                      <Subtitle>{title}</Subtitle>
+                    </Link>
                     <TextPrice>{price}₴</TextPrice>
                     {!isFavorite ? (
                       <FavoriteIconBox

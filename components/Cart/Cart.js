@@ -121,6 +121,10 @@ const Cart = () => {
                 const color = item.color;
                 const size = item.size;
                 const itemTotalPrice = price * item.quantity;
+                const categoryPath =
+                  item.attributes.categories.data[0].attributes.slug;
+                const subCategoryPath =
+                  item.attributes.sub_categories.data[0].attributes.slug;
                 return (
                   <Item key={id}>
                     <Box
@@ -129,7 +133,10 @@ const Cart = () => {
                       gridGap="10px"
                       alignItems="center"
                     >
-                      <Link href={`/women/product/${id}`} passHref>
+                      <Link
+                        href={`/${categoryPath}/${subCategoryPath}/${id}`}
+                        passHref
+                      >
                         <ImgContainer>
                           <Img src={image} />
                         </ImgContainer>

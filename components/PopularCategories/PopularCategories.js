@@ -11,6 +11,7 @@ import {
   Subtitle,
   Text,
 } from "./PopularCategories.styled";
+import Link from "next/link";
 
 const PopularCategories = ({ popularCategories }) => {
   return (
@@ -47,12 +48,17 @@ const PopularCategories = ({ popularCategories }) => {
           {popularCategories.data.map((item) => {
             const title = item.attributes.title;
             const image = item.attributes.img.data.attributes.formats.small.url;
+            const categoryPath =
+              item.attributes.categories.data[0].attributes.slug;
+
             return (
               <SwiperSlide key={item.id}>
-                <Item>
-                  <Img src={image} />
-                  <Subtitle>{title}</Subtitle>
-                </Item>
+                <Link href={`${categoryPath}/${item.attributes.slug}`} passHref>
+                  <Item>
+                    <Img src={image} />
+                    <Subtitle>{title}</Subtitle>
+                  </Item>
+                </Link>
               </SwiperSlide>
             );
           })}
