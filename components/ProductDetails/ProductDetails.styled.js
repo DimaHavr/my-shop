@@ -24,7 +24,7 @@ export const PlusIcon = styled(AiOutlinePlus)`
 
   &:hover,
   &:focus {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 `;
 
@@ -99,11 +99,8 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 20px;
-  @media screen and (max-width: 768px) {
-    align-items: center;
-  }
 `;
 
 export const ContentWrapper = styled.div`

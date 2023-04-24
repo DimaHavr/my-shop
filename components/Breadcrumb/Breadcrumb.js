@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import {
   ArrowIcon,
   HomeIcon,
@@ -5,25 +7,27 @@ import {
   LinkStyled,
   List,
   Wrapper,
+  Text,
 } from "./Breadcrumb.styled";
-import Box from "../Box/Box";
 
-const Breadcrumb = ({ breadcrumbs }) => {
-  const myBreadcrumbs = breadcrumbs();
+const Breadcrumb = ({ breadcrumbArr, breadcrumbValue }) => {
+  const router = useRouter();
 
-  console.log(myBreadcrumbs);
+  const handleClick = () => {
+    router.back();
+  };
+
+  const matchingObject = breadcrumbArr.find(
+    (obj) => obj.path === breadcrumbValue
+  );
+
   return (
     <Wrapper>
-      <HomeIcon />
-      <List>
-        {myBreadcrumbs.map((breadcrumb, index) => (
-          <Item key={index}>
-            <LinkStyled href={`/${breadcrumb.path}`} passHref>
-              <ArrowIcon /> {breadcrumb.title}
-            </LinkStyled>
-          </Item>
-        ))}
-      </List>
+      {/* <Link href={"/"} passHref>
+        <HomeIcon />
+      </Link> */}
+      <ArrowIcon onClick={() => handleClick()} />
+      <Text>{matchingObject ? matchingObject.title : null}</Text>
     </Wrapper>
   );
 };

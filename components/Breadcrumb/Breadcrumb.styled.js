@@ -1,30 +1,43 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { GrHomeRounded } from "react-icons/gr";
-import { MdArrowForwardIos } from "react-icons/md";
+import { AiFillHome } from "react-icons/ai";
+import { TiArrowBack } from "react-icons/ti";
 
-export const HomeIcon = styled(GrHomeRounded)`
+export const HomeIcon = styled(AiFillHome)`
   width: 20px;
   height: 20px;
   color: #17696a;
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: #000;
+  }
 `;
 
-export const ArrowIcon = styled(MdArrowForwardIos)`
-  width: 20px;
-  height: 20px;
+export const ArrowIcon = styled(TiArrowBack)`
+  width: 30px;
+  height: 30px;
   color: #17696a;
+  cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    color: #000;
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  gap: 20px;
   padding: 5px 130px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background-color: #f4f5f7;
   width: 100%;
-  box-shadow: inset -0.5px 0px 13.5px -6px rgba(0, 0, 0, 0.43);
   @media screen and (max-width: 1080px) {
     padding: 5px 80px;
   }

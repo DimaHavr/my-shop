@@ -8,14 +8,12 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import { productsSlice } from "../redux/products/productsSlice";
 import { persistedCartSlice } from "../redux/cart/cartSlice";
 import { persistedFilterSlice } from "../redux/filter/filterSlice";
 import { persistedFavoritesSlice } from "../redux/favorites/favoritesSlice";
 
 export const store = configureStore({
   reducer: {
-    products: productsSlice.reducer,
     cart: persistedCartSlice,
     filter: persistedFilterSlice,
     favorites: persistedFavoritesSlice,

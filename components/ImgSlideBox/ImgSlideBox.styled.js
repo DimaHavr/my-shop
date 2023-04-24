@@ -86,7 +86,7 @@ export const NextBtn = styled.button`
   border: none;
   background: none;
   left: 50%;
-  top: 480px;
+  top: 490px;
   transform: translate(-50%, -50%) rotate(90deg);
   z-index: 1;
   cursor: pointer;
@@ -106,7 +106,7 @@ export const NextBtn = styled.button`
     z-index: 1;
   }
   @media screen and (max-width: 480px) {
-    left: 290px;
+    left: 310px;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;

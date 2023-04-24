@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { onAdd, onRemove, setSize, setColor } from "../../redux/cart/cartSlice";
 import {
@@ -15,7 +14,6 @@ import {
 } from "../../redux/cart/selectors";
 import SizeSelector from "../SizeSelector/SizeSelector";
 import ColorSelector from "../ColorSelector/ColorSelector";
-import BackLink from "../BackLink/BackLink";
 import {
   Section,
   Wrapper,
@@ -65,11 +63,7 @@ const productReviews = [
 const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-  const router = useRouter();
 
-  const handleClick = () => {
-    router.back();
-  };
   const {
     attributes: {
       title,
@@ -156,12 +150,7 @@ const ProductDetails = ({ product }) => {
   return (
     <Section>
       <Wrapper>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="flex-start"
-        >
-          <BackLink getBack={handleClick} />
+        <Box display="flex" justifyContent="center" alignItems="center">
           <Title>{title}</Title>
         </Box>
         <ContentWrapper>

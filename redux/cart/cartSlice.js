@@ -123,6 +123,7 @@ export const {
 const persistConfig = {
   key: "cart",
   storage,
+  whitelist: ["cartItems", "totalPrice", "totalQuantities", "qty"],
 };
 
 export const persistedCartSlice = persistReducer(

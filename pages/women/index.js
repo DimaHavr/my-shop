@@ -1,5 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectShowFilter } from "../../redux/filter/selectors";
@@ -27,19 +28,22 @@ const Index = ({ womenProducts, subCategories }) => {
       showCart || showFilter ? "hidden" : "auto"};
   }
 `;
-  const breadcrumbs = () => {
-    return subCategories.data.map((item) => {
-      const title = item.attributes.categories.data[0].attributes.title;
-      const path = item.attributes.categories.data[0].attributes.slug;
-      return [{ title, path }];
-    });
-  };
 
+  const categoriesPath = subCategories.data.map((item) => ({
+    title: item.attributes.categories.data[0].attributes.title,
+    path: item.attributes.categories.data[0].attributes.title.slug,
+  }));
+
+  const router = useRouter();
+  const breadcrumbValue = router.query.categories;
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
-        <Breadcrumb breadcrumbs={breadcrumbs} />
+        <Breadcrumb
+          breadcrumbArr={categoriesPath}
+          breadcrumbValue={breadcrumbValue}
+        />
         <Categories categories={subCategories.data} />
         <ProductsList products={womenProducts.data}>
           <ToolBar />
