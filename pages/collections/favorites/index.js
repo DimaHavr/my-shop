@@ -6,7 +6,6 @@ import { selectShowCart } from "../../../redux/cart/selectors";
 import { selectFavoritesProducts } from "../../../redux/favorites/selectors";
 import dynamic from "next/dynamic";
 import Box from "../../../components/Box/Box";
-import Loader from "../../../components/Loader/Loader";
 const Layout = dynamic(() => import("../../../components/Layout/Layout"));
 const SubscribeBox = dynamic(() =>
   import("../../../components/SubscribeBox/SubscribeBox")
@@ -20,7 +19,6 @@ const InstagramBox = dynamic(() =>
 );
 
 const Index = () => {
-  // const [isLoading, setIsLoading] = useState(true);
   const products = useSelector(selectFavoritesProducts);
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
