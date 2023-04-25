@@ -44,14 +44,14 @@ const SizeSelector = ({ sizes }) => {
         className="mySwiper"
       >
         {sizes.map((size) => (
-          <SwiperSlide key={size}>
+          <SwiperSlide key={size.attributes.name}>
             <SlideBox>
               <SizeButton
-                key={size}
-                active={selectedSize === size}
-                onClick={() => handleSizeChange(size)}
+                key={size.id}
+                active={selectedSize === size.attributes.name}
+                onClick={() => handleSizeChange(size.attributes.name)}
               >
-                {size}
+                {size.attributes.name}
               </SizeButton>
             </SlideBox>
           </SwiperSlide>

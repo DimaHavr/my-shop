@@ -37,13 +37,12 @@ import Box from "../Box/Box";
 import Menu from "../Menu/Menu";
 
 const Layout = ({ pageTitle, children }) => {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const showCart = useSelector(selectShowCart);
   const totalQuantities = useSelector(selectTotalQuantities);
   const totalFavoriteQty = useSelector(selectFavoritesTotal);
 
   const dispatch = useDispatch();
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
-  const router = useRouter();
 
   function onToggleMenu() {
     setIsOpenMenu(!isOpenMenu);
@@ -113,20 +112,21 @@ const Layout = ({ pageTitle, children }) => {
           <ToolBar>
             <SearchBox />
             <Box display="flex" gridGap="5px">
-              <Link href="/collections/favorites">
-                <NavButton>
-                  {totalFavoriteQty > 0 ? (
+              <NavButton>
+                {totalFavoriteQty > 0 ? (
+                  <Link href="/favorites">
                     <FavoriteIconRemove />
-                  ) : (
-                    <FavoriteIcon />
-                  )}
-                  <ItemQty
-                    style={{ background: "none", color: "#333", padding: 0 }}
-                  >
-                    {totalFavoriteQty}
-                  </ItemQty>
-                </NavButton>
-              </Link>
+                  </Link>
+                ) : (
+                  <FavoriteIcon />
+                )}
+                <ItemQty
+                  style={{ background: "none", color: "#333", padding: 0 }}
+                >
+                  {totalFavoriteQty}
+                </ItemQty>
+              </NavButton>
+
               <NavButton onClick={() => dispatch(setShowCart(true))}>
                 <CardIcon />
                 <ItemQty>{totalQuantities}</ItemQty>

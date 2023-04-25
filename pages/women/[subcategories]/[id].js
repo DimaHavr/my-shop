@@ -1,12 +1,14 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import getHeaders from "../../../hooks/getHeaders";
 import Box from "../../../components/Box/Box";
 import Layout from "../../../components/Layout/Layout";
+import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+
 const ProductDetails = dynamic(() =>
   import("../../../components/ProductDetails/ProductDetails")
 );
-import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 
 const ProductScreen = ({ product }) => {
   const router = useRouter();
@@ -32,13 +34,6 @@ const ProductScreen = ({ product }) => {
 };
 
 export default ProductScreen;
-function getHeaders() {
-  return {
-    headers: {
-      Authorization: `Bearer 1aa8eca2907e2c5d6fa22265203be2e366445abe6397f4c12f3488ea83080b8826988c86a945817c971699466a3f24ec4b6d6ae2385614e9bb0c2f5ebb8d1ffde0ae2ddddb89f063a5d49d64cc59b962e76717077760a1feaaa592707c537490d24fac53faef3434e6abd47a6c72d1a1d4110c786e0e200ce3bdf22e6aa3529e`,
-    },
-  };
-}
 
 export async function getStaticProps({ params }) {
   const id = params.id;
@@ -63,21 +58,29 @@ export async function getStaticPaths() {
   const womenProductsUrl =
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-  const resProducts = await axios.get(womenProductsUrl, getHeaders());
-  const womenProducts = await resProducts.data;
+  try {
+    const resProducts = await axios.get(womenProductsUrl, getHeaders());
+    const womenProducts = await resProducts.data;
 
-  const allPaths = womenProducts.data.map((item) => {
+    const allPaths = womenProducts.data.map((item) => {
+      return {
+        params: {
+          subcategories:
+            item.attributes.sub_categories.data[0].attributes.slug.toString(),
+          id: item.id.toString(),
+        },
+      };
+    });
+
     return {
-      params: {
-        subcategories:
-          item.attributes.sub_categories.data[0].attributes.slug.toString(),
-        id: item.id.toString(),
-      },
+      paths: allPaths,
+      fallback: false,
     };
-  });
-
-  return {
-    paths: allPaths,
-    fallback: false,
-  };
+  } catch (error) {
+    console.error(error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
 }

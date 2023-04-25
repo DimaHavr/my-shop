@@ -5,20 +5,22 @@ import ProductsPagination from "../ProductsPagination/ProductsPagination";
 import ControlledOpenSelect from "../Sorting/Sorting";
 import { Wrapper, FilterButton, FilterButtonIcon } from "./ToolBar.styled";
 import ProductsFilter from "../ProductsFilter/ProductsFilter";
-const ToolBar = () => {
+
+const ToolBar = ({ products }) => {
   const dispatch = useDispatch();
   const showFilter = useSelector(selectShowFilter);
   function onToggleFilter() {
     dispatch(setShowFilter(true));
   }
+  console.log(products);
   return (
     <Wrapper>
       <FilterButton onClick={onToggleFilter}>
         <FilterButtonIcon />
         {showFilter ? " Hide filters" : " Show filters"}
-      </FilterButton>
+      </FilterButton>{" "}
       <ControlledOpenSelect />
-      <ProductsPagination />
+      {products.length > 12 && <ProductsPagination />}
       {showFilter && <ProductsFilter />}
     </Wrapper>
   );

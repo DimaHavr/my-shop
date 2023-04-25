@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="uk">
-        <Head></Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

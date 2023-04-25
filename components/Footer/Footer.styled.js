@@ -10,7 +10,7 @@ import { CgCopyright } from "react-icons/cg";
 export const SectionFooter = styled.footer`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 60px 40px;
   margin-top: auto;

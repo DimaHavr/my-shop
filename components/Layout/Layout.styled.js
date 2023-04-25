@@ -159,6 +159,7 @@ export const NavButton = styled.button`
   background: none;
   border: none;
   display: flex;
+  align-items: center;
   gap: 5px;
 `;
 

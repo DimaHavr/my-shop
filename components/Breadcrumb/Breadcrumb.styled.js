@@ -30,8 +30,9 @@ export const ArrowIcon = styled(TiArrowBack)`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 5px 130px;
@@ -46,11 +47,14 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const List = styled.ul`
-  width: 100%;
+export const IconBox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 13%;
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   gap: 20px;
 `;
 
@@ -73,7 +77,7 @@ export const Text = styled.p`
 `;
 
 export const Subtitle = styled.h4`
-  font-family: "LatoLight";
+  font-family: "LatoBold";
   color: #424551;
   text-align: center;
 `;

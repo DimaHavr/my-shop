@@ -249,6 +249,7 @@ export const QuantityContainer = styled.div`
 export const QuantityText = styled.p`
   font-size: 20px;
   font-weight: 700;
+  user-select: none;
 `;
 
 export const List = styled.ul`
@@ -285,6 +286,7 @@ export const Text = styled.p`
   font-size: 16px;
   line-height: 26px;
   color: #1e212c;
+  user-select: none;
 `;
 export const TextDesc = styled.p`
   text-align: center;

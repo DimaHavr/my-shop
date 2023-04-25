@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
@@ -19,8 +18,8 @@ import {
   FavoriteIconRemove,
   FavoriteIcon,
 } from "./ProductsList.styled";
-
-const ProductsList = ({ children, products }) => {
+import ToolBar from "../../components/ToolBar/ToolBar";
+const ProductsList = ({ products }) => {
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const handleAddToFavorites = (product) => {
@@ -35,7 +34,7 @@ const ProductsList = ({ children, products }) => {
     <Section>
       {products.length > 0 && (
         <Wrapper>
-          {children && children}
+          <ToolBar products={products} />
           <List>
             {products.map((product) => {
               const isFavorite = favoritesProducts.some(
@@ -79,7 +78,7 @@ const ProductsList = ({ children, products }) => {
             })}
           </List>
 
-          {children && children}
+          <ToolBar products={products} />
         </Wrapper>
       )}
     </Section>

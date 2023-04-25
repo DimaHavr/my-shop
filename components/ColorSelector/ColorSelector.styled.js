@@ -30,8 +30,9 @@ export const ColorButton = styled.button`
   height: 24px;
   border-radius: 50%;
   border: 4px solid #ffffff;
-  box-shadow: ${({ active }) => active && "0 0 2px 2px #17696a"};
-  background-color: ${(props) => props.color};
+  box-shadow: ${({ active }) =>
+    active ? "0 0 4px 4px #17696a" : "0 0 2px 2px #00000087"};
+  background-color: ${(props) => props.codeHex};
   cursor: pointer;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -40,7 +41,7 @@ export const ColorButton = styled.button`
   &:hover,
   &:focus {
     transform: scale(1.02);
-    box-shadow: 0 0 2px 2px #17696a;
+    box-shadow: 0 0 4px 4px #17696a;
   }
 `;
 

@@ -19,6 +19,7 @@ import {
   Subtitle,
 } from "./ColorSelector.styled";
 import Box from "../Box/Box";
+
 const ColorSelector = ({ colors }) => {
   const selectedColor = useSelector(selectColor);
   const dispatch = useDispatch();
@@ -46,13 +47,14 @@ const ColorSelector = ({ colors }) => {
         className="mySwiper"
       >
         {colors.map((color) => (
-          <SwiperSlide key={color}>
+          <SwiperSlide key={color.id}>
             <SlideBox>
               <ColorButton
-                key={color}
-                active={selectedColor === color}
-                color={color}
-                onClick={() => handleColorChange(color)}
+                key={color.attributes.name}
+                active={selectedColor === color.attributes.name}
+                color={color.attributes.name}
+                codeHex={color.attributes.code_hex}
+                onClick={() => handleColorChange(color.attributes.name)}
               ></ColorButton>
             </SlideBox>
           </SwiperSlide>

@@ -3,9 +3,7 @@ import { useRouter } from "next/router";
 import {
   ArrowIcon,
   HomeIcon,
-  Item,
-  LinkStyled,
-  List,
+  IconBox,
   Wrapper,
   Text,
 } from "./Breadcrumb.styled";
@@ -23,10 +21,12 @@ const Breadcrumb = ({ breadcrumbArr, breadcrumbValue }) => {
 
   return (
     <Wrapper>
-      {/* <Link href={"/"} passHref>
-        <HomeIcon />
-      </Link> */}
-      <ArrowIcon onClick={() => handleClick()} />
+      <IconBox>
+        <Link href={"/"} passHref>
+          <HomeIcon />
+        </Link>
+        <ArrowIcon onClick={() => handleClick()} />
+      </IconBox>
       <Text>{matchingObject ? matchingObject.title : null}</Text>
     </Wrapper>
   );

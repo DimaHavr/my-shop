@@ -40,8 +40,6 @@ import ProductReview from "../ProductReview/ProductReview";
 import ToggleMenu from "../ToggleMenu/ToggleMenu";
 import ImgSlideBox from "../ImgSlideBox/ImgSlideBox";
 
-const colors = ["red", "green", "blue", "yellow", "orange", "purple"];
-const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 const productReviews = [
   {
     id: 1,
@@ -63,7 +61,7 @@ const productReviews = [
 const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-
+  console.log(product);
   const {
     attributes: {
       title,
@@ -86,7 +84,8 @@ const ProductDetails = ({ product }) => {
     },
     id,
   } = product;
-
+  const colors = product.attributes.colors.data;
+  const sizes = product.attributes.sizes.data;
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const productsInCart = useSelector(selectCartItems);
   const color = useSelector(selectColor);

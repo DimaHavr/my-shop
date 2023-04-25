@@ -1,12 +1,13 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-
-import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectShowCart } from "../redux/cart/selectors";
+import { createGlobalStyle } from "styled-components";
+import getHeaders from "../hooks/getHeaders";
 import Box from "../components/Box/Box";
-const Layout = dynamic(() => import("../components/Layout/Layout"));
-const HeroBanner = dynamic(() => import("../components/HeroBanner/HeroBanner"));
+import Layout from "../components/Layout/Layout";
+import HeroBanner from "../components/HeroBanner/HeroBanner";
+
 const PopularCategories = dynamic(() =>
   import("../components/PopularCategories/PopularCategories")
 );
@@ -19,7 +20,6 @@ const TrendingNow = dynamic(() =>
 const ServicesList = dynamic(() =>
   import("../components/ServicesList/ServicesList")
 );
-
 const InstagramBox = dynamic(() =>
   import("../components/InstagramBox/InstagramBox")
 );
@@ -29,7 +29,6 @@ const SubscribeBox = dynamic(() =>
 
 const Index = ({ popularCategories, trendingProducts, newProducts }) => {
   const showCart = useSelector(selectShowCart);
-
   const GlobalStyle = createGlobalStyle`
   body {
     overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
@@ -53,14 +52,6 @@ const Index = ({ popularCategories, trendingProducts, newProducts }) => {
 
 export default Index;
 
-function getHeaders() {
-  return {
-    headers: {
-      Authorization: `Bearer 1aa8eca2907e2c5d6fa22265203be2e366445abe6397f4c12f3488ea83080b8826988c86a945817c971699466a3f24ec4b6d6ae2385614e9bb0c2f5ebb8d1ffde0ae2ddddb89f063a5d49d64cc59b962e76717077760a1feaaa592707c537490d24fac53faef3434e6abd47a6c72d1a1d4110c786e0e200ce3bdf22e6aa3529e`,
-    },
-  };
-}
-
 export async function getStaticProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*";
@@ -69,21 +60,32 @@ export async function getStaticProps() {
   const newProductsUrl =
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][type][$eq]=new";
 
-  const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-  const responseTrendingProducts = await axios.get(
-    trendingProductsUrl,
-    getHeaders()
-  );
-  const responseNewProducts = await axios.get(newProductsUrl, getHeaders());
-  const popularCategories = await responseSubCat.data;
-  const trendingProducts = await responseTrendingProducts.data;
-  const newProducts = await responseNewProducts.data;
+  try {
+    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+    const responseTrendingProducts = await axios.get(
+      trendingProductsUrl,
+      getHeaders()
+    );
+    const responseNewProducts = await axios.get(newProductsUrl, getHeaders());
+    const popularCategories = await responseSubCat.data;
+    const trendingProducts = await responseTrendingProducts.data;
+    const newProducts = await responseNewProducts.data;
 
-  return {
-    props: {
-      popularCategories,
-      trendingProducts,
-      newProducts,
-    },
-  };
+    return {
+      props: {
+        popularCategories,
+        trendingProducts,
+        newProducts,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        popularCategories: null,
+        trendingProducts: null,
+        newProducts: null,
+      },
+    };
+  }
 }
