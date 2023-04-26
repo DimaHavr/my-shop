@@ -122,6 +122,7 @@ export const ImgSmall = styled.img`
 `;
 
 export const Img = styled.img`
+  cursor: pointer;
   max-width: 400px;
   max-height: 500px;
   object-fit: content;

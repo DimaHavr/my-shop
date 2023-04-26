@@ -18,7 +18,7 @@ const ToolBar = ({ products }) => {
       <FilterButton onClick={onToggleFilter}>
         <FilterButtonIcon />
         {showFilter ? " Hide filters" : " Show filters"}
-      </FilterButton>{" "}
+      </FilterButton>
       <ControlledOpenSelect />
       {products.length > 12 && <ProductsPagination />}
       {showFilter && <ProductsFilter />}
