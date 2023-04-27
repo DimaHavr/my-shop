@@ -84,6 +84,7 @@ const ProductDetails = ({ product }) => {
     },
     id,
   } = product;
+  const productReviews1 = product.attributes;
   const colors = product.attributes.colors.data;
   const sizes = product.attributes.sizes.data;
   const favoritesProducts = useSelector(selectFavoritesProducts);
@@ -162,7 +163,10 @@ const ProductDetails = ({ product }) => {
                 <Subtitle>Ціна:</Subtitle>
                 <TextPrice>{price}₴</TextPrice>
               </Box>
-              <ProductReview productReviews={productReviews} />
+              <ProductReview
+                productReviews={productReviews}
+                productReviews1={productReviews1}
+              />
             </Box>
             <Box
               display="flex"

@@ -6,7 +6,8 @@ import {
   RegStarIcon,
   StarIcon,
 } from "./ProductReview.styled";
-const ProductReview = ({ productReviews }) => {
+const ProductReview = ({ productReviews, productReviews1 }) => {
+  console.log(productReviews1);
   const totalReviews = productReviews.length;
   let totalStars = 0;
 
