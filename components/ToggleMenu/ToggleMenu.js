@@ -5,10 +5,25 @@ import {
   ToggleMenuWrapper,
   ContentBox,
   Text,
+  RegStarIcon,
+  StarIcon,
 } from "./ToggleMenu.styled";
+import ReviewForm from "../ReviewForm/ReviewForm";
 
-const ToggleMenu = ({ productReviews, desc }) => {
+const ToggleMenu = ({ productReviews, desc, productId }) => {
   const [activeTab, setActiveTab] = useState("description");
+  const getStars = ({ rating }) => {
+    const starArray = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        starArray.push(<StarIcon key={i} />);
+      } else {
+        starArray.push(<RegStarIcon key={i} />);
+      }
+    }
+    console.log(starArray);
+    return starArray;
+  };
 
   return (
     <ToggleMenuWrapper>
@@ -45,15 +60,18 @@ const ToggleMenu = ({ productReviews, desc }) => {
       )}
       {activeTab === "reviews" && (
         <ContentBox active={activeTab}>
-          {/* <ul>
-            {productReviews.map((review) => (
-              <li key={review.id}>
-                <Text>{review.comment}</Text>
-                <Text>Rating: {review.rating}/5</Text>
-              </li>
-            ))}
-          </ul> */}
-          Review
+          <ul>
+            {productReviews.map(
+              ({ id, attributes: { comment, rating, name } }) => (
+                <li key={id}>
+                  <Text>Name: {name}</Text>
+                  <Text>{comment}</Text>
+                  <Text>{getStars({ rating })}</Text>
+                </li>
+              )
+            )}
+          </ul>
+          <ReviewForm productId={productId} />
         </ContentBox>
       )}
     </ToggleMenuWrapper>

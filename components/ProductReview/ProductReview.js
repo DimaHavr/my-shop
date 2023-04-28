@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ReviewContainer,
   RatingContainer,
@@ -6,13 +5,13 @@ import {
   RegStarIcon,
   StarIcon,
 } from "./ProductReview.styled";
-const ProductReview = ({ productReviews, productReviews1 }) => {
-  console.log(productReviews1);
+
+const ProductReview = ({ productReviews }) => {
   const totalReviews = productReviews.length;
   let totalStars = 0;
-
-  productReviews.forEach((review) => {
-    totalStars += review.rating;
+  console.log(productReviews);
+  productReviews.map(({ attributes: { rating } }) => {
+    totalStars += rating;
   });
 
   const averageRating = totalStars / totalReviews;
@@ -28,10 +27,12 @@ const ProductReview = ({ productReviews, productReviews1 }) => {
   }
 
   return (
-    <ReviewContainer>
-      <RatingContainer>{starArray}</RatingContainer>
-      <CommentContainer>({totalReviews})</CommentContainer>
-    </ReviewContainer>
+    <>
+      <ReviewContainer>
+        <RatingContainer>{starArray}</RatingContainer>
+        <CommentContainer>({totalReviews})</CommentContainer>
+      </ReviewContainer>
+    </>
   );
 };
 

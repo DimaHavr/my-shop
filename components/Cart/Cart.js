@@ -195,7 +195,7 @@ const Cart = () => {
                     </Box>
                     <RemoveButtonIcon
                       onClick={() => {
-                        toast.success(`${title} видалено з корзини!`, {
+                        toast.success(`${title} видалено з кошика!`, {
                           style: {
                             borderRadius: "10px",
                             background: "grey",

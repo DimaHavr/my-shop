@@ -50,7 +50,6 @@ const PopularCategories = ({ popularCategories }) => {
             const image = item.attributes.img.data.attributes.formats.small.url;
             const categoryPath =
               item.attributes.categories.data[0].attributes.slug;
-
             return (
               <SwiperSlide key={item.id}>
                 <Link href={`${categoryPath}/${item.attributes.slug}`} passHref>
