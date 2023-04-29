@@ -12,6 +12,7 @@ import {
   Item,
   List,
   TextComment,
+  TextDesc,
 } from "./ToggleMenu.styled";
 import ReviewForm from "../ReviewForm/ReviewForm";
 
@@ -61,7 +62,7 @@ const ToggleMenu = ({ productReviews, desc, productId }) => {
 
       {activeTab === "description" && (
         <ContentBox active={activeTab}>
-          <Text>{desc}</Text>
+          <TextDesc>{desc}</TextDesc>
         </ContentBox>
       )}
       {activeTab === "features" && (

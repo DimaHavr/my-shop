@@ -53,12 +53,17 @@ export const Text = styled.p`
     text-align: center;
   }
 `;
-export const TextComment = styled.p`
-  font-family: "LatoLight";
+
+export const TextDesc = styled.p`
+  font-family: "LatoRegular";
   color: #000;
   @media screen and (max-width: 488px) {
     text-align: center;
   }
+`;
+export const TextComment = styled.p`
+  font-family: "LatoLight";
+  color: #000;
 `;
 
 export const ContentBox = styled.div`

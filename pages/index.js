@@ -52,7 +52,7 @@ const Index = ({ popularCategories, trendingProducts, newProducts }) => {
 
 export default Index;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*";
   const trendingProductsUrl =
