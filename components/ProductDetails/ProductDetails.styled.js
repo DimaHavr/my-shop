@@ -119,6 +119,9 @@ export const Sidebar = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
+  @media screen and (max-width: 488px) {
+    width: 100%;
+  }
 `;
 
 export const ImgBox = styled.div`
