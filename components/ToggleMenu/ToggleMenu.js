@@ -7,11 +7,22 @@ import {
   Text,
   RegStarIcon,
   StarIcon,
+  Button,
+  ItemBox,
+  Item,
+  List,
+  TextComment,
 } from "./ToggleMenu.styled";
 import ReviewForm from "../ReviewForm/ReviewForm";
 
 const ToggleMenu = ({ productReviews, desc, productId }) => {
   const [activeTab, setActiveTab] = useState("description");
+  const [showForm, setShowForm] = useState(false);
+
+  const handleToggleModal = () => {
+    setShowForm((prevShowForm) => !prevShowForm);
+  };
+
   const getStars = ({ rating }) => {
     const starArray = [];
     for (let i = 1; i <= 5; i++) {
@@ -60,18 +71,29 @@ const ToggleMenu = ({ productReviews, desc, productId }) => {
       )}
       {activeTab === "reviews" && (
         <ContentBox active={activeTab}>
-          <ul>
+          <List>
             {productReviews.map(
               ({ id, attributes: { comment, rating, name } }) => (
-                <li key={id}>
-                  <Text>Name: {name}</Text>
-                  <Text>{comment}</Text>
-                  <Text>{getStars({ rating })}</Text>
-                </li>
+                <Item key={id}>
+                  <ItemBox>
+                    <Text> {name}</Text>
+                    <Text>{getStars({ rating })}</Text>
+                  </ItemBox>
+                  <TextComment>{comment}</TextComment>
+                </Item>
               )
             )}
-          </ul>
-          <ReviewForm productId={productId} />
+          </List>
+          <Button onClick={handleToggleModal}>
+            {showForm ? "Закрити форму" : "Залишити відгук"}
+          </Button>
+          {showForm && (
+            <ReviewForm
+              productId={productId}
+              onClose={handleToggleModal}
+              showForm={showForm}
+            />
+          )}
         </ContentBox>
       )}
     </ToggleMenuWrapper>

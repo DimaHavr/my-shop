@@ -154,36 +154,8 @@ const ProductDetails = ({ product }) => {
             >
               <SizeSelector sizes={sizes} />
               <ColorSelector colors={colors} />
-              <ButtonBox>
-                <QuantityContainer>
-                  <QuantityBtn disabled={inCart}>
-                    <MinusIcon onClick={decQty} />
-                  </QuantityBtn>
-                  <QuantityText>{quantity}</QuantityText>
-                  <QuantityBtn disabled={inCart}>
-                    <PlusIcon onClick={() => !inCart && incQty()} />
-                  </QuantityBtn>
-                </QuantityContainer>
-                {!inCart ? (
-                  <AddBtn onClick={handleAddToCart}>Додати до кошика</AddBtn>
-                ) : (
-                  <RemoveBtn
-                    onClick={() => {
-                      toast.success(`${title} removed from cart...`, {
-                        style: {
-                          borderRadius: "10px",
-                          background: "grey",
-                          color: "#fff",
-                        },
-                      });
-                      dispatch(onRemove({ product }));
-                    }}
-                  >
-                    Видалити з кошика
-                  </RemoveBtn>
-                )}
-              </ButtonBox>
             </Box>
+            <AddBtn>Розмірна сітка</AddBtn>
             {!isFavorite ? (
               <FavoriteIconBox onClick={() => handleAddToFavorites(product)}>
                 <FavoriteIcon />
@@ -195,13 +167,42 @@ const ProductDetails = ({ product }) => {
                 Видалити з улюблених
               </FavoriteIconBox>
             )}
-            <ToggleMenu
-              desc={desc}
-              productReviews={productReviews}
-              productId={id}
-            />
+            <ButtonBox>
+              <QuantityContainer>
+                <QuantityBtn disabled={inCart}>
+                  <MinusIcon onClick={decQty} />
+                </QuantityBtn>
+                <QuantityText>{quantity}</QuantityText>
+                <QuantityBtn disabled={inCart}>
+                  <PlusIcon onClick={() => !inCart && incQty()} />
+                </QuantityBtn>
+              </QuantityContainer>
+              {!inCart ? (
+                <AddBtn onClick={handleAddToCart}>Додати до кошика</AddBtn>
+              ) : (
+                <RemoveBtn
+                  onClick={() => {
+                    toast.success(`${title} removed from cart...`, {
+                      style: {
+                        borderRadius: "10px",
+                        background: "grey",
+                        color: "#fff",
+                      },
+                    });
+                    dispatch(onRemove({ product }));
+                  }}
+                >
+                  Видалити з кошика
+                </RemoveBtn>
+              )}
+            </ButtonBox>
           </Sidebar>
         </ContentWrapper>
+        <ToggleMenu
+          desc={desc}
+          productReviews={productReviews}
+          productId={id}
+        />
       </Wrapper>
     </Section>
   );

@@ -32,7 +32,6 @@ export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 40px;
   height: 40px;
   color: #17696a;
-  z-index: 1;
   position: absolute;
   top: 50%;
   left: 40px;
@@ -43,7 +42,6 @@ export const FavoriteIconRemove = styled(MdFavorite)`
   width: 40px;
   height: 40px;
   color: #17696a;
-  z-index: 1;
   position: absolute;
   top: 50%;
   left: 40px;
@@ -106,7 +104,7 @@ export const Wrapper = styled.div`
 export const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
   gap: 20px;
   @media screen and (max-width: 768px) {

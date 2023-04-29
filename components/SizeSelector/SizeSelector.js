@@ -31,7 +31,7 @@ const SizeSelector = ({ sizes }) => {
   const nextRef = useRef(null);
   return (
     <SizeSelectorStyled>
-      <Box display="flex" alignItems="baseline" gridGap="10px">
+      <Box display="flex" alignItems="flex-end" gridGap="10px">
         <Subtitle>Оберіть розмір:</Subtitle> <Text>{selectedSize}</Text>
       </Box>
       <Swiper

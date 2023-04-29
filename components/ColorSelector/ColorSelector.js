@@ -34,7 +34,7 @@ const ColorSelector = ({ colors }) => {
   }, []);
   return (
     <ColorSelectorStyled>
-      <Box display="flex" alignItems="baseline" gridGap="10px">
+      <Box display="flex" alignItems="flex-end" gridGap="10px">
         <Subtitle>Оберіть колір:</Subtitle> <Text> {selectedColor}</Text>
       </Box>
       <Swiper
