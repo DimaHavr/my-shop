@@ -56,7 +56,7 @@ const Index = ({ products, subCategories }) => {
 1;
 export default Index;
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const slug = params.subcategories;
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
@@ -88,31 +88,31 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
-  const subCategoriesUrl =
-    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+// export async function getStaticPaths() {
+//   const subCategoriesUrl =
+//     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-  try {
-    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-    const subCategories = await responseSubCat.data;
+//   try {
+//     const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+//     const subCategories = await responseSubCat.data;
 
-    const allPaths = subCategories.data.map((item) => {
-      return {
-        params: {
-          subcategories: item.attributes.slug.toString(),
-        },
-      };
-    });
+//     const allPaths = subCategories.data.map((item) => {
+//       return {
+//         params: {
+//           subcategories: item.attributes.slug.toString(),
+//         },
+//       };
+//     });
 
-    return {
-      paths: allPaths,
-      fallback: false,
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
-}
+//     return {
+//       paths: allPaths,
+//       fallback: false,
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       paths: [],
+//       fallback: false,
+//     };
+//   }
+// }
