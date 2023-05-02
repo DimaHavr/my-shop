@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import Link from "next/link";
 
 export const HeroBannerSection = styled.section`
-  cursor: grab;
   display: flex;
   background: linear-gradient(rgba(47, 48, 58, 0.2), rgba(47, 48, 58, 0.2)),
     url(${({ backgroundImage }) => backgroundImage}) no-repeat center center;
@@ -35,7 +33,7 @@ export const HeroBannerSection = styled.section`
     height: 450px;
   }
   @media screen and (max-width: 620px) {
-    background-position-x: 60%;
+    background-position-x: 27%;
   }
 `;
 
@@ -77,15 +75,16 @@ export const HeroBannerText = styled.p`
 export const HeroBannerTitle = styled.h1`
   font-family: "LatoBold";
   font-weight: 900;
-  font-size: 72px;
-  line-height: 94px;
+  font-size: 42px;
+  line-height: 64px;
   display: flex;
   align-items: center;
   letter-spacing: 1px;
   color: #fff;
   @media screen and (max-width: 620px) {
-    font-size: 42px;
-    line-height: 64px;
+    font-size: 22px;
+    line-height: 44px;
+    width: 195px;
   }
   @media screen and (max-width: 620px) {
     width: 195px;
@@ -144,7 +143,7 @@ export const HeroBannerButtonSecond = styled.button`
 `;
 
 export const HeroBannerButtonBox = styled.div`
-  margin-top: 60px;
+  margin-top: 30px;
   display: flex;
   gap: 25px;
   @media screen and (max-width: 620px) {

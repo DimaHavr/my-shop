@@ -28,7 +28,12 @@ const SubscribeBox = dynamic(() =>
   import("../components/SubscribeBox/SubscribeBox")
 );
 
-const Index = ({ popularCategories, trendingProducts, newProducts }) => {
+const Index = ({
+  popularCategories,
+  trendingProducts,
+  newProducts,
+  heroBanners,
+}) => {
   const showCart = useSelector(selectShowCart);
   const GlobalStyle = createGlobalStyle`
   body {
@@ -39,7 +44,7 @@ const Index = ({ popularCategories, trendingProducts, newProducts }) => {
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} />
       <Layout pageTitle="My-Shop">
-        <HeroBanner />
+        <HeroBanner heroBanners={heroBanners.data} />
         <PopularCategories popularCategories={popularCategories} />
         <TrendingNow trendingProducts={trendingProducts} />
         <NewArrivals newProducts={newProducts} />
@@ -60,9 +65,11 @@ export async function getServerSideProps() {
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][type][$eq]=trending";
   const newProductsUrl =
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][type][$eq]=new";
+  const heroBannersUrl =
+    "https://my-shop-strapi.onrender.com/api/hero-banners?populate=*";
 
   try {
-    const [popularCategories, trendingProducts, newProducts] =
+    const [popularCategories, trendingProducts, newProducts, heroBanners] =
       await Promise.all([
         cache.getOrFetch("popularCategories", async () => {
           const response = await axios.get(subCategoriesUrl, getHeaders());
@@ -76,6 +83,10 @@ export async function getServerSideProps() {
           const response = await axios.get(newProductsUrl, getHeaders());
           return response.data;
         }),
+        cache.getOrFetch("heroBanners", async () => {
+          const response = await axios.get(heroBannersUrl, getHeaders());
+          return response.data;
+        }),
       ]);
 
     return {
@@ -83,6 +94,7 @@ export async function getServerSideProps() {
         popularCategories,
         trendingProducts,
         newProducts,
+        heroBanners,
       },
     };
   } catch (error) {

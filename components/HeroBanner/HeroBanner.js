@@ -17,14 +17,15 @@ import Link from "next/link";
 
 const backgroundImage = "/images/hero/imageBg1.webp";
 
-const HeroBanner = () => {
+const HeroBanner = ({ heroBanners }) => {
+  console.log(heroBanners);
   return (
     <Box>
       <Swiper
-        // autoplay={{
-        //   delay: 3500,
-        //   disableOnInteraction: true,
-        // }}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction: true,
+        }}
         spaceBetween={0}
         hashNavigation={{
           watchState: true,
@@ -35,50 +36,38 @@ const HeroBanner = () => {
         modules={[Pagination, Autoplay, Navigation, HashNavigation]}
         className="mySwiper"
       >
-        <SwiperSlide data-hash="slide1">
-          <HeroBannerSection backgroundImage={backgroundImage}>
-            <HeroBannerContainer>
-              <HeroBannerText>New collection</HeroBannerText>
-              <HeroBannerTitle>Menswear 2023</HeroBannerTitle>
-              <HeroBannerButtonBox
-                display="flex"
-                gridGap="25px"
-                marginTop="60px"
-              >
-                <Link href="sale">
-                  <HeroBannerButton>Shop sale</HeroBannerButton>
-                </Link>
-                <Link href="mens">
-                  <HeroBannerButtonSecond>
-                    Shop the menswear
-                  </HeroBannerButtonSecond>
-                </Link>
-              </HeroBannerButtonBox>
-            </HeroBannerContainer>
-          </HeroBannerSection>
-        </SwiperSlide>
-        <SwiperSlide data-hash="slide2">
-          <HeroBannerSection backgroundImage={backgroundImage}>
-            <HeroBannerContainer>
-              <HeroBannerText>New collection</HeroBannerText>
-              <HeroBannerTitle>Women 2023</HeroBannerTitle>
-              <HeroBannerButtonBox
-                display="flex"
-                gridGap="25px"
-                marginTop="60px"
-              >
-                <Link href="sale">
-                  <HeroBannerButton>Shop sale</HeroBannerButton>
-                </Link>
-                <Link href="women">
-                  <HeroBannerButtonSecond>
-                    Shop the women
-                  </HeroBannerButtonSecond>
-                </Link>
-              </HeroBannerButtonBox>
-            </HeroBannerContainer>
-          </HeroBannerSection>
-        </SwiperSlide>
+        {heroBanners.map((item) => {
+          const { button_text, title, text_top } = item.attributes;
+          const bannerPath = item.attributes.category.data.attributes.slug;
+          const banner_img = item.attributes.banner_img.data.attributes.url;
+          console.log(banner_img);
+          return (
+            <SwiperSlide key={item.id}>
+              <Link href={`/${bannerPath}`}>
+                <HeroBannerSection backgroundImage={banner_img}>
+                  <HeroBannerContainer>
+                    <HeroBannerText>{text_top}</HeroBannerText>
+                    <HeroBannerTitle>{title}</HeroBannerTitle>
+                    <HeroBannerButtonBox
+                      display="flex"
+                      gridGap="25px"
+                      marginTop="60px"
+                    >
+                      <Link href="sale">
+                        <HeroBannerButton>Розпродаж 2023</HeroBannerButton>
+                      </Link>
+                      <Link href={`/${bannerPath}`}>
+                        <HeroBannerButtonSecond>
+                          {button_text}
+                        </HeroBannerButtonSecond>
+                      </Link>
+                    </HeroBannerButtonBox>
+                  </HeroBannerContainer>
+                </HeroBannerSection>
+              </Link>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </Box>
   );
