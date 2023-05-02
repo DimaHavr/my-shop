@@ -1,5 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
+import { cache } from "../../utils/cache";
 import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
@@ -66,12 +67,16 @@ export async function getServerSideProps() {
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
   try {
-    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-    const subCategories = await responseSubCat.data;
-
-    const responseProducts = await axios.get(productsUrl, getHeaders());
-    const products = await responseProducts.data;
-
+    const [subCategories, products] = await Promise.all([
+      cache.getOrFetch("subCategories", async () => {
+        const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+        return responseSubCat.data;
+      }),
+      cache.getOrFetch("products", async () => {
+        const responseProducts = await axios.get(productsUrl, getHeaders());
+        return responseProducts.data;
+      }),
+    ]);
     return {
       props: {
         subCategories,

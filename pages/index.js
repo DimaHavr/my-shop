@@ -1,5 +1,6 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
+import { cache } from "../utils/cache";
 import { useSelector } from "react-redux";
 import { selectShowCart } from "../redux/cart/selectors";
 import { createGlobalStyle } from "styled-components";
@@ -61,15 +62,21 @@ export async function getServerSideProps() {
     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][type][$eq]=new";
 
   try {
-    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-    const responseTrendingProducts = await axios.get(
-      trendingProductsUrl,
-      getHeaders()
-    );
-    const responseNewProducts = await axios.get(newProductsUrl, getHeaders());
-    const popularCategories = await responseSubCat.data;
-    const trendingProducts = await responseTrendingProducts.data;
-    const newProducts = await responseNewProducts.data;
+    const [popularCategories, trendingProducts, newProducts] =
+      await Promise.all([
+        cache.getOrFetch("popularCategories", async () => {
+          const response = await axios.get(subCategoriesUrl, getHeaders());
+          return response.data;
+        }),
+        cache.getOrFetch("trendingProducts", async () => {
+          const response = await axios.get(trendingProductsUrl, getHeaders());
+          return response.data;
+        }),
+        cache.getOrFetch("newProducts", async () => {
+          const response = await axios.get(newProductsUrl, getHeaders());
+          return response.data;
+        }),
+      ]);
 
     return {
       props: {
