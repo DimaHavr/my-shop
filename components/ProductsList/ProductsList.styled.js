@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
-
+import Image from "next/image";
 export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 50px;
   height: 50px;

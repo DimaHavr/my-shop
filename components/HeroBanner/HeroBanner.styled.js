@@ -86,9 +86,6 @@ export const HeroBannerTitle = styled.h1`
     line-height: 44px;
     width: 195px;
   }
-  @media screen and (max-width: 620px) {
-    width: 195px;
-  }
 `;
 
 export const HeroBannerButton = styled.button`
@@ -145,8 +142,9 @@ export const HeroBannerButtonSecond = styled.button`
 export const HeroBannerButtonBox = styled.div`
   margin-top: 30px;
   display: flex;
-  gap: 25px;
+  gap: 15px;
   @media screen and (max-width: 620px) {
     flex-direction: column;
+    margin-top: 15px;
   }
 `;

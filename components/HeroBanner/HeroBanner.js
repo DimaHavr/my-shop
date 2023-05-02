@@ -43,28 +43,26 @@ const HeroBanner = ({ heroBanners }) => {
           console.log(banner_img);
           return (
             <SwiperSlide key={item.id}>
-              <Link href={`/${bannerPath}`}>
-                <HeroBannerSection backgroundImage={banner_img}>
-                  <HeroBannerContainer>
-                    <HeroBannerText>{text_top}</HeroBannerText>
-                    <HeroBannerTitle>{title}</HeroBannerTitle>
-                    <HeroBannerButtonBox
-                      display="flex"
-                      gridGap="25px"
-                      marginTop="60px"
-                    >
-                      <Link href="sale">
-                        <HeroBannerButton>Розпродаж 2023</HeroBannerButton>
-                      </Link>
-                      <Link href={`/${bannerPath}`}>
-                        <HeroBannerButtonSecond>
-                          {button_text}
-                        </HeroBannerButtonSecond>
-                      </Link>
-                    </HeroBannerButtonBox>
-                  </HeroBannerContainer>
-                </HeroBannerSection>
-              </Link>
+              <HeroBannerSection backgroundImage={banner_img}>
+                <HeroBannerContainer>
+                  <HeroBannerText>{text_top}</HeroBannerText>
+                  <HeroBannerTitle>{title}</HeroBannerTitle>
+                  <HeroBannerButtonBox
+                    display="flex"
+                    gridGap="25px"
+                    marginTop="60px"
+                  >
+                    <Link href="sale">
+                      <HeroBannerButton>Розпродаж 2023</HeroBannerButton>
+                    </Link>
+                    <Link href={`/${bannerPath}`}>
+                      <HeroBannerButtonSecond>
+                        {button_text}
+                      </HeroBannerButtonSecond>
+                    </Link>
+                  </HeroBannerButtonBox>
+                </HeroBannerContainer>
+              </HeroBannerSection>
             </SwiperSlide>
           );
         })}

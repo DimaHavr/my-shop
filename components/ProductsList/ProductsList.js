@@ -55,7 +55,7 @@ const ProductsList = ({ products }) => {
                     passHref
                   >
                     <ImgBox>
-                      <Img src={image} />
+                      <Img src={image} alt={title} />
                     </ImgBox>
                     <Subtitle>{title}</Subtitle>
                     <TextPrice>{price}₴</TextPrice>
