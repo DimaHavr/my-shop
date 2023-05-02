@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectSize } from "../../redux/cart/selectors";
 import { setSize } from "../../redux/cart/cartSlice";
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation, EffectCoverflow } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -40,7 +40,27 @@ const SizeSelector = ({ sizes }) => {
           nextEl: nextRef.current,
           prevEl: prevRef.current,
         }}
-        modules={[Navigation]}
+        initialSlide={2}
+        // navigation={{
+        //   nextEl: nextRef.current,
+        //   prevEl: prevRef.current,
+        // }}
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 3,
+          slideShadows: false,
+        }}
+        // loop={true}
+        pagination={{
+          el: ".swiper-pagination",
+          clickable: true,
+        }}
+        modules={[Navigation, EffectCoverflow]}
         className="mySwiper"
       >
         {sizes.map((size) => (
@@ -56,12 +76,12 @@ const SizeSelector = ({ sizes }) => {
             </SlideBox>
           </SwiperSlide>
         ))}
-        <NextBtn ref={nextRef}>
+        {/* <NextBtn ref={nextRef}>
           <NextIcon />
         </NextBtn>
         <PrevBtn ref={prevRef}>
           <PrevIcon />
-        </PrevBtn>
+        </PrevBtn> */}
       </Swiper>
     </SizeSelectorStyled>
   );

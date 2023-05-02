@@ -27,8 +27,8 @@ export const SizeButton = styled.button`
   background-color: ${({ active }) => (active ? "#17696a" : "#fff")};
   color: ${({ active }) => (active ? "#fff" : "#17696a")};
   box-shadow: ${({ active }) => active && "0 0 2px 2px #17696a;"};
-  margin: 5px;
-  padding: 0 10px;
+  margin: 5px 0;
+  /* padding: 0 10px; */
   border-radius: 10px;
   cursor: pointer;
   border: none;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectColor } from "../../redux/cart/selectors";
 import { setColor } from "../../redux/cart/cartSlice";
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation, EffectCoverflow } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -39,11 +39,27 @@ const ColorSelector = ({ colors }) => {
       </Box>
       <Swiper
         slidesPerView={3}
-        navigation={{
-          nextEl: nextRef.current,
-          prevEl: prevRef.current,
+        initialSlide={2}
+        // navigation={{
+        //   nextEl: nextRef.current,
+        //   prevEl: prevRef.current,
+        // }}
+        effect={"coverflow"}
+        grabCursor={true}
+        centeredSlides={true}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 3,
+          slideShadows: false,
         }}
-        modules={[Navigation]}
+        // loop={true}
+        pagination={{
+          el: ".swiper-pagination",
+          clickable: true,
+        }}
+        modules={[Navigation, EffectCoverflow]}
         className="mySwiper"
       >
         {colors.map((color) => (
@@ -59,12 +75,12 @@ const ColorSelector = ({ colors }) => {
             </SlideBox>
           </SwiperSlide>
         ))}
-        <NextBtn ref={nextRef}>
+        {/* <NextBtn ref={nextRef}>
           <NextIcon />
         </NextBtn>
         <PrevBtn ref={prevRef}>
           <PrevIcon />
-        </PrevBtn>
+        </PrevBtn> */}
       </Swiper>
     </ColorSelectorStyled>
   );

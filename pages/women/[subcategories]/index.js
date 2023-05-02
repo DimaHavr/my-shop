@@ -65,25 +65,20 @@ export async function getServerSideProps({ params }) {
   )}`;
 
   try {
-    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-    const subCategories = await responseSubCat.data;
-
-    const responseProducts = await axios.get(productsUrl, getHeaders());
-    const products = await responseProducts.data;
+    const [responseSubCat, responseProducts] = await Promise.all([
+      axios.get(subCategoriesUrl, getHeaders()),
+      axios.get(productsUrl, getHeaders()),
+    ]);
+    const subCategories = responseSubCat.data;
+    const products = responseProducts.data;
 
     return {
-      props: {
-        subCategories,
-        products,
-      },
+      props: { subCategories, products },
     };
   } catch (error) {
     console.error(error);
     return {
-      props: {
-        subCategories: null,
-        products: null,
-      },
+      props: { subCategories: null, products: null },
     };
   }
 }

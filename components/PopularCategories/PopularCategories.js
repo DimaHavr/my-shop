@@ -1,5 +1,5 @@
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation, EffectCoverflow } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import {
@@ -23,26 +23,39 @@ const PopularCategories = ({ popularCategories }) => {
           гардеробу".
         </Text>
         <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          initialSlide={4}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 3,
+            slideShadows: false,
+          }}
+          // loop={true}
+          pagination={{
+            el: ".swiper-pagination",
+            clickable: true,
+          }}
           breakpoints={{
-            460: {
-              slidesPerView: 1,
-              spaceBetween: 30,
-            },
             640: {
-              slidesPerView: 2,
-              spaceBetween: 30,
+              slidesPerView: 1,
             },
             768: {
               slidesPerView: 3,
-              spaceBetween: 20,
             },
-            1224: {
+            1024: {
               slidesPerView: 5,
-              spaceBetween: 35,
+              spaceBetween: 50,
+            },
+            1560: {
+              slidesPerView: 7,
             },
           }}
           navigation={true}
-          modules={[Navigation]}
+          modules={[Navigation, EffectCoverflow]}
           className="mySwiper"
         >
           {popularCategories.data.map((item) => {

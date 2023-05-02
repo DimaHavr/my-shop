@@ -70,7 +70,7 @@ export const LinkStyled = styled(Link)`
 
 export const Text = styled.p`
   font-family: "LatoRegular";
-  color: #787a80;
+  color: #17696a;
   text-align: center;
   user-select: none;
   text-transform: capitalize;

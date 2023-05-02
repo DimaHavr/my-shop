@@ -5,7 +5,7 @@ import {
   removeFavoritesList,
 } from "../../redux/favorites/favoritesSlice";
 import { SwiperSlide, Swiper } from "swiper/react";
-import { Navigation } from "swiper";
+import { Navigation, EffectCoverflow } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -47,32 +47,40 @@ const TrendingNow = ({ trendingProducts }) => {
           "Must-have гардеробу: найпопулярніші речі, які зараз в тренді".
         </Text>
         <Swiper
+          effect={"coverflow"}
+          grabCursor={true}
+          initialSlide={2}
+          centeredSlides={true}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 3,
+            slideShadows: false,
+          }}
+          // loop={true}
+          pagination={{
+            el: ".swiper-pagination",
+            clickable: true,
+          }}
           breakpoints={{
-            620: {
+            640: {
               slidesPerView: 1,
-              spaceBetween: 30,
             },
-
-            730: {
-              slidesPerView: 2,
-              spaceBetween: 30,
-            },
-            1040: {
+            768: {
               slidesPerView: 3,
-              spaceBetween: 30,
             },
-            1400: {
-              slidesPerView: 4,
-              spaceBetween: 30,
-            },
-            1900: {
+            1024: {
               slidesPerView: 5,
-              spaceBetween: 30,
+              spaceBetween: 50,
+            },
+            1560: {
+              slidesPerView: 7,
+              spaceBetween: 50,
             },
           }}
-          autoHeight={true}
           navigation={true}
-          modules={[Navigation]}
+          modules={[Navigation, EffectCoverflow]}
           className="mySwiper"
         >
           {trendingProducts.data.map((product) => {

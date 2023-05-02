@@ -33,7 +33,7 @@ const ProductsList = ({ products }) => {
   return (
     <Section>
       {products.length > 0 && (
-        <Wrapper>
+        <Wrapper active={products}>
           <ToolBar products={products} />
           <List>
             {products.map((product) => {

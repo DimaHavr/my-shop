@@ -130,7 +130,7 @@ const ProductDetails = ({ product }) => {
 
   return (
     <Section>
-      <Wrapper>
+      <Wrapper active={product}>
         <Box display="flex" justifyContent="center" alignItems="center">
           <Title>{title}</Title>
         </Box>

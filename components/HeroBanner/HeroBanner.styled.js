@@ -10,6 +10,27 @@ export const HeroBannerSection = styled.section`
   background-size: cover;
   color: #fff;
   background-color: grey;
+  animation: ${({ backgroundImage }) =>
+    backgroundImage
+      ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
+      : "fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
   @media screen and (max-width: 900px) {
     height: 450px;
   }
