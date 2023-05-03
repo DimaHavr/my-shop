@@ -8,39 +8,33 @@ import {
   HeroBannerButtonBox,
 } from "./HeroBanner.styled";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay, Navigation, HashNavigation } from "swiper";
+import { Pagination, Autoplay, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Box from "../Box/Box";
 import Link from "next/link";
 
-const backgroundImage = "/images/hero/imageBg1.webp";
-
 const HeroBanner = ({ heroBanners }) => {
-  console.log(heroBanners);
   return (
     <Box>
       <Swiper
+        grabCursor={true}
         autoplay={{
-          delay: 3500,
-          disableOnInteraction: true,
+          delay: 5000,
+          disableOnInteraction: false,
         }}
         spaceBetween={0}
-        hashNavigation={{
-          watchState: true,
-        }}
-        pagination={{ clickable: true, dynamicBullets: true }}
+        // pagination={{ clickable: true, dynamicBullets: true }}
         loop={true}
-        navigation={true}
-        modules={[Pagination, Autoplay, Navigation, HashNavigation]}
+        // navigation={true}
+        modules={[Pagination, Autoplay, Navigation]}
         className="mySwiper"
       >
         {heroBanners.map((item) => {
           const { button_text, title, text_top } = item.attributes;
           const bannerPath = item.attributes.category.data.attributes.slug;
           const banner_img = item.attributes.banner_img.data.attributes.url;
-          console.log(banner_img);
           return (
             <SwiperSlide key={item.id}>
               <HeroBannerSection backgroundImage={banner_img}>

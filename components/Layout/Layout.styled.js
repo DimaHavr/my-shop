@@ -65,7 +65,7 @@ export const NavLink = styled(Link)`
   letter-spacing: 0.06em;
   text-decoration: none;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  color: #333;
+  color: ${({ active }) => (active ? "#17696a;" : "#333;")};
   text-decoration: none;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -92,12 +92,6 @@ export const NavLink = styled(Link)`
     transform: scale(1.05);
     color: #333;
   }
-
-  ${(props) =>
-    props.active &&
-    `
-    color: #17696a;
-  `}
 
   @media (max-width: 480px) {
     font-weight: 600;
@@ -231,7 +225,6 @@ export const BurgerIcon = styled(GiHamburgerMenu)`
   height: 34px;
   fill: #000;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  display: ${({ isOpenMenu }) => (isOpenMenu ? "none" : "flex")};
 
   &:hover,
   &:focus {
@@ -244,7 +237,6 @@ export const CloseBurgerIcon = styled(TfiClose)`
   height: 34px;
   fill: #fff;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  display: ${({ isOpenMenu }) => (isOpenMenu ? "flex" : "none")};
 
   &:hover,
   &:focus {

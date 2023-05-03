@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    overflow: ${({ isOpenMenu }) => (isOpenMenu ? "hidden" : "auto")};
+    overflow: ${({ isMenuOpen }) => (isMenuOpen ? "hidden" : "auto")};
   }`;
 
 export const NavbarMenu = styled.div`
@@ -17,8 +17,8 @@ export const NavbarMenu = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.92);
   transition: 0.5s;
-  visibility: ${({ isOpenMenu }) => (isOpenMenu ? "visible" : "hidden")};
-  opacity: ${({ isOpenMenu }) => (isOpenMenu ? "1" : "0")};
+  visibility: ${({ isMenuOpen }) => (isMenuOpen ? "visible" : "hidden")};
+  opacity: ${({ isMenuOpen }) => (isMenuOpen ? "1" : "0")};
   @media (min-width: 769px) {
     display: none;
   }

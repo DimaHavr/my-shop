@@ -1,9 +1,10 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Head from "next/head";
-import { useState } from "react";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { selectShowFilter } from "../../redux/filter/selectors";
 import { setShowCart } from "../../redux/cart/cartSlice";
 import {
   selectShowCart,
@@ -11,6 +12,7 @@ import {
 } from "../../redux/cart/selectors";
 import { selectFavoritesTotal } from "../../redux/favorites/selectors";
 
+import ProductsFilter from "../ProductsFilter/ProductsFilter";
 const Cart = dynamic(() => import("../Cart/Cart"));
 const Footer = dynamic(() => import("../Footer/Footer"));
 
@@ -37,33 +39,26 @@ import Box from "../Box/Box";
 import Menu from "../Menu/Menu";
 
 const Layout = ({ pageTitle, children }) => {
-  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [activePage, setActivePage] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const showCart = useSelector(selectShowCart);
   const totalQuantities = useSelector(selectTotalQuantities);
   const totalFavoriteQty = useSelector(selectFavoritesTotal);
-
+  const showFilter = useSelector(selectShowFilter);
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  useEffect(() => {
+    setActivePage(router.pathname);
+  }, []);
 
   function onToggleMenu() {
-    setIsOpenMenu(!isOpenMenu);
+    setIsMenuOpen(!isMenuOpen);
   }
-  function closeMenu() {
-    setIsOpenMenu(false);
-  }
-  const handleScroll = () => {
-    if (window.scrollY > 10) {
-      setSticky(true);
-    } else {
-      setSticky(false);
-    }
-  };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  function closeMenu() {
+    setIsMenuOpen(false);
+  }
 
   return (
     <>
@@ -86,7 +81,8 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="/women"
-                // active={router.pathname === "/women" ? true : undefined}
+                active={activePage === "/women" ? "true" : ""}
+                onClick={() => setActivePage("/women")}
               >
                 Жіночий одяг
               </NavLink>
@@ -94,7 +90,8 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="/children"
-                // active={router.pathname === "/boys" ? true : undefined}
+                active={activePage === "/children" ? "true" : ""}
+                onClick={() => setActivePage("/children")}
               >
                 Дитячий одяг
               </NavLink>
@@ -102,7 +99,8 @@ const Layout = ({ pageTitle, children }) => {
             <NavItem>
               <NavLink
                 href="/sale"
-                // active={router.pathname === "/sale" ? true : undefined}
+                active={activePage === "/sale" ? "true" : ""}
+                onClick={() => setActivePage("/sale")}
               >
                 Sale до -50%
               </NavLink>
@@ -133,15 +131,18 @@ const Layout = ({ pageTitle, children }) => {
               </NavButton>
             </Box>
             <NavbarBurgerBox onClick={onToggleMenu}>
-              <BurgerIcon isOpenMenu={isOpenMenu} />
-              <CloseBurgerIcon isOpenMenu={isOpenMenu} />
+              {!isMenuOpen ? <BurgerIcon /> : <CloseBurgerIcon />}
             </NavbarBurgerBox>
           </ToolBar>
         </HeaderWrapper>
       </Box>
-      <Menu isOpenMenu={isOpenMenu} closeMenu={closeMenu} />
+      <Menu
+        isMenuOpen={isMenuOpen}
+        activePage={activePage}
+        setActivePage={setActivePage}
+      />
       <Box>{children}</Box>
-      {showCart && <Cart />}
+      {showCart && <Cart />} {showFilter && <ProductsFilter />}
       <Footer />
     </>
   );

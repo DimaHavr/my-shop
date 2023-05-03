@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const HeroBannerSection = styled.section`
   display: flex;
+  justify-content: center;
   background: linear-gradient(rgba(47, 48, 58, 0.2), rgba(47, 48, 58, 0.2)),
     url(${({ backgroundImage }) => backgroundImage}) no-repeat center center;
-  height: 600px;
+  height: 680px;
   background-size: cover;
   color: #fff;
   background-color: grey;
+  background-position-y: 75%;
   animation: ${({ backgroundImage }) =>
     backgroundImage
       ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
@@ -29,8 +31,12 @@ export const HeroBannerSection = styled.section`
       opacity: 0;
     }
   }
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 1100px) {
+    height: 480px;
+  }
+  @media screen and (max-width: 768px) {
     height: 450px;
+    justify-content: flex-start;
   }
   @media screen and (max-width: 620px) {
     background-position-x: 27%;
@@ -38,18 +44,25 @@ export const HeroBannerSection = styled.section`
 `;
 
 export const HeroBannerContainer = styled.div`
-  padding-top: 170px;
-  padding-left: 130px;
+  padding: 0 30px;
+  padding-top: 250px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
-  @media screen and (max-width: 900px) {
-    padding-top: 100px;
-    padding-left: 50px;
+  @media screen and (max-width: 1100px) {
+    padding-top: 200px;
   }
-  @media screen and (max-width: 620px) {
-    padding-top: 40px;
+  @media screen and (max-width: 900px) {
+    padding-top: 200px;
+  }
+  @media screen and (max-width: 810px) {
+    padding: 0 15px;
+    padding-top: 200px;
+    padding-left: 20px;
+  }
+  @media screen and (max-width: 768px) {
+    padding-top: 50px;
     padding-left: 50px;
   }
   @media screen and (max-width: 380px) {
@@ -66,6 +79,33 @@ export const HeroBannerText = styled.p`
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #1e212c;
+  -webkit-animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: text-focus-in 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  @-webkit-keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
   @media screen and (max-width: 620px) {
     font-size: 14px;
     line-height: 22px;
@@ -81,10 +121,36 @@ export const HeroBannerTitle = styled.h1`
   align-items: center;
   letter-spacing: 1px;
   color: #fff;
-  @media screen and (max-width: 620px) {
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  @-webkit-keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @media screen and (max-width: 768px) {
     font-size: 22px;
     line-height: 44px;
-    width: 195px;
+    width: 200px;
   }
 `;
 
@@ -105,6 +171,33 @@ export const HeroBannerButton = styled.button`
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation: text-focus-in 1.3s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: text-focus-in 1.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  @-webkit-keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
 
   &:hover,
   &:focus {
@@ -130,6 +223,33 @@ export const HeroBannerButtonSecond = styled.button`
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation: text-focus-in 1.6s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: text-focus-in 1.6s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  @-webkit-keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+  @keyframes text-focus-in {
+    0% {
+      -webkit-filter: blur(12px);
+      filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
 
   &:hover,
   &:focus {

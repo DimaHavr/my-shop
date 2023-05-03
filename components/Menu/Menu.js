@@ -1,30 +1,37 @@
-import { useRouter } from "next/router";
 import { NavbarMenu, Nav, NavLink, GlobalStyle } from "./Menu.styled";
 
-const Menu = ({ isOpenMenu }) => {
-  const router = useRouter();
+const Menu = ({ isMenuOpen, activePage, setActivePage }) => {
   return (
-    <NavbarMenu isOpenMenu={isOpenMenu}>
-      <GlobalStyle isOpenMenu={isOpenMenu} />
+    <NavbarMenu isMenuOpen={isMenuOpen}>
+      <GlobalStyle isMenuOpen={isMenuOpen} />
       <Nav>
-        <NavLink href="/">Головна</NavLink>
+        <NavLink
+          href="/"
+          active={activePage === "/" ? "true" : ""}
+          onClick={() => setActivePage("/")}
+        >
+          Головна
+        </NavLink>
 
         <NavLink
           href="/women"
-          active={router.pathname === "/women" ? true : undefined}
+          active={activePage === "/women" ? "true" : ""}
+          onClick={() => setActivePage("/women")}
         >
           Жіночий одяг
         </NavLink>
 
         <NavLink
-          href="/girls"
-          active={router.pathname === "/kids" ? true : undefined}
+          href="/children"
+          active={activePage === "/children" ? "true" : ""}
+          onClick={() => setActivePage("/children")}
         >
           Дитячий одяг
         </NavLink>
         <NavLink
           href="/sale"
-          active={router.pathname === "/sale" ? true : undefined}
+          active={activePage === "/sale" ? "true" : ""}
+          onClick={() => setActivePage("/sale")}
         >
           Sale до -50%
         </NavLink>
