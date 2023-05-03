@@ -148,7 +148,7 @@ export const HeroBannerTitle = styled.h1`
   @media screen and (max-width: 768px) {
     font-size: 22px;
     line-height: 44px;
-    width: 200px;
+    width: 240px;
   }
 `;
 
