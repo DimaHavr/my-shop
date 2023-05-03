@@ -57,7 +57,6 @@ export const HeroBannerContainer = styled.div`
     padding-top: 200px;
   }
   @media screen and (max-width: 810px) {
-    padding: 0 15px;
     padding-top: 200px;
     padding-left: 20px;
   }
@@ -65,9 +64,8 @@ export const HeroBannerContainer = styled.div`
     padding-top: 50px;
     padding-left: 50px;
   }
-  @media screen and (max-width: 380px) {
-    padding-top: 40px;
-    padding-left: 20px;
+  @media screen and (max-width: 480px) {
+    padding: 0 30px;
   }
 `;
 
