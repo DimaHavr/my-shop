@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setShowFilter } from "../../redux/filter/filterSlice";
 import { selectShowFilter } from "../../redux/filter/selectors";
 import ProductsPagination from "../ProductsPagination/ProductsPagination";
-import ControlledOpenSelect from "../Sorting/Sorting";
+import Sorting from "../Sorting/Sorting";
 import { Wrapper, FilterButton, FilterButtonIcon } from "./ToolBar.styled";
 
 const ToolBar = ({ products }) => {
@@ -13,12 +13,12 @@ const ToolBar = ({ products }) => {
   }
   return (
     <Wrapper>
-      <FilterButton onClick={onToggleFilter}>
+      {/* <FilterButton onClick={onToggleFilter}>
         <FilterButtonIcon />
         {showFilter ? " Hide filters" : " Show filters"}
-      </FilterButton>
-      <ControlledOpenSelect />
+      </FilterButton> */}
       {products.length > 12 && <ProductsPagination />}
+      <Sorting />
     </Wrapper>
   );
 };

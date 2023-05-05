@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { cache } from "../../utils/cache";
 import { useRouter } from "next/router";
@@ -22,7 +23,12 @@ const Categories = dynamic(() =>
   import("../../components/Categories/Categories")
 );
 
-const Index = ({ products, subCategories }) => {
+const Index = (props) => {
+  const [products, setProducts] = useState(props.products);
+  useEffect(() => {
+    setProducts(props.products);
+  }, [props.products]);
+
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
   const GlobalStyle = createGlobalStyle`
@@ -32,7 +38,7 @@ const Index = ({ products, subCategories }) => {
   }
 `;
 
-  const categoriesPath = subCategories.data.map((item) => ({
+  const categoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.categories.data[0].attributes.title,
     path: item.attributes.categories.data[0].attributes.title.slug,
   }));
@@ -48,7 +54,7 @@ const Index = ({ products, subCategories }) => {
           breadcrumbArr={categoriesPath}
           breadcrumbValue={breadcrumbValue}
         />
-        <Categories categories={subCategories.data} />
+        <Categories categories={props.subCategories.data} />
         <ProductsList products={products.data}>
           <ToolBar />
         </ProductsList>
@@ -60,11 +66,15 @@ const Index = ({ products, subCategories }) => {
 
 export default Index;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
+  const sort = query.sort || "";
+  console.log(sort);
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
-  const productsUrl =
-    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+
+  const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий${
+    sort && "&sort=price:" + sort
+  }`;
 
   try {
     const [subCategories, products] = await Promise.all([

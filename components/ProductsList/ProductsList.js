@@ -19,7 +19,10 @@ import {
   FavoriteIcon,
 } from "./ProductsList.styled";
 import ToolBar from "../../components/ToolBar/ToolBar";
-const ProductsList = ({ products }) => {
+import { useState } from "react";
+
+const ProductsList = ({ products, initialSortValue }) => {
+  const [displayProduct, setDisplayProduct] = useState([]);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const handleAddToFavorites = (product) => {
@@ -77,8 +80,7 @@ const ProductsList = ({ products }) => {
               );
             })}
           </List>
-
-          <ToolBar products={products} />
+          <ToolBar initialSortValue={initialSortValue} products={products} />
         </Wrapper>
       )}
     </Section>
