@@ -2,13 +2,16 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { selectShowFilter } from "../../../redux/filter/selectors";
 import { selectShowCart } from "../../../redux/cart/selectors";
+import { selectSortValue } from "../../../redux/sort/selectors";
 import getHeaders from "../../../hooks/getHeaders";
 import Box from "../../../components/Box/Box";
 import Layout from "../../../components/Layout/Layout";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+import Loader from "../../../components/Loader/Loader";
 
 const SubscribeBox = dynamic(() =>
   import("../../../components/SubscribeBox/SubscribeBox")
@@ -20,15 +23,19 @@ const Categories = dynamic(() =>
   import("../../../components/Categories/Categories")
 );
 
-const Index = ({ products, subCategories }) => {
+const Index = (props) => {
+  const [products, setProducts] = useState(props.products);
+  const [loading, setLoading] = useState(false);
+  const sort = useSelector(selectSortValue);
   const router = useRouter();
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
 
-  const subCategoriesPath = subCategories.data.map((item) => ({
+  const subCategoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.title,
     path: item.attributes.slug,
   }));
+
   const breadcrumbValue = router.query.subcategories;
 
   const GlobalStyle = createGlobalStyle`
@@ -38,6 +45,28 @@ const Index = ({ products, subCategories }) => {
   }
 `;
 
+  async function fetchProducts() {
+    setLoading(true);
+    const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
+      props.slug
+    )}${sort === "" ? "" : `&sort=price:${sort}`}`;
+
+    try {
+      const response = await axios.get(productsUrl, getHeaders());
+      const products = response.data;
+      console.log(products);
+      setProducts(products);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, [sort, props.slug]);
+
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} showFilter={showFilter} />
@@ -46,20 +75,21 @@ const Index = ({ products, subCategories }) => {
           breadcrumbArr={subCategoriesPath}
           breadcrumbValue={breadcrumbValue}
         />
-        <Categories categories={subCategories.data} />
+        <Categories categories={props.subCategories.data} />
         <ProductsList products={products.data} />
         <SubscribeBox />
+        {loading && <Loader />}
       </Layout>
     </Box>
   );
 };
-1;
 export default Index;
 
 export async function getServerSideProps({ params }) {
   const slug = params.subcategories;
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+
   const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
     slug
   )}`;
@@ -73,7 +103,7 @@ export async function getServerSideProps({ params }) {
     const products = responseProducts.data;
 
     return {
-      props: { subCategories, products },
+      props: { subCategories, products, slug },
     };
   } catch (error) {
     console.error(error);

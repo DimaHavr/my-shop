@@ -7,11 +7,12 @@ import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectShowFilter } from "../../redux/filter/selectors";
 import { selectShowCart } from "../../redux/cart/selectors";
+import { selectSortValue } from "../../redux/sort/selectors";
 import getHeaders from "../../hooks/getHeaders";
 import Box from "../../components/Box/Box";
 import Layout from "../../components/Layout/Layout";
-import ToolBar from "../../components/ToolBar/ToolBar";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
+import Loader from "../../components/Loader/Loader";
 
 const SubscribeBox = dynamic(() =>
   import("../../components/SubscribeBox/SubscribeBox")
@@ -22,17 +23,41 @@ const ProductsList = dynamic(() =>
 const Categories = dynamic(() =>
   import("../../components/Categories/Categories")
 );
-
-const Index = (props) => {
-  const [products, setProducts] = useState(props.products);
-  const showCart = useSelector(selectShowCart);
-  const showFilter = useSelector(selectShowFilter);
-  const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   body {
     overflow: ${({ showCart, showFilter }) =>
       showCart || showFilter ? "hidden" : "auto"};
   }
 `;
+
+const Index = (props) => {
+  const [products, setProducts] = useState(props.products);
+  const [loading, setLoading] = useState(false);
+  const sort = useSelector(selectSortValue);
+  const showCart = useSelector(selectShowCart);
+  const showFilter = useSelector(selectShowFilter);
+
+  async function fetchProducts() {
+    setLoading(true);
+    const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий${
+      sort === "" ? "" : `&sort=price:${sort}`
+    }`;
+
+    try {
+      const response = await axios.get(productsUrl, getHeaders());
+      const products = response.data;
+      console.log(products);
+      setProducts(products);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, [sort]);
 
   const categoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.categories.data[0].attributes.title,
@@ -51,6 +76,7 @@ const Index = (props) => {
           breadcrumbValue={breadcrumbValue}
         />
         <Categories categories={props.subCategories.data} />
+        {loading && <Loader />}
         <ProductsList setProducts={setProducts} products={products.data} />
         <SubscribeBox />
       </Layout>

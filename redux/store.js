@@ -11,12 +11,14 @@ import {
 import { persistedCartSlice } from "../redux/cart/cartSlice";
 import { persistedFilterSlice } from "../redux/filter/filterSlice";
 import { persistedFavoritesSlice } from "../redux/favorites/favoritesSlice";
+import { persistedSortSlice } from "./sort/sortSlice";
 
 export const store = configureStore({
   reducer: {
     cart: persistedCartSlice,
     filter: persistedFilterSlice,
     favorites: persistedFavoritesSlice,
+    sort: persistedSortSlice,
   },
 
   middleware(getDefaultMiddleware) {
