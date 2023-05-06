@@ -21,7 +21,7 @@ import {
 import ToolBar from "../../components/ToolBar/ToolBar";
 import { useState } from "react";
 
-const ProductsList = ({ products, initialSortValue }) => {
+const ProductsList = ({ products, setProducts }) => {
   const [displayProduct, setDisplayProduct] = useState([]);
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
@@ -37,7 +37,7 @@ const ProductsList = ({ products, initialSortValue }) => {
     <Section>
       {products.length > 0 && (
         <Wrapper active={products}>
-          <ToolBar products={products} />
+          <ToolBar setProducts={setProducts} products={products} />
           <List>
             {products.map((product) => {
               const isFavorite = favoritesProducts.some(
@@ -80,7 +80,7 @@ const ProductsList = ({ products, initialSortValue }) => {
               );
             })}
           </List>
-          <ToolBar initialSortValue={initialSortValue} products={products} />
+          <ToolBar setProducts={setProducts} products={products} />
         </Wrapper>
       )}
     </Section>

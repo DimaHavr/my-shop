@@ -25,10 +25,6 @@ const Categories = dynamic(() =>
 
 const Index = (props) => {
   const [products, setProducts] = useState(props.products);
-  useEffect(() => {
-    setProducts(props.products);
-  }, [props.products]);
-
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
   const GlobalStyle = createGlobalStyle`
@@ -55,9 +51,7 @@ const Index = (props) => {
           breadcrumbValue={breadcrumbValue}
         />
         <Categories categories={props.subCategories.data} />
-        <ProductsList products={products.data}>
-          <ToolBar />
-        </ProductsList>
+        <ProductsList setProducts={setProducts} products={products.data} />
         <SubscribeBox />
       </Layout>
     </Box>
@@ -66,15 +60,11 @@ const Index = (props) => {
 
 export default Index;
 
-export async function getServerSideProps({ query }) {
-  const sort = query.sort || "";
-  console.log(sort);
+export async function getServerSideProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-  const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий${
-    sort && "&sort=price:" + sort
-  }`;
+  const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
 
   try {
     const [subCategories, products] = await Promise.all([
