@@ -76,8 +76,8 @@ const Index = (props) => {
           breadcrumbValue={breadcrumbValue}
         />
         <Categories categories={props.subCategories.data} />
-        {loading && <Loader />}
-        <ProductsList setProducts={setProducts} products={products.data} />
+        {loading && <Loader loading={loading} />}
+        <ProductsList products={products.data} />
         <SubscribeBox />
       </Layout>
     </Box>
@@ -86,7 +86,7 @@ const Index = (props) => {
 
 export default Index;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 

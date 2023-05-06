@@ -11,6 +11,27 @@ export const LoaderStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: ${({ active }) =>
+    active
+      ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
+      : "fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export const Spinner = styled.div`

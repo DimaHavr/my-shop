@@ -1,7 +1,7 @@
 import { LoaderStyled, Spinner } from "./Loader.styled";
-export const Loader = () => {
+export const Loader = ({ loading }) => {
   return (
-    <LoaderStyled>
+    <LoaderStyled active={loading}>
       <Spinner />
     </LoaderStyled>
   );

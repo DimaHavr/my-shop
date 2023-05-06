@@ -22,7 +22,12 @@ const ProductsList = dynamic(() =>
 const Categories = dynamic(() =>
   import("../../../components/Categories/Categories")
 );
-
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: ${({ showCart, showFilter }) =>
+      showCart || showFilter ? "hidden" : "auto"};
+  }
+`;
 const Index = (props) => {
   const [products, setProducts] = useState(props.products);
   const [loading, setLoading] = useState(false);
@@ -37,13 +42,6 @@ const Index = (props) => {
   }));
 
   const breadcrumbValue = router.query.subcategories;
-
-  const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: ${({ showCart, showFilter }) =>
-      showCart || showFilter ? "hidden" : "auto"};
-  }
-`;
 
   async function fetchProducts() {
     setLoading(true);
@@ -78,14 +76,14 @@ const Index = (props) => {
         <Categories categories={props.subCategories.data} />
         <ProductsList products={products.data} />
         <SubscribeBox />
-        {loading && <Loader />}
+        {loading && <Loader loading={loading} />}
       </Layout>
     </Box>
   );
 };
 export default Index;
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const slug = params.subcategories;
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
@@ -113,31 +111,31 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-// export async function getStaticPaths() {
-//   const subCategoriesUrl =
-//     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+export async function getStaticPaths() {
+  const subCategoriesUrl =
+    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-//   try {
-//     const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-//     const subCategories = await responseSubCat.data;
+  try {
+    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+    const subCategories = await responseSubCat.data;
 
-//     const allPaths = subCategories.data.map((item) => {
-//       return {
-//         params: {
-//           subcategories: item.attributes.slug.toString(),
-//         },
-//       };
-//     });
+    const allPaths = subCategories.data.map((item) => {
+      return {
+        params: {
+          subcategories: item.attributes.slug.toString(),
+        },
+      };
+    });
 
-//     return {
-//       paths: allPaths,
-//       fallback: false,
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       paths: [],
-//       fallback: false,
-//     };
-//   }
-// }
+    return {
+      paths: allPaths,
+      fallback: false,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+}
