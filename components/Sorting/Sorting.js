@@ -10,8 +10,16 @@ const Sorting = () => {
   const router = useRouter();
 
   const handleSort = (e) => {
-    dispatch(setSortValue(e.target.value));
-    filterSearch({ router, sort: e.target.value });
+    const value = e.target.value;
+    dispatch(setSortValue(value));
+    if (value === "") {
+      router.push({
+        pathname: router.pathname,
+        query: { ...router.query, sort: undefined },
+      });
+    } else {
+      filterSearch({ router, sort: value });
+    }
   };
 
   return (
