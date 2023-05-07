@@ -114,6 +114,23 @@ export const Img = styled.img`
   object-fit: contain;
   object-position: center;
 `;
+export const ImgEmpty = styled.img`
+  width: 300px;
+`;
+export const TextEmpty = styled.p`
+  font-family: "LatoBold";
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+`;
+export const EmptyBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 20px;
+`;
 
 export const Subtitle = styled.h3`
   position: absolute;

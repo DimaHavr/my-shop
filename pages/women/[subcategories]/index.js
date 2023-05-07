@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
 import { selectShowFilter } from "../../../redux/filter/selectors";
 import { selectShowCart } from "../../../redux/cart/selectors";
-import { selectSortValue } from "../../../redux/sort/selectors";
+import {
+  selectSortPrice,
+  selectSortNew,
+  selectSortPopular,
+} from "../../../redux/sort/selectors";
 import getHeaders from "../../../hooks/getHeaders";
 import Box from "../../../components/Box/Box";
 import Layout from "../../../components/Layout/Layout";
@@ -31,7 +35,9 @@ const GlobalStyle = createGlobalStyle`
 const Index = (props) => {
   const [products, setProducts] = useState(props.products);
   const [loading, setLoading] = useState(false);
-  const sort = useSelector(selectSortValue);
+  const sortPrice = useSelector(selectSortPrice);
+  const sortNew = useSelector(selectSortNew);
+  const sortPopular = useSelector(selectSortPopular);
   const router = useRouter();
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
@@ -45,14 +51,20 @@ const Index = (props) => {
 
   async function fetchProducts() {
     setLoading(true);
+    if (!sortPrice && !sortNew && !sortPopular) {
+      setProducts(props.products);
+      setLoading(false);
+      return;
+    }
+
     const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
       props.slug
-    )}${sort === "" ? "" : `&sort=price:${sort}`}`;
-
+    )}${sortPrice ? `&sort=price:${sortPrice}` : ""}${
+      sortNew ? `&sort=createdAt:${sortNew}` : ""
+    }`;
     try {
       const response = await axios.get(productsUrl, getHeaders());
       const products = response.data;
-      console.log(products);
       setProducts(products);
       setLoading(false);
     } catch (error) {
@@ -63,7 +75,7 @@ const Index = (props) => {
 
   useEffect(() => {
     fetchProducts();
-  }, [sort, props.slug]);
+  }, [sortPopular, sortPrice, sortNew, props.slug]);
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
@@ -83,7 +95,7 @@ const Index = (props) => {
 };
 export default Index;
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const slug = params.subcategories;
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
@@ -111,31 +123,31 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
-  const subCategoriesUrl =
-    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+// export async function getStaticPaths() {
+//   const subCategoriesUrl =
+//     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-  try {
-    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-    const subCategories = await responseSubCat.data;
+//   try {
+//     const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+//     const subCategories = await responseSubCat.data;
 
-    const allPaths = subCategories.data.map((item) => {
-      return {
-        params: {
-          subcategories: item.attributes.slug.toString(),
-        },
-      };
-    });
+//     const allPaths = subCategories.data.map((item) => {
+//       return {
+//         params: {
+//           subcategories: item.attributes.slug.toString(),
+//         },
+//       };
+//     });
 
-    return {
-      paths: allPaths,
-      fallback: false,
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      paths: [],
-      fallback: false,
-    };
-  }
-}
+//     return {
+//       paths: allPaths,
+//       fallback: false,
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       paths: [],
+//       fallback: false,
+//     };
+//   }
+// }

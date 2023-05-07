@@ -9,7 +9,6 @@ import {
 const ProductReview = ({ productReviews }) => {
   const totalReviews = productReviews.length;
   let totalStars = 0;
-  console.log(productReviews);
   productReviews.map(({ attributes: { rating } }) => {
     totalStars += rating;
   });

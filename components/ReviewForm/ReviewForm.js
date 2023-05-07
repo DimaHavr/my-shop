@@ -16,13 +16,15 @@ import {
 } from "./ReviewForm.styled";
 import getHeaders from "../../hooks/getHeaders";
 
-const ReviewForm = ({ productId, onClose, showForm }) => {
+const ReviewForm = ({ productId, onClose, showForm, productReviews }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const ratings = productReviews.map((item) => item.attributes.rating);
+  const averageRating =
+    ratings.reduce((acc, rating) => acc + rating, 0) / ratings.length;
   useEffect(() => {
     const onCloseModal = (event) => {
       if (event.code === "Escape") {

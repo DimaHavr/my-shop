@@ -5,16 +5,29 @@ import storage from "redux-persist/lib/storage";
 const sortSlice = createSlice({
   name: "sort",
   initialState: {
-    sortValue: "",
+    selectedSort: "",
+    sortPrice: "",
+    sortNew: "",
+    sortPopular: "",
   },
   reducers: {
-    setSortValue: (state, action) => {
-      state.sortValue = action.payload;
+    setSortPrice: (state, action) => {
+      state.sortPrice = action.payload;
+    },
+    setSortNew: (state, action) => {
+      state.sortNew = action.payload;
+    },
+    setSortPopular: (state, action) => {
+      state.sortPopular = action.payload;
+    },
+    setSelectedSort: (state, action) => {
+      state.selectedSort = action.payload;
     },
   },
 });
 
-export const { setSortValue } = sortSlice.actions;
+export const { setSortPrice, setSortNew, setSortPopular, setSelectedSort } =
+  sortSlice.actions;
 
 const persistConfig = {
   key: "sort",

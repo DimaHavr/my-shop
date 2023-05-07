@@ -7,7 +7,11 @@ import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectShowFilter } from "../../redux/filter/selectors";
 import { selectShowCart } from "../../redux/cart/selectors";
-import { selectSortValue } from "../../redux/sort/selectors";
+import {
+  selectSortPrice,
+  selectSortNew,
+  selectSortPopular,
+} from "../../redux/sort/selectors";
 import getHeaders from "../../hooks/getHeaders";
 import Box from "../../components/Box/Box";
 import Layout from "../../components/Layout/Layout";
@@ -33,20 +37,25 @@ const GlobalStyle = createGlobalStyle`
 const Index = (props) => {
   const [products, setProducts] = useState(props.products);
   const [loading, setLoading] = useState(false);
-  const sort = useSelector(selectSortValue);
+  const sortPrice = useSelector(selectSortPrice);
+  const sortNew = useSelector(selectSortNew);
+  const sortPopular = useSelector(selectSortPopular);
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
-
   async function fetchProducts() {
     setLoading(true);
+    if (!sortPrice && !sortNew && !sortPopular) {
+      setProducts(props.products);
+      setLoading(false);
+      return;
+    }
     const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий${
-      sort === "" ? "" : `&sort=price:${sort}`
-    }`;
+      sortPrice ? `&sort=price:${sortPrice}` : ""
+    }${sortNew ? `&sort=createdAt:${sortNew}` : ""}`;
 
     try {
       const response = await axios.get(productsUrl, getHeaders());
       const products = response.data;
-      console.log(products);
       setProducts(products);
       setLoading(false);
     } catch (error) {
@@ -57,7 +66,7 @@ const Index = (props) => {
 
   useEffect(() => {
     fetchProducts();
-  }, [sort]);
+  }, [sortPopular, sortPrice, sortNew]);
 
   const categoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.categories.data[0].attributes.title,
@@ -86,7 +95,7 @@ const Index = (props) => {
 
 export default Index;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 

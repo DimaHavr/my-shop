@@ -90,6 +90,7 @@ const ToggleMenu = ({ productReviews, desc, productId }) => {
           </Button>
           {showForm && (
             <ReviewForm
+              productReviews={productReviews}
               productId={productId}
               onClose={handleToggleModal}
               showForm={showForm}

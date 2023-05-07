@@ -5,7 +5,7 @@ import ProductsPagination from "../ProductsPagination/ProductsPagination";
 import Sorting from "../Sorting/Sorting";
 import { Wrapper, FilterButton, FilterButtonIcon } from "./ToolBar.styled";
 
-const ToolBar = ({ products, setProducts }) => {
+const ToolBar = ({ products }) => {
   const dispatch = useDispatch();
   const showFilter = useSelector(selectShowFilter);
   function onToggleFilter() {
@@ -13,12 +13,12 @@ const ToolBar = ({ products, setProducts }) => {
   }
   return (
     <Wrapper>
-      {/* <FilterButton onClick={onToggleFilter}>
+      <FilterButton onClick={onToggleFilter}>
         <FilterButtonIcon />
         {showFilter ? " Hide filters" : " Show filters"}
-      </FilterButton> */}
+      </FilterButton>
       {products.length > 12 && <ProductsPagination />}
-      <Sorting setProducts={setProducts} />
+      <Sorting />
     </Wrapper>
   );
 };

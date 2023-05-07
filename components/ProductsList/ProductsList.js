@@ -5,24 +5,26 @@ import {
   addToFavoritesList,
   removeFavoritesList,
 } from "../../redux/favorites/favoritesSlice";
+import ToolBar from "../../components/ToolBar/ToolBar";
 import {
   Section,
   Wrapper,
   List,
   Item,
   Img,
+  ImgEmpty,
+  EmptyBox,
   Subtitle,
   TextPrice,
   ImgBox,
   FavoriteIconBox,
   FavoriteIconRemove,
   FavoriteIcon,
+  TextEmpty,
 } from "./ProductsList.styled";
-import ToolBar from "../../components/ToolBar/ToolBar";
-import { useState } from "react";
+import ProductsPagination from "../ProductsPagination/ProductsPagination";
 
-const ProductsList = ({ products, setProducts }) => {
-  const [displayProduct, setDisplayProduct] = useState([]);
+const ProductsList = ({ products }) => {
   const dispatch = useDispatch();
   const favoritesProducts = useSelector(selectFavoritesProducts);
   const handleAddToFavorites = (product) => {
@@ -35,9 +37,16 @@ const ProductsList = ({ products, setProducts }) => {
 
   return (
     <Section>
-      {products.length > 0 && (
+      {products.length === 0 ? (
+        <EmptyBox>
+          <ImgEmpty src="/images/empty.webp" alt="minion" />
+          <TextEmpty>
+            Сорочка. Са-ра-фан. Сукня? Немає нічого? О ні! Сумне обличчя.
+          </TextEmpty>
+        </EmptyBox>
+      ) : (
         <Wrapper active={products}>
-          <ToolBar setProducts={setProducts} products={products} />
+          <ToolBar products={products} />
           <List>
             {products.map((product) => {
               const isFavorite = favoritesProducts.some(
@@ -80,7 +89,7 @@ const ProductsList = ({ products, setProducts }) => {
               );
             })}
           </List>
-          <ToolBar setProducts={setProducts} products={products} />
+          <ProductsPagination />
         </Wrapper>
       )}
     </Section>
