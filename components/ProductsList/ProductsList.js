@@ -15,12 +15,17 @@ import {
   ImgEmpty,
   EmptyBox,
   Subtitle,
-  TextPrice,
   ImgBox,
   FavoriteIconBox,
   FavoriteIconRemove,
   FavoriteIcon,
   TextEmpty,
+  DiscountWrapper,
+  DiscountLabel,
+  DiscountText,
+  PriceWrapper,
+  PriceLabel,
+  PriceText,
 } from "./ProductsList.styled";
 import ProductsPagination from "../ProductsPagination/ProductsPagination";
 
@@ -34,15 +39,13 @@ const ProductsList = ({ products }) => {
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
-
+  const discount = 10;
   return (
     <Section>
       {products.length === 0 ? (
-        <EmptyBox>
+        <EmptyBox active={products}>
           <ImgEmpty src="/images/empty.webp" alt="minion" />
-          <TextEmpty>
-            Сорочка. Са-ра-фан. Сукня? Немає нічого? О ні! Сумне обличчя.
-          </TextEmpty>
+          <TextEmpty>Сорочка. Са-ра-фан. Сукня? Немає нічого? О ні!</TextEmpty>
         </EmptyBox>
       ) : (
         <Wrapper active={products}>
@@ -67,10 +70,21 @@ const ProductsList = ({ products }) => {
                     passHref
                   >
                     <ImgBox>
+                      {discount && (
+                        <DiscountWrapper>
+                          <DiscountLabel>
+                            <DiscountText>-{discount}%</DiscountText>
+                          </DiscountLabel>
+                        </DiscountWrapper>
+                      )}
                       <Img src={image} alt={title} />
                     </ImgBox>
                     <Subtitle>{title}</Subtitle>
-                    <TextPrice>{price}₴</TextPrice>
+                    <PriceWrapper>
+                      <PriceLabel>
+                        <PriceText>{price}₴</PriceText>
+                      </PriceLabel>
+                    </PriceWrapper>
                   </Link>
                   {!isFavorite ? (
                     <FavoriteIconBox
@@ -89,7 +103,7 @@ const ProductsList = ({ products }) => {
               );
             })}
           </List>
-          <ProductsPagination />
+          {products.length > 12 && <ProductsPagination />}
         </Wrapper>
       )}
     </Section>

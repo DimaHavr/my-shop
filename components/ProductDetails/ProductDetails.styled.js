@@ -75,12 +75,12 @@ export const FavoriteIconBox = styled.div`
 `;
 
 export const Section = styled.section`
-  padding: 20px 130px 50px 130px;
+  padding: 0 130px 50px 130px;
   @media screen and (max-width: 1150px) {
-    padding: 20px 50px 50px 50px;
+    padding: 0 50px 50px 50px;
   }
   @media screen and (max-width: 768px) {
-    padding: 20px 30px;
+    padding: 0 30px;
   }
 `;
 
@@ -139,7 +139,7 @@ export const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
+  gap: 10px;
   @media screen and (max-width: 488px) {
     width: 100%;
   }
@@ -187,6 +187,13 @@ export const TextPrice = styled.p`
   font-family: "LatoBold";
   font-size: 20px;
   color: #17696a;
+`;
+export const TextOldPrice = styled.span`
+  font-family: "LatoRegular";
+  font-size: 16px;
+  color: #000;
+  text-decoration: line-through;
+  margin-right: 5px;
 `;
 
 export const ButtonBox = styled.div`

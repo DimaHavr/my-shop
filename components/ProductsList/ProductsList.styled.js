@@ -130,6 +130,27 @@ export const EmptyBox = styled.div`
   flex-direction: column;
   gap: 10px;
   padding: 0 20px;
+  animation: ${({ active }) =>
+    active
+      ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
+      : "fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
+
+  @keyframes fade-in-right {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-out-right {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export const Subtitle = styled.h3`
@@ -175,4 +196,131 @@ export const TextPrice = styled.p`
   color: #fff;
   border-radius: 8px 0 8px 0;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+`;
+
+export const DiscountWrapper = styled.span`
+  position: absolute;
+  top: -6px;
+  right: -16px;
+  z-index: 100;
+  margin-top: 0 !important;
+  padding-right: 6px;
+  background: #c82128;
+  white-space: nowrap;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 5px;
+    left: 0;
+    background: #c82128;
+    transform: skewX(30deg);
+    box-shadow: -10px 6px 0 0 #c82128;
+    height: 50%;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    left: 0;
+    bottom: 0;
+    background: #c82128;
+    transform: skewX(330deg);
+    box-shadow: -10px -6px 0 0 #c82128;
+    height: 50%;
+  }
+`;
+
+export const DiscountLabel = styled.span`
+  display: block;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 5px 10px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: -6px;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-top-color: #8e0007;
+    border-left-color: #8e0007;
+    border-width: 8px;
+  }
+`;
+export const DiscountText = styled.span`
+  font-weight: 700;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+`;
+
+export const PriceWrapper = styled.span`
+  position: absolute;
+  top: -6px;
+  left: -16px;
+  z-index: 100;
+  margin-top: 0 !important;
+  padding-left: 6px;
+  background: #17696a;
+  display: block;
+  white-space: nowrap;
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    right: 0;
+    background: #17696a;
+    transform: skewX(330deg);
+    box-shadow: 10px 6px 0 0 #17696a;
+    height: 50%;
+  }
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 5px;
+    right: 0;
+    bottom: 0;
+    background: #17696a;
+    transform: skewX(30deg);
+    box-shadow: 10px -6px 0 0 #17696a;
+    height: 50%;
+  }
+`;
+
+export const PriceLabel = styled.span`
+  display: block;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 5px 10px;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -6px;
+    width: 0;
+    height: 0;
+    border: 3px solid transparent;
+    border-top-color: #145152;
+    border-right-color: #145152;
+    border-width: 8px;
+  }
+`;
+export const PriceText = styled.span`
+  font-weight: 700;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
 `;

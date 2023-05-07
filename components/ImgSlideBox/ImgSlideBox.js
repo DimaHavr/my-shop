@@ -87,7 +87,7 @@ const ImgSlideBox = ({ imagesArr }) => {
       </ImgSlideBoxStyled>
       <LightGallery speed={400} plugins={[lgZoom]}>
         {getItems()}
-        <Img showImage={showImage} src={selectedImage} />
+        <Img showImage={showImage} src={selectedImage} />{" "}
       </LightGallery>
     </>
   );

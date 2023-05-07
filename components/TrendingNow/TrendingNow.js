@@ -20,10 +20,15 @@ import {
   Item,
   Img,
   Subtitle,
-  TextPrice,
   Button,
   SlideBox,
   ImgBox,
+  DiscountWrapper,
+  DiscountLabel,
+  DiscountText,
+  PriceWrapper,
+  PriceLabel,
+  PriceText,
 } from "./TrendingNow.styled";
 import Link from "next/link";
 
@@ -38,7 +43,7 @@ const TrendingNow = ({ trendingProducts }) => {
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
-
+  const discount = 10;
   return (
     <Section>
       <Wrapper>
@@ -104,11 +109,22 @@ const TrendingNow = ({ trendingProducts }) => {
                       passHref
                     >
                       <ImgBox>
+                        {discount && (
+                          <DiscountWrapper>
+                            <DiscountLabel>
+                              <DiscountText>-{discount}%</DiscountText>
+                            </DiscountLabel>
+                          </DiscountWrapper>
+                        )}
                         <Img src={image} />
                       </ImgBox>
                       <Subtitle>{title}</Subtitle>
                     </Link>
-                    <TextPrice>{price}₴</TextPrice>
+                    <PriceWrapper>
+                      <PriceLabel>
+                        <PriceText>{price}₴</PriceText>
+                      </PriceLabel>
+                    </PriceWrapper>
                     {!isFavorite ? (
                       <FavoriteIconBox
                         onClick={() => handleAddToFavorites(product)}

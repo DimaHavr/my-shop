@@ -61,10 +61,10 @@ const Sorting = () => {
       <Container>
         <Label>Сортувати:</Label>
         <Select onChange={handleSort} value={selectedSort}>
-          <option value="">За замовчуванням</option>
-          <option value="new">Новіші</option>
-          <option value="price_plus">По збільшенню ціни</option>
-          <option value="price_minus">По зменшенню ціни</option>
+          <option value="">за замовчуванням</option>
+          <option value="new">новинки</option>
+          <option value="price_plus">по збільшенню ціни</option>
+          <option value="price_minus">по зменшенню ціни</option>
           {/* <option value="popular">Популярність</option>
           <option value="popularNew">Популярні + новіші</option> */}
         </Select>
