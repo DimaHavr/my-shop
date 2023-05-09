@@ -14,6 +14,7 @@ export const ToggleMenuWrapper = styled.div`
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  padding-bottom: 10px;
 `;
 
 export const ToggleMenuBtnBox = styled.div`

@@ -42,6 +42,7 @@ const Index = (props) => {
   const sortPopular = useSelector(selectSortPopular);
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
+
   async function fetchProducts() {
     setLoading(true);
     if (!sortPrice && !sortNew && !sortPopular) {

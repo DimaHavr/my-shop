@@ -216,9 +216,11 @@ const Cart = () => {
               <Text>Підсумок: </Text>
               <Text>{totalPrice}₴</Text>
             </Box>
-            <IssueBtn type="button">
-              <CheckoutIcon /> Оформити замовлення
-            </IssueBtn>
+            <Link href={"/checkout"}>
+              <IssueBtn type="button">
+                <CheckoutIcon /> Оформити замовлення
+              </IssueBtn>
+            </Link>
           </TotalContainer>
         )}
       </CartContainer>
