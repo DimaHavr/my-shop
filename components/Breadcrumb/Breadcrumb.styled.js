@@ -56,6 +56,9 @@ export const IconBox = styled.div`
   justify-content: flex-start;
   align-items: stretch;
   gap: 20px;
+  @media screen and (max-width: 375px) {
+    gap: 10px;
+  }
 `;
 
 export const Item = styled.li``;
@@ -74,6 +77,9 @@ export const Text = styled.p`
   text-align: center;
   user-select: none;
   text-transform: capitalize;
+  @media screen and (max-width: 375px) {
+    padding-left: 20px;
+  }
 `;
 
 export const Subtitle = styled.h4`

@@ -34,7 +34,12 @@ import {
   ResetIcon,
 } from "./DeliveryBox.styled";
 
-const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
+const DeliveryBox = ({
+  deliveryFormData,
+  handleDeliverySubmit,
+  handleDeliveryInputChange,
+  setDeliveryData,
+}) => {
   const [loading, setLoading] = useState(false);
   const [filterCityValue, setFilterCityValue] = useState("");
   const [cities, setCities] = useState([]);
@@ -228,6 +233,7 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
             warehouses.map((warehouse) => (
               <Item
                 onClick={() => {
+                  setDeliveryData(warehouse);
                   resetState();
                   toast.success(`${warehouse.Description} збережено!`, {
                     style: {
@@ -262,14 +268,14 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
 
         {showForm && (
           <Overlay showForm={showForm}>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleDeliverySubmit}>
               <InputContainer>
                 <FormInput
                   placeholder="Область"
                   type="text"
                   name="area"
-                  value={formData.area}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.area}
+                  onChange={handleDeliveryInputChange}
                   required
                 />
               </InputContainer>
@@ -278,8 +284,8 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
                   placeholder="Район"
                   type="text"
                   name="region"
-                  value={formData.area}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.region}
+                  onChange={handleDeliveryInputChange}
                   required
                 />
               </InputContainer>
@@ -288,8 +294,8 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
                   placeholder="Населений пункт"
                   type="text"
                   name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.city}
+                  onChange={handleDeliveryInputChange}
                 />
               </InputContainer>
               <InputContainer>
@@ -297,8 +303,8 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
                   placeholder="Номер будинку"
                   type="number"
                   name="homeNumber"
-                  value={formData.homeNumber}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.homeNumber}
+                  onChange={handleDeliveryInputChange}
                   required
                 />
               </InputContainer>
@@ -307,8 +313,8 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
                   placeholder="Номер квартири"
                   type="number"
                   name="localNumber"
-                  value={formData.localNumber}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.localNumber}
+                  onChange={handleDeliveryInputChange}
                   required
                 />
               </InputContainer>
@@ -317,8 +323,8 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
                   placeholder="Поштовий індекс"
                   type="text"
                   name="postIndex"
-                  value={formData.localNumber}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.localNumber}
+                  onChange={handleDeliveryInputChange}
                   required
                 />
               </InputContainer>
@@ -327,8 +333,8 @@ const DeliveryBox = ({ formData, handleSubmit, handleInputChange }) => {
                   placeholder="Комментар"
                   type="textarea"
                   name="comment"
-                  value={formData.comment}
-                  onChange={handleInputChange}
+                  value={deliveryFormData.comment}
+                  onChange={handleDeliveryInputChange}
                   required
                 />
               </InputContainer>

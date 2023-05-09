@@ -33,6 +33,12 @@ export const CloseIcon = styled(TfiClose)`
   &:focus {
     transform: scale(1.05);
   }
+  @media screen and (max-width: 480px) {
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+  }
 `;
 export const SearchIcon = styled(BsSearch)`
   cursor: pointer;
@@ -85,7 +91,6 @@ export const BiMapIcon = styled(BiMap)`
 
 export const Title = styled.h2`
   color: #000;
-  text-transform: uppercase;
   animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.61, 0.355, 1)
     both;
   @keyframes tracking-in-expand-fwd {
@@ -112,7 +117,6 @@ export const DeliveryBoxStyled = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 50px 130px;
 `;
 
 export const DeliveryWrapper = styled.div`
@@ -121,11 +125,21 @@ export const DeliveryWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
   padding: 20px;
   width: 500px;
   gap: 40px;
-  @media screen and (max-width: 520px) {
-    width: 320px;
+  @media screen and (max-width: 1100px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 380px;
+  }
+  @media screen and (max-width: 850px) {
+    width: 100%;
   }
 `;
 
@@ -180,11 +194,21 @@ export const FormWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
   padding: 20px;
   width: 500px;
   gap: 10px;
-  @media screen and (max-width: 520px) {
-    width: 320px;
+  @media screen and (max-width: 1100px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 1000px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 380px;
+  }
+  @media screen and (max-width: 850px) {
+    width: 100%;
   }
 `;
 export const Form = styled.form`
@@ -209,6 +233,9 @@ export const FormInput = styled.input`
   padding: 10px;
   font-size: 16px;
   border: 2px solid #000;
+  @media screen and (max-width: 480px) {
+    width: 250px;
+  }
 `;
 export const TextArea = styled.textarea`
   text-indent: 10px;
@@ -216,6 +243,9 @@ export const TextArea = styled.textarea`
   padding: 10px;
   font-size: 16px;
   border: 2px solid #000;
+  @media screen and (max-width: 480px) {
+    width: 250px;
+  }
 `;
 
 export const InputContainer = styled.div`
@@ -230,6 +260,9 @@ export const FilterInput = styled.input`
   padding: 10px;
   font-size: 16px;
   border: 2px solid #000;
+  @media screen and (max-width: 480px) {
+    width: 250px;
+  }
   /* transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     outline 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -398,6 +431,9 @@ export const Select = styled.select`
     active
       ? "fade-in-right 0.7s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
       : "fade-out-right 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
+  @media screen and (max-width: 480px) {
+    width: 250px;
+  }
 
   @keyframes fade-in-right {
     0% {

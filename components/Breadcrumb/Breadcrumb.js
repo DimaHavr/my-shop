@@ -8,14 +8,14 @@ import {
   Text,
 } from "./Breadcrumb.styled";
 
-const Breadcrumb = ({ breadcrumbArr, breadcrumbValue }) => {
+const Breadcrumb = ({ breadcrumbArr, breadcrumbValue, title }) => {
   const router = useRouter();
 
   const handleClick = () => {
     router.back();
   };
 
-  const matchingObject = breadcrumbArr.find(
+  const matchingObject = breadcrumbArr?.find(
     (obj) => obj.path === breadcrumbValue
   );
 
@@ -27,7 +27,7 @@ const Breadcrumb = ({ breadcrumbArr, breadcrumbValue }) => {
         </Link>
         <ArrowIcon onClick={() => handleClick()} />
       </IconBox>
-      <Text>{matchingObject ? matchingObject.title : null}</Text>
+      <Text>{matchingObject ? matchingObject.title : title}</Text>
     </Wrapper>
   );
 };

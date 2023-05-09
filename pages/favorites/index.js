@@ -6,6 +6,7 @@ import { selectShowCart } from "../../redux/cart/selectors";
 import { selectFavoritesProducts } from "../../redux/favorites/selectors";
 import dynamic from "next/dynamic";
 import Box from "../../components/Box/Box";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 const Layout = dynamic(() => import("../../components/Layout/Layout"));
 const SubscribeBox = dynamic(() =>
   import("../../components/SubscribeBox/SubscribeBox")
@@ -33,6 +34,7 @@ const Index = () => {
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
+        <Breadcrumb title="Улюблені товари" />
         <ProductsList products={products} />
         <InstagramBox />
         <SubscribeBox />

@@ -7,6 +7,7 @@ import { createGlobalStyle } from "styled-components";
 import Box from "../../components/Box/Box";
 import Layout from "../../components/Layout/Layout";
 import Checkout from "../../components/Checkout/Checkout";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 const SubscribeBox = dynamic(() =>
   import("../../components/SubscribeBox/SubscribeBox")
 );
@@ -22,6 +23,7 @@ const Index = () => {
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} />
       <Layout pageTitle="My-Shop">
+        <Breadcrumb title="Оформлення замовлення" />
         <Checkout />
         <SubscribeBox />
       </Layout>

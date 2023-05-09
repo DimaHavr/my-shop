@@ -76,7 +76,6 @@ const Index = (props) => {
 
   const router = useRouter();
   const breadcrumbValue = router.query.categories;
-
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} showFilter={showFilter} />
