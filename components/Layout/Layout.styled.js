@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 import { FaOpencart } from "react-icons/fa";
 import { FaXbox } from "react-icons/fa";
@@ -18,7 +19,7 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   box-shadow: inset -0.5px 0px 13.5px -6px rgba(0, 0, 0, 0.43);
   @media screen and (max-width: 1080px) {
-    padding: 25px 80px;
+    padding: 25px 60px;
   }
   @media screen and (max-width: 768px) {
     padding: 15px 30px;
@@ -41,7 +42,7 @@ export const NavList = styled.ul`
   @media screen and (max-width: 1080px) {
     gap: 15px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 960px) {
     display: none;
   }
 `;
@@ -104,7 +105,7 @@ export const NavLogoBox = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
@@ -113,32 +114,15 @@ export const NavLogoBox = styled.div`
   }
 `;
 
-export const NavLogoText = styled.div`
-  /* font-weight: 900;
-  font-size: 24px;
-  line-height: 1.36;
-  max-width: 585px;
-  text-align: center;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #333;
-  text-shadow: 0 -6px 18px rgba(0, 0, 0, 0.35);
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover,
-  &:focus {
-    color: #333;
-  } */
-
+export const NavLogoText = styled(Image)`
+  min-width: 130px;
   @media screen and (max-width: 450px) {
     display: none;
   }
 `;
 
-export const NavLogoIcon = styled.div`
-  width: 25px;
-  height: 25px;
-  color: #17696a;
+export const NavLogoIcon = styled(Image)`
+  min-width: 45px;
 `;
 
 export const ToolBar = styled.div`
@@ -214,7 +198,7 @@ export const NavbarBurgerBox = styled.button`
   border: none;
   background: none;
   display: none;
-  @media (max-width: 768px) {
+  @media (max-width: 960px) {
     display: flex;
   }
 `;

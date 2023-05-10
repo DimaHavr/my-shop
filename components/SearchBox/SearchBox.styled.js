@@ -4,6 +4,7 @@ import { BsSearch } from "react-icons/bs";
 export const SearchIcon = styled(BsSearch)`
   width: 20px;
   height: 20px;
+  fill: #17696a;
 `;
 
 export const Wrapper = styled.form`
@@ -108,9 +109,6 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  position: absolute;
-  top: 0;
-  right: 7px;
   cursor: pointer;
   border: none;
   background: none;

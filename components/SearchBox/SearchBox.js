@@ -42,13 +42,13 @@ export const SearchBox = ({ onSubmit }) => {
   return (
     <Box>
       <Wrapper onSubmit={handleSubmit}>
-        <Input
+        {/* <Input
           isOpen={isOpen}
           type="text"
           placeholder="Search here..."
           value={query}
           onChange={onChangeInput}
-        />
+        /> */}
         <Button type="submit">
           <SearchIcon />
         </Button>
