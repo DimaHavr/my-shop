@@ -95,7 +95,7 @@ const Index = (props) => {
 
 export default Index;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
@@ -117,6 +117,7 @@ export async function getServerSideProps() {
         subCategories,
         products,
       },
+      revalidate: 60,
     };
   } catch (error) {
     console.error(error);

@@ -35,7 +35,7 @@ const ProductScreen = ({ product }) => {
 
 export default ProductScreen;
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const id = params.id;
   const productUrl = `https://my-shop-strapi.onrender.com/api/products/${id}?populate=*`;
   try {
@@ -45,6 +45,7 @@ export async function getServerSideProps({ params }) {
       props: {
         product,
       },
+      revalidate: 60,
     };
   } catch (error) {
     console.error(error);
@@ -54,33 +55,33 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-// export async function getStaticPaths() {
-//   const womenProductsUrl =
-//     "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+export async function getStaticPaths() {
+  const womenProductsUrl =
+    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-//   try {
-//     const resProducts = await axios.get(womenProductsUrl, getHeaders());
-//     const womenProducts = await resProducts.data;
+  try {
+    const resProducts = await axios.get(womenProductsUrl, getHeaders());
+    const womenProducts = await resProducts.data;
 
-//     const allPaths = womenProducts.data.map((item) => {
-//       return {
-//         params: {
-//           subcategories:
-//             item.attributes.sub_categories.data[0].attributes.slug.toString(),
-//           id: item.id.toString(),
-//         },
-//       };
-//     });
+    const allPaths = womenProducts.data.map((item) => {
+      return {
+        params: {
+          subcategories:
+            item.attributes.sub_categories.data[0].attributes.slug.toString(),
+          id: item.id.toString(),
+        },
+      };
+    });
 
-//     return {
-//       paths: allPaths,
-//       fallback: false,
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       paths: [],
-//       fallback: false,
-//     };
-//   }
-// }
+    return {
+      paths: allPaths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
+}

@@ -134,6 +134,7 @@ const Cart = () => {
                       alignItems="center"
                     >
                       <Link
+                        onClick={() => dispatch(setShowCart(false))}
                         href={`/${categoryPath}/${subCategoryPath}/${id}`}
                         passHref
                       >
@@ -150,7 +151,11 @@ const Cart = () => {
                       justifyContent="space-around"
                       paddingRight="20px"
                     >
-                      <Link href={`/women/product/${id}`} passHref>
+                      <Link
+                        onClick={() => dispatch(setShowCart(false))}
+                        href={`/women/product/${id}`}
+                        passHref
+                      >
                         <SubTitle>{title}</SubTitle>
                       </Link>
                       <Box display="flex" alignItems="baseline" gridGap="10px">
@@ -216,11 +221,16 @@ const Cart = () => {
               <Text>Підсумок: </Text>
               <Text>{totalPrice}₴</Text>
             </Box>
-            <Link href={"/checkout"}>
-              <IssueBtn type="button">
-                <CheckoutIcon /> Оформити замовлення
-              </IssueBtn>
-            </Link>
+            <Box display="flex" justifyContent="center">
+              <Link href={"/checkout"}>
+                <IssueBtn
+                  onClick={() => dispatch(setShowCart(false))}
+                  type="button"
+                >
+                  <CheckoutIcon /> Оформити замовлення
+                </IssueBtn>
+              </Link>
+            </Box>
           </TotalContainer>
         )}
       </CartContainer>

@@ -95,7 +95,7 @@ const Index = (props) => {
 };
 export default Index;
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const slug = params.subcategories;
   const subCategoriesUrl =
     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
@@ -114,6 +114,7 @@ export async function getServerSideProps({ params }) {
 
     return {
       props: { subCategories, products, slug },
+      revalidate: 60,
     };
   } catch (error) {
     console.error(error);
@@ -123,31 +124,31 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-// export async function getStaticPaths() {
-//   const subCategoriesUrl =
-//     "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+export async function getStaticPaths() {
+  const subCategoriesUrl =
+    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-//   try {
-//     const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-//     const subCategories = await responseSubCat.data;
+  try {
+    const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
+    const subCategories = await responseSubCat.data;
 
-//     const allPaths = subCategories.data.map((item) => {
-//       return {
-//         params: {
-//           subcategories: item.attributes.slug.toString(),
-//         },
-//       };
-//     });
+    const allPaths = subCategories.data.map((item) => {
+      return {
+        params: {
+          subcategories: item.attributes.slug.toString(),
+        },
+      };
+    });
 
-//     return {
-//       paths: allPaths,
-//       fallback: false,
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       paths: [],
-//       fallback: false,
-//     };
-//   }
-// }
+    return {
+      paths: allPaths,
+      fallback: "blocking",
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      paths: [],
+      fallback: false,
+    };
+  }
+}
