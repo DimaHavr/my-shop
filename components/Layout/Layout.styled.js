@@ -25,6 +25,10 @@ export const HeaderWrapper = styled.header`
     padding: 15px 30px;
     gap: 20px;
   }
+  @media screen and (max-width: 480px) {
+    padding: 15px 20px;
+    gap: 10px;
+  }
 `;
 
 export const Nav = styled.nav`
