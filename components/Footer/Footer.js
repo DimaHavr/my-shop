@@ -14,15 +14,15 @@ import {
   MapIcon,
   ContactIcon,
   EmailIcon,
+  FooterBox,
 } from "./Footer.styled";
-import Box from "../Box/Box";
 
 const Footer = () => {
   return (
     <SectionFooter>
       <FooterContainer>
         <ContactsWrapper>
-          <Box>
+          <FooterBox>
             <SubTitle>Допомога</SubTitle>
             <List>
               <Item>
@@ -37,12 +37,9 @@ const Footer = () => {
               <Item>
                 <LinkItem href="#">Контакти</LinkItem>
               </Item>
-              <Item>
-                <LinkItem href="#">Блог</LinkItem>
-              </Item>
             </List>
-          </Box>
-          <Box>
+          </FooterBox>
+          <FooterBox>
             <SubTitle>Магазин</SubTitle>
             <List>
               <Item>
@@ -54,13 +51,10 @@ const Footer = () => {
               <Item>
                 <LinkItem href="#">Sale до -50%</LinkItem>
               </Item>
-              <Item>
-                <LinkItem href="#">Brands</LinkItem>
-              </Item>
             </List>
-          </Box>
-          <Box>
-            <SubTitle>Get in touch</SubTitle>
+          </FooterBox>
+          <FooterBox>
+            <SubTitle>Зв'язатися з нами</SubTitle>
             <List>
               <Item>
                 <MapIcon />
@@ -100,7 +94,7 @@ const Footer = () => {
                 </Link>
               </Item>
             </IconList>
-          </Box>
+          </FooterBox>
         </ContactsWrapper>
       </FooterContainer>
     </SectionFooter>

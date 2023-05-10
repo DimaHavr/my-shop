@@ -113,8 +113,8 @@ export const NavLogoBox = styled.div`
   }
 `;
 
-export const NavLogoText = styled.p`
-  font-weight: 900;
+export const NavLogoText = styled.div`
+  /* font-weight: 900;
   font-size: 24px;
   line-height: 1.36;
   max-width: 585px;
@@ -128,14 +128,14 @@ export const NavLogoText = styled.p`
   &:hover,
   &:focus {
     color: #333;
-  }
+  } */
 
   @media screen and (max-width: 450px) {
     display: none;
   }
 `;
 
-export const NavLogoIcon = styled(FaXbox)`
+export const NavLogoIcon = styled.div`
   width: 25px;
   height: 25px;
   color: #17696a;

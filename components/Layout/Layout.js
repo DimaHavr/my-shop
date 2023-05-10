@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -73,8 +74,20 @@ const Layout = ({ pageTitle, children }) => {
         <HeaderWrapper>
           <Link href="/">
             <NavLogoBox display="flex" gridGap="5px" alignItems="center">
-              <NavLogoText>Create</NavLogoText>
-              <NavLogoIcon />
+              <Image
+                src="/logos/logo_icon.svg"
+                alt="Your logo"
+                width={45}
+                height={45}
+              />
+              <NavLogoText>
+                <Image
+                  src="/logos/logo_text.svg"
+                  alt="Your logo"
+                  width={150}
+                  height={50}
+                />
+              </NavLogoText>
             </NavLogoBox>
           </Link>
           <NavList>

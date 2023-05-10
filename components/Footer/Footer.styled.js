@@ -21,7 +21,11 @@ export const FooterContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-
+export const FooterBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+`;
 export const ContactsWrapper = styled.div`
   display: flex;
   align-items: flex-start;
