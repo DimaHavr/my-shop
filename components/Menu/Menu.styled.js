@@ -67,17 +67,3 @@ export const NavLink = styled.a`
       color: #17696a;
     `}
 `;
-
-// body.open .menu a {
-//   animation: appear 0.3s backwards;
-// }
-
-// @keyframes appear {
-//   0% {
-//     opacity: 0;
-//     translate: 0 50px;
-//   }
-//   100% {
-//     opacity: 1;
-//   }
-// }

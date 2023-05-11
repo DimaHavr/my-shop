@@ -22,10 +22,10 @@ export const ResetIcon = styled(GrPowerReset)`
 export const CloseIcon = styled(TfiClose)`
   cursor: pointer;
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 34px;
-  height: 34px;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
   fill: #000;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -47,7 +47,6 @@ export const SearchIcon = styled(BsSearch)`
   position: absolute;
   top: 37%;
   right: 0;
-  z-index: 10;
   transform: translate(-50%, -50%);
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -66,7 +65,6 @@ export const NumberIcon = styled(AiOutlineFieldNumber)`
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  z-index: 100;
   fill: darkslategrey;
 `;
 export const MapIcon = styled(FaMapMarkerAlt)`
@@ -79,7 +77,6 @@ export const MapIcon = styled(FaMapMarkerAlt)`
   transform: translateY(-50%);
   background: transparent;
   border: none;
-  z-index: 100;
   fill: darkslategrey;
 `;
 
@@ -144,9 +141,13 @@ export const DeliveryWrapper = styled.div`
 `;
 
 export const Overlay = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
   animation: ${({ showForm }) =>
     showForm
       ? "swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both"
@@ -188,7 +189,6 @@ export const Overlay = styled.div`
 `;
 
 export const FormWrapper = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -212,6 +212,16 @@ export const FormWrapper = styled.div`
   }
 `;
 export const Form = styled.form`
+  border-radius: 8px;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  padding: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;

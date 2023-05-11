@@ -46,10 +46,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Checkout = () => {
-  const cartRef = useRef();
   const dispatch = useDispatch();
   const totalPrice = useSelector(selectTotalPrice);
-  const totalQuantities = useSelector(selectTotalQuantities);
   const cartItems = useSelector(selectCartItems);
   const [paymentValue, setPaymentValue] = useState(null);
   const [deliveryData, setDeliveryData] = useState([]);
@@ -94,12 +92,13 @@ const Checkout = () => {
     event.preventDefault();
     console.log(deliveryFormData); // replace with code to save the data to your database or backend API
   };
-  const TableRow = ({ value }) => (
-    <tr>
-      <Td>{value}</Td>
-    </tr>
-  );
-  console.log(deliveryData);
+  const TableRow = ({ value }) =>
+    value && (
+      <tr>
+        <Td>{value}</Td>
+      </tr>
+    );
+
   return cartItems !== 0 ? (
     <CheckoutWrapper>
       <List>
@@ -231,7 +230,7 @@ const Checkout = () => {
           </SummaryOrderBox>
         </Box>
       </CheckoutContainer>
-      {/* <SummaryOrderBox>
+      <SummaryOrderBox>
         <Title>Підсумок замовлення</Title>
         <SummaryOrderItem>
           <Table>
@@ -288,7 +287,31 @@ const Checkout = () => {
             </tbody>
           </Table>
         </SummaryOrderItem>
-      </SummaryOrderBox> */}
+        <Box display="flex" alignItems="center" gridGap="10px">
+          <SubTitle>Сума до cплати:</SubTitle>
+          <Text>{totalPrice}грн</Text>
+        </Box>
+
+        <Box onClick={() => console.log("send")}>
+          {paymentValue === "Оплата онлайн" ? (
+            <LiqPayPay
+              title={"Оплатити"}
+              publicKey={"sandbox_i43745646834"}
+              privateKey={"sandbox_lfmoh83YOMyicWQetpGIy5OXOhhySaVLUEMADjt7"}
+              amount={totalPrice.toString()}
+              description="Payment for product"
+              currency="UAH"
+              orderId={Math.floor(1 + Math.random() * 900000000)}
+              result_url="http://localhost:3000/success"
+              server_url="https://www.liqpay.ua/uk/checkout/sandbox_i43745646834"
+              product_description="Оплата товарів"
+              disabled={false}
+            />
+          ) : (
+            <SummeryBtn>Замовити</SummeryBtn>
+          )}
+        </Box>
+      </SummaryOrderBox>
     </CheckoutWrapper>
   ) : (
     <div>Пусто</div>
@@ -296,17 +319,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-//  <LiqPayPay
-//    title={"Оплатити"}
-//    publicKey={"sandbox_i43745646834"}
-//    privateKey={"sandbox_lfmoh83YOMyicWQetpGIy5OXOhhySaVLUEMADjt7"}
-//    amount={totalPrice.toString()}
-//    description="Payment for product"
-//    currency="UAH"
-//    orderId={Math.floor(1 + Math.random() * 900000000)}
-//    result_url="http://localhost:3000/"
-//    server_url="https://www.liqpay.ua/uk/checkout/sandbox_i43745646834"
-//    product_description="Online courses"
-//    style={{ margin: "8px" }}
-//    disabled={false}
-//  />;

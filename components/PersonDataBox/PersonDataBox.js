@@ -44,8 +44,7 @@ const PersonDataBox = ({
     return (
       clientFormData.firstName &&
       clientFormData.lastName &&
-      clientFormData.phoneNumber &&
-      clientFormData.email
+      clientFormData.phoneNumber
     );
   };
 

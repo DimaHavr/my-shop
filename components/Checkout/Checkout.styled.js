@@ -142,7 +142,6 @@ export const SubTitle = styled.h3`
   line-height: 1.36;
   letter-spacing: 0.06em;
   color: #000;
-  width: 168px;
 `;
 
 export const Text = styled.p`
@@ -198,10 +197,6 @@ export const SummaryOrderItem = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-
-  @media screen and (max-width: 520px) {
-    width: 320px;
-  }
 `;
 export const Table = styled.table`
   width: 100%;

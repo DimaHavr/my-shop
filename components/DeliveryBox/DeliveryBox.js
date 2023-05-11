@@ -3,7 +3,6 @@ import Image from "next/image";
 import { debounce } from "lodash";
 import { toast } from "react-hot-toast";
 import { useState, useEffect } from "react";
-import Box from "../Box/Box";
 import {
   FilterBox,
   FilterInput,
@@ -40,6 +39,7 @@ const DeliveryBox = ({
   handleDeliveryInputChange,
   setDeliveryData,
 }) => {
+  const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [filterCityValue, setFilterCityValue] = useState("");
   const [cities, setCities] = useState([]);
@@ -137,8 +137,8 @@ const DeliveryBox = ({
     handleWarehouses();
   }, [selectedCity, selectedCityRef, filterWarehouseValue, filterCityValue]);
 
-  const handleFilterCityDebounced = debounce(handleFilter, 500);
-  const handleFilterWarehouseDebounced = debounce(handleWarehouses, 500);
+  const handleFilterCityDebounced = debounce(handleFilter, 300);
+  const handleFilterWarehouseDebounced = debounce(handleWarehouses, 300);
   const handleInputCityChange = (e) => {
     setFilterCityValue(e.target.value);
     handleFilterCityDebounced(e.target.value);
@@ -157,6 +157,34 @@ const DeliveryBox = ({
       )
     );
   };
+  const handleSave = () => {
+    if (!isFormFilled()) {
+      toast.error("Будь ласка, заповніть всі поля!", {
+        style: {
+          borderRadius: "10px",
+          background: "grey",
+          color: "#fff",
+        },
+      });
+    } else {
+      setIsSaved(true);
+      toast.success(`Дані збережено!`, {
+        style: {
+          borderRadius: "10px",
+          background: "grey",
+          color: "#fff",
+        },
+      });
+      setShowForm(false);
+    }
+  };
+  const { area, region, city, homeNumber, localNumber, postIndex, comment } =
+    deliveryFormData;
+
+  const isFormFilled = () => {
+    return area && region && city && homeNumber && localNumber && postIndex;
+  };
+
   return (
     <DeliveryBoxStyled>
       <DeliveryWrapper>
@@ -260,121 +288,95 @@ const DeliveryBox = ({
           width={200}
           height={30}
         />
-        {!showForm ? (
-          <ModalBtn onClick={handleToggleModal}>Відкрити форму</ModalBtn>
-        ) : (
-          <CloseIcon onClick={handleToggleModal} />
-        )}
-
-        {showForm && (
-          <Overlay showForm={showForm}>
-            <Form onSubmit={handleDeliverySubmit}>
-              <InputContainer>
-                <FormInput
-                  placeholder="Область"
-                  type="text"
-                  name="area"
-                  value={deliveryFormData.area}
-                  onChange={handleDeliveryInputChange}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <FormInput
-                  placeholder="Район"
-                  type="text"
-                  name="region"
-                  value={deliveryFormData.region}
-                  onChange={handleDeliveryInputChange}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <FormInput
-                  placeholder="Населений пункт"
-                  type="text"
-                  name="city"
-                  value={deliveryFormData.city}
-                  onChange={handleDeliveryInputChange}
-                />
-              </InputContainer>
-              <InputContainer>
-                <FormInput
-                  placeholder="Номер будинку"
-                  type="number"
-                  name="homeNumber"
-                  value={deliveryFormData.homeNumber}
-                  onChange={handleDeliveryInputChange}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <FormInput
-                  placeholder="Номер квартири"
-                  type="number"
-                  name="localNumber"
-                  value={deliveryFormData.localNumber}
-                  onChange={handleDeliveryInputChange}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <FormInput
-                  placeholder="Поштовий індекс"
-                  type="text"
-                  name="postIndex"
-                  value={deliveryFormData.localNumber}
-                  onChange={handleDeliveryInputChange}
-                  required
-                />
-              </InputContainer>
-              <InputContainer>
-                <TextArea
-                  placeholder="Комментар"
-                  type="textarea"
-                  name="comment"
-                  value={deliveryFormData.comment}
-                  onChange={handleDeliveryInputChange}
-                  required
-                />
-              </InputContainer>
-              <ModalBtn
-                onClick={() => {
-                  handleToggleModal();
-                  toast.success(`Дані для доставки збережено!`, {
-                    style: {
-                      borderRadius: "10px",
-                      background: "grey",
-                      color: "#fff",
-                    },
-                  });
-                }}
-                type="submit"
-              >
+        <ModalBtn onClick={handleToggleModal}>Відкрити форму</ModalBtn>
+      </FormWrapper>
+      {showForm && (
+        <Overlay showForm={showForm}>
+          <Form onSubmit={handleDeliverySubmit}>
+            {showForm && <CloseIcon onClick={handleToggleModal} />}
+            <InputContainer>
+              <FormInput
+                placeholder="Область"
+                type="text"
+                name="area"
+                value={area}
+                onChange={handleDeliveryInputChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <FormInput
+                placeholder="Район"
+                type="text"
+                name="region"
+                value={region}
+                onChange={handleDeliveryInputChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <FormInput
+                placeholder="Населений пункт"
+                type="text"
+                name="city"
+                value={city}
+                onChange={handleDeliveryInputChange}
+              />
+            </InputContainer>
+            <InputContainer>
+              <FormInput
+                placeholder="Номер будинку"
+                type="number"
+                name="homeNumber"
+                value={homeNumber}
+                onChange={handleDeliveryInputChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <FormInput
+                placeholder="Номер квартири"
+                type="number"
+                name="localNumber"
+                value={localNumber}
+                onChange={handleDeliveryInputChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <FormInput
+                placeholder="Поштовий індекс"
+                type="text"
+                name="postIndex"
+                value={postIndex}
+                onChange={handleDeliveryInputChange}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <TextArea
+                placeholder="Комментар"
+                type="textarea"
+                name="comment"
+                value={comment}
+                onChange={handleDeliveryInputChange}
+                required
+              />
+            </InputContainer>
+            {!isSaved ? (
+              <ModalBtn onClick={handleSave} type="submit">
                 Зберегти
               </ModalBtn>
-            </Form>
-          </Overlay>
-        )}
-      </FormWrapper>
+            ) : (
+              <ModalBtn onClick={handleSave} type="button">
+                Оновити
+              </ModalBtn>
+            )}
+          </Form>
+        </Overlay>
+      )}
     </DeliveryBoxStyled>
   );
 };
 
 export default DeliveryBox;
-{
-  /* {selectedWarehouse.Description && (
-        <div>
-          <MapIconDetail />
-          <div>
-            <p>{selectedWarehouse?.SettlementAreaDescription}</p>
-            <p>{selectedWarehouse?.SettlementRegionsDescription}</p>
-            <p>
-              {selectedWarehouse?.SettlementTypeDescription}{" "}
-              {selectedWarehouse?.SettlementDescription}
-            </p>
-            <p>{selectedWarehouse?.Description}</p>
-          </div>
-        </div>
-      )} */
-}

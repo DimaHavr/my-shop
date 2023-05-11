@@ -56,10 +56,6 @@ const Layout = ({ pageTitle, children }) => {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  function closeMenu() {
-    setIsMenuOpen(false);
-  }
-
   return (
     <>
       <Head>
