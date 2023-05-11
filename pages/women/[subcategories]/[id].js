@@ -37,7 +37,7 @@ export default ProductScreen;
 
 export async function getStaticProps({ params }) {
   const id = params.id;
-  const productUrl = `https://my-shop-strapi.onrender.com/api/products/${id}?populate=*`;
+  const productUrl = `${process.env.BASE_URL}/api/products/${id}?populate=*`;
   try {
     const res = await axios.get(productUrl, getHeaders());
     const product = res.data;
@@ -56,8 +56,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const womenProductsUrl =
-    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+  const womenProductsUrl = `${process.env.BASE_URL}/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
 
   try {
     const resProducts = await axios.get(womenProductsUrl, getHeaders());

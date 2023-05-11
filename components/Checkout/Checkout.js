@@ -296,33 +296,25 @@ const Checkout = () => {
           <Text>{totalPrice}грн</Text>
         </Box>
 
-        <Box
-          onClick={() => {
-            dispatch(setCartItems([]));
-            dispatch(setTotalQuantities(0));
-            dispatch(setTotalPrice(0));
-          }}
-        >
-          {paymentValue === "Оплата онлайн" ? (
-            <LiqPayPay
-              title={"Оплатити"}
-              publicKey={"sandbox_i43745646834"}
-              privateKey={"sandbox_lfmoh83YOMyicWQetpGIy5OXOhhySaVLUEMADjt7"}
-              amount={totalPrice.toString()}
-              description="Оплата для Roztox"
-              currency="UAH"
-              orderId={Math.floor(1 + Math.random() * 900000000)}
-              result_url="http://localhost:3000/success"
-              server_url="https://www.liqpay.ua/uk/checkout/sandbox_i43745646834"
-              product_description="Оплата товарів"
-              disabled={false}
-            />
-          ) : (
-            <SummeryBtn onClick={() => router.push("/success")}>
-              Замовити
-            </SummeryBtn>
-          )}
-        </Box>
+        {paymentValue === "Оплата онлайн" ? (
+          <LiqPayPay
+            title={"Оплатити"}
+            publicKey={process.env.NEXT_PUBLIC_LIQPAY_PUBLIC_KEY}
+            privateKey={process.env.NEXT_PUBLIC_LIQPAY_PRIVAT_KEY}
+            amount={totalPrice.toString()}
+            description="Оплата для Roztox"
+            currency="UAH"
+            orderId={Math.floor(1 + Math.random() * 900000000)}
+            result_url={process.env.NEXT_PUBLIC_LIQPAY_RESULT_URL}
+            server_url={process.env.NEXT_PUBLIC_LIQPAY_SERVER_URL}
+            product_description="Оплата товарів"
+            disabled={false}
+          />
+        ) : (
+          <SummeryBtn onClick={() => router.push("/success")}>
+            Замовити
+          </SummeryBtn>
+        )}
       </SummaryOrderBox>
     </CheckoutWrapper>
   ) : (

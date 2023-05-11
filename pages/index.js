@@ -59,14 +59,10 @@ const Index = ({
 export default Index;
 
 export async function getStaticProps() {
-  const subCategoriesUrl =
-    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*";
-  const trendingProductsUrl =
-    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][type][$eq]=trending";
-  const newProductsUrl =
-    "https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][type][$eq]=new";
-  const heroBannersUrl =
-    "https://my-shop-strapi.onrender.com/api/hero-banners?populate=*";
+  const subCategoriesUrl = `${process.env.BASE_URL}/api/sub-categories?populate=*`;
+  const trendingProductsUrl = `${process.env.BASE_URL}/api/products?populate=*&[filters][type][$eq]=trending`;
+  const newProductsUrl = `${process.env.BASE_URL}/api/products?populate=*&[filters][type][$eq]=new`;
+  const heroBannersUrl = `${process.env.BASE_URL}/api/hero-banners?populate=*`;
 
   try {
     const [popularCategories, trendingProducts, newProducts, heroBanners] =

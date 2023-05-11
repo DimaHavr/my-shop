@@ -2,15 +2,21 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
 import Confetti from "react-confetti";
 import { cache } from "../../utils/cache";
-import { useSelector } from "react-redux";
 import { selectShowCart } from "../../redux/cart/selectors";
+import {
+  setCartItems,
+  setTotalQuantities,
+  setTotalPrice,
+} from "../../redux/cart/cartSlice";
 import getHeaders from "../../hooks/getHeaders";
 import Box from "../../components/Box/Box";
 import Layout from "../../components/Layout/Layout";
 import HeroBanner from "../../components/HeroBanner/HeroBanner";
 import SuccessBox from "../../components/SuccessBox/SuccessBox";
+
 const PopularCategories = dynamic(() =>
   import("../../components/PopularCategories/PopularCategories")
 );
@@ -29,7 +35,11 @@ const InstagramBox = dynamic(() =>
 const SubscribeBox = dynamic(() =>
   import("../../components/SubscribeBox/SubscribeBox")
 );
-
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
+  }
+`;
 const Index = ({
   popularCategories,
   trendingProducts,
@@ -37,13 +47,15 @@ const Index = ({
   heroBanners,
 }) => {
   const [isConfettiActive, setConfettiActive] = useState(true);
-
   const showCart = useSelector(selectShowCart);
-  const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
-  }
-`;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCartItems([]));
+    dispatch(setTotalQuantities(0));
+    dispatch(setTotalPrice(0));
+  }, []);
+
   return (
     <SuccessBox setConfettiActive={setConfettiActive}>
       {isConfettiActive && (

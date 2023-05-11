@@ -96,10 +96,9 @@ const Index = (props) => {
 export default Index;
 
 export async function getStaticProps() {
-  const subCategoriesUrl =
-    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
+  const subCategoriesUrl = `${process.env.BASE_URL}/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
 
-  const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
+  const productsUrl = `${process.env.BASE_URL}/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
 
   try {
     const [subCategories, products] = await Promise.all([

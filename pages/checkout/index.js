@@ -1,9 +1,7 @@
-import axios from "axios";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { selectShowCart } from "../../redux/cart/selectors";
 import { createGlobalStyle } from "styled-components";
-// import getHeaders from "../hooks/getHeaders";
 import Box from "../../components/Box/Box";
 import Layout from "../../components/Layout/Layout";
 import Checkout from "../../components/Checkout/Checkout";

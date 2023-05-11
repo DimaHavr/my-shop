@@ -39,6 +39,7 @@ const DeliveryBox = ({
   handleDeliveryInputChange,
   setDeliveryData,
 }) => {
+  const apiKey = process.env.NEXT_PUBLIC_NOVAPOSHTA_API_KEY;
   const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [filterCityValue, setFilterCityValue] = useState("");
@@ -66,7 +67,6 @@ const DeliveryBox = ({
 
   const handleFilter = async () => {
     setLoading(true);
-    const apiKey = "c75de6f5d503c098726768ca49c79618";
     const modelName = "Address";
     const calledMethod = "getCities";
     const methodProperties = {
@@ -102,7 +102,6 @@ const DeliveryBox = ({
 
   const handleWarehouses = async () => {
     setLoading(true);
-    const apiKey = "c75de6f5d503c098726768ca49c79618";
     const modelName = "Address";
     const calledMethod = "getWarehouses";
     const methodProperties = {
