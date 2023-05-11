@@ -97,11 +97,10 @@ export default Index;
 
 export async function getStaticProps({ params }) {
   const slug = params.subcategories;
-  const subCategoriesUrl = `${process.env.BASE_URL}/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
+  const subCategoriesUrl =
+    "https://my-shop-strapi.onrender.com/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий";
 
-  const productsUrl = `${
-    process.env.BASE_URL
-  }/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
+  const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
     slug
   )}`;
 
