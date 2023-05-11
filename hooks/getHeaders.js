@@ -1,7 +1,7 @@
 export default function getHeaders() {
   return {
     headers: {
-      Authorization: `Bearer ${process.env.API_TOKEN}`,
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
     },
   };
 }
