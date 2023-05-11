@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { LiqPayPay } from "react-liqpay";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { selectTotalPrice, selectCartItems } from "../../redux/cart/selectors";
 import {
-  selectTotalQuantities,
-  selectTotalPrice,
-  selectCartItems,
-} from "../../redux/cart/selectors";
-import { toggleCartItemQuantity, onRemove } from "../../redux/cart/cartSlice";
+  toggleCartItemQuantity,
+  onRemove,
+  setCartItems,
+  setTotalQuantities,
+} from "../../redux/cart/cartSlice";
 import { createGlobalStyle } from "styled-components";
 import Box from "../../components/Box/Box";
 
@@ -39,6 +41,7 @@ import DeliveryBox from "../DeliveryBox/DeliveryBox";
 import PersonDataBox from "../PersonDataBox/PersonDataBox";
 import PaymentsBox from "../PaymentsBox/PaymentsBox";
 import { Title } from "../DeliveryBox/DeliveryBox.styled";
+import { setTotalPrice } from "../../redux/cart/cartSlice";
 const GlobalStyle = createGlobalStyle`
   body {
     overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
@@ -47,6 +50,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Checkout = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const totalPrice = useSelector(selectTotalPrice);
   const cartItems = useSelector(selectCartItems);
   const [paymentValue, setPaymentValue] = useState(null);
@@ -292,23 +296,31 @@ const Checkout = () => {
           <Text>{totalPrice}грн</Text>
         </Box>
 
-        <Box onClick={() => console.log("send")}>
+        <Box
+          onClick={() => {
+            dispatch(setCartItems([]));
+            dispatch(setTotalQuantities(0));
+            dispatch(setTotalPrice(0));
+          }}
+        >
           {paymentValue === "Оплата онлайн" ? (
             <LiqPayPay
               title={"Оплатити"}
-              publicKey={"sandbox_i43745646834"}
-              privateKey={"sandbox_lfmoh83YOMyicWQetpGIy5OXOhhySaVLUEMADjt7"}
+              publicKey={process.env.LIQPAY_PUBLIC_KEY}
+              privateKey={process.env.LIQPAY_PRIVAT_KEY}
               amount={totalPrice.toString()}
-              description="Payment for product"
+              description="Оплата для Roztox"
               currency="UAH"
               orderId={Math.floor(1 + Math.random() * 900000000)}
-              result_url="http://localhost:3000/success"
-              server_url="https://www.liqpay.ua/uk/checkout/sandbox_i43745646834"
+              result_url={process.env.LIQPAY_RESULT_URL}
+              server_url={process.env.LIQPAY_SERVER_URL}
               product_description="Оплата товарів"
               disabled={false}
             />
           ) : (
-            <SummeryBtn>Замовити</SummeryBtn>
+            <SummeryBtn onClick={() => router.push("/success")}>
+              Замовити
+            </SummeryBtn>
           )}
         </Box>
       </SummaryOrderBox>
