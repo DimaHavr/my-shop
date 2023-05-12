@@ -29,6 +29,8 @@ import {
   PriceWrapper,
   PriceLabel,
   PriceText,
+  NextIcon,
+  PrevIcon,
 } from "./TrendingNow.styled";
 import Link from "next/link";
 
@@ -84,7 +86,10 @@ const TrendingNow = ({ trendingProducts }) => {
               spaceBetween: 50,
             },
           }}
-          navigation={true}
+          navigation={{
+            nextEl: ".slider-next-products-btn",
+            prevEl: ".slider-prev-products-btn",
+          }}
           modules={[Navigation, EffectCoverflow]}
           className="mySwiper"
         >
@@ -144,7 +149,12 @@ const TrendingNow = ({ trendingProducts }) => {
             );
           })}
         </Swiper>
-
+        <button className="slider-prev-products-btn">
+          <PrevIcon />
+        </button>
+        <button className="slider-next-products-btn">
+          <NextIcon />
+        </button>
         <Button>Ознайомтеся з топ-продажами</Button>
       </Wrapper>
     </Section>

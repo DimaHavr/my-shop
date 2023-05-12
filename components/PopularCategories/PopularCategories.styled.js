@@ -1,5 +1,19 @@
 import styled from "styled-components";
-import { Swiper } from "swiper/react";
+import {
+  BsFillArrowRightSquareFill,
+  BsFillArrowLeftSquareFill,
+} from "react-icons/bs";
+export const PrevIcon = styled(BsFillArrowLeftSquareFill)`
+  width: 30px;
+  height: 30px;
+  color: #17696a;
+`;
+
+export const NextIcon = styled(BsFillArrowRightSquareFill)`
+  width: 30px;
+  height: 30px;
+  color: #17696a;
+`;
 
 export const Section = styled.section`
   padding: 50px 0;
@@ -16,6 +30,7 @@ export const Title = styled.h2`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

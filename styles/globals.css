@@ -80,3 +80,82 @@ img {
 .lg-backdrop {
   background-color: #000000cf;
 }
+.slider-next-popular-categories-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  left: 35%;
+  top: 105%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 10px;
+}
+.slider-prev-popular-categories-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  left: 65%;
+  top: 105%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 10px;
+}
+.slider-next-products-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  left: 65%;
+  top: 88%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 10px;
+}
+.slider-prev-products-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  left: 35%;
+  top: 88%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 10px;
+}
+
+.slider-next-categories-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  left: 55%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 10px;
+  @media screen and (max-width: 768px) {
+    left: 70%;
+  }
+}
+.slider-prev-categories-btn {
+  position: absolute;
+  border: none;
+  background: none;
+  left: 45%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  cursor: pointer;
+  border-radius: 100%;
+  padding: 10px;
+  @media screen and (max-width: 768px) {
+    left: 30%;
+  }
+}

@@ -10,6 +10,8 @@ import {
   Img,
   Subtitle,
   Text,
+  NextIcon,
+  PrevIcon,
 } from "./PopularCategories.styled";
 import Link from "next/link";
 
@@ -54,7 +56,10 @@ const PopularCategories = ({ popularCategories }) => {
               slidesPerView: 7,
             },
           }}
-          navigation={true}
+          navigation={{
+            nextEl: ".slider-next-popular-categories-btn",
+            prevEl: ".slider-prev-popular-categories-btn",
+          }}
           modules={[Navigation, EffectCoverflow]}
           className="mySwiper"
         >
@@ -75,6 +80,12 @@ const PopularCategories = ({ popularCategories }) => {
             );
           })}
         </Swiper>
+        <button className="slider-next-popular-categories-btn">
+          <PrevIcon />
+        </button>
+        <button className="slider-prev-popular-categories-btn">
+          <NextIcon />
+        </button>
       </Wrapper>
     </Section>
   );

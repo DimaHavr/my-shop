@@ -1,14 +1,20 @@
+import Link from "next/link";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
-import { List, Item, Img, Subtitle } from "./Categories.styled";
-import Box from "../Box/Box";
-import Link from "next/link";
+import {
+  Item,
+  Img,
+  Subtitle,
+  Wrapper,
+  NextIcon,
+  PrevIcon,
+} from "./Categories.styled";
 
 const Categories = ({ categories }) => {
   return (
-    <Box paddingTop="0px">
+    <Wrapper>
       <Swiper
         breakpoints={{
           320: {
@@ -37,7 +43,10 @@ const Categories = ({ categories }) => {
             spaceBetween: 0,
           },
         }}
-        navigation={true}
+        navigation={{
+          nextEl: ".slider-next-categories-btn",
+          prevEl: ".slider-prev-categories-btn",
+        }}
         modules={[Navigation]}
         className="mySwiper"
       >
@@ -58,7 +67,13 @@ const Categories = ({ categories }) => {
           );
         })}
       </Swiper>
-    </Box>
+      <button className="slider-prev-categories-btn">
+        <PrevIcon />
+      </button>
+      <button className="slider-next-categories-btn">
+        <NextIcon />
+      </button>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,20 @@
 import styled from "styled-components";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
+import {
+  BsFillArrowRightSquareFill,
+  BsFillArrowLeftSquareFill,
+} from "react-icons/bs";
+export const PrevIcon = styled(BsFillArrowLeftSquareFill)`
+  width: 30px;
+  height: 30px;
+  color: #17696a;
+`;
+
+export const NextIcon = styled(BsFillArrowRightSquareFill)`
+  width: 30px;
+  height: 30px;
+  color: #17696a;
+`;
 
 export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 50px;
@@ -38,6 +53,7 @@ export const Section = styled.section`
 `;
 
 export const Wrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

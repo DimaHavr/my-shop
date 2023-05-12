@@ -1,4 +1,25 @@
 import styled from "styled-components";
+import {
+  BsFillArrowRightSquareFill,
+  BsFillArrowLeftSquareFill,
+} from "react-icons/bs";
+export const PrevIcon = styled(BsFillArrowLeftSquareFill)`
+  width: 30px;
+  height: 30px;
+  color: #17696a;
+`;
+
+export const NextIcon = styled(BsFillArrowRightSquareFill)`
+  width: 30px;
+  height: 30px;
+  color: #17696a;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  cursor: pointer;
+  display: flex;
+`;
 
 export const Item = styled.div`
   cursor: pointer;
@@ -8,6 +29,7 @@ export const Item = styled.div`
   align-items: center;
   gap: 10px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  padding-bottom: 30px;
   &:hover,
   &:focus {
     transform: scale(1.05);
