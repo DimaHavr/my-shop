@@ -51,7 +51,7 @@ const DeliveryBox = ({
   const [selectedWarehouse, setSelectedWarehouse] = useState([]);
   const [showForm, setShowForm] = useState(false);
 
-  const handleToggleModal = () => {
+  const handleToggleForm = () => {
     setShowForm((prevShowForm) => !prevShowForm);
   };
 
@@ -287,12 +287,12 @@ const DeliveryBox = ({
           width={200}
           height={30}
         />
-        <ModalBtn onClick={handleToggleModal}>Відкрити форму</ModalBtn>
+        <ModalBtn onClick={handleToggleForm}>Відкрити форму</ModalBtn>
       </FormWrapper>
       {showForm && (
         <Overlay showForm={showForm}>
           <Form onSubmit={handleDeliverySubmit}>
-            {showForm && <CloseIcon onClick={handleToggleModal} />}
+            {showForm && <CloseIcon onClick={handleToggleForm} />}
             <InputContainer>
               <FormInput
                 placeholder="Область"

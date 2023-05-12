@@ -1,5 +1,28 @@
 import styled from "styled-components";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { TfiClose } from "react-icons/tfi";
+
+export const CloseIcon = styled(TfiClose)`
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  fill: #000;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: 480px) {
+    top: 10px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+  }
+`;
 
 export const MinusIcon = styled(AiOutlineMinus)`
   width: 25px;
@@ -218,7 +241,7 @@ export const Td = styled.td`
   padding: 0.5rem;
   border: 1px solid #e5e8ed;
 `;
-export const SummeryBtn = styled.button`
+export const SummaryBtn = styled.button`
   font-family: "LatoBold";
   font-size: 26px;
   align-items: center;
@@ -236,4 +259,63 @@ export const SummeryBtn = styled.button`
   &:focus {
     transform: scale(1.01);
   }
+`;
+export const Overlay = styled.div`
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  animation: ${({ showSummaryForm }) =>
+    showSummaryForm &&
+    "slide-in-fwd-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both"};
+
+  @keyframes slide-in-fwd-center {
+    0% {
+      -webkit-transform: translateZ(-1400px);
+      transform: translateZ(-1400px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes swing-out-top-bck {
+    0% {
+      -webkit-transform: rotateX(0deg);
+      transform: rotateX(0deg);
+      -webkit-transform-origin: top;
+      transform-origin: top;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: rotateX(-100deg);
+      transform: rotateX(-100deg);
+      -webkit-transform-origin: top;
+      transform-origin: top;
+      opacity: 0;
+    }
+  }
+`;
+export const SummaryOrderWrapper = styled.div`
+  border-radius: 8px;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 `;

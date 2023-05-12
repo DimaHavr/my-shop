@@ -39,7 +39,6 @@ const ProductsList = ({ products }) => {
   const handleRemoveFromFavorites = (productId) => {
     dispatch(removeFavoritesList({ id: productId }));
   };
-  const discount = 10;
   return (
     <Section>
       {products.length === 0 ? (
@@ -59,6 +58,7 @@ const ProductsList = ({ products }) => {
               const image =
                 product.attributes.img.data[0].attributes.formats.small.url;
               const price = product.attributes.price;
+              const discount = product.attributes.discount;
               const categoryPath =
                 product.attributes.categories.data[0].attributes.slug;
               const subCategoryPath =

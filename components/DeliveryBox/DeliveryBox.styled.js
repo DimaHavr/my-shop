@@ -40,6 +40,7 @@ export const CloseIcon = styled(TfiClose)`
     height: 25px;
   }
 `;
+
 export const SearchIcon = styled(BsSearch)`
   cursor: pointer;
   width: 30px;
@@ -149,23 +150,18 @@ export const Overlay = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.92);
   animation: ${({ showForm }) =>
-    showForm
-      ? "swing-in-top-fwd 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both"
-      : "swing-out-top-bck 0.45s cubic-bezier(0.600, -0.280, 0.735, 0.045) both"};
+    showForm &&
+    "slide-in-fwd-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both"};
 
-  @keyframes swing-in-top-fwd {
+  @keyframes slide-in-fwd-center {
     0% {
-      -webkit-transform: rotateX(-100deg);
-      transform: rotateX(-100deg);
-      -webkit-transform-origin: top;
-      transform-origin: top;
+      -webkit-transform: translateZ(-1400px);
+      transform: translateZ(-1400px);
       opacity: 0;
     }
     100% {
-      -webkit-transform: rotateX(0deg);
-      transform: rotateX(0deg);
-      -webkit-transform-origin: top;
-      transform-origin: top;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
       opacity: 1;
     }
   }

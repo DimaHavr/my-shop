@@ -1,31 +1,22 @@
 import styled from "styled-components";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-export const PrevIcon = styled(FaChevronLeft)`
-  width: 20px;
-  height: 20px;
-  color: #17696a;
-`;
-
-export const NextIcon = styled(FaChevronRight)`
-  width: 20px;
-  height: 20px;
-  color: #17696a;
-`;
-
-export const ColorSelectorStyled = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  gap: 5px;
+  gap: 15px;
   width: 250px;
 `;
-
-export const ColorButton = styled.button`
-  margin: 10px;
-  padding: 10px;
+export const List = styled.ul`
+  background-color: #ffffff;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+`;
+export const Item = styled.li`
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -42,37 +33,6 @@ export const ColorButton = styled.button`
   &:focus {
     transform: scale(1.02);
     box-shadow: 0 0 4px 4px #17696a;
-  }
-`;
-
-export const SlideBox = styled.div`
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-`;
-
-export const PrevBtn = styled.button`
-  position: absolute;
-  border: none;
-  background: none;
-  left: 7px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  cursor: pointer;
-`;
-
-export const NextBtn = styled.button`
-  position: absolute;
-  border: none;
-  background: none;
-  right: -26px;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  cursor: pointer;
-  @media screen and (max-width: 480px) {
-    right: -50px;
   }
 `;
 

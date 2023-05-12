@@ -42,78 +42,6 @@ import ProductReview from "../ProductReview/ProductReview";
 import ToggleMenu from "../ToggleMenu/ToggleMenu";
 import ImgSlideBox from "../ImgSlideBox/ImgSlideBox";
 
-const LabelWrapper = styled.span`
-  position: absolute;
-  top: 20px;
-  left: 0;
-  z-index: 100;
-  margin-top: 0 !important;
-  padding-left: 6px;
-  background: #c82128;
-  display: block;
-  white-space: nowrap;
-
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 5px;
-    right: 0;
-    background: #c82128;
-    transform: skewX(330deg);
-    box-shadow: 10px 6px 0 0 #c82128;
-    height: 50%;
-  }
-
-  .product-label {
-    position: relative;
-    z-index: 1;
-    font-weight: 700;
-    color: #fff;
-    padding: 5px 10px;
-    display: block;
-    font-size: 16px;
-    line-height: 1;
-
-    &:before {
-      content: "";
-      position: absolute;
-      top: 100%;
-      left: -6px;
-      width: 0;
-      height: 0;
-      border: 3px solid transparent;
-      border-top-color: #8e0007;
-      border-right-color: #8e0007;
-    }
-  }
-
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 5px;
-    right: 0;
-    bottom: 0;
-    background: #c82128;
-    transform: skewX(30deg);
-    box-shadow: 10px -6px 0 0 #c82128;
-    height: 50%;
-  }
-
-  &.for-discount .product-label {
-    padding: 10px 30px;
-    font-size: 22px;
-    line-height: 15px;
-    font-weight: 600;
-
-    &:before {
-      border-width: 8px;
-    }
-  }
-`;
-
 const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
@@ -140,6 +68,7 @@ const ProductDetails = ({ product }) => {
     },
     id,
   } = product;
+  const discount = product.attributes.discount;
   const productReviews = product.attributes.reviews.data;
   const colors = product.attributes.colors.data;
   const sizes = product.attributes.sizes.data;
@@ -149,7 +78,6 @@ const ProductDetails = ({ product }) => {
   const size = useSelector(selectSize);
   const isFavorite = favoritesProducts.some((item) => item.id === id);
   const inCart = productsInCart.some((item) => item.id === id);
-  const discount = 30;
   const discountPercentage = discount * 0.01;
   const oldPrice = price + price * discountPercentage;
 
