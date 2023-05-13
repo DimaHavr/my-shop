@@ -44,8 +44,8 @@ const Index = (props) => {
   const showFilter = useSelector(selectShowFilter);
 
   useEffect(() => {
-    setProducts(products);
-  }, [props.slug]);
+    setProducts(props.products);
+  }, [props.products]);
 
   useEffect(() => {
     fetchSortSubCatProducts(
