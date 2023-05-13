@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { createGlobalStyle } from "styled-components";
+import { fetchSortSubCatProducts } from "../../../services/fetchSortProducts";
 import { selectShowFilter } from "../../../redux/filter/selectors";
 import { selectShowCart } from "../../../redux/cart/selectors";
 import {
@@ -44,37 +45,21 @@ const Index = (props) => {
 
   const subCategoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.title,
-    path: item.attributes.slug,
+    subCatPath: item.attributes.slug,
+    categoryPath: item.attributes.categories.data[0].attributes.slug,
   }));
 
   const breadcrumbValue = router.query.subcategories;
 
-  async function fetchProducts() {
-    setLoading(true);
-    if (!sortPrice && !sortNew && !sortPopular) {
-      setProducts(props.products);
-      setLoading(false);
-      return;
-    }
-
-    const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
-      props.slug
-    )}${sortPrice ? `&sort=price:${sortPrice}` : ""}${
-      sortNew ? `&sort=createdAt:${sortNew}` : ""
-    }`;
-    try {
-      const response = await axios.get(productsUrl, getHeaders());
-      const products = response.data;
-      setProducts(products);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    fetchProducts();
+    fetchSortSubCatProducts(
+      setProducts,
+      setLoading,
+      sortPrice,
+      sortNew,
+      sortPopular,
+      props
+    );
   }, [sortPopular, sortPrice, sortNew, props.slug]);
 
   return (

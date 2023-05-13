@@ -10,15 +10,16 @@ import {
 
 const Breadcrumb = ({ breadcrumbArr, breadcrumbValue, title }) => {
   const router = useRouter();
-
+  console.log("breadcrumbArr:", breadcrumbArr);
+  console.log("breadcrumbValue:", breadcrumbValue);
   const handleClick = () => {
     router.back();
   };
 
   const matchingObject = breadcrumbArr?.find(
-    (obj) => obj.path === breadcrumbValue
+    (obj) => obj?.subCatPath === breadcrumbValue
   );
-
+  console.log(matchingObject);
   return (
     <Wrapper>
       <IconBox>
@@ -27,7 +28,15 @@ const Breadcrumb = ({ breadcrumbArr, breadcrumbValue, title }) => {
         </Link>
         <ArrowIcon onClick={() => handleClick()} />
       </IconBox>
-      <Text>{matchingObject ? matchingObject.title : title}</Text>
+      {matchingObject.subCatPath ? (
+        <Link
+          href={`/${matchingObject?.categoryPath}/${matchingObject?.subCatPath}`}
+        >
+          <Text>{matchingObject ? matchingObject.title : title}</Text>
+        </Link>
+      ) : (
+        <Text>{matchingObject ? matchingObject.title : title}</Text>
+      )}
     </Wrapper>
   );
 };

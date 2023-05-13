@@ -5,18 +5,21 @@ import getHeaders from "../../../hooks/getHeaders";
 import Box from "../../../components/Box/Box";
 import Layout from "../../../components/Layout/Layout";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+import RecommendedProducts from "../../../components/RecommendedProducts/RecommendedProducts";
 
 const ProductDetails = dynamic(() =>
   import("../../../components/ProductDetails/ProductDetails")
 );
 
-const ProductScreen = ({ product }) => {
+const ProductScreen = ({ product, recommendProducts }) => {
   const router = useRouter();
   const breadcrumbValue = router.query.subcategories;
   const subCategoriesPath = [
     {
       title: product.data.attributes.sub_categories.data[0].attributes.title,
-      path: product.data.attributes.sub_categories.data[0].attributes.slug,
+      subCatPath:
+        product.data.attributes.sub_categories.data[0].attributes.slug,
+      categoryPath: product.data.attributes.categories.data[0].attributes.slug,
     },
   ];
 
@@ -28,6 +31,7 @@ const ProductScreen = ({ product }) => {
           breadcrumbValue={breadcrumbValue}
         />
         <ProductDetails product={product.data} />
+        <RecommendedProducts recommendProducts={recommendProducts} />
       </Layout>
     </Box>
   );
@@ -36,21 +40,29 @@ const ProductScreen = ({ product }) => {
 export default ProductScreen;
 
 export async function getStaticProps({ params }) {
+  const slug = params.subcategories;
   const id = params.id;
   const productUrl = `${process.env.BASE_URL}/api/products/${id}?populate=*`;
+  const recommendProductsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
+    slug
+  )}`;
+
   try {
-    const res = await axios.get(productUrl, getHeaders());
-    const product = res.data;
+    const [responseProduct, responseRecommendProducts] = await Promise.all([
+      axios.get(productUrl, getHeaders()),
+      axios.get(recommendProductsUrl, getHeaders()),
+    ]);
+    const product = responseProduct.data;
+    const recommendProducts = responseRecommendProducts.data;
+
     return {
-      props: {
-        product,
-      },
+      props: { product, recommendProducts },
       revalidate: 60,
     };
   } catch (error) {
     console.error(error);
     return {
-      props: {},
+      props: { product: null, recommendProducts: null },
     };
   }
 }

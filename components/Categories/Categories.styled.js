@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import {
-  BsFillArrowRightSquareFill,
-  BsFillArrowLeftSquareFill,
-} from "react-icons/bs";
-export const PrevIcon = styled(BsFillArrowLeftSquareFill)`
+  HiOutlineArrowNarrowLeft,
+  HiOutlineArrowNarrowRight,
+} from "react-icons/hi";
+export const PrevIcon = styled(HiOutlineArrowNarrowLeft)`
   width: 30px;
   height: 30px;
   color: #17696a;
 `;
 
-export const NextIcon = styled(BsFillArrowRightSquareFill)`
+export const NextIcon = styled(HiOutlineArrowNarrowRight)`
   width: 30px;
   height: 30px;
   color: #17696a;

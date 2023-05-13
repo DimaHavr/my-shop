@@ -80,7 +80,7 @@ export const Section = styled.section`
     padding: 0 50px 50px 50px;
   }
   @media screen and (max-width: 768px) {
-    padding: 0 30px;
+    padding: 0 30px 30px 30px;
   }
 `;
 

@@ -1,18 +1,18 @@
 import styled from "styled-components";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
-import Image from "next/image";
+
 export const FavoriteIcon = styled(MdOutlineFavoriteBorder)`
   width: 50px;
   height: 50px;
   color: #17696a;
-  padding: 10px;
+  padding: 13px;
 `;
 
 export const FavoriteIconRemove = styled(MdFavorite)`
   width: 50px;
   height: 50px;
   color: #17696a;
-  padding: 10px;
+  padding: 13px;
 `;
 
 export const FavoriteIconBox = styled.div`
@@ -31,71 +31,26 @@ export const FavoriteIconBox = styled.div`
   }
 `;
 
-export const Section = styled.section`
-  padding: 30px 0 50px 0;
-`;
-
-export const Title = styled.h2`
-  font-family: "LatoBold";
-  font-weight: 900;
-  font-size: 46px;
-  line-height: 60px;
-  color: #1e212c;
-  text-align: center;
-  margin-bottom: 24px;
-`;
-
-export const Wrapper = styled.div`
+export const SlideBox = styled.div`
+  background-color: #e5e8ed;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 30px;
-  animation: ${({ active }) =>
-    active
-      ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
-      : "fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
-
-  @keyframes fade-in-right {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes fade-out-right {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
 `;
 
-export const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-`;
-
-export const Item = styled.li`
+export const Item = styled.div`
   position: relative;
   cursor: pointer;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  width: 250px;
+  width: 300px;
   border-radius: 8px;
   background-color: #fff;
-  box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   gap: 25px;
-  margin: 23px;
+  margin: 20px 0;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
+  user-select: none;
   &:hover,
   &:focus {
     transform: scale(1.01);
@@ -109,48 +64,10 @@ export const ImgBox = styled.div`
   align-items: center;
 `;
 
-export const Img = styled(Image)`
+export const Img = styled.img`
   border-radius: 8px;
   object-fit: contain;
   object-position: center;
-`;
-export const ImgEmpty = styled(Image)`
-  width: 300px;
-`;
-export const TextEmpty = styled.p`
-  font-family: "LatoBold";
-  font-size: 18px;
-  line-height: 24px;
-  text-align: center;
-`;
-export const EmptyBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0 20px;
-  animation: ${({ active }) =>
-    active
-      ? "fade-in-right 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;"
-      : "fade-out-right 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;"};
-
-  @keyframes fade-in-right {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes fade-out-right {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
 `;
 
 export const Subtitle = styled.h3`

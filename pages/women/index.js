@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { cache } from "../../utils/cache";
 import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { selectShowFilter } from "../../redux/filter/selectors";
 import { selectShowCart } from "../../redux/cart/selectors";
+import { fetchSortCategoryProducts } from "../../services/fetchSortProducts";
 import {
   selectSortPrice,
   selectSortNew,
@@ -43,35 +43,19 @@ const Index = (props) => {
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
 
-  async function fetchProducts() {
-    setLoading(true);
-    if (!sortPrice && !sortNew && !sortPopular) {
-      setProducts(props.products);
-      setLoading(false);
-      return;
-    }
-    const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий${
-      sortPrice ? `&sort=price:${sortPrice}` : ""
-    }${sortNew ? `&sort=createdAt:${sortNew}` : ""}`;
-
-    try {
-      const response = await axios.get(productsUrl, getHeaders());
-      const products = response.data;
-      setProducts(products);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    fetchProducts();
+    fetchSortCategoryProducts(
+      setProducts,
+      setLoading,
+      sortPrice,
+      sortNew,
+      sortPopular
+    );
   }, [sortPopular, sortPrice, sortNew]);
 
   const categoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.categories.data[0].attributes.title,
-    path: item.attributes.categories.data[0].attributes.title.slug,
+    categoryPath: item.attributes.categories.data[0].attributes.title.slug,
   }));
 
   const router = useRouter();
@@ -97,20 +81,17 @@ export default Index;
 
 export async function getStaticProps() {
   const subCategoriesUrl = `${process.env.BASE_URL}/api/sub-categories?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
-
   const productsUrl = `${process.env.BASE_URL}/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий`;
 
   try {
-    const [subCategories, products] = await Promise.all([
-      cache.getOrFetch("subCategories", async () => {
-        const responseSubCat = await axios.get(subCategoriesUrl, getHeaders());
-        return responseSubCat.data;
-      }),
-      cache.getOrFetch("products", async () => {
-        const responseProducts = await axios.get(productsUrl, getHeaders());
-        return responseProducts.data;
-      }),
+    const [subCategoriesResponse, productsResponse] = await Promise.all([
+      axios.get(subCategoriesUrl, getHeaders()),
+      axios.get(productsUrl, getHeaders()),
     ]);
+
+    const subCategories = subCategoriesResponse.data;
+    const products = productsResponse.data;
+
     return {
       props: {
         subCategories,

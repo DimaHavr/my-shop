@@ -19,10 +19,7 @@ export const ToggleMenuWrapper = styled.div`
 
 export const ToggleMenuBtnBox = styled.div`
   display: flex;
-  justify-content: flex-start;
-  @media screen and (max-width: 488px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 
 export const ToggleMenuButton = styled.button`

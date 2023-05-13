@@ -20,7 +20,7 @@ const SizeSelector = ({ sizes }) => {
 
   return (
     <Wrapper>
-      <Box display="flex" alignItems="baseline" gridGap="10px">
+      <Box display="flex" alignItems="center" gridGap="10px">
         <Subtitle>Оберіть розмір:</Subtitle> <Text>{selectedSize}</Text>
       </Box>
       <List>

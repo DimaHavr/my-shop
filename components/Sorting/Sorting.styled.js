@@ -10,9 +10,16 @@ export const Label = styled.label`
 `;
 
 export const Select = styled.select`
-  font-family: "LatoRegular";
-  padding: 8px;
-  border-radius: 10px;
-  border-color: #17696a;
-  border-width: 2px;
+  text-indent: 10px;
+  width: 180px;
+  height: 52px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 2px rgb(204, 204, 204);
+  transition: all 0.5s ease;
+  position: relative;
+  font-size: 14px;
+  color: #474747;
+  text-align: left;
 `;

@@ -43,7 +43,12 @@ const ProductsList = ({ products }) => {
     <Section>
       {products.length === 0 ? (
         <EmptyBox active={products}>
-          <ImgEmpty src="/images/empty.webp" alt="minion" />
+          <ImgEmpty
+            src="/images/empty.webp"
+            alt="minion"
+            width={300}
+            height={250}
+          />
           <TextEmpty>Сорочка. Са-ра-фан. Сукня? Немає нічого? О ні!</TextEmpty>
         </EmptyBox>
       ) : (
@@ -77,7 +82,13 @@ const ProductsList = ({ products }) => {
                           </DiscountLabel>
                         </DiscountWrapper>
                       )}
-                      <Img src={image} alt={title} />
+                      <Img
+                        src={image}
+                        alt={title}
+                        width={300}
+                        height={250}
+                        priority
+                      />
                     </ImgBox>
                     <Subtitle>{title}</Subtitle>
                     <PriceWrapper>
