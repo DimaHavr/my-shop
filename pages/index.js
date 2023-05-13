@@ -1,6 +1,5 @@
 import axios from "axios";
 import dynamic from "next/dynamic";
-import { cache } from "../utils/cache";
 import { useSelector } from "react-redux";
 import { selectShowCart } from "../redux/cart/selectors";
 import { createGlobalStyle } from "styled-components";

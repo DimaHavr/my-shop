@@ -43,16 +43,11 @@ const Index = (props) => {
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
 
-  const subCategoriesPath = props.subCategories.data.map((item) => ({
-    title: item.attributes.title,
-    subCatPath: item.attributes.slug,
-    categoryPath: item.attributes.categories.data[0].attributes.slug,
-  }));
-
-  const breadcrumbValue = router.query.subcategories;
-
   useEffect(() => {
     setProducts(products);
+  }, [props.slug]);
+
+  useEffect(() => {
     fetchSortSubCatProducts(
       setProducts,
       setLoading,
@@ -61,7 +56,15 @@ const Index = (props) => {
       sortPopular,
       props
     );
-  }, [sortPopular, sortPrice, sortNew, props.slug]);
+  }, [sortPopular, sortPrice, sortNew]);
+
+  const subCategoriesPath = props.subCategories.data.map((item) => ({
+    title: item.attributes.title,
+    subCatPath: item.attributes.slug,
+    categoryPath: item.attributes.categories.data[0].attributes.slug,
+  }));
+
+  const breadcrumbValue = router.query.subcategories;
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
