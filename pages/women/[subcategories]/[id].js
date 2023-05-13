@@ -39,8 +39,6 @@ const ProductScreen = ({ product, recommendProducts }) => {
 
 export default ProductScreen;
 
-import axios from "axios";
-
 export async function getStaticProps({ params }) {
   const slug = params.subcategories;
   const id = params.id;
