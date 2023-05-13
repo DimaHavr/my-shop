@@ -136,56 +136,8 @@ img {
   }
 }
 
-.slider-next-new-products-btn {
-  position: absolute;
-  border: none;
-  background: none;
-  left: 65%;
-  top: 88%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  cursor: pointer;
-  border-radius: 100%;
-  padding: 10px;
-}
-.slider-prev-new-products-btn {
-  position: absolute;
-  border: none;
-  background: none;
-  left: 35%;
-  top: 88%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  cursor: pointer;
-  border-radius: 100%;
-  padding: 10px;
-}
-
-.slider-next-trends-products-btn {
-  position: absolute;
-  border: none;
-  background: none;
-  left: 65%;
-  top: 88%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  cursor: pointer;
-  border-radius: 100%;
-  padding: 10px;
-}
-.slider-prev-trends-products-btn {
-  position: absolute;
-  border: none;
-  background: none;
-  left: 35%;
-  top: 88%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  cursor: pointer;
-  border-radius: 100%;
-  padding: 10px;
-}
-
+.slider-next-new-products-btn,
+.slider-next-trends-products-btn,
 .slider-next-recommend-products-btn {
   position: absolute;
   border: none;
@@ -198,6 +150,8 @@ img {
   border-radius: 100%;
   padding: 10px;
 }
+.slider-prev-new-products-btn,
+.slider-prev-trends-products-btn,
 .slider-prev-recommend-products-btn {
   position: absolute;
   border: none;

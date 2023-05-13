@@ -17,15 +17,11 @@ import Box from "../../../components/Box/Box";
 import Layout from "../../../components/Layout/Layout";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import Loader from "../../../components/Loader/Loader";
+import ProductsList from "../../../components/ProductsList/ProductsList";
+import Categories from "../../../components/Categories/Categories";
 
 const SubscribeBox = dynamic(() =>
   import("../../../components/SubscribeBox/SubscribeBox")
-);
-const ProductsList = dynamic(() =>
-  import("../../../components/ProductsList/ProductsList")
-);
-const Categories = dynamic(() =>
-  import("../../../components/Categories/Categories")
 );
 const GlobalStyle = createGlobalStyle`
   body {

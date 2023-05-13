@@ -8,10 +8,8 @@ import getHeaders from "../hooks/getHeaders";
 import Box from "../components/Box/Box";
 import Layout from "../components/Layout/Layout";
 import HeroBanner from "../components/HeroBanner/HeroBanner";
+import PopularCategories from "../components/PopularCategories/PopularCategories";
 
-const PopularCategories = dynamic(() =>
-  import("../components/PopularCategories/PopularCategories")
-);
 const NewArrivals = dynamic(() =>
   import("../components/NewArrivals/NewArrivals")
 );
@@ -27,7 +25,11 @@ const InstagramBox = dynamic(() =>
 const SubscribeBox = dynamic(() =>
   import("../components/SubscribeBox/SubscribeBox")
 );
-
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
+  }
+`;
 const Index = ({
   popularCategories,
   trendingProducts,
@@ -35,11 +37,7 @@ const Index = ({
   heroBanners,
 }) => {
   const showCart = useSelector(selectShowCart);
-  const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
-  }
-`;
+
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} />

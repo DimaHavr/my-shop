@@ -5,10 +5,10 @@ import getHeaders from "../../../hooks/getHeaders";
 import Box from "../../../components/Box/Box";
 import Layout from "../../../components/Layout/Layout";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import RecommendedProducts from "../../../components/RecommendedProducts/RecommendedProducts";
+import ProductDetails from "../../../components/ProductDetails/ProductDetails";
 
-const ProductDetails = dynamic(() =>
-  import("../../../components/ProductDetails/ProductDetails")
+const RecommendedProducts = dynamic(() =>
+  import("../../../components/RecommendedProducts/RecommendedProducts")
 );
 
 const ProductScreen = ({ product, recommendProducts }) => {

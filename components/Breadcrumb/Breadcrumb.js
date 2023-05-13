@@ -20,6 +20,7 @@ const Breadcrumb = ({ breadcrumbArr, breadcrumbValue, title }) => {
     (obj) => obj?.subCatPath === breadcrumbValue
   );
   console.log(matchingObject);
+
   return (
     <Wrapper>
       <IconBox>
@@ -28,7 +29,7 @@ const Breadcrumb = ({ breadcrumbArr, breadcrumbValue, title }) => {
         </Link>
         <ArrowIcon onClick={() => handleClick()} />
       </IconBox>
-      {matchingObject.subCatPath ? (
+      {matchingObject?.subCatPath ? (
         <Link
           href={`/${matchingObject?.categoryPath}/${matchingObject?.subCatPath}`}
         >
