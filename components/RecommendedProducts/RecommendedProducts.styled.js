@@ -16,7 +16,7 @@ export const NextIcon = styled(HiOutlineArrowNarrowRight)`
 `;
 export const Section = styled.section`
   background-color: #e5e8ed;
-  padding: 20px 0;
+  padding: 30px 0 40px 0;
   cursor: grab;
 `;
 export const Wrapper = styled.div`

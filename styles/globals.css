@@ -164,3 +164,9 @@ img {
   border-radius: 100%;
   padding: 10px;
 }
+.slider-next-recommend-products-btn {
+  top: 100%;
+}
+.slider-prev-recommend-products-btn {
+  top: 100%;
+}
