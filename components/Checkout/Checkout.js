@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { LiqPayPay } from "react-liqpay";
+import { LiqPayPay } from "../../components/liqpay_checkout";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { setOrderId } from "../../redux/order/orderSlice";
+import { selectOrderId } from "../../redux/order/selectors";
 import { selectTotalPrice, selectCartItems } from "../../redux/cart/selectors";
 import { toggleCartItemQuantity, onRemove } from "../../redux/cart/cartSlice";
 import Box from "../../components/Box/Box";
@@ -44,6 +46,7 @@ const Checkout = () => {
   const router = useRouter();
   const totalPrice = useSelector(selectTotalPrice);
   const cartItems = useSelector(selectCartItems);
+  const orderId = useSelector(selectOrderId);
   const [showSummaryForm, setShowSummaryForm] = useState(false);
   const [paymentValue, setPaymentValue] = useState(null);
   const [deliveryData, setDeliveryData] = useState([]);
@@ -67,17 +70,24 @@ const Checkout = () => {
       router.push("/");
     }
   }, [cartItems, router]);
+
   const handleToggleSummaryForm = () => {
     setShowSummaryForm((prevShowForm) => !prevShowForm);
   };
 
   const handlePaymentSubmit = (event) => {
     event.preventDefault();
-    console.log(paymentValue);
   };
   const handlePaymentCheckboxChange = (event) => {
     const { value } = event.target;
     setPaymentValue(value);
+    toast.success(`Метод оплати збережено!`, {
+      style: {
+        borderRadius: "10px",
+        background: "grey",
+        color: "#fff",
+      },
+    });
   };
   const handleClientInputChange = (event) => {
     const { name, value } = event.target;
@@ -108,48 +118,51 @@ const Checkout = () => {
     let isValid = true;
 
     switch (true) {
-      case !clientFormData.firstName:
-        isValid = false;
-        toast.error(`Заповніть особісті дані...`, {
-          style: {
-            borderRadius: "10px",
-            background: "grey",
-            color: "#fff",
-          },
-        });
-        break;
+      // case !clientFormData.firstName:
+      //   isValid = false;
+      //   toast.error(`Заповніть особісті дані...`, {
+      //     style: {
+      //       borderRadius: "10px",
+      //       background: "grey",
+      //       color: "#fff",
+      //     },
+      //   });
+      //   break;
 
-      case !paymentValue:
-        isValid = false;
-        toast.error(`Виберіть метод оплати...`, {
-          style: {
-            borderRadius: "10px",
-            background: "grey",
-            color: "#fff",
-          },
-        });
-        break;
+      // case !paymentValue:
+      //   isValid = false;
+      //   toast.error(`Виберіть метод оплати...`, {
+      //     style: {
+      //       borderRadius: "10px",
+      //       background: "grey",
+      //       color: "#fff",
+      //     },
+      //   });
+      //   break;
 
-      case !deliveryFormData.area && !deliveryData.Description:
-        isValid = false;
-        toast.error(`Заповніть дані доставки...`, {
-          style: {
-            borderRadius: "10px",
-            background: "grey",
-            color: "#fff",
-          },
-        });
-        break;
+      // case !deliveryFormData.area && !deliveryData.Description:
+      //   isValid = false;
+      //   toast.error(`Заповніть дані доставки...`, {
+      //     style: {
+      //       borderRadius: "10px",
+      //       background: "grey",
+      //       color: "#fff",
+      //     },
+      //   });
+      //   break;
 
       default:
-        // Додаткові перевірки або дії, якщо всі дані валідні
+        setShowSummaryForm((prevShowForm) => !prevShowForm);
         break;
     }
 
     return isValid;
   };
-  const checkSummary = checkFormData();
-  console.log(checkSummary);
+
+  const handleOrderSubmit = () => {
+    const generatedOrderId = Math.floor(1 + Math.random() * 900000000);
+    dispatch(setOrderId(generatedOrderId));
+  };
   return (
     cartItems && (
       <CheckoutWrapper>
@@ -278,13 +291,13 @@ const Checkout = () => {
               setDeliveryData={setDeliveryData}
             />
             <SummaryOrderBox>
-              <SummaryBtn onClick={handleToggleSummaryForm}>
+              <SummaryBtn onClick={checkFormData}>
                 Підсумок замовлення
               </SummaryBtn>
             </SummaryOrderBox>
           </Box>
         </CheckoutContainer>
-        {checkSummary && showSummaryForm && (
+        {showSummaryForm && (
           <Overlay showSummaryForm={showSummaryForm}>
             <SummaryOrderWrapper>
               <CloseIcon onClick={handleToggleSummaryForm} />
@@ -347,7 +360,7 @@ const Checkout = () => {
                 </Table>
               </SummaryOrderItem>
               <Box display="flex" alignItems="center" gridGap="10px">
-                <SubTitle>Сума до cплати:</SubTitle>
+                <SubTitle>Сума до оплати:</SubTitle>
                 <Text>{totalPrice}грн</Text>
               </Box>
 
@@ -356,15 +369,19 @@ const Checkout = () => {
                   title={"Оплатити"}
                   publicKey={process.env.NEXT_PUBLIC_LIQPAY_PUBLIC_KEY}
                   privateKey={process.env.NEXT_PUBLIC_LIQPAY_PRIVAT_KEY}
-                  amount={totalPrice.toString()}
+                  amount={totalPrice}
                   description="Оплата для Roztox"
                   currency="UAH"
-                  orderId={Math.floor(1 + Math.random() * 900000000)}
+                  orderId={orderId}
                   result_url={process.env.NEXT_PUBLIC_LIQPAY_RESULT_URL}
-                  server_url={"http://server.domain.com/liqpay"}
+                  server_url={process.env.NEXT_PUBLIC_LIQPAY_SERVER_URL}
                   product_description="Оплата товарів"
                   disabled={false}
-                  extra={[<SummaryBtn key="1">Замовити</SummaryBtn>]}
+                  extra={[
+                    <SummaryBtn onClick={handleOrderSubmit} key="1">
+                      Замовити
+                    </SummaryBtn>,
+                  ]}
                 />
               ) : (
                 <SummaryBtn onClick={() => router.push("/success")}>

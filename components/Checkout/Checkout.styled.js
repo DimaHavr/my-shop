@@ -138,9 +138,12 @@ export const QuantityText = styled.p`
 
 export const List = styled.ul`
   width: 100%;
+  max-height: 383px;
+  overflow-y: auto;
   border: 1px solid #e5e8ed;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
+  padding: 0 20px;
 `;
 
 export const Item = styled.li`
@@ -149,11 +152,14 @@ export const Item = styled.li`
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  border-bottom: 1px solid #e5e8ed;
   padding: 15px 30px;
   @media screen and (max-width: 610px) {
     flex-direction: column;
     padding: 15px;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e5e8ed;
   }
 `;
 
@@ -262,6 +268,7 @@ export const SummaryBtn = styled.button`
 `;
 export const Overlay = styled.div`
   position: fixed;
+  overflow-y: scroll;
   z-index: 100;
   top: 0;
   left: 0;
@@ -309,7 +316,6 @@ export const SummaryOrderWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   background-color: #fff;
   box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.15);
   padding: 50px;
@@ -318,4 +324,7 @@ export const SummaryOrderWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
+  @media screen and (max-width: 768px) {
+    margin-top: 80px;
+  }
 `;

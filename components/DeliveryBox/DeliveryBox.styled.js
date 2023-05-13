@@ -88,6 +88,7 @@ export const BiMapIcon = styled(BiMap)`
 `;
 
 export const Title = styled.h2`
+  text-align: center;
   color: #000;
   animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.61, 0.355, 1)
     both;
