@@ -52,6 +52,7 @@ const Index = (props) => {
   const breadcrumbValue = router.query.subcategories;
 
   useEffect(() => {
+    setProducts(products);
     fetchSortSubCatProducts(
       setProducts,
       setLoading,

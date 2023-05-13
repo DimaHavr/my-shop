@@ -255,9 +255,6 @@ export const QuantityText = styled.p`
 export const List = styled.ul`
   overflow-y: scroll;
   max-height: 71vh;
-  @media screen and (max-width: 480px) {
-    max-height: 60vh;
-  }
 `;
 
 export const Item = styled.li`
@@ -333,7 +330,7 @@ export const TotalContainer = styled.div`
   gap: 20px;
   padding: 16px 16px 26px;
   @media screen and (max-width: 480px) {
-    padding-bottom: 20vh;
+    padding-bottom: 6vh;
   }
 `;
 

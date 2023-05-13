@@ -87,7 +87,7 @@ img {
   left: 35%;
   top: 105%;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
@@ -112,7 +112,7 @@ img {
   left: 55%;
   top: 100%;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
@@ -127,7 +127,7 @@ img {
   left: 45%;
   top: 100%;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
@@ -145,7 +145,7 @@ img {
   left: 65%;
   top: 88%;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
@@ -159,7 +159,7 @@ img {
   left: 35%;
   top: 88%;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;

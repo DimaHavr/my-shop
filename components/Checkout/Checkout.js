@@ -107,12 +107,6 @@ const Checkout = () => {
     event.preventDefault();
     console.log(deliveryFormData);
   };
-  const TableRow = ({ value }) =>
-    value && (
-      <tr>
-        <Td>{value}</Td>
-      </tr>
-    );
 
   const checkFormData = () => {
     let isValid = true;
@@ -188,7 +182,13 @@ const Checkout = () => {
                     passHref
                   >
                     <ImgContainer>
-                      <Img src={image} />
+                      <Img
+                        src={image}
+                        alt={title}
+                        width={120}
+                        height={80}
+                        priority
+                      />
                     </ImgContainer>
                   </Link>
                   <Box
@@ -311,10 +311,13 @@ const Checkout = () => {
                   </THead>
                   <tbody>
                     {Object.entries(clientFormData).map(([key, value]) => (
-                      <TableRow key={key} title={key} value={value} />
+                      <tr key={key}>
+                        <Td>{value}</Td>
+                      </tr>
                     ))}
                   </tbody>
                 </Table>
+
                 <Table>
                   <THead>
                     <tr>
@@ -324,16 +327,22 @@ const Checkout = () => {
                   {deliveryData?.Description ? (
                     <>
                       <tbody>
-                        <Td>{deliveryData?.SettlementAreaDescription}</Td>
+                        <tr>
+                          <Td>{deliveryData?.SettlementAreaDescription}</Td>
+                        </tr>
                       </tbody>
                       <tbody>
-                        <Td>
-                          {deliveryData?.SettlementTypeDescription}{" "}
-                          {deliveryData?.CityDescription}
-                        </Td>
+                        <tr>
+                          <Td>
+                            {deliveryData?.SettlementTypeDescription}{" "}
+                            {deliveryData?.CityDescription}
+                          </Td>
+                        </tr>
                       </tbody>
                       <tbody>
-                        <Td>{deliveryData?.Description}</Td>
+                        <tr>
+                          <Td>{deliveryData?.Description}</Td>
+                        </tr>
                       </tbody>
                     </>
                   ) : (
@@ -341,7 +350,9 @@ const Checkout = () => {
                       <tbody>
                         {Object.entries(deliveryFormData).map(
                           ([key, value]) => (
-                            <TableRow key={key} title={key} value={value} />
+                            <tr key={key}>
+                              <Td>{value}</Td>
+                            </tr>
                           )
                         )}
                       </tbody>
@@ -355,7 +366,9 @@ const Checkout = () => {
                     </tr>
                   </THead>
                   <tbody>
-                    <Td>{paymentValue}</Td>
+                    <tr>
+                      <Td>{paymentValue}</Td>
+                    </tr>
                   </tbody>
                 </Table>
               </SummaryOrderItem>

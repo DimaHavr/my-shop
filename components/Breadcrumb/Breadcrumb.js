@@ -10,17 +10,12 @@ import {
 
 const Breadcrumb = ({ breadcrumbArr, breadcrumbValue, title }) => {
   const router = useRouter();
-  console.log("breadcrumbArr:", breadcrumbArr);
-  console.log("breadcrumbValue:", breadcrumbValue);
   const handleClick = () => {
     router.back();
   };
-
   const matchingObject = breadcrumbArr?.find(
     (obj) => obj?.subCatPath === breadcrumbValue
   );
-  console.log(matchingObject);
-
   return (
     <Wrapper>
       <IconBox>

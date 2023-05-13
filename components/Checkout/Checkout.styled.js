@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { TfiClose } from "react-icons/tfi";
+import Image from "next/image";
 
 export const CloseIcon = styled(TfiClose)`
   cursor: pointer;
@@ -94,7 +95,7 @@ export const CheckoutContainer = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-  width: 120px;
+  width: auto;
   height: auto;
   display: flex;
   justify-content: center;
@@ -105,7 +106,7 @@ export const ImgContainer = styled.div`
     width: 80px;
   }
 `;
-export const Img = styled.img`
+export const Img = styled(Image)`
   width: 120px;
   height: auto;
   object-fit: content;
@@ -324,7 +325,4 @@ export const SummaryOrderWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  @media screen and (max-width: 768px) {
-    margin-top: 80px;
-  }
 `;
