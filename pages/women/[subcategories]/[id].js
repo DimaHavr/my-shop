@@ -39,21 +39,29 @@ const ProductScreen = ({ product, recommendProducts }) => {
 
 export default ProductScreen;
 
+import axios from "axios";
+
 export async function getStaticProps({ params }) {
   const slug = params.subcategories;
   const id = params.id;
   const productUrl = `${process.env.BASE_URL}/api/products/${id}?populate=*`;
-  const recommendProductsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
+  const recommendProductsUrl = `${
+    process.env.BASE_URL
+  }/api/products?populate=*&[filters][sub_categories][slug]=${encodeURIComponent(
     slug
   )}`;
 
   try {
     const [responseProduct, responseRecommendProducts] = await Promise.all([
-      axios.get(productUrl, getHeaders()),
-      axios.get(recommendProductsUrl, getHeaders()),
+      axios
+        .get(productUrl, { headers: getHeaders() })
+        .then((response) => response.data),
+      axios
+        .get(recommendProductsUrl, { headers: getHeaders() })
+        .then((response) => response.data),
     ]);
-    const product = responseProduct.data;
-    const recommendProducts = responseRecommendProducts.data;
+    const product = responseProduct;
+    const recommendProducts = responseRecommendProducts;
 
     return {
       props: { product, recommendProducts },

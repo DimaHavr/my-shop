@@ -65,30 +65,18 @@ export async function getStaticProps() {
   try {
     const [popularCategories, trendingProducts, newProducts, heroBanners] =
       await Promise.all([
-        cache.getOrFetch("popularCategories", async () => {
-          const response = await axios.get(subCategoriesUrl, getHeaders());
-          return response.data;
-        }),
-        cache.getOrFetch("trendingProducts", async () => {
-          const response = await axios.get(trendingProductsUrl, getHeaders());
-          return response.data;
-        }),
-        cache.getOrFetch("newProducts", async () => {
-          const response = await axios.get(newProductsUrl, getHeaders());
-          return response.data;
-        }),
-        cache.getOrFetch("heroBanners", async () => {
-          const response = await axios.get(heroBannersUrl, getHeaders());
-          return response.data;
-        }),
+        axios.get(subCategoriesUrl, getHeaders()),
+        axios.get(trendingProductsUrl, getHeaders()),
+        axios.get(newProductsUrl, getHeaders()),
+        axios.get(heroBannersUrl, getHeaders()),
       ]);
 
     return {
       props: {
-        popularCategories,
-        trendingProducts,
-        newProducts,
-        heroBanners,
+        popularCategories: popularCategories.data,
+        trendingProducts: trendingProducts.data,
+        newProducts: newProducts.data,
+        heroBanners: heroBanners.data,
       },
       revalidate: 60,
     };
