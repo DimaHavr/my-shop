@@ -377,6 +377,7 @@ const Checkout = () => {
                   server_url={process.env.NEXT_PUBLIC_LIQPAY_SERVER_URL}
                   product_description="Оплата товарів"
                   disabled={false}
+                  sandbox={"1"}
                   extra={[
                     <SummaryBtn onClick={handleOrderSubmit} key="1">
                       Замовити

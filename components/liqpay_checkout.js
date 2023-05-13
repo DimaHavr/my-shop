@@ -15,6 +15,7 @@ export const LiqPayPay = ({
   style,
   disabled,
   extra,
+  sandbox,
   ...props
 }) => {
   console.log(orderId);
@@ -26,6 +27,7 @@ export const LiqPayPay = ({
     currency: currency,
     description: description,
     order_id: orderId,
+    sandbox: sandbox,
     ...props,
   };
 
