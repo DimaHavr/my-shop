@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { createGlobalStyle } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Confetti from "react-confetti";
-import { cache } from "../../utils/cache";
 import { selectShowCart } from "../../redux/cart/selectors";
 import { selectTotalPrice } from "../../redux/cart/selectors";
 import {
