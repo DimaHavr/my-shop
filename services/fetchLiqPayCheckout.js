@@ -3,7 +3,7 @@ import crypto from "crypto";
 import PropTypes from "prop-types";
 import { utf8_to_b64 } from "../utils/getLiqpayData";
 
-export const LiqPayPay = ({
+const LiqPayPay = ({
   publicKey,
   privateKey,
   amount,
@@ -18,7 +18,6 @@ export const LiqPayPay = ({
   sandbox,
   ...props
 }) => {
-  console.log(orderId);
   const jsonString = {
     public_key: publicKey,
     version: version,

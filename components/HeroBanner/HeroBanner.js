@@ -34,10 +34,10 @@ const HeroBanner = ({ heroBanners }) => {
         {heroBanners.map((item) => {
           const { button_text, title, text_top } = item.attributes;
           const bannerPath = item.attributes.category.data.attributes.slug;
-          const banner_img = item.attributes.banner_img.data.attributes.url;
+          const bannerImg = item.attributes.banner_img.data.attributes.url;
           return (
             <SwiperSlide key={item.id}>
-              <HeroBannerSection backgroundImage={banner_img}>
+              <HeroBannerSection backgroundImage={bannerImg}>
                 <HeroBannerContainer>
                   <HeroBannerText>{text_top}</HeroBannerText>
                   <HeroBannerTitle>{title}</HeroBannerTitle>

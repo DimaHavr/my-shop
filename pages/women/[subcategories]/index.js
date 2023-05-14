@@ -56,7 +56,7 @@ const Index = (props) => {
       sortPopular,
       props
     );
-  }, [sortPopular, sortPrice, sortNew]);
+  }, [sortPopular, sortPrice, sortNew, props.products, props.slug]);
 
   const subCategoriesPath = props.subCategories.data.map((item) => ({
     title: item.attributes.title,

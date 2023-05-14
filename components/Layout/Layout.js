@@ -95,6 +95,15 @@ const Layout = ({ pageTitle, children }) => {
             </NavItem>
             <NavItem>
               <NavLink
+                href="/mens"
+                active={activePage === "/mens" ? "true" : ""}
+                onClick={() => setActivePage("/mens")}
+              >
+                Чоловічий одяг
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
                 href="/children"
                 active={activePage === "/children" ? "true" : ""}
                 onClick={() => setActivePage("/children")}
@@ -102,17 +111,7 @@ const Layout = ({ pageTitle, children }) => {
                 Дитячий одяг
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-                href="/sale"
-                active={activePage === "/sale" ? "true" : ""}
-                onClick={() => setActivePage("/sale")}
-              >
-                Sale до -50%
-              </NavLink>
-            </NavItem>
           </NavList>
-
           <ToolBar>
             <SearchBox />
             <Box display="flex" gridGap="5px">

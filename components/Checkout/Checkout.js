@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { LiqPayPay } from "../../components/liqpay_checkout";
+import { LiqPayPay } from "../../services/fetchLiqPayCheckout";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setOrderId } from "../../redux/order/orderSlice";
@@ -398,7 +398,7 @@ const Checkout = () => {
                   ]}
                 />
               ) : (
-                <SummaryBtn onClick={() => router.push("/success")}>
+                <SummaryBtn onClick={() => router.push("/result")}>
                   Замовити
                 </SummaryBtn>
               )}

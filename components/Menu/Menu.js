@@ -20,20 +20,19 @@ const Menu = ({ isMenuOpen, activePage, setActivePage }) => {
         >
           Жіночий одяг
         </NavLink>
-
+        <NavLink
+          href="/mens"
+          active={activePage === "/mens" ? "true" : ""}
+          onClick={() => setActivePage("/mens")}
+        >
+          Чоловічий одяг
+        </NavLink>
         <NavLink
           href="/children"
           active={activePage === "/children" ? "true" : ""}
           onClick={() => setActivePage("/children")}
         >
           Дитячий одяг
-        </NavLink>
-        <NavLink
-          href="/sale"
-          active={activePage === "/sale" ? "true" : ""}
-          onClick={() => setActivePage("/sale")}
-        >
-          Sale до -50%
         </NavLink>
       </Nav>
     </NavbarMenu>
