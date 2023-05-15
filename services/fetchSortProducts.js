@@ -36,7 +36,6 @@ export async function fetchSortSubCatProducts(
   sortPopular,
   props
 ) {
-  setLoading(true);
   if (!sortPrice && !sortNew && !sortPopular) {
     setLoading(false);
     return;
@@ -48,6 +47,7 @@ export async function fetchSortSubCatProducts(
     sortNew ? `&sort=createdAt:${sortNew}` : ""
   }`;
   try {
+    setLoading(true);
     const response = await axios.get(productsUrl, getHeaders());
     const products = response.data;
     setProducts(products);

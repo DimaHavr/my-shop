@@ -138,9 +138,14 @@ const DeliveryBox = ({
 
   const handleFilterCityDebounced = debounce(handleFilter, 300);
   const handleFilterWarehouseDebounced = debounce(handleWarehouses, 300);
+
   const handleInputCityChange = (e) => {
-    setFilterCityValue(e.target.value);
-    handleFilterCityDebounced(e.target.value);
+    const inputValue = e.target.value;
+    setFilterCityValue(inputValue);
+    if (!inputValue.trim()) {
+      handleFilter(); // Manually call handleFilter if input value is empty
+    }
+    handleFilterCityDebounced(inputValue);
   };
 
   const handleInputWarehouseChange = (e) => {
