@@ -69,9 +69,9 @@ const Index = (props) => {
           breadcrumbValue={breadcrumbValue}
         />
         <Categories categories={props.subCategories.data} />
-        {loading && <Loader loading={loading} />}
         <ProductsList products={products.data} />
         <SubscribeBox />
+        {loading && <Loader loading={loading} />}
       </Layout>
     </Box>
   );
