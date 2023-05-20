@@ -2,7 +2,7 @@ import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { createGlobalStyle } from "styled-components";
 import { fetchSortSubCatProducts } from "../../../services/fetchSortProducts";
 import { selectShowFilter } from "../../../redux/filter/selectors";
@@ -54,11 +54,13 @@ const Index = (props) => {
     );
   }, [sortPopular, sortPrice, sortNew, props.products, props.slug]);
 
-  const subCategoriesPath = props.subCategories.data.map((item) => ({
-    title: item.attributes.title,
-    subCatPath: item.attributes.slug,
-    categoryPath: item.attributes.categories.data[0].attributes.slug,
-  }));
+  const subCategoriesPath = useMemo(() => {
+    return props.subCategories.data.map((item) => ({
+      title: item.attributes.title,
+      subCatPath: item.attributes.slug,
+      categoryPath: item.attributes.categories.data[0].attributes.slug,
+    }));
+  }, [props.subCategories.data]);
 
   const breadcrumbValue = router.query.subcategories;
 

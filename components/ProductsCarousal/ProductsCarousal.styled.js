@@ -32,7 +32,6 @@ export const FavoriteIconBox = styled.div`
 `;
 
 export const SlideBox = styled.div`
-  background-color: #e5e8ed;
   display: flex;
   justify-content: center;
 `;

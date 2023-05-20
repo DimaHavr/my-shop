@@ -196,7 +196,6 @@ export const ItemQty = styled.span`
 `;
 
 export const NavbarBurgerBox = styled.button`
-  z-index: 4;
   display: flex;
   cursor: pointer;
   border: none;
@@ -220,6 +219,7 @@ export const BurgerIcon = styled(GiHamburgerMenu)`
   }
 `;
 export const CloseBurgerIcon = styled(TfiClose)`
+  z-index: 4;
   cursor: pointer;
   width: 34px;
   height: 34px;

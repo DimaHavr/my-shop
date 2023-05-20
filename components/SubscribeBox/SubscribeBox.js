@@ -1,6 +1,4 @@
-import Link from "next/link";
 import { useState } from "react";
-import Box from "../Box/Box";
 import {
   CheckIcon,
   Wrapper,
@@ -18,7 +16,6 @@ import {
   CheckboxContainer,
   CheckboxInput,
   CheckboxLabel,
-  Label,
   CheckboxContainerConfirm,
   CheckboxInputConfirm,
   CheckboxLabelConfirm,
@@ -75,7 +72,7 @@ const SubscribeBox = () => {
         {checked && <CheckIcon />}
       </CheckboxLabelConfirm>
       <CheckboxConfirmText>
-        Я згоден отримувати повідомлення від Createx Store.
+        Я згоден(а) отримувати повідомлення від Createx Store.
       </CheckboxConfirmText>
     </CheckboxContainerConfirm>
   );

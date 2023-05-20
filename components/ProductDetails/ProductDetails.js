@@ -45,7 +45,6 @@ import ImgSlideBox from "../ImgSlideBox/ImgSlideBox";
 const ProductDetails = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
-  console.log(product);
   const {
     attributes: {
       title,

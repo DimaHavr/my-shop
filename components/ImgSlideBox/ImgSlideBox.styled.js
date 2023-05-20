@@ -1,5 +1,25 @@
 import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { TfiClose } from "react-icons/tfi";
+export const CloseIcon = styled(TfiClose)`
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 30px;
+  height: 30px;
+  fill: #fff;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: 768px) {
+    top: 10px;
+    right: 10px;
+  }
+`;
 
 export const PrevIcon = styled(FaChevronLeft)`
   width: 30px;
@@ -158,5 +178,59 @@ export const Img = styled.img`
     100% {
       opacity: 0;
     }
+  }
+`;
+export const Overlay = styled.div`
+  position: fixed;
+  overflow-y: hidden;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  padding-top: 50px;
+  animation: ${({ showModal }) =>
+    showModal &&
+    "slide-in-fwd-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both"};
+
+  @keyframes slide-in-fwd-center {
+    0% {
+      -webkit-transform: translateZ(-1400px);
+      transform: translateZ(-1400px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes swing-out-top-bck {
+    0% {
+      -webkit-transform: rotateX(0deg);
+      transform: rotateX(0deg);
+      -webkit-transform-origin: top;
+      transform-origin: top;
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: rotateX(-100deg);
+      transform: rotateX(-100deg);
+      -webkit-transform-origin: top;
+      transform-origin: top;
+      opacity: 0;
+    }
+  }
+`;
+export const SlideModalBox = styled.div`
+  user-select: none;
+  margin: 0 auto;
+  max-width: 500px;
+  height: 100%;
+  cursor: grab;
+  @media screen and (max-width: 930px) {
+    width: 100%;
   }
 `;

@@ -10,7 +10,6 @@ export async function fetchSortCategoryProducts(
 ) {
   setLoading(true);
   if (!sortPrice && !sortNew && !sortPopular) {
-    setLoading(false);
     return;
   }
   const productsUrl = `https://my-shop-strapi.onrender.com/api/products?populate=*&[filters][categories][title][$startsWithi]=Жіночий${
@@ -18,6 +17,7 @@ export async function fetchSortCategoryProducts(
   }${sortNew ? `&sort=createdAt:${sortNew}` : ""}`;
 
   try {
+    setLoading(true);
     const response = await axios.get(productsUrl, getHeaders());
     const products = response.data;
     setProducts(products);
@@ -37,7 +37,6 @@ export async function fetchSortSubCatProducts(
   props
 ) {
   if (!sortPrice && !sortNew && !sortPopular) {
-    setLoading(false);
     return;
   }
 

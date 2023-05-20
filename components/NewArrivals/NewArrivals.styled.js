@@ -16,7 +16,7 @@ export const NextIcon = styled(HiOutlineArrowNarrowRight)`
 `;
 
 export const Section = styled.section`
-  background-color: #e5e8ed;
+  background-color: #fff;
   padding: 50px 0;
   cursor: grab;
 `;
@@ -28,7 +28,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100;
+  gap: 25px;
 `;
 export const Title = styled.h2`
   font-family: "LatoBold";
@@ -37,13 +37,11 @@ export const Title = styled.h2`
   line-height: 60px;
   color: #1e212c;
   text-align: center;
-  margin-bottom: 24px;
 `;
 
 export const Text = styled.p`
   font-family: "LatoRegular";
   color: #787a80;
-  margin-bottom: 8px;
   text-align: center;
 `;
 export const Button = styled.button`
@@ -60,7 +58,6 @@ export const Button = styled.button`
   border: 1px solid #17696a;
   border-radius: 4px;
   background: #17696a;
-  margin-top: 25px;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);

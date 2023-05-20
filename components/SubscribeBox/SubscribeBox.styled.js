@@ -156,13 +156,6 @@ export const Input = styled.input`
     border-radius: 4px;
   }
 `;
-export const Label = styled.label`
-  font-family: "LatoRegular";
-  font-size: 16px;
-  line-height: 26px;
-
-  color: #424551;
-`;
 
 export const Button = styled.button`
   font-family: "LatoBold";

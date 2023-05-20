@@ -78,6 +78,7 @@ const Checkout = () => {
   const handlePaymentSubmit = (event) => {
     event.preventDefault();
   };
+
   const handlePaymentCheckboxChange = (event) => {
     const { value } = event.target;
     setPaymentValue(value);

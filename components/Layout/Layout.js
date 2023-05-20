@@ -74,12 +74,14 @@ const Layout = ({ pageTitle, children }) => {
                 alt="Your logo"
                 width={45}
                 height={45}
+                priority
               />
               <NavLogoText
                 src="/logos/logo_text.svg"
                 alt="Your logo"
                 width={150}
                 height={50}
+                priority
               />
             </NavLogoBox>
           </Link>

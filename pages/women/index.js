@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { createGlobalStyle } from "styled-components";
@@ -49,10 +49,14 @@ const Index = (props) => {
     );
   }, [sortPopular, sortPrice, sortNew]);
 
-  const categoriesPath = props.subCategories.data.map((item) => ({
-    title: item.attributes.categories.data[0].attributes.title,
-    categoryPath: item.attributes.categories.data[0].attributes.title.slug,
-  }));
+  const categoriesPath = useMemo(
+    () =>
+      props.subCategories.data.map((item) => ({
+        title: item.attributes.categories.data[0].attributes.title,
+        categoryPath: item.attributes.categories.data[0].attributes.title.slug,
+      })),
+    [props.subCategories.data]
+  );
 
   const router = useRouter();
   const breadcrumbValue = router.query.categories;

@@ -57,59 +57,59 @@ const Index = ({
   const orderId = useSelector(selectOrderId);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const sendData = async () => {
-      const publicKey = process.env.NEXT_PUBLIC_LIQPAY_PUBLIC_KEY;
-      const privateKey = process.env.NEXT_PUBLIC_LIQPAY_PRIVAT_KEY;
-      const amount = totalPrice;
-      const currency = "UAH";
-      const description = "test";
-      const version = 3;
+  // useEffect(() => {
+  //   const sendData = async () => {
+  //     const publicKey = process.env.NEXT_PUBLIC_LIQPAY_PUBLIC_KEY;
+  //     const privateKey = process.env.NEXT_PUBLIC_LIQPAY_PRIVAT_KEY;
+  //     const amount = totalPrice;
+  //     const currency = "UAH";
+  //     const description = "test";
+  //     const version = 3;
 
-      const jsonString = {
-        public_key: publicKey,
-        version: version,
-        action: "pay",
-        amount: amount,
-        currency: currency,
-        description: description,
-        order_id: orderId,
-      };
+  //     const jsonString = {
+  //       public_key: publicKey,
+  //       version: version,
+  //       action: "pay",
+  //       amount: amount,
+  //       currency: currency,
+  //       description: description,
+  //       order_id: orderId,
+  //     };
 
-      const data = utf8_to_b64(JSON.stringify(jsonString)).toString();
-      const signString = privateKey + data + privateKey;
-      const sha1 = crypto.createHash("sha1");
-      sha1.update(signString);
-      const signature = sha1.digest("base64").toString();
+  //     const data = utf8_to_b64(JSON.stringify(jsonString)).toString();
+  //     const signString = privateKey + data + privateKey;
+  //     const sha1 = crypto.createHash("sha1");
+  //     sha1.update(signString);
+  //     const signature = sha1.digest("base64").toString();
 
-      try {
-        const response = await axios.post("/api/liqpay_request", {
-          data,
-          signature,
-        });
-        setStatus(response.data.status);
-        if (status !== "success") {
-          setConfettiActive(false);
-        } else {
-          setConfettiActive(true);
-        }
-        console.log("Liqpay API response:", response.data);
-      } catch (error) {
-        console.error("Liqpay API request failed:", error);
-      }
-    };
+  //     try {
+  //       const response = await axios.post("/api/liqpay_request", {
+  //         data,
+  //         signature,
+  //       });
+  //       setStatus(response.data.status);
+  //       if (status !== "success") {
+  //         setConfettiActive(false);
+  //       } else {
+  //         setConfettiActive(true);
+  //       }
+  //       console.log("Liqpay API response:", response.data);
+  //     } catch (error) {
+  //       console.error("Liqpay API request failed:", error);
+  //     }
+  //   };
 
-    sendData();
-  }, [orderId]);
+  //   sendData();
+  // }, [orderId]);
 
-  if (status) {
-    dispatch(setCartItems([]));
-    dispatch(setTotalQuantities(0));
-    dispatch(setTotalPrice(0));
-    dispatch(setOrderId(""));
-    console.log("clean");
-  }
-  console.log("status:", status);
+  // if (status) {
+  //   dispatch(setCartItems([]));
+  //   dispatch(setTotalQuantities(0));
+  //   dispatch(setTotalPrice(0));
+  //   dispatch(setOrderId(""));
+  //   console.log("clean");
+  // }
+  // console.log("status:", status);
 
   return (
     <SuccessBox setConfettiActive={setConfettiActive}>
