@@ -30,7 +30,7 @@ const NewArrivals = ({ newProducts }) => {
           </button>
         </ProductsCarousal>
 
-        <Button>Дивіться колекцію тут</Button>
+        {/* <Button>Дивіться колекцію тут</Button> */}
       </Wrapper>
     </Section>
   );

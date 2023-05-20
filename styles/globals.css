@@ -143,12 +143,15 @@ img {
   border: none;
   background: none;
   left: 65%;
-  bottom: 25px;
+  bottom: -65px;
   transform: translate(-50%, -50%);
   z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
+  @media screen and (max-width: 480px) {
+    left: 80%;
+  }
 }
 .slider-prev-new-products-btn,
 .slider-prev-trends-products-btn,
@@ -157,12 +160,15 @@ img {
   border: none;
   background: none;
   left: 35%;
-  bottom: 25px;
+  bottom: -65px;
   transform: translate(-50%, -50%);
   z-index: 2;
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
+  @media screen and (max-width: 480px) {
+    left: 20%;
+  }
 }
 .slider-next-recommend-products-btn {
   top: 100%;

@@ -33,7 +33,7 @@ const TrendingNow = ({ trendingProducts }) => {
           </button>
         </ProductsCarousal>
 
-        <Button>Ознайомтеся з топ-продажами</Button>
+        {/* <Button>Ознайомтеся з топ-продажами</Button> */}
       </Wrapper>
     </Section>
   );
