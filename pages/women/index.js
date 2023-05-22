@@ -11,6 +11,7 @@ import {
   selectSortPrice,
   selectSortNew,
   selectSortPopular,
+  selectSelectedSort,
 } from "../../redux/sort/selectors";
 import getHeaders from "../../hooks/getHeaders";
 import Box from "../../components/Box/Box";
@@ -38,8 +39,13 @@ const Index = (props) => {
   const sortPopular = useSelector(selectSortPopular);
   const showCart = useSelector(selectShowCart);
   const showFilter = useSelector(selectShowFilter);
-
+  const sortValue = useSelector(selectSelectedSort);
+  console.log(sortValue);
   useEffect(() => {
+    if (sortValue === "") {
+      setProducts(props.products);
+      return;
+    }
     fetchSortCategoryProducts(
       setProducts,
       setLoading,
