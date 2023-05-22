@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Head from "next/head";
+import { createGlobalStyle } from "styled-components";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -37,7 +38,12 @@ import {
 } from "./Layout.styled";
 import Box from "../Box/Box";
 import Menu from "../Menu/Menu";
-
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: ${({ showCart, showFilter }) =>
+      showCart || showFilter ? "hidden" : "auto"};
+  }
+`;
 const Layout = ({ pageTitle, children }) => {
   const [activePage, setActivePage] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -148,7 +154,11 @@ const Layout = ({ pageTitle, children }) => {
         activePage={activePage}
         setActivePage={setActivePage}
       />
-      <Box>{children}</Box>
+      <Box>
+        {" "}
+        <GlobalStyle showCart={showCart} showFilter={showFilter} />
+        {children}
+      </Box>
       {showCart && <Cart />} {showFilter && <ProductsFilter />}
       <Footer />
     </>

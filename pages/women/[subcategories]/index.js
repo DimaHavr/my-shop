@@ -3,10 +3,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { useEffect, useState, useMemo } from "react";
-import { createGlobalStyle } from "styled-components";
 import { fetchSortSubCatProducts } from "../../../services/fetchSortProducts";
-import { selectShowFilter } from "../../../redux/filter/selectors";
-import { selectShowCart } from "../../../redux/cart/selectors";
 import {
   selectSortPrice,
   selectSortNew,
@@ -28,12 +25,7 @@ const ProductsList = dynamic(() =>
 const Categories = dynamic(() =>
   import("../../../components/Categories/Categories")
 );
-const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: ${({ showCart, showFilter }) =>
-      showCart || showFilter ? "hidden" : "auto"};
-  }
-`;
+
 const Index = (props) => {
   const [products, setProducts] = useState(props.products);
   const [loading, setLoading] = useState(false);
@@ -41,15 +33,13 @@ const Index = (props) => {
   const sortNew = useSelector(selectSortNew);
   const sortPopular = useSelector(selectSortPopular);
   const router = useRouter();
-  const showCart = useSelector(selectShowCart);
-  const showFilter = useSelector(selectShowFilter);
   const sortValue = useSelector(selectSelectedSort);
   console.log(sortValue);
   useEffect(() => {
-    // if (sortValue === "") {
-    //   setProducts(props.products);
-    //   return;
-    // }
+    if (sortValue === "") {
+      setProducts(props.products);
+      return;
+    }
     fetchSortSubCatProducts(
       setProducts,
       setLoading,
@@ -72,7 +62,6 @@ const Index = (props) => {
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
-      <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
         <Breadcrumb
           breadcrumbArr={subCategoriesPath}

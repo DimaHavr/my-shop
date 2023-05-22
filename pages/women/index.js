@@ -2,10 +2,7 @@ import axios from "axios";
 import { useEffect, useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
-import { selectShowFilter } from "../../redux/filter/selectors";
-import { selectShowCart } from "../../redux/cart/selectors";
 import { fetchSortCategoryProducts } from "../../services/fetchSortProducts";
 import {
   selectSortPrice,
@@ -24,21 +21,12 @@ const SubscribeBox = dynamic(() =>
   import("../../components/SubscribeBox/SubscribeBox")
 );
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: ${({ showCart, showFilter }) =>
-      showCart || showFilter ? "hidden" : "auto"};
-  }
-`;
-
 const Index = (props) => {
   const [products, setProducts] = useState(props.products);
   const [loading, setLoading] = useState(false);
   const sortPrice = useSelector(selectSortPrice);
   const sortNew = useSelector(selectSortNew);
   const sortPopular = useSelector(selectSortPopular);
-  const showCart = useSelector(selectShowCart);
-  const showFilter = useSelector(selectShowFilter);
   const sortValue = useSelector(selectSelectedSort);
   console.log(sortValue);
   useEffect(() => {
@@ -68,7 +56,6 @@ const Index = (props) => {
   const breadcrumbValue = router.query.categories;
   return (
     <Box display="flex" flexDirection="column" height="100vh">
-      <GlobalStyle showCart={showCart} showFilter={showFilter} />
       <Layout pageTitle="My-Shop">
         <Breadcrumb
           breadcrumbArr={categoriesPath}

@@ -2,10 +2,8 @@ import axios from "axios";
 import crypto from "crypto";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import { createGlobalStyle } from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import Confetti from "react-confetti";
-import { selectShowCart } from "../../redux/cart/selectors";
 import { selectTotalPrice } from "../../redux/cart/selectors";
 import {
   setCartItems,
@@ -39,11 +37,7 @@ const InstagramBox = dynamic(() =>
 const SubscribeBox = dynamic(() =>
   import("../../components/SubscribeBox/SubscribeBox")
 );
-const GlobalStyle = createGlobalStyle`
-  body {
-    overflow: ${({ showCart }) => (showCart ? "hidden" : "auto")};
-  }
-`;
+
 const Index = ({
   popularCategories,
   trendingProducts,
@@ -52,7 +46,6 @@ const Index = ({
 }) => {
   const [status, setStatus] = useState("");
   const [isConfettiActive, setConfettiActive] = useState(true);
-  const showCart = useSelector(selectShowCart);
   const totalPrice = useSelector(selectTotalPrice);
   const orderId = useSelector(selectOrderId);
   const dispatch = useDispatch();
@@ -121,7 +114,6 @@ const Index = ({
         />
       )}
       <Box display="flex" flexDirection="column" height="100vh">
-        <GlobalStyle showCart={showCart} />
         <Layout pageTitle="My-Shop">
           <HeroBanner heroBanners={heroBanners.data} />
           <PopularCategories popularCategories={popularCategories} />

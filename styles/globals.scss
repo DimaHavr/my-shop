@@ -116,9 +116,9 @@ img {
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     left: 70%;
-  }
+  } */
 }
 .slider-prev-categories-btn {
   position: absolute;
@@ -131,8 +131,8 @@ img {
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
-  @media screen and (max-width: 768px) {
-    left: 30%;
+  @media screen and (max-width: 480px) {
+    left: 20%;
   }
 }
 
@@ -175,14 +175,4 @@ img {
 }
 .slider-prev-recommend-products-btn {
   top: 100%;
-}
-.embla {
-  overflow: hidden;
-}
-.embla__container {
-  display: flex;
-}
-.embla__slide {
-  flex: 0 0 100%;
-  min-width: 0;
 }

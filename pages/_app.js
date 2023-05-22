@@ -1,7 +1,7 @@
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import ThemeProvider from "react-bootstrap/ThemeProvider";
 import { Toaster } from "react-hot-toast";
 import { store, persistor } from "../redux/store";
