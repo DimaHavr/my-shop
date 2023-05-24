@@ -33,7 +33,6 @@ const ToggleMenu = ({ productReviews, desc, productId }) => {
         starArray.push(<RegStarIcon key={i} />);
       }
     }
-    console.log(starArray);
     return starArray;
   };
 

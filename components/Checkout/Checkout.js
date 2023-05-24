@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
-import { LiqPayPay } from "../../services/fetchLiqPayCheckout";
+import LiqPayPay from "../../services/fetchLiqPayCheckout";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setOrderId } from "../../redux/order/orderSlice";
@@ -113,38 +113,38 @@ const Checkout = () => {
     let isValid = true;
 
     switch (true) {
-      // case !clientFormData.firstName:
-      //   isValid = false;
-      //   toast.error(`Заповніть особісті дані...`, {
-      //     style: {
-      //       borderRadius: "10px",
-      //       background: "grey",
-      //       color: "#fff",
-      //     },
-      //   });
-      //   break;
+      case !clientFormData.firstName:
+        isValid = false;
+        toast.error(`Заповніть особісті дані...`, {
+          style: {
+            borderRadius: "10px",
+            background: "grey",
+            color: "#fff",
+          },
+        });
+        break;
 
-      // case !paymentValue:
-      //   isValid = false;
-      //   toast.error(`Виберіть метод оплати...`, {
-      //     style: {
-      //       borderRadius: "10px",
-      //       background: "grey",
-      //       color: "#fff",
-      //     },
-      //   });
-      //   break;
+      case !paymentValue:
+        isValid = false;
+        toast.error(`Виберіть метод оплати...`, {
+          style: {
+            borderRadius: "10px",
+            background: "grey",
+            color: "#fff",
+          },
+        });
+        break;
 
-      // case !deliveryFormData.area && !deliveryData.Description:
-      //   isValid = false;
-      //   toast.error(`Заповніть дані доставки...`, {
-      //     style: {
-      //       borderRadius: "10px",
-      //       background: "grey",
-      //       color: "#fff",
-      //     },
-      //   });
-      //   break;
+      case !deliveryFormData.area && !deliveryData.Description:
+        isValid = false;
+        toast.error(`Заповніть дані доставки...`, {
+          style: {
+            borderRadius: "10px",
+            background: "grey",
+            color: "#fff",
+          },
+        });
+        break;
 
       default:
         setShowSummaryForm((prevShowForm) => !prevShowForm);

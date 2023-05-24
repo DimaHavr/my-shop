@@ -86,6 +86,7 @@ export async function getStaticProps() {
         popularCategories: null,
         trendingProducts: null,
         newProducts: null,
+        heroBannersUrl: null,
       },
     };
   }
