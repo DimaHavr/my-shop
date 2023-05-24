@@ -116,9 +116,9 @@ img {
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
-  /* @media screen and (max-width: 768px) {
-    left: 70%;
-  } */
+  @media screen and (max-width: 768px) {
+    left: 80%;
+  }
 }
 .slider-prev-categories-btn {
   position: absolute;
