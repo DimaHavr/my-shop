@@ -62,7 +62,7 @@ const Index = (props) => {
 
   return (
     <Box display="flex" flexDirection="column" height="100vh">
-      <Layout pageTitle="My-Shop">
+      <Layout subCategories={props.subCategories} pageTitle="My-Shop">
         <Breadcrumb
           breadcrumbArr={subCategoriesPath}
           breadcrumbValue={breadcrumbValue}

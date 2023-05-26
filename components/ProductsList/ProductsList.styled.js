@@ -33,6 +33,7 @@ export const FavoriteIconBox = styled.div`
 
 export const Section = styled.section`
   padding: 30px 0 50px 0;
+  z-index: -1;
 `;
 
 export const Title = styled.h2`

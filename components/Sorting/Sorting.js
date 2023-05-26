@@ -22,7 +22,7 @@ const Sorting = () => {
       router.push({
         pathname: router.pathname,
         query: {
-          sort: undefined,
+          sort: "",
         },
       });
       dispatch(setSelectedSort(""));

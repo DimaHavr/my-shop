@@ -39,6 +39,7 @@ export const Wrapper = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #f4f5f7;
   width: 100%;
+  z-index: -1;
   @media screen and (max-width: 1080px) {
     padding: 5px 80px;
   }

@@ -40,7 +40,7 @@ const Index = ({
   return (
     <Box display="flex" flexDirection="column" height="100vh">
       <GlobalStyle showCart={showCart} />
-      <Layout pageTitle="My-Shop">
+      <Layout subCategories={popularCategories} pageTitle="My-Shop">
         <HeroBanner heroBanners={heroBanners.data} />
         <PopularCategories popularCategories={popularCategories} />
         <TrendingNow trendingProducts={trendingProducts} />

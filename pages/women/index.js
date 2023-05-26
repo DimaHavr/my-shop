@@ -28,6 +28,8 @@ const Index = (props) => {
   const sortNew = useSelector(selectSortNew);
   const sortPopular = useSelector(selectSortPopular);
   const sortValue = useSelector(selectSelectedSort);
+  const router = useRouter();
+  const breadcrumbValue = router.query.categories;
   console.log(sortValue);
   useEffect(() => {
     if (sortValue === "") {
@@ -52,11 +54,9 @@ const Index = (props) => {
     [props.subCategories.data]
   );
 
-  const router = useRouter();
-  const breadcrumbValue = router.query.categories;
   return (
     <Box display="flex" flexDirection="column" height="100vh">
-      <Layout pageTitle="My-Shop">
+      <Layout subCategories={props.subCategories} pageTitle="My-Shop">
         <Breadcrumb
           breadcrumbArr={categoriesPath}
           breadcrumbValue={breadcrumbValue}

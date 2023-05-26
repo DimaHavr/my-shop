@@ -9,6 +9,8 @@ import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 import Link from "next/link";
 
 export const HeaderWrapper = styled.header`
+  position: relative;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -63,6 +65,35 @@ export const NavItem = styled.li`
   }
 `;
 
+export const DropDownLink = styled(Link)`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.88;
+  letter-spacing: 0.06em;
+  color: #333;
+  text-decoration: none;
+`;
+export const ItemDropdown = styled.li`
+  padding: 5px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    backdrop-filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    background-color: rgba(46, 46, 46, 0.31);
+    ${DropDownLink} {
+      &:hover,
+      &:focus {
+        color: #333;
+      }
+    }
+  }
+  &:not(:last-child) {
+    border-bottom: 1px solid #33333338;
+  }
+  &:last-child {
+    border-radius: 0 0 10px 10px;
+  }
+`;
 export const NavLink = styled(Link)`
   font-weight: 700;
   font-size: 16px;
@@ -74,7 +105,7 @@ export const NavLink = styled(Link)`
   text-decoration: none;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:after {
+  /* &:after {
     content: "";
     position: absolute;
     left: 0;
@@ -90,7 +121,7 @@ export const NavLink = styled(Link)`
 
   &:hover::after {
     transform: scaleX(1);
-  }
+  } */
 
   &:hover,
   &:focus {

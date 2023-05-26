@@ -116,7 +116,7 @@ img {
   cursor: pointer;
   border-radius: 100%;
   padding: 10px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 480px) {
     left: 80%;
   }
 }

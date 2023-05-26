@@ -19,6 +19,7 @@ export const Wrapper = styled.div`
   position: relative;
   cursor: pointer;
   display: flex;
+  z-index: -1;
 `;
 
 export const Item = styled.div`
